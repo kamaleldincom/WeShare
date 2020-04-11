@@ -64,6 +64,58 @@ class Settings extends StatelessWidget {
                           color: Colors.grey[300],
                           height: 1,
                         ),
+                        ListTile(
+                          leading: Icon(
+                            Icons.lock,
+                            color: Colors.blue,
+                            size: 35,
+                          ),
+                          title: Text('Privacy Policy',
+                              style: Theme.of(context).textTheme.title),
+                          trailing: Icon(
+                            Icons.keyboard_arrow_right,
+                            color: Colors.grey[300],
+                          ),
+                          onTap: () {},
+                        ),
+                        Divider(
+                          thickness: 1,
+                          color: Colors.grey[300],
+                          height: 1,
+                        ),
+                        ListTile(
+                          leading: Icon(
+                            Icons.help,
+                            color: Colors.blue,
+                            size: 35,
+                          ),
+                          title: Text('Help & Support',
+                              style: Theme.of(context).textTheme.title),
+                          trailing: Icon(
+                            Icons.keyboard_arrow_right,
+                            color: Colors.grey[300],
+                          ),
+                          onTap: () {},
+                        ),
+                        Divider(
+                          thickness: 1,
+                          color: Colors.grey[300],
+                          height: 1,
+                        ),
+                        ListTile(
+                          leading: Icon(
+                            Icons.insert_comment,
+                            color: Colors.blue,
+                            size: 35,
+                          ),
+                          title: Text('Feedback',
+                              style: Theme.of(context).textTheme.title),
+                          trailing: Icon(
+                            null,
+                            color: Colors.grey[300],
+                          ),
+                          onTap: () {},
+                        ),
                       ],
                     ),
                   ),
