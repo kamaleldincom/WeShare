@@ -125,6 +125,24 @@ class Settings extends StatelessWidget {
           ),
         ],
       ),
+      floatingActionButton: Container(
+        margin: EdgeInsets.symmetric(horizontal: 10),
+        child: FlatButton(
+          child: Text(
+            'Log Out',
+            style: TextStyle(
+                // fontFamily: 'SegoeUI',
+                color: Colors.white,
+                fontWeight: FontWeight.bold,
+                fontSize: 17),
+          ),
+          onPressed: () {},
+          color: Colors.grey[500],
+          shape: RoundedRectangleBorder(
+              borderRadius: new BorderRadius.circular(12)),
+          padding: EdgeInsets.symmetric(horizontal: 149, vertical: 12),
+        ),
+      ),
     );
   }
 }
