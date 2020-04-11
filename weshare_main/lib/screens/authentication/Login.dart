@@ -125,8 +125,7 @@ class _LoginState extends State<Login> {
                         child: RaisedButton(
                             onPressed: () async {
                               if (_formKey.currentState.validate()) {
-                                if (email == email &&
-                                    password == password) {
+                                if (email == 'test@test.com' && password == '123456') {
                                   Navigator.pushNamed(context, '/nav');
                                 } else {
                                   SnackBar registrationBar = SnackBar(
