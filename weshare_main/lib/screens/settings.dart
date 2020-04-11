@@ -33,6 +33,41 @@ class Settings extends StatelessWidget {
                     style: Theme.of(context).appBarTheme.textTheme.title,
                   ),
                 ),
+                //! Buttons
+                Container(
+                  margin: EdgeInsets.symmetric(horizontal: 20),
+                  child: Card(
+                    elevation: 0,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(20),
+                      //topLeft: Radius.circular(20.0),
+                      //topRight: Radius.circular(20.0)),
+                    ),
+                    child: Column(
+                      children: <Widget>[
+                        ListTile(
+                          leading: Icon(
+                            Icons.account_circle,
+                            color: Colors.blue,
+                            size: 35,
+                          ),
+                          title: Text('My Profile',
+                              style: Theme.of(context).textTheme.title),
+                          trailing: Icon(
+                            Icons.keyboard_arrow_right,
+                            color: Colors.grey[300],
+                          ),
+                          onTap: () {},
+                        ),
+                        Divider(
+                          thickness: 1,
+                          color: Colors.grey[300],
+                          height: 1,
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
               ],
             ),
           ),
