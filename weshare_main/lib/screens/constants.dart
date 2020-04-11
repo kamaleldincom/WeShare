@@ -61,7 +61,7 @@ class _BtmNavBarState extends State<BtmNavBar> {
   ];
   // void onTapped(int index) {
   //   setState(() {
-  //     _currentIndex = index;  
+  //     _currentIndex = index;
   //   });
   // }
 
@@ -73,8 +73,7 @@ class _BtmNavBarState extends State<BtmNavBar> {
           currentIndex: _currentIndex,
           onTap: (int index) {
             _currentIndex = index;
-            setState(() {
-            });
+            setState(() {});
           },
           // onTap: onTapped,
           type: BottomNavigationBarType.fixed,
@@ -84,7 +83,6 @@ class _BtmNavBarState extends State<BtmNavBar> {
           selectedItemColor: Color(0xFF5C79FF),
           items: [
             BottomNavigationBarItem(
-
               icon: Icon(
                 Icons.view_agenda,
               ),
@@ -95,7 +93,6 @@ class _BtmNavBarState extends State<BtmNavBar> {
                   fontWeight: FontWeight.w500,
                 ),
               ),
-              
             ),
             BottomNavigationBarItem(
               icon: Icon(
@@ -134,7 +131,6 @@ class _BtmNavBarState extends State<BtmNavBar> {
               ),
             ),
           ],
-          
         ));
   }
 }
