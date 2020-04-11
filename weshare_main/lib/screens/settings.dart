@@ -45,77 +45,14 @@ class Settings extends StatelessWidget {
                     ),
                     child: Column(
                       children: <Widget>[
-                        ListTile(
-                          leading: Icon(
-                            Icons.account_circle,
-                            color: Colors.blue,
-                            size: 35,
-                          ),
-                          title: Text('My Profile',
-                              style: Theme.of(context).textTheme.title),
-                          trailing: Icon(
-                            Icons.keyboard_arrow_right,
-                            color: Colors.grey[300],
-                          ),
-                          onTap: () {},
-                        ),
-                        Divider(
-                          thickness: 1,
-                          color: Colors.grey[300],
-                          height: 1,
-                        ),
-                        ListTile(
-                          leading: Icon(
-                            Icons.lock,
-                            color: Colors.blue,
-                            size: 35,
-                          ),
-                          title: Text('Privacy Policy',
-                              style: Theme.of(context).textTheme.title),
-                          trailing: Icon(
-                            Icons.keyboard_arrow_right,
-                            color: Colors.grey[300],
-                          ),
-                          onTap: () {},
-                        ),
-                        Divider(
-                          thickness: 1,
-                          color: Colors.grey[300],
-                          height: 1,
-                        ),
-                        ListTile(
-                          leading: Icon(
-                            Icons.help,
-                            color: Colors.blue,
-                            size: 35,
-                          ),
-                          title: Text('Help & Support',
-                              style: Theme.of(context).textTheme.title),
-                          trailing: Icon(
-                            Icons.keyboard_arrow_right,
-                            color: Colors.grey[300],
-                          ),
-                          onTap: () {},
-                        ),
-                        Divider(
-                          thickness: 1,
-                          color: Colors.grey[300],
-                          height: 1,
-                        ),
-                        ListTile(
-                          leading: Icon(
-                            Icons.insert_comment,
-                            color: Colors.blue,
-                            size: 35,
-                          ),
-                          title: Text('Feedback',
-                              style: Theme.of(context).textTheme.title),
-                          trailing: Icon(
-                            null,
-                            color: Colors.grey[300],
-                          ),
-                          onTap: () {},
-                        ),
+                        SettingsButtons(
+                            Icons.account_circle, 'My Profile', true, () {}),
+                        SettingsButtons(
+                            Icons.lock, 'Privacy Policy', true, () {}),
+                        SettingsButtons(
+                            Icons.help, 'Help & Support', true, () {}),
+                        SettingsButtons(
+                            Icons.insert_comment, 'Feedback', false, () {}),
                       ],
                     ),
                   ),
@@ -144,5 +81,40 @@ class Settings extends StatelessWidget {
         ),
       ),
     );
+  }
+}
+
+class SettingsButtons extends StatelessWidget {
+  final icon;
+  final title;
+  final bool isPageNavigator;
+  final Function handler;
+
+  SettingsButtons(this.icon, this.title, this.isPageNavigator, this.handler);
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(children: <Widget>[
+      ListTile(
+        leading: Icon(
+          icon,
+          color: Colors.blue,
+          size: 35,
+        ),
+        title: Text(title, style: Theme.of(context).textTheme.title),
+        trailing: isPageNavigator
+            ? Icon(
+                Icons.keyboard_arrow_right,
+                color: Colors.grey[300],
+              )
+            : null,
+        onTap: handler,
+      ),
+      Divider(
+        thickness: 1,
+        color: Colors.grey[300],
+        height: 1,
+      ),
+    ]);
   }
 }
