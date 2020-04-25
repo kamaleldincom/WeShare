@@ -25,12 +25,13 @@ class _LoginState extends State<Login> {
           appBar: PreferredSize(
             preferredSize: Size.fromHeight(202.0),
             child: AppBar(
-
+              brightness: Brightness.light,
               automaticallyImplyLeading: false,
               backgroundColor: Colors.white,
               flexibleSpace: Padding(
                 padding: const EdgeInsets.fromLTRB(0, 25, 0, 0),
                 child: Column(
+                  mainAxisAlignment: MainAxisAlignment.end,
                   children: <Widget>[
                     Image.asset(
                       'assets/logo.png',
@@ -68,6 +69,7 @@ class _LoginState extends State<Login> {
             ),
           ),
           body: TabBarView(children: [
+
             Container(
                 padding: EdgeInsets.symmetric(vertical: 20, horizontal: 50.0),
                 child: Form(

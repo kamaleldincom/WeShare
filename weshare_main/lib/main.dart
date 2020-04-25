@@ -23,6 +23,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       theme: ThemeData(
         primarySwatch: Colors.blue,
+        accentColor: Color(0xFF5C79FF),
         // fontFamily: 'SegoeUI',
         textTheme: ThemeData.light().textTheme.copyWith(
                 title: TextStyle(

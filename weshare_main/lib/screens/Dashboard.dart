@@ -16,6 +16,7 @@ class _DashboardState extends State<Dashboard> {
           child: Scaffold(
         backgroundColor: Color(0xFFF1F3F5),
         appBar: AppBar(
+          brightness: Brightness.light,
           automaticallyImplyLeading: false,
         backgroundColor: Color(0xFFF1F3F5),
           title: Text(

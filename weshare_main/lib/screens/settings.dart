@@ -8,6 +8,7 @@ class Settings extends StatelessWidget {
       backgroundColor: Color(0xFFF1F3F5),
 
       appBar: AppBar(
+        brightness: Brightness.light,
         backgroundColor: Color(0xFFF1F3F5),
         leading: BackButton(
             color: Color(0xFF5C79FF),
@@ -118,6 +119,7 @@ class SettingsButtons extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(children: <Widget>[
+     
       ListTile(
         leading: Icon(
           icon,

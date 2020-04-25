@@ -15,8 +15,9 @@ class _RidesState extends State<Rides> {
           child: Scaffold(
         backgroundColor: Color(0xFFF1F3F5),
         appBar: AppBar(
-        automaticallyImplyLeading: false,
-        backgroundColor: Color(0xFFF1F3F5),
+          brightness: Brightness.light,
+          automaticallyImplyLeading: false,
+          backgroundColor: Color(0xFFF1F3F5),
           title: Text(
             'Rides',
             style: TextStyle(
