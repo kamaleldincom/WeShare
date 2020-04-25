@@ -13,31 +13,29 @@ class _ProfileState extends State<Profile> {
   
   @override
   Widget build(BuildContext context) {
-    return WillPopScope(
-          onWillPop: () => Future.value(false),
-          child: Scaffold(
-          backgroundColor: Color(0xFFF1F3F5),
-          appBar: AppBar(
-            automaticallyImplyLeading: false,
-            title: Text(
-              'Profile',
-              style: TextStyle(
-                fontWeight: FontWeight.w600,
+    
+        return WillPopScope(
+              onWillPop: () => Future.value(false),
+              child: Scaffold(
+              backgroundColor: Color(0xFFF1F3F5),
+              appBar: AppBar(
+                automaticallyImplyLeading: false,
+                title: Text(
+                  'Profile',
+                  style: TextStyle(
+                    fontWeight: FontWeight.w600,
+                  ),
+                ),
+                elevation: 0.0,
+                centerTitle: true,
+                backgroundColor: Color(0xFF76D3FF),
               ),
-            ),
-            elevation: 0.0,
-            centerTitle: true,
-            backgroundColor: Color(0xFF76D3FF),
-          ),
-          body: Column(
-            children: <Widget>[
-              Container(
-                height: 270.0,
-                decoration: BoxDecoration(
-                    gradient: LinearGradient(
-                        begin: Alignment.topCenter,
-                        end: Alignment.bottomCenter,
-                        colors: <Color>[Color(0xFF76D3FF), Color(0xFF5C79FF)])),
+              body: Column(
+                children: <Widget>[
+                  Container(
+                    height: 270.0,
+                    decoration: BoxDecoration(
+                        gradient: linearGradientvertical),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[

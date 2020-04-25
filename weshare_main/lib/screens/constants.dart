@@ -134,3 +134,11 @@ class _BtmNavBarState extends State<BtmNavBar> {
         ));
   }
 }
+//Vertical Linear gradient:
+//used as such: 
+//decoration: BoxDecoration(
+//  gradient: linearGradientvertical),
+var linearGradientvertical = LinearGradient(
+      begin: Alignment.topCenter,
+      end: Alignment.bottomCenter,
+      colors: <Color>[Color(0xFF76D3FF), Color(0xFF5C79FF)]);

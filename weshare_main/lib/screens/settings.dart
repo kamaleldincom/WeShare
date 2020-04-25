@@ -85,6 +85,7 @@ class Settings extends StatelessWidget {
 
       //! Log out Button
       floatingActionButton: Container(
+        
         margin: EdgeInsets.symmetric(horizontal: 10, vertical: 15),
         child: FlatButton(
           child: Text(
