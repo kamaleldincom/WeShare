@@ -8,7 +8,7 @@ import 'package:weshare_main/screens/constants.dart';
 import 'package:weshare_main/screens/splash.dart';
 import 'package:flutter/services.dart';
 import 'dart:ui';
-import './screens/settings.dart';
+import 'package:weshare_main/screens/settings.dart';
 
 void main() => runApp(MyApp());
 

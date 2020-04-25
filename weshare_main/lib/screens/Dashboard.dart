@@ -11,26 +11,30 @@ class Dashboard extends StatefulWidget {
 class _DashboardState extends State<Dashboard> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Color(0xFFF1F3F5),
-      appBar: AppBar(
-      backgroundColor: Color(0xFFF1F3F5),
-        title: Text(
-          'WeShare',
-          style: TextStyle(
-            color: Colors.black,
-            fontWeight: FontWeight.w600,
-          ),  
-        ),
-        elevation: 0.0,
-        centerTitle: true,
-        actions: <Widget>[
+    return WillPopScope(
+          onWillPop: () => Future.value(false),
+          child: Scaffold(
+        backgroundColor: Color(0xFFF1F3F5),
+        appBar: AppBar(
+          automaticallyImplyLeading: false,
+        backgroundColor: Color(0xFFF1F3F5),
+          title: Text(
+            'WeShare',
+            style: TextStyle(
+              color: Colors.black,
+              fontWeight: FontWeight.w600,
+            ),  
+          ),
+          elevation: 0.0,
+          centerTitle: true,
+          actions: <Widget>[
+            
+          ],
           
-        ],
-        
+        ),
+        body: Container(),
+        // bottomNavigationBar: BtmNavBar(),
       ),
-      body: Container(),
-      // bottomNavigationBar: BtmNavBar(),
     );
   }
 }
