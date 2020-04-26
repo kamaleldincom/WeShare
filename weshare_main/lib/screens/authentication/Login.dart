@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:weshare_main/screens/authentication/sign_up.dart';
 import '../constants.dart';
 
 class Login extends StatefulWidget {
@@ -9,6 +10,7 @@ class Login extends StatefulWidget {
 class _LoginState extends State<Login> {
   @override
   final _formKey = GlobalKey<FormState>();
+  final _formKey2 = GlobalKey<FormState>();
 
   String email = 'test@test.com';
   String password = '123456';
@@ -172,7 +174,8 @@ class _LoginState extends State<Login> {
                     ],
                   ),
                 )),
-            Container(color: Colors.blue, child: Center(child: Text('sign up'))),
+           SignUpA(_formKey2),
+          //  SignUpB(_formKey2),
           ]),
         ),
       ),

@@ -21,6 +21,8 @@ const textInputDecoration = InputDecoration(
       // borderRadius: BorderRadius.circular( 20.0),
     ));
 
+    
+
 Ink buttonWithGradient(String text) {
   //assignto a child insid any button and pass the text ypu like
   return Ink(
@@ -45,6 +47,8 @@ Ink buttonWithGradient(String text) {
     ),
   );
 }
+
+
 
 class BtmNavBar extends StatefulWidget {
   @override
