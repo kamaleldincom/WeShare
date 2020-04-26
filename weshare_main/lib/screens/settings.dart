@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'dart:ui';
 import './constants.dart';
+import 'constants.dart';
 
 class Settings extends StatelessWidget {
   @override
@@ -8,22 +9,8 @@ class Settings extends StatelessWidget {
     return Scaffold(
       backgroundColor: Color(0xFFF1F3F5),
 
-      appBar: AppBar(
-        brightness: Brightness.light,
-        backgroundColor: Color(0xFFF1F3F5),
-        leading: BackButton(
-          color: Color(0xFF5C79FF),
-        ),
-        title: Text(
-          'Settings',
-          style: TextStyle(
-            color: Colors.black,
-            fontWeight: FontWeight.w600,
-          ),
-        ),
-        elevation: 0.0,
-        centerTitle: true,
-      ),
+      appBar: appBarBuilder('Settings', true, null),
+
       body: Column(
         children: <Widget>[
           // Container(

@@ -150,7 +150,7 @@ var linearGradientvertical = LinearGradient(
 //          false - if you don't need a back button
 //  actionsToDo :  add widgets in the appBar (if needed)
 
-Widget appBarBuilder(title, backArrowNeeded, actionsToDo) {
+Widget appBarBuilder(title, bool backArrowNeeded, actionsToDo) {
   return AppBar(
       brightness: Brightness.light,
       automaticallyImplyLeading: false,
