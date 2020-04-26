@@ -134,11 +134,39 @@ class _BtmNavBarState extends State<BtmNavBar> {
         ));
   }
 }
+
 //Vertical Linear gradient:
-//used as such: 
+//used as such:
 //decoration: BoxDecoration(
 //  gradient: linearGradientvertical),
 var linearGradientvertical = LinearGradient(
-      begin: Alignment.topCenter,
-      end: Alignment.bottomCenter,
-      colors: <Color>[Color(0xFF76D3FF), Color(0xFF5C79FF)]);
+    begin: Alignment.topCenter,
+    end: Alignment.bottomCenter,
+    colors: <Color>[Color(0xFF76D3FF), Color(0xFF5C79FF)]);
+
+Widget appBarBuilder(title, backArrowNeeded, actionsToDo) {
+  return AppBar(
+      brightness: Brightness.light,
+      automaticallyImplyLeading: backArrowNeeded,
+      backgroundColor: Color(0xFFF1F3F5),
+      title: Text(
+        title,
+        style: TextStyle(
+          color: Colors.black,
+          fontWeight: FontWeight.w600,
+        ),
+      ),
+      elevation: 0.0,
+      centerTitle: true,
+      actions: actionsToDo);
+}
+
+// Add this to notification page in actionsToDo
+// <Widget>[
+//             IconButton(
+//               icon: Icon(Icons.delete_outline),
+//               iconSize: 26,
+//               color: Color(0xFF5C79FF),
+//               onPressed: (){},
+//             )
+//           ],
