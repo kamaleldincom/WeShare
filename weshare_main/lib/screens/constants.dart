@@ -144,10 +144,21 @@ var linearGradientvertical = LinearGradient(
     end: Alignment.bottomCenter,
     colors: <Color>[Color(0xFF76D3FF), Color(0xFF5C79FF)]);
 
+// title:  is the title of your page
+// backArrowNeeded:
+//        true - if you need a backbutton to return to previous page
+//          false - if you don't need a back button
+//  actionsToDo :  add widgets in the appBar (if needed)
+
 Widget appBarBuilder(title, backArrowNeeded, actionsToDo) {
   return AppBar(
       brightness: Brightness.light,
-      automaticallyImplyLeading: backArrowNeeded,
+      automaticallyImplyLeading: false,
+      leading: backArrowNeeded
+          ? BackButton(
+              color: Color(0xFF5C79FF),
+            )
+          : null,
       backgroundColor: Color(0xFFF1F3F5),
       title: Text(
         title,
