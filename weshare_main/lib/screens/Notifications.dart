@@ -158,7 +158,7 @@ class _NotificationsState extends State<Notifications> {
               leading:  CircleAvatar(
                        backgroundImage:
                           AssetImage('assets/logo.png'),
-                    ),
+              ),
             //   Container(
             //   width: 50,
             //   height: 50,
