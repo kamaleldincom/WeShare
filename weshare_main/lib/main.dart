@@ -10,6 +10,8 @@ import 'package:flutter/services.dart';
 import 'dart:ui';
 import 'package:weshare_main/screens/settings.dart';
 
+import 'screens/provide-ride.dart';
+
 void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
@@ -54,6 +56,7 @@ class MyApp extends StatelessWidget {
         '/rides': (context) => Rides(),
         '/dashboard': (context) => Dashboard(),
         '/nav': (context) => BtmNavBar(),
+        '/provide-ride': (context) => ProvideRide(),
       },
     );
   }
