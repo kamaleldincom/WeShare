@@ -52,7 +52,7 @@ class BtmNavBar extends StatefulWidget {
 }
 
 class _BtmNavBarState extends State<BtmNavBar> {
-  int _currentIndex = 2;
+  int _currentIndex = 0;
   final List<Widget> _pages = [
     Dashboard(),
     Rides(),
