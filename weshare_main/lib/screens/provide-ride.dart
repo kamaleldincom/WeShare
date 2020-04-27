@@ -196,6 +196,80 @@ class _ProvideRideState extends State<ProvideRide> {
               ),
             ),
           ),
+
+          //! other options
+          SingleChildScrollView(
+            child: Container(
+              margin: EdgeInsets.symmetric(horizontal: 20, vertical: 30),
+              child: Card(
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(20),
+                ),
+                elevation: 0,
+                child: Column(
+                  children: <Widget>[
+                    //! time
+                    ExpansionTile(
+                      title: Text('Choose Time'),
+                      leading: Icon(
+                        Icons.access_time,
+                        color: Color(0xFF5C79FF),
+                      ),
+                      children: <Widget>[
+                        Text('I go here'),
+                      ],
+                    ),
+                    //! seats
+                    ExpansionTile(
+                      title: Text('Enter No. of Seats Available'),
+                      leading: Icon(
+                        Icons.event_seat,
+                        color: Color(0xFF5C79FF),
+                      ),
+                      children: <Widget>[
+                        Text('I go here'),
+                      ],
+                    ),
+                    //! gender
+                    ExpansionTile(
+                      title: Text(
+                        'Choose Riders Gender',
+                      ),
+                      leading: Icon(
+                        Icons.people,
+                        color: Color(0xFF5C79FF),
+                      ),
+                      children: <Widget>[
+                        Text('I go here'),
+                      ],
+                    ),
+                    //! price
+                    ExpansionTile(
+                      title: Text('Enter Ride Price per Rider'),
+                      leading: Icon(
+                        Icons.attach_money,
+                        color: Color(0xFF5C79FF),
+                      ),
+                      children: <Widget>[
+                        Text('I go here'),
+                      ],
+                    ),
+                    //! note
+                    ExpansionTile(
+                      title: Text('Add a Note'),
+                      leading: Icon(
+                        Icons.comment,
+                        color: Color(0xFF5C79FF),
+                      ),
+                      children: <Widget>[
+                        Text('I go here'),
+                      ],
+                    ),
+                  ],
+                ),
+              ),
+            ),
+          ),
         ],
       ),
     );
@@ -212,3 +286,11 @@ _fieldFocusChange(BuildContext context, FocusNode currentFocus) {
 //                                   onPressed: () {
 //                                     setState(() {});
 //                                   }),
+
+// ListView.builder(
+//                   scrollDirection: Axis.vertical,
+//                   shrinkWrap: true,
+//                   itemBuilder: (BuildContext context, int index) =>
+//                       ,
+//                   itemCount: 3,
+//                 ),
