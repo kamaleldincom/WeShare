@@ -146,7 +146,128 @@ class _DashboardState extends State<Dashboard> {
                               RaisedButton(
                                 color: Theme.of(context).accentColor,
                                 // padding: EdgeInsets.all(5),
-                                onPressed: () {},
+                                onPressed: () {
+                                  showDialog(
+                                    context: context,
+                                    builder: (BuildContext context){
+                                      return Dialog(
+                                        shape: RoundedRectangleBorder(
+                                          borderRadius: BorderRadius.circular(10),
+                                        ),
+                                        child: Container(
+                                          height: 450,
+                                          decoration: BoxDecoration(
+                                          ),
+                                          // margin: EdgeInsets.symmetric(horizontal:15,),
+                                          // padding: EdgeInsets.all(10),
+                                          child: Column(
+                                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                            // crossAxisAlignment: CrossAxisAlignment.start,
+                                            children: <Widget>[
+                                              Container(
+                                                margin: EdgeInsets.all(10),
+                                                height: 250,
+                                                // width: 350,
+                                                decoration: BoxDecoration(
+                                                  color: Colors.grey[200],
+                                                  borderRadius: BorderRadius.circular(10),
+                                                  border: Border.all(width: 1, color: Colors.grey,)
+                                                ),
+                                              ),
+                                              Container(
+                                                margin: EdgeInsets.symmetric(horizontal: 10),
+                                                child: Row(
+                                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                                  children: <Widget>[
+                                                    Container(
+                                                      child: Column(
+                                                        mainAxisAlignment: MainAxisAlignment.center,
+                                                        children: <Widget>[
+                                                          CircleAvatar(
+                                                            backgroundImage: AssetImage('assets/logo.png'),
+                                                            radius: 23,
+                                                          ),
+                                                          Title(
+                                                            color: Colors.black, 
+                                                            child: Text(
+                                                              'Ali Qasmi',
+                                                              style: TextStyle(
+                                                                fontWeight: FontWeight.w500,
+                                                                fontSize: 15,
+                                                              ),
+                                                            ),
+                                                          ),
+                                                          
+                                                        ],
+                                                      ),
+                                                    ),
+                                                    Container(),
+                                                    Container(),
+                                                  ],
+                                                ),
+                                              ),
+                                              Container(
+                                                padding: EdgeInsets.all(10),
+                                                height: 60,
+                                                decoration: BoxDecoration(
+                                                  color: Color(0xFFF9F9F9),
+                                                  borderRadius: BorderRadius.circular(10),
+                                                ),
+                                                child: Row(
+                                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                                  
+                                                  children: <Widget>[
+                                                    Container(
+                                                      child: Row(
+                                                        crossAxisAlignment: CrossAxisAlignment.start,
+                                                        children: <Widget>[
+                                                          Text(
+                                                              'MYR',
+                                                              style: TextStyle(
+                                                                fontWeight: FontWeight.w300,
+                                                                fontSize: 12,
+                                                                color: Colors.grey,
+                                                              ),
+                                                          ),
+                                                          SizedBox(
+                                                            width: 3,
+                                                          ),
+                                                          Text(
+                                                              '1.50',
+                                                              style: TextStyle(
+                                                                fontWeight: FontWeight.w500,
+                                                                fontSize: 22,
+                                                                color: Colors.grey[700],
+                                                              ),
+                                                          ),
+                                                        ],
+                                                      ),
+                                                    ),
+                                                    RaisedButton(
+                                                      onPressed: (){},
+                                                      color: Theme.of(context).accentColor,
+                                                      child: Text(
+                                                        'Join Ride',
+                                                        style: TextStyle(
+                                                          fontSize: 19.0,
+                                                          color: Colors.white,
+                                                          fontWeight: FontWeight.bold,
+                                                        ),
+                                                      ),
+                                                      shape: new RoundedRectangleBorder(
+                                                        borderRadius: new BorderRadius.circular(7.0),
+                                                      ),
+                                                    ),
+                                                  ],
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+                                        ),
+                                      );
+                                    }
+                                  );
+                                },
                                 child: Text(
                                   'Join',
                                   style: TextStyle(
