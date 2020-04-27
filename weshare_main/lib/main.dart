@@ -1,14 +1,16 @@
 import 'package:flutter/material.dart';
-import 'package:weshare_main/screens/Dashboard.dart';
+// import 'package:weshare_main/screens/Dashboard.dart';
 import 'package:weshare_main/screens/Notifications.dart';
-import 'package:weshare_main/screens/Profile.dart';
-import 'package:weshare_main/screens/Rides.dart';
+// import 'package:weshare_main/screens/Profile.dart';
+// import 'package:weshare_main/screens/Rides.dart';
+import 'package:weshare_main/screens/temp.dart';
 import 'package:weshare_main/screens/history.dart';
 import 'package:weshare_main/screens/authentication/Login.dart';
 import 'package:weshare_main/screens/constants.dart';
 import 'package:weshare_main/screens/splash.dart';
 import 'package:flutter/services.dart';
 import 'package:weshare_main/screens/settings.dart';
+
 
 void main() => runApp(MyApp());
 
@@ -42,7 +44,7 @@ class MyApp extends StatelessWidget {
       ),
       debugShowCheckedModeBanner: false,
       home: Settings(),
-      initialRoute: '/splash',
+      initialRoute: '/ride',
       routes: {
         // '/': (context) => Loading(),
         // '/home': (context) => Home(),
@@ -55,6 +57,7 @@ class MyApp extends StatelessWidget {
         '/history': (context) => History(),
         // '/dashboard': (context) => Dashboard(),
         '/nav': (context) => BtmNavBar(),
+        '/ride': (context) => Ride(),
       },
     );
   }
