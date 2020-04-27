@@ -3,11 +3,11 @@ import 'package:weshare_main/screens/Dashboard.dart';
 import 'package:weshare_main/screens/Notifications.dart';
 import 'package:weshare_main/screens/Profile.dart';
 import 'package:weshare_main/screens/Rides.dart';
+import 'package:weshare_main/screens/history.dart';
 import 'package:weshare_main/screens/authentication/Login.dart';
 import 'package:weshare_main/screens/constants.dart';
 import 'package:weshare_main/screens/splash.dart';
 import 'package:flutter/services.dart';
-import 'dart:ui';
 import 'package:weshare_main/screens/settings.dart';
 
 void main() => runApp(MyApp());
@@ -49,10 +49,11 @@ class MyApp extends StatelessWidget {
         '/settings': (context) => Settings(),
         '/login': (context) => Login(),
         '/splash': (context) => Splash(),
-        '/profile': (context) => Profile(),
+        // '/profile': (context) => Profile(),
         '/notifications': (context) => Notifications(),
-        '/rides': (context) => Rides(),
-        '/dashboard': (context) => Dashboard(),
+        // '/rides': (context) => Rides(),
+        '/history': (context) => History(),
+        // '/dashboard': (context) => Dashboard(),
         '/nav': (context) => BtmNavBar(),
       },
     );
