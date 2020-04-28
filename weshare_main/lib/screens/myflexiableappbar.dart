@@ -42,7 +42,12 @@ class MyFlexiableAppBar extends StatelessWidget {
                     FlatButton(
                     
                       // padding: EdgeInsets.fromLTRB(65, 10, 65, 10),
-                      onPressed: () {},
+                      onPressed: () {
+                        showSearch(
+                          context: context, 
+                          delegate: LocationSearch(),
+                        );
+                      },
                       child: Text(
                         'Origin',
                         style: TextStyle(
@@ -61,7 +66,12 @@ class MyFlexiableAppBar extends StatelessWidget {
                       ),
                     FlatButton(
                       // padding: EdgeInsets.fromLTRB(55, 10, 55, 10),
-                      onPressed: () {},
+                      onPressed: () {
+                        showSearch(
+                          context: context, 
+                          delegate: LocationSearch(),
+                        );
+                      },
                       child: Text(
                         'Destination',
                         style: TextStyle(
@@ -107,4 +117,84 @@ class MyFlexiableAppBar extends StatelessWidget {
       
     );
   }
+}
+
+class LocationSearch extends SearchDelegate<String>{
+  final stops = [
+    "arcade Meranti",
+    "arcade Meranti",
+    "arcade Meranti",
+    "arcade Meranti",
+    "arcade Meranti",
+    "desa Skudai Apartments",
+    "school of Computing (N28)",
+    "school of Electrical (P19a)",
+    "school of Computing (N28a)",
+    "school of Electrical (P05)",
+  ];
+  final recentStops = [
+    "school of Computing (N28)",
+    "school of Electrical (P19a)",
+    "school of Computing (N28a)",
+    "school of Electrical (P05)",
+  ];
+  final favoriteStops = [];
+  @override
+  List<Widget> buildActions(BuildContext context) {
+    // TODO: implement buildActions
+    return [IconButton(
+      icon: Icon(Icons.clear), 
+      onPressed: (){
+        query = "";
+      },
+    )];
+  }
+
+  @override
+  Widget buildLeading(BuildContext context) {
+    // TODO: implement buildLeading
+    // return IconButton(
+    //   icon: AnimatedIcon(
+    //     icon: AnimatedIcons.arrow_menu, 
+    //     progress: transitionAnimation,
+    //   ), 
+    //   onPressed: (){},
+    // );
+  }
+
+  @override
+  Widget buildResults(BuildContext context) {
+    // TODO: implement buildResults
+    return null;
+  }
+
+  @override
+  Widget buildSuggestions(BuildContext context) {
+    // TODO: implement buildSuggestions
+    final suggestionList = query.isEmpty? recentStops
+    :stops.where((p) => p.startsWith(query)).toList();
+
+    return ListView.builder(
+      itemBuilder: (context, index) => ListTile(
+        onTap:(){},
+        leading: Icon(Icons.location_city),
+        title: RichText(text: TextSpan(
+          
+          text: suggestionList[index].substring(0, query.length),
+          style: TextStyle(
+            color: Colors.black,
+            fontWeight: FontWeight.bold,
+          ),
+          children: [
+            TextSpan(
+              text:  suggestionList[index].substring(query.length),
+              style: TextStyle(color: Colors.grey,)
+            ),
+          ],
+        )),
+      ),
+      itemCount: suggestionList.length,
+    );
+  }
+
 }
