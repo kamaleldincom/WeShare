@@ -29,9 +29,9 @@ class MyFlexiableAppBar extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.end,
             children: <Widget>[
               Container(
-                height: 100,
+                height: 110,
                 width: 370,
-                margin: EdgeInsets.all(15),
+                margin: EdgeInsets.symmetric(horizontal:15, vertical: 0),
                 decoration: BoxDecoration(
                   color: Colors.white.withOpacity(0.25),
                   borderRadius: BorderRadius.circular(15),
@@ -48,12 +48,50 @@ class MyFlexiableAppBar extends StatelessWidget {
                           delegate: LocationSearch(),
                         );
                       },
-                      child: Text(
-                        'Origin',
-                        style: TextStyle(
-                          fontSize: 12.0,
-                          color: Colors.white,
-                          fontWeight: FontWeight.bold,
+                      child: Container(
+                        margin: EdgeInsets.all(0),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: <Widget>[
+                            Icon(
+                              Icons.trip_origin,
+                              color: Colors.white,
+                              size: 15,
+                            ),
+                            SizedBox(width:10),
+                            Container(
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: <Widget>[
+                                    Title(
+                                      color: Colors.black, 
+                                      child: Text(
+                                        'From',
+                                        style: TextStyle(
+                                          fontWeight: FontWeight.w400,
+                                          fontSize: 12,
+                                          color: Colors.white,
+                                        ),
+                                      ),
+                                    ),
+                                    SizedBox(
+                                      height: 3,
+                                    ),
+                                    Text(
+                                        'Desa Skudai Apartments',
+                                        style: TextStyle(
+                                          fontWeight: FontWeight.w500,
+                                          fontSize: 15,
+                                          color: Colors.white,
+                                        ),
+                                    ),
+                                  ],
+                                // brightness_1
+                              ),
+                            ),
+                          ],
                         ),
                       ),
                     ),
@@ -72,12 +110,50 @@ class MyFlexiableAppBar extends StatelessWidget {
                           delegate: LocationSearch(),
                         );
                       },
-                      child: Text(
-                        'Destination',
-                        style: TextStyle(
-                          fontSize: 12.0,
-                          color: Colors.white,
-                          fontWeight: FontWeight.bold,
+                      child: Container(
+                        margin: EdgeInsets.all(0),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: <Widget>[
+                            Icon(
+                              Icons.brightness_1,
+                              color: Colors.white,
+                              size: 15,
+                            ),
+                            SizedBox(width:10),
+                            Container(
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: <Widget>[
+                                    Title(
+                                      color: Colors.black, 
+                                      child: Text(
+                                        'To',
+                                        style: TextStyle(
+                                          fontWeight: FontWeight.w400,
+                                          fontSize: 12,
+                                          color: Colors.white,
+                                        ),
+                                      ),
+                                    ),
+                                    SizedBox(
+                                      height: 3,
+                                    ),
+                                    Text(
+                                        'school of Electrical (P05)',
+                                        style: TextStyle(
+                                          fontWeight: FontWeight.w500,
+                                          fontSize: 15,
+                                          color: Colors.white,
+                                        ),
+                                    ),
+                                  ],
+                                // brightness_1
+                              ),
+                            ),
+                          ],
                         ),
                       ),
                     )

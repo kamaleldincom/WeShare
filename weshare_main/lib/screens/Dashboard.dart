@@ -38,6 +38,7 @@ class _DashboardState extends State<Dashboard> {
         body: CustomScrollView(
           slivers: <Widget>[
             SliverAppBar(
+              automaticallyImplyLeading: false,
               brightness: Brightness.dark,
               title: MyAppBar(),
               pinned: false,
@@ -106,7 +107,178 @@ class _DashboardState extends State<Dashboard> {
                             ],
                           ),
                         ),
-                        Container(),
+                        Container(
+                          padding: EdgeInsets.symmetric(horizontal:10),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: <Widget>[
+                              Container(
+                                child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.start,
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: <Widget>[
+                                    Container(
+                                      child: Column(
+                                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                        crossAxisAlignment: CrossAxisAlignment.start,
+                                        children: <Widget>[
+                                          Title(
+                                            color: Colors.black, 
+                                            child: Text(
+                                              'Pickup at',
+                                              style: TextStyle(
+                                                fontWeight: FontWeight.w300,
+                                                fontSize: 11,
+                                                color: Colors.grey,
+                                              ),
+                                            ),
+                                          ),
+                                          SizedBox(
+                                            height: 3,
+                                          ),
+                                          Text(
+                                              '7:45 AM',
+                                              style: TextStyle(
+                                                fontWeight: FontWeight.w500,
+                                                fontSize: 12,
+                                                color: Colors.grey[700],
+                                              ),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                    SizedBox(width: 10,),
+                                    Container(
+                                      child: Column(
+                                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                        children: <Widget>[
+                                          Container(
+                                            margin: EdgeInsets.all(0),
+                                            child: Row(
+                                              mainAxisAlignment: MainAxisAlignment.start,
+                                              crossAxisAlignment: CrossAxisAlignment.start,
+                                              children: <Widget>[
+                                                Icon(
+                                                  Icons.trip_origin,
+                                                  color: Theme.of(context).accentColor,
+                                                  size: 15,
+                                                ),
+                                                SizedBox(width:10),
+                                                Container(
+                                                  child: Column(
+                                                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                                      crossAxisAlignment: CrossAxisAlignment.start,
+                                                      children: <Widget>[
+                                                        Title(
+                                                          color: Colors.black, 
+                                                          child: Text(
+                                                            'From',
+                                                            style: TextStyle(
+                                                              fontWeight: FontWeight.w300,
+                                                              fontSize: 11,
+                                                              color: Colors.grey,
+                                                            ),
+                                                          ),
+                                                        ),
+                                                        Text(
+                                                            'Desa Skudai Apartments',
+                                                            style: TextStyle(
+                                                              fontWeight: FontWeight.w500,
+                                                              fontSize: 15,
+                                                              color: Colors.grey[800],
+                                                            ),
+                                                        ),
+                                                      ],
+                                                    // brightness_1
+                                                  ),
+                                                ),
+                                              ],
+                                            ),
+                                          ),
+                                          SizedBox(height: 20,),
+                                          Container(
+                                            margin: EdgeInsets.all(0),
+                                            child: Row(
+                                              mainAxisAlignment: MainAxisAlignment.start,
+                                              crossAxisAlignment: CrossAxisAlignment.start,
+                                              children: <Widget>[
+                                                Icon(
+                                                  Icons.brightness_1,
+                                                  color: Theme.of(context).accentColor,
+                                                  size: 15,
+                                                ),
+                                                SizedBox(width:10),
+                                                Container(
+                                                  child: Column(
+                                                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                                      crossAxisAlignment: CrossAxisAlignment.start,
+                                                      children: <Widget>[
+                                                        Title(
+                                                          color: Colors.black, 
+                                                          child: Text(
+                                                            'To',
+                                                            style: TextStyle(
+                                                              fontWeight: FontWeight.w300,
+                                                              fontSize: 11,
+                                                              color: Colors.grey,
+                                                            ),
+                                                          ),
+                                                        ),
+                                                        Text(
+                                                            'school of Electrical (P05)',
+                                                            style: TextStyle(
+                                                              fontWeight: FontWeight.w400,
+                                                              fontSize: 15,
+                                                              color: Colors.grey,
+                                                            ),
+                                                        ),
+                                                      ],
+                                                    // brightness_1
+                                                  ),
+                                                ),
+                                              ],
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                              Container(
+                                child: Column(
+                                        mainAxisAlignment: MainAxisAlignment.start,
+                                        crossAxisAlignment: CrossAxisAlignment.center,
+                                        children: <Widget>[
+                                          Title(
+                                            color: Colors.black, 
+                                            child: Text(
+                                              'Available Seats',
+                                              style: TextStyle(
+                                                fontWeight: FontWeight.w400,
+                                                fontSize: 12,
+                                                color: Colors.grey,
+                                              ),
+                                            ),
+                                          ),
+                                          SizedBox(
+                                            height: 3,
+                                          ),
+                                          Text(
+                                              '2',
+                                              style: TextStyle(
+                                                fontWeight: FontWeight.w500,
+                                                fontSize: 24,
+                                                color: Colors.black,
+                                              ),
+                                          ),
+                                        ],
+                                      ),
+                              ),
+                            ],
+                          ),
+                        ),
                         Container(
                           padding: EdgeInsets.all(10),
                           height: 55,
