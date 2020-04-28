@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 // import 'package:weshare_main/screens/Dashboard.dart';
 import 'package:weshare_main/screens/Notifications.dart';
+import 'package:weshare_main/screens/ride_summary.dart';
 // import 'package:weshare_main/screens/Profile.dart';
 // import 'package:weshare_main/screens/Rides.dart';
 import 'package:weshare_main/screens/temp.dart';
@@ -44,7 +45,7 @@ class MyApp extends StatelessWidget {
       ),
       debugShowCheckedModeBanner: false,
       home: Settings(),
-      initialRoute: '/ride',
+      initialRoute: '/rideSummary',
       routes: {
         // '/': (context) => Loading(),
         // '/home': (context) => Home(),
@@ -58,6 +59,8 @@ class MyApp extends StatelessWidget {
         // '/dashboard': (context) => Dashboard(),
         '/nav': (context) => BtmNavBar(),
         '/ride': (context) => Ride(),
+        '/rideSummary': (context) => RideSummary(),
+
       },
     );
   }
