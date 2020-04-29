@@ -28,6 +28,75 @@ class _AccountDetailsState extends State<AccountDetails> {
           centerTitle: true,
         ),
       body: Column(
+        mainAxisAlignment: MainAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: <Widget>[
+          SizedBox(
+            height: 70,
+          ),
+          Container(
+            child: Column(
+              children: <Widget>[
+                CircleAvatar(
+                  backgroundImage: AssetImage('assets/logo.png'),
+                  radius: 45.0,
+                ),
+                SizedBox(
+                  height: 20,
+                ),
+                Title(
+                  color: Colors.grey[300], 
+                  child: Text(
+                    "Ahmed Kamal Eldin",
+                    style: TextStyle(
+                      fontSize: 28,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ),
+          
+          Container(
+            padding: EdgeInsets.all(25),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                TextFormField(
+                  // obscureText: true,
+                  decoration: InputDecoration(
+                    // border: OutlineInputBorder(),
+                    labelText: 'Phone Number',
+                  ),
+                  initialValue: "+60 13-170 897",
+                ),
+                SizedBox(
+                  height: 15,
+                ),
+                TextFormField(
+                  // obscureText: true,
+                  decoration: InputDecoration(
+                    // border: OutlineInputBorder(),
+                    labelText: 'E-mail',
+                  ),
+                  initialValue: "ahmed@kamaleldin.com",
+                ),
+                SizedBox(
+                  height: 15,
+                ),
+                TextFormField(
+                  // obscureText: true,
+                  decoration: InputDecoration(
+                    // border: OutlineInputBorder(),
+                    labelText: 'Address',
+                  ),
+                  initialValue: "Desa Skudai Apartment,Jalan Sejahtera 15, ",
+                ),
+              ],
+            ),
+          ),
+        ],
       ),
       floatingActionButton: Container(
         

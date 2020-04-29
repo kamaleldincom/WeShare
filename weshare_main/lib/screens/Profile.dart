@@ -41,8 +41,12 @@ class _ProfileState extends State<Profile> {
                   children: <Widget>[
                     Center(
                       child: CircleAvatar(
-                        backgroundImage: AssetImage('assets/logo.png'),
-                        radius: 50.0,
+                        backgroundColor: Colors.white,
+                        radius: 50,
+                        child: CircleAvatar(
+                          backgroundImage: AssetImage('assets/person.jpeg'),
+                          radius: 48.0,
+                        ),
                       ),
                     ),
                     Padding(

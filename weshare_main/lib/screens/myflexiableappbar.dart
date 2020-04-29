@@ -4,11 +4,17 @@ import 'constants.dart';
 // import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 
-class MyFlexiableAppBar extends StatelessWidget {
+class MyFlexiableAppBar extends StatefulWidget {
 
-  final double appBarHeight = 250.0;
 
   const MyFlexiableAppBar();
+
+  @override
+  _MyFlexiableAppBarState createState() => _MyFlexiableAppBarState();
+}
+
+class _MyFlexiableAppBarState extends State<MyFlexiableAppBar> {
+  final double appBarHeight = 280.0;
 
   @override
   Widget build(BuildContext context) {
@@ -28,6 +34,9 @@ class MyFlexiableAppBar extends StatelessWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.end,
             children: <Widget>[
+              ////////////////
+              // Location Search //
+              ////////////////
               Container(
                 height: 110,
                 width: 370,
@@ -160,29 +169,149 @@ class MyFlexiableAppBar extends StatelessWidget {
                   ],
                 ),
               ),
-
-
+              ////////////////
+              // Filters and sorting //
+              ////////////////
               Container(
+                margin: EdgeInsets.only(bottom: 10, top: 5),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: <Widget>[
-                    IconButton(
-                      icon: Icon(Icons.timer), 
-                      iconSize: 26,
-                      color: Colors.white.withOpacity(0.6),
-                      onPressed: (){},
+                    ////////////////
+                    // Time //
+                    ////////////////
+                    Column(
+                      
+                      children: <Widget>[
+                        IconButton(
+                          icon: Icon(Icons.timer), 
+                          iconSize: 26,
+                          color: Colors.white.withOpacity(0.6),
+                          onPressed: (){
+                            showDialog(
+                              context: context,
+                              builder: (BuildContext context){
+                                return Dialog(
+                                  shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(10),
+                                  ),
+                                  child: Container(
+                                    height: 200,
+                                    decoration: BoxDecoration(
+                                    ),
+                                    // margin: EdgeInsets.symmetric(horizontal:15,),
+                                    // padding: EdgeInsets.all(10),
+                                    child: Column(
+                                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                      // crossAxisAlignment: CrossAxisAlignment.start,
+                                      children: <Widget>[
+                        
+                                   
+                                      ],
+                                    ),
+                                  ),
+                                );
+                              }
+                            );
+                          },
+                        ),
+                        Text(
+                          'Time',
+                          style: TextStyle(
+                            color: Colors.white.withOpacity(0.6),
+                          ),
+                        ),
+                      ],
                     ),
-                    IconButton(
-                      icon: Icon(Icons.event_seat), 
-                      iconSize: 26,
-                      color: Colors.white.withOpacity(0.6),
-                      onPressed: (){},
+                    ////////////////
+                    // seats //
+                    ////////////////
+                    Column(
+                      children: <Widget>[
+                        IconButton(
+                          icon: Icon(Icons.event_seat), 
+                          iconSize: 26,
+                          color: Colors.white.withOpacity(0.6),
+                          onPressed: (){
+                            showDialog(
+                              context: context,
+                              builder: (BuildContext context){
+                                return Dialog(
+                                  shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(10),
+                                  ),
+                                  child: Container(
+                                    height: 200,
+                                    decoration: BoxDecoration(
+                                    ),
+                                    // margin: EdgeInsets.symmetric(horizontal:15,),
+                                    // padding: EdgeInsets.all(10),
+                                    child: Column(
+                                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                      // crossAxisAlignment: CrossAxisAlignment.start,
+                                      children: <Widget>[
+                        
+                                   
+                                      ],
+                                    ),
+                                  ),
+                                );
+                              }
+                            );
+                          },
+                        ),
+                        Text(
+                          'Available Seats',
+                          style: TextStyle(
+                            color: Colors.white.withOpacity(0.6),
+                          ),
+                        ),
+                      ],
                     ),
-                    IconButton(
-                      icon: Icon(Icons.filter_list), 
-                      iconSize: 26,
-                      color: Colors.white.withOpacity(0.6),
-                      onPressed: (){},
+                    ////////////////
+                    // filter //
+                    ////////////////
+                    Column(
+                      children: <Widget>[
+                        IconButton(
+                          icon: Icon(Icons.filter_list), 
+                          iconSize: 26,
+                          color: Colors.white.withOpacity(0.6),
+                          onPressed: (){
+                            showDialog(
+                              context: context,
+                              builder: (BuildContext context){
+                                return Dialog(
+                                  shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(10),
+                                  ),
+                                  child: Container(
+                                    height: 200,
+                                    decoration: BoxDecoration(
+                                    ),
+                                    // margin: EdgeInsets.symmetric(horizontal:15,),
+                                    // padding: EdgeInsets.all(10),
+                                    child: Column(
+                                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                      // crossAxisAlignment: CrossAxisAlignment.start,
+                                      children: <Widget>[
+                        
+                                   
+                                      ],
+                                    ),
+                                  ),
+                                );
+                              }
+                            );
+                          },
+                        ),
+                        Text(
+                          'Filters',
+                          style: TextStyle(
+                            color: Colors.white.withOpacity(0.6),
+                          ),
+                        ),
+                      ],
                     ),
                   ],
                 ),

@@ -37,17 +37,23 @@ class _DashboardState extends State<Dashboard> {
         // ),
         body: CustomScrollView(
           slivers: <Widget>[
+            ///////////////
+            // SliverAppBar //
+            ///////////////
             SliverAppBar(
               automaticallyImplyLeading: false,
               brightness: Brightness.dark,
               title: MyAppBar(),
               pinned: false,
               floating: true,
-              expandedHeight: 250,
+              expandedHeight: 280,
               flexibleSpace: FlexibleSpaceBar(
                 background: MyFlexiableAppBar(),
               ),
             ),
+            ///////////////
+            // SliverList //
+            ///////////////
             SliverList(
               delegate: SliverChildBuilderDelegate(
                 (context, index){
@@ -63,6 +69,9 @@ class _DashboardState extends State<Dashboard> {
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: <Widget>[
+                        ///////////////
+                        // DriverInfo //
+                        ///////////////
                         Container(
                           padding: EdgeInsets.all(10),
                           child: Row(
@@ -70,8 +79,16 @@ class _DashboardState extends State<Dashboard> {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: <Widget>[
                               CircleAvatar(
-                                backgroundImage: AssetImage('assets/logo.png'),
-                                radius: 23,
+                                backgroundColor: Theme.of(context).accentColor,
+                                radius: 22,
+                                child: CircleAvatar(
+                                  backgroundColor: Colors.white,
+                                  radius: 21.5,
+                                  child: CircleAvatar(
+                                    backgroundImage: AssetImage('assets/person1.jpeg'),
+                                    radius: 20,
+                                  ),
+                                ),
                               ),
                               Padding(
                                 padding: const EdgeInsets.symmetric(horizontal:8.0),
@@ -107,6 +124,9 @@ class _DashboardState extends State<Dashboard> {
                             ],
                           ),
                         ),
+                        ///////////////
+                        // RideDetails //
+                        ///////////////
                         Container(
                           padding: EdgeInsets.symmetric(horizontal:10),
                           child: Row(
@@ -279,6 +299,9 @@ class _DashboardState extends State<Dashboard> {
                             ],
                           ),
                         ),
+                        ///////////////
+                        // FocusData  + Join//
+                        ///////////////
                         Container(
                           padding: EdgeInsets.all(10),
                           height: 55,
@@ -315,10 +338,16 @@ class _DashboardState extends State<Dashboard> {
                                   ],
                                 ),
                               ),
+                              ///////////////
+                              // Join btn //
+                              ///////////////
                               RaisedButton(
                                 color: Theme.of(context).accentColor,
                                 // padding: EdgeInsets.all(5),
                                 onPressed: () {
+                                ///////////////
+                                // PopUp Dialog //
+                                ///////////////
                                   showDialog(
                                     context: context,
                                     builder: (BuildContext context){
@@ -327,7 +356,7 @@ class _DashboardState extends State<Dashboard> {
                                           borderRadius: BorderRadius.circular(10),
                                         ),
                                         child: Container(
-                                          height: 450,
+                                          height: 500,
                                           decoration: BoxDecoration(
                                           ),
                                           // margin: EdgeInsets.symmetric(horizontal:15,),
@@ -336,6 +365,9 @@ class _DashboardState extends State<Dashboard> {
                                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                             // crossAxisAlignment: CrossAxisAlignment.start,
                                             children: <Widget>[
+                                              ///////////////
+                                              // route Map //
+                                              ///////////////
                                               Container(
                                                 margin: EdgeInsets.all(10),
                                                 height: 250,
@@ -346,11 +378,17 @@ class _DashboardState extends State<Dashboard> {
                                                   border: Border.all(width: 1, color: Colors.grey,)
                                                 ),
                                               ),
+                                              ///////////////
+                                              // Ride and Driver Details //
+                                              ///////////////
                                               Container(
                                                 margin: EdgeInsets.symmetric(horizontal: 10),
-                                                child: Row(
-                                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                                child: Column(
+                                                  mainAxisAlignment: MainAxisAlignment.center,
                                                   children: <Widget>[
+                                                    ///////////////
+                                                    // Driver //
+                                                    ///////////////
                                                     Container(
                                                       child: Column(
                                                         mainAxisAlignment: MainAxisAlignment.center,
@@ -373,12 +411,150 @@ class _DashboardState extends State<Dashboard> {
                                                         ],
                                                       ),
                                                     ),
-                                                    Container(),
-                                                    Container(),
+                                                    ///////////////
+                                                    // Ride //
+                                                    ///////////////
+                                                    SizedBox(
+                                                      height: 15,
+                                                    ),
+                                                    Row(
+                                                      mainAxisAlignment: MainAxisAlignment.start,
+                                                      crossAxisAlignment: CrossAxisAlignment.start,
+                                                      children: <Widget>[   
+                                                        Container(
+                                                          child: Column(
+                                                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                                            crossAxisAlignment: CrossAxisAlignment.start,
+                                                            children: <Widget>[
+                                                              Title(
+                                                                color: Colors.black, 
+                                                                child: Text(
+                                                                  'Pickup at',
+                                                                  style: TextStyle(
+                                                                    fontWeight: FontWeight.w300,
+                                                                    fontSize: 11,
+                                                                    color: Colors.grey,
+                                                                  ),
+                                                                ),
+                                                              ),
+                                                              SizedBox(
+                                                                height: 1,
+                                                              ),
+                                                              Text(
+                                                                  '7:45 AM',
+                                                                  style: TextStyle(
+                                                                    fontWeight: FontWeight.w500,
+                                                                    fontSize: 12,
+                                                                    color: Colors.grey[700],
+                                                                  ),
+                                                              ),
+                                                            ],
+                                                          ),
+                                                        ),                                                         
+                                                        SizedBox(width: 10,),
+                                                        Container(
+                                                                child: Column(
+                                                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                                                  children: <Widget>[
+                                                                    Container(
+                                                                      margin: EdgeInsets.all(0),
+                                                                      child: Row(
+                                                                        mainAxisAlignment: MainAxisAlignment.start,
+                                                                        crossAxisAlignment: CrossAxisAlignment.start,
+                                                                        children: <Widget>[
+                                                                          Icon(
+                                                                            Icons.trip_origin,
+                                                                            color: Theme.of(context).accentColor,
+                                                                            size: 15,
+                                                                          ),
+                                                                          SizedBox(width:3),
+                                                                          Container(
+                                                                            child: Column(
+                                                                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                                                                crossAxisAlignment: CrossAxisAlignment.start,
+                                                                                children: <Widget>[
+                                                                                  Title(
+                                                                                    color: Colors.black, 
+                                                                                    child: Text(
+                                                                                      'From',
+                                                                                      style: TextStyle(
+                                                                                        fontWeight: FontWeight.w300,
+                                                                                        fontSize: 11,
+                                                                                        color: Colors.grey,
+                                                                                      ),
+                                                                                    ),
+                                                                                  ),
+                                                                                  Text(
+                                                                                      'Desa Skudai Apartments',
+                                                                                      style: TextStyle(
+                                                                                        fontWeight: FontWeight.w500,
+                                                                                        fontSize: 13,
+                                                                                        color: Colors.grey[800],
+                                                                                      ),
+                                                                                  ),
+                                                                                ],
+                                                                              // brightness_1
+                                                                            ),
+                                                                          ),
+                                                                        ],
+                                                                      ),
+                                                                    ),
+                                                                    SizedBox(height: 10,),
+                                                                    Container(
+                                                                      margin: EdgeInsets.all(0),
+                                                                      child: Row(
+                                                                        mainAxisAlignment: MainAxisAlignment.start,
+                                                                        crossAxisAlignment: CrossAxisAlignment.start,
+                                                                        children: <Widget>[
+                                                                          Icon(
+                                                                            Icons.brightness_1,
+                                                                            color: Theme.of(context).accentColor,
+                                                                            size: 15,
+                                                                          ),
+                                                                          SizedBox(width:3),
+                                                                          Container(
+                                                                            child: Column(
+                                                                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                                                                crossAxisAlignment: CrossAxisAlignment.start,
+                                                                                children: <Widget>[
+                                                                                  Title(
+                                                                                    color: Colors.black, 
+                                                                                    child: Text(
+                                                                                      'To',
+                                                                                      style: TextStyle(
+                                                                                        fontWeight: FontWeight.w300,
+                                                                                        fontSize: 11,
+                                                                                        color: Colors.grey,
+                                                                                      ),
+                                                                                    ),
+                                                                                  ),
+                                                                                  Text(
+                                                                                      'school of Electrical (P05)',
+                                                                                      style: TextStyle(
+                                                                                        fontWeight: FontWeight.w400,
+                                                                                        fontSize: 13,
+                                                                                        color: Colors.grey,
+                                                                                      ),
+                                                                                  ),
+                                                                                ],
+                                                                              // brightness_1
+                                                                            ),
+                                                                          ),
+                                                                        ],
+                                                                      ),
+                                                                    ),
+                                                                  ],
+                                                                ),
+                                                              ),                                                                                             
+                                                      ],
+                                                    ),
                                                   ],
                                                 ),
                                               ),
-                                              Container(
+                                              ///////////////
+                                              // focus Data + Join //
+                                              ///////////////
+                                              Container( 
                                                 padding: EdgeInsets.all(10),
                                                 height: 60,
                                                 decoration: BoxDecoration(

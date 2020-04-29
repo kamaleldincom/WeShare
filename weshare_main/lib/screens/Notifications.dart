@@ -156,8 +156,16 @@ class _NotificationsState extends State<Notifications> {
               child: ListTile(
               
               leading:  CircleAvatar(
-                       backgroundImage:
-                          AssetImage('assets/logo.png'),
+                backgroundColor: Theme.of(context).accentColor,
+                radius: 20,
+                child: CircleAvatar(
+                  backgroundColor: Colors.white,
+                  radius: 19.5,
+                  child: CircleAvatar(
+                    backgroundImage: AssetImage('assets/person1.jpeg'),
+                    radius: 18,
+                  ),
+                ),
               ),
             //   Container(
             //   width: 50,
