@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 // import 'package:weshare_main/screens/Dashboard.dart';
 import 'package:weshare_main/screens/Notifications.dart';
+import 'package:weshare_main/screens/chat_screen.dart';
 import 'package:weshare_main/screens/ride_summary.dart';
 // import 'package:weshare_main/screens/Profile.dart';
 // import 'package:weshare_main/screens/Rides.dart';
@@ -45,7 +46,7 @@ class MyApp extends StatelessWidget {
       ),
       debugShowCheckedModeBanner: false,
       home: Settings(),
-      initialRoute: '/rideSummary',
+      initialRoute: '/chatScreen',
       routes: {
         // '/': (context) => Loading(),
         // '/home': (context) => Home(),
@@ -60,6 +61,7 @@ class MyApp extends StatelessWidget {
         '/nav': (context) => BtmNavBar(),
         '/ride': (context) => Ride(),
         '/rideSummary': (context) => RideSummary(),
+        '/chatScreen': (context) => ChatScreen(),
 
       },
     );
