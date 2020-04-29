@@ -46,7 +46,7 @@ class MyApp extends StatelessWidget {
       ),
       debugShowCheckedModeBanner: false,
       home: Settings(),
-      initialRoute: '/chatScreen',
+      initialRoute: '/splash',
       routes: {
         // '/': (context) => Loading(),
         // '/home': (context) => Home(),
