@@ -24,11 +24,32 @@ class PostRideInterface extends StatelessWidget {
             child: Column(
               children: <Widget>[
                 SizedBox(
-                  height: 210,
+                  height: 185,
                 ),
                 Center(
                     child: Column(
-                  children: <Widget>[],
+                  children: <Widget>[
+                    RaisedButton(
+                      padding: EdgeInsets.all(20),
+                      onPressed: () {},
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(20)),
+                      color: Colors.grey[100],
+                      elevation: 7,
+                      child: Column(
+                        children: <Widget>[
+                          Image.asset('assets/driver.png', height: 80.0),
+                          SizedBox(
+                            height: 20,
+                          ),
+                          Text(
+                            'Provide a New Ride',
+                            style: TextStyle(color: Colors.grey[600]),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ],
                 )),
               ],
             ),
