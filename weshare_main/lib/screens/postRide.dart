@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:gradient_app_bar/gradient_app_bar.dart';
-import 'dart:math';
 
 class PostRideInterface extends StatelessWidget {
   @override
@@ -30,9 +28,7 @@ class PostRideInterface extends StatelessWidget {
                 ),
                 Center(
                     child: Column(
-                  children: <Widget>[
-                    Text('Hi'),
-                  ],
+                  children: <Widget>[],
                 )),
               ],
             ),
