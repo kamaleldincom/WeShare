@@ -5,6 +5,7 @@ import 'package:weshare_main/screens/Profile.dart';
 import 'package:weshare_main/screens/Rides.dart';
 import 'package:weshare_main/screens/authentication/Login.dart';
 import 'package:weshare_main/screens/constants.dart';
+import 'package:weshare_main/screens/postRide.dart';
 import 'package:weshare_main/screens/splash.dart';
 import 'package:flutter/services.dart';
 import 'dart:ui';
@@ -57,6 +58,7 @@ class MyApp extends StatelessWidget {
         '/dashboard': (context) => Dashboard(),
         '/nav': (context) => BtmNavBar(),
         '/provide-ride': (context) => ProvideRide(),
+        '/postRide': (context) => PostRideInterface(),
       },
     );
   }
