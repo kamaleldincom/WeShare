@@ -72,7 +72,7 @@ class _RideSummaryState extends State<RideSummary> {
                 margin: EdgeInsets.symmetric(horizontal: 10),
                 child: Column(children: <Widget>[
                   Card(
-                    elevation: 4.0,
+                    elevation: 0.0,
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(8.0),
                     ),
@@ -208,7 +208,7 @@ class _RideSummaryState extends State<RideSummary> {
                     height: 10,
                   ),
                   Card(
-                    elevation: 4.0,
+                    elevation: 0.0,
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(8.0),
                     ),
