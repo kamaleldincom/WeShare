@@ -49,6 +49,36 @@ class PostRideInterface extends StatelessWidget {
                         ],
                       ),
                     ),
+                    SizedBox(
+                      height: 90,
+                    ),
+                    Container(
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(20),
+                        color: Colors.white.withOpacity(0.2),
+                      ),
+                      width: 310,
+                      padding: EdgeInsets.all(20),
+                      child: Column(
+                        children: <Widget>[
+                          Text(
+                              'Your journey of carpooling starts with a single \'click\' !',
+                              textAlign: TextAlign.center,
+                              style: TextStyle(
+                                  color: Colors.white,
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 18)),
+                          SizedBox(
+                            height: 22,
+                          ),
+                          Text(
+                              'Yes, you may drive too! If you have a trip soon and wish to pick up and drop off riders on your way, then fasten your seat belt and let\'s get started!',
+                              style: TextStyle(
+                                color: Colors.white,
+                              )),
+                        ],
+                      ),
+                    ),
                   ],
                 )),
               ],
