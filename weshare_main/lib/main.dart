@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 // import 'package:weshare_main/screens/Dashboard.dart';
 import 'package:weshare_main/screens/Notifications.dart';
+// import 'package:weshare_main/screens/newRides.dart';
 import 'package:weshare_main/screens/chat_screen.dart';
 import 'package:weshare_main/screens/ride_summary.dart';
 // import 'package:weshare_main/screens/Profile.dart';
