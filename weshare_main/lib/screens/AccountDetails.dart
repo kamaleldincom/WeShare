@@ -38,8 +38,16 @@ class _AccountDetailsState extends State<AccountDetails> {
             child: Column(
               children: <Widget>[
                 CircleAvatar(
-                  backgroundImage: AssetImage('assets/logo.png'),
-                  radius: 45.0,
+                  backgroundColor: Theme.of(context).accentColor,
+                  radius: 49,
+                  child: CircleAvatar(
+                    backgroundColor: Colors.white,
+                    radius: 47,
+                    child: CircleAvatar(
+                      backgroundImage: AssetImage('assets/person.jpeg'),
+                      radius: 45,
+                    ),
+                  ),
                 ),
                 SizedBox(
                   height: 20,

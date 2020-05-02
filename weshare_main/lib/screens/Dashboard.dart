@@ -394,8 +394,16 @@ class _DashboardState extends State<Dashboard> {
                                                         mainAxisAlignment: MainAxisAlignment.center,
                                                         children: <Widget>[
                                                           CircleAvatar(
-                                                            backgroundImage: AssetImage('assets/logo.png'),
-                                                            radius: 23,
+                                                            backgroundColor: Theme.of(context).accentColor,
+                                                            radius: 22,
+                                                            child: CircleAvatar(
+                                                              backgroundColor: Colors.white,
+                                                              radius: 21.5,
+                                                              child: CircleAvatar(
+                                                                backgroundImage: AssetImage('assets/person1.jpeg'),
+                                                                radius: 20,
+                                                              ),
+                                                            ),
                                                           ),
                                                           Title(
                                                             color: Colors.black, 

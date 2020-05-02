@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-
+import 'package:flutter/cupertino.dart';
 import 'constants.dart';
 // import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
@@ -15,7 +15,7 @@ class MyFlexiableAppBar extends StatefulWidget {
 
 class _MyFlexiableAppBarState extends State<MyFlexiableAppBar> {
   final double appBarHeight = 280.0;
-
+  DateTime _dateTime = DateTime.now();
   @override
   Widget build(BuildContext context) {
     final double statusBarHeight = MediaQuery
@@ -193,20 +193,54 @@ class _MyFlexiableAppBarState extends State<MyFlexiableAppBar> {
                               builder: (BuildContext context){
                                 return Dialog(
                                   shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(10),
+                                    borderRadius: BorderRadius.circular(15),
                                   ),
                                   child: Container(
-                                    height: 200,
-                                    decoration: BoxDecoration(
-                                    ),
-                                    // margin: EdgeInsets.symmetric(horizontal:15,),
-                                    // padding: EdgeInsets.all(10),
+                                    height: 250,
+                                    padding: EdgeInsets.all(10),
                                     child: Column(
-                                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                      // crossAxisAlignment: CrossAxisAlignment.start,
+                                      
                                       children: <Widget>[
-                        
-                                   
+                                        Text(
+                                          "Choose Date and Time",
+                                          style: TextStyle(
+                                            color: Theme.of(context).accentColor,
+                                            fontSize: 20,
+                                            fontWeight: FontWeight.w600,
+                                          ),
+                                        ),
+                                        Container(
+                                          height: 150,
+                                          decoration: BoxDecoration(
+                                          ),
+                                          // margin: EdgeInsets.symmetric(horizontal:15,),
+                                          // padding: EdgeInsets.all(10),
+                                          child: CupertinoDatePicker(
+                                            initialDateTime: _dateTime,
+                                            minimumDate: _dateTime,
+                                            onDateTimeChanged: (dateTime){
+                                              print(dateTime);
+                                              setState(() {
+                                                _dateTime = dateTime;
+                                              });
+                                            },
+                                            ),
+                                        ),
+                                        RaisedButton(
+                                          color: Theme.of(context).accentColor,
+                                          child: Text(
+                                            'Apply Date and Time',
+                                            style: TextStyle(
+                                              fontSize: 19.0,
+                                              color: Colors.white,
+                                              fontWeight: FontWeight.bold,
+                                            ),
+                                          ),
+                                          shape: new RoundedRectangleBorder(
+                                            borderRadius: new BorderRadius.circular(7.0),
+                                          ),
+                                          onPressed: (){},
+                                        ),
                                       ],
                                     ),
                                   ),
@@ -250,7 +284,51 @@ class _MyFlexiableAppBarState extends State<MyFlexiableAppBar> {
                                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                       // crossAxisAlignment: CrossAxisAlignment.start,
                                       children: <Widget>[
-                        
+                                        Text(
+                                          "Choose Seat Filter",
+                                          style: TextStyle(
+                                            color: Theme.of(context).accentColor,
+                                            fontSize: 20,
+                                            fontWeight: FontWeight.w600,
+                                          ),
+                                        ),
+                                        Container(
+                                          height: 100,
+                                          decoration: BoxDecoration(
+                                          ),
+                                          // margin: EdgeInsets.symmetric(horizontal:15,),
+                                          // padding: EdgeInsets.all(10),
+                                          child: CupertinoPicker(
+                                            itemExtent: 50,
+                                            backgroundColor: Colors.white,
+                                            onSelectedItemChanged: (int i){
+                                              print(i);
+                                            },
+                                            children: <Widget>[
+                                              Text("1"),
+                                              Text("2"),
+                                              Text("3"),
+                                              Text("4"),
+                                              Text("5"),
+                                              Text("6"),
+                                            ],
+                                          ),
+                                        ),
+                                        RaisedButton(
+                                          color: Theme.of(context).accentColor,
+                                          child: Text(
+                                            'Apply Filter',
+                                            style: TextStyle(
+                                              fontSize: 19.0,
+                                              color: Colors.white,
+                                              fontWeight: FontWeight.bold,
+                                            ),
+                                          ),
+                                          shape: new RoundedRectangleBorder(
+                                            borderRadius: new BorderRadius.circular(7.0),
+                                          ),
+                                          onPressed: (){},
+                                        ),
                                    
                                       ],
                                     ),
@@ -295,7 +373,51 @@ class _MyFlexiableAppBarState extends State<MyFlexiableAppBar> {
                                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                       // crossAxisAlignment: CrossAxisAlignment.start,
                                       children: <Widget>[
-                        
+                                        Text(
+                                          "Choose Seat Filter",
+                                          style: TextStyle(
+                                            color: Theme.of(context).accentColor,
+                                            fontSize: 20,
+                                            fontWeight: FontWeight.w600,
+                                          ),
+                                        ),
+                                        Container(
+                                          height: 100,
+                                          decoration: BoxDecoration(
+                                          ),
+                                          // margin: EdgeInsets.symmetric(horizontal:15,),
+                                          // padding: EdgeInsets.all(10),
+                                          child: CupertinoPicker(
+                                            itemExtent: 50,
+                                            backgroundColor: Colors.white,
+                                            onSelectedItemChanged: (int i){
+                                              print(i);
+                                            },
+                                            children: <Widget>[
+                                              Text("1"),
+                                              Text("2"),
+                                              Text("3"),
+                                              Text("4"),
+                                              Text("5"),
+                                              Text("6"),
+                                            ],
+                                          ),
+                                        ),
+                                        RaisedButton(
+                                          color: Theme.of(context).accentColor,
+                                          child: Text(
+                                            'Apply Filter',
+                                            style: TextStyle(
+                                              fontSize: 19.0,
+                                              color: Colors.white,
+                                              fontWeight: FontWeight.bold,
+                                            ),
+                                          ),
+                                          shape: new RoundedRectangleBorder(
+                                            borderRadius: new BorderRadius.circular(7.0),
+                                          ),
+                                          onPressed: (){},
+                                        ),
                                    
                                       ],
                                     ),
