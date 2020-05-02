@@ -51,7 +51,7 @@ class Settings extends StatelessWidget {
               elevation: 0,
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(20),
-                //topLeft: Radius.circular(20.0),
+
                 //topRight: Radius.circular(20.0)),
               ),
               child: Column(

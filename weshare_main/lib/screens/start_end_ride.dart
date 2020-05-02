@@ -40,23 +40,74 @@ class _StartEndRideInterfaceState extends State<StartEndRideInterface> {
                     child: Card(
                       margin: EdgeInsets.symmetric(horizontal: 17),
                       shape: RoundedRectangleBorder(
+                          side: BorderSide(color: Colors.grey[400]),
                           borderRadius: BorderRadius.circular(10.0)),
                       child: ListTile(
                         contentPadding: EdgeInsets.only(left: 12, right: 25),
-                        leading: Column(
-                          children: <Widget>[
-                            Text(
-                              'Chat',
-                              style: TextStyle(
-                                  color: Colors.grey[400], fontSize: 11.5),
-                              textAlign: TextAlign.start,
-                            ),
-                            SizedBox(height: 5),
-                            CircleAvatar(
-                              backgroundImage: AssetImage('assets/driver.png'),
-                              radius: 13,
-                            ),
-                          ],
+                        leading: Container(
+                          width: 70,
+                          child: Column(
+                            children: <Widget>[
+                              Row(
+                                children: <Widget>[
+                                  Text(
+                                    'Chat',
+                                    style: TextStyle(
+                                        color: Colors.grey[400], fontSize: 11),
+                                    textAlign: TextAlign.start,
+                                  ),
+                                ],
+                              ),
+                              SizedBox(height: 5),
+                              Row(
+                                children: <Widget>[
+                                  Container(
+                                    width: 70,
+                                    child: Stack(
+                                      children: <Widget>[
+                                        CircleAvatar(
+                                          backgroundImage:
+                                              AssetImage('assets/driver.png'),
+                                          radius: 15,
+                                        ),
+                                        Positioned(
+                                          left: 12,
+                                          child: CircleAvatar(
+                                            backgroundImage:
+                                                AssetImage('assets/driver.png'),
+                                            radius: 15,
+                                          ),
+                                        ),
+                                        Positioned(
+                                          left: 25,
+                                          child: CircleAvatar(
+                                            backgroundImage:
+                                                AssetImage('assets/driver.png'),
+                                            radius: 15,
+                                          ),
+                                        ),
+                                        Positioned(
+                                          left: 25,
+                                          child: CircleAvatar(
+                                            backgroundImage:
+                                                AssetImage('assets/driver.png'),
+                                            radius: 15,
+                                          ),
+                                        ),
+                                        Positioned(
+                                          left: 37,
+                                          child: CircleAvatar(
+                                            child: Text('+1'),
+                                            radius: 15,
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ],
+                          ),
                         ),
                         title: Text('7:45 AM',
                             style: TextStyle(
@@ -79,12 +130,13 @@ class _StartEndRideInterfaceState extends State<StartEndRideInterface> {
                       ),
                     ),
                   ),
+                  SizedBox(height: 0.7),
 
                   //! Trip Card
                   Card(
                     margin: EdgeInsets.symmetric(horizontal: 17),
                     shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(10.0)),
+                        borderRadius: BorderRadius.circular(10)),
                     elevation: 1,
                     child: Container(
                       padding: EdgeInsets.all(15),
