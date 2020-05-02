@@ -140,8 +140,9 @@ class _BtmNavBarState extends State<BtmNavBar> {
         ));
   }
 }
+
 //Vertical Linear gradient:
-//used as such: 
+//used as such:
 //decoration: BoxDecoration(
 //  gradient: linearGradientvertical),
 var linearGradientvertical = LinearGradient(
@@ -342,3 +343,44 @@ Container currentRideCard(BuildContext context, String text, var color) {
 }
 
 //---------------------------------------------------------------------------------------------------------------
+    begin: Alignment.topCenter,
+    end: Alignment.bottomCenter,
+    colors: <Color>[Color(0xFF76D3FF), Color(0xFF5C79FF)]);
+
+// title:  is the title of your page
+// backArrowNeeded:
+//        true - if you need a backbutton to return to previous page
+//          false - if you don't need a back button
+//  actionsToDo :  add widgets in the appBar (if needed)
+
+Widget appBarBuilder(title, bool backArrowNeeded, actionsToDo) {
+  return AppBar(
+      brightness: Brightness.light,
+      automaticallyImplyLeading: false,
+      leading: backArrowNeeded
+          ? BackButton(
+              color: Color(0xFF5C79FF),
+            )
+          : null,
+      backgroundColor: Color(0xFFF1F3F5),
+      title: Text(
+        title,
+        style: TextStyle(
+          color: Colors.black,
+          fontWeight: FontWeight.w600,
+        ),
+      ),
+      elevation: 0.0,
+      centerTitle: true,
+      actions: actionsToDo);
+}
+
+// Add this to notification page in actionsToDo
+// <Widget>[
+//             IconButton(
+//               icon: Icon(Icons.delete_outline),
+//               iconSize: 26,
+//               color: Color(0xFF5C79FF),
+//               onPressed: (){},
+//             )
+//           ],

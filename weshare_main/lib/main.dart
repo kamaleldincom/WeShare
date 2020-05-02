@@ -12,10 +12,13 @@ import 'package:weshare_main/screens/temp.dart';
 import 'package:weshare_main/screens/history.dart';
 import 'package:weshare_main/screens/authentication/Login.dart';
 import 'package:weshare_main/screens/constants.dart';
+import 'package:weshare_main/screens/postRide.dart';
 import 'package:weshare_main/screens/splash.dart';
 import 'package:flutter/services.dart';
 import 'package:weshare_main/screens/settings.dart';
+import 'package:weshare_main/screens/start_end_ride.dart';
 
+import 'screens/provide-ride.dart';
 
 void main() => runApp(MyApp());
 
@@ -67,6 +70,9 @@ class MyApp extends StatelessWidget {
         '/rideSummary': (context) => RideSummary(),
         '/chatScreen': (context) => ChatScreen(),
         '/AccountDetails': (context) => AccountDetails(),
+        '/provide-ride': (context) => ProvideRide(),
+        '/postRide': (context) => PostRideInterface(),
+        '/startEndRide': (context) => StartEndRideInterface(),
       },
     );
   }
