@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:weshare_main/screens/settings.dart';
-import 'package:weshare_main/weshare_icons.dart';
 
 import 'constants.dart';
 

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import '../weshare_icons.dart';
 import 'Dashboard.dart';
 import 'Notifications.dart';
 import 'Profile.dart';
@@ -160,7 +159,7 @@ Container currentRideCard(BuildContext context, String text, var color) {
                 margin: EdgeInsets.symmetric(horizontal: 5),
                 padding: EdgeInsets.only(bottom: 20),
                 child: Card(
-                  elevation: 4.0,
+                  elevation: 1.0,
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(8.0),
                   ),
@@ -222,7 +221,7 @@ Container currentRideCard(BuildContext context, String text, var color) {
                         padding: EdgeInsets.only(top: 5, bottom: 8),
                         decoration: BoxDecoration(
                           // color: ,
-                          color: Colors.grey[200],
+                          color: Colors.grey[100],
                           borderRadius: BorderRadius.circular(8.0),
                         ),
                         child: Column(

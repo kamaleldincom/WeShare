@@ -40,7 +40,12 @@ class _RideState extends State<Ride> {
                         height: 70,
                         child: CircleAvatar(
                           backgroundColor: Colors.blue[300],
-                          child: Text('+1',style: TextStyle(color: Colors.white,),),
+                          child: Text(
+                            '+1',
+                            style: TextStyle(
+                              color: Colors.white,
+                            ),
+                          ),
                         ),
                       ),
                       // leading: Stack(children: <Widget>[
@@ -72,7 +77,12 @@ class _RideState extends State<Ride> {
                             height: 26,
                             child: CircleAvatar(
                               backgroundColor: Theme.of(context).accentColor,
-                              child: Text('1', style: TextStyle(color: Colors.white,),),
+                              child: Text(
+                                '1',
+                                style: TextStyle(
+                                  color: Colors.white,
+                                ),
+                              ),
                             ),
                           ),
                           SizedBox(
