@@ -50,7 +50,7 @@ class PostRideInterface extends StatelessWidget {
                       ),
                     ),
                     SizedBox(
-                      height: 90,
+                      height: 95,
                     ),
                     Container(
                       decoration: BoxDecoration(
@@ -128,6 +128,7 @@ class ShapesPainter extends CustomPainter {
         paint);
   }
 
+// -640 530 430 112
   @override
   bool shouldRepaint(CustomPainter oldDelegate) => false;
 }

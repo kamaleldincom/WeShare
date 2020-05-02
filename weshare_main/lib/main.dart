@@ -10,6 +10,7 @@ import 'package:weshare_main/screens/splash.dart';
 import 'package:flutter/services.dart';
 import 'dart:ui';
 import 'package:weshare_main/screens/settings.dart';
+import 'package:weshare_main/screens/start_end_ride.dart';
 
 import 'screens/provide-ride.dart';
 
@@ -59,6 +60,7 @@ class MyApp extends StatelessWidget {
         '/nav': (context) => BtmNavBar(),
         '/provide-ride': (context) => ProvideRide(),
         '/postRide': (context) => PostRideInterface(),
+        '/startEndRide': (context) => StartEndRideInterface(),
       },
     );
   }

@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'dart:ui';
 import './constants.dart';
-import 'constants.dart';
 
 class Settings extends StatelessWidget {
   @override
