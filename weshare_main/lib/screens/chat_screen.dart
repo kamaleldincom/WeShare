@@ -155,12 +155,14 @@ _buildMessage(Message message, context) {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: <Widget>[
-              Text(
-                message.text,
-                style: TextStyle(
-                  color: message.me ? Colors.white : Colors.grey[700],
-                  fontSize: 16.0,
-                  fontWeight: FontWeight.w600,
+              Flexible(
+                              child: Text(
+                  message.text,
+                  style: TextStyle(
+                    color: message.me ? Colors.white : Colors.grey[700],
+                    fontSize: 16.0,
+                    fontWeight: FontWeight.w600,
+                  ),
                 ),
               ),
               SizedBox(height: 8.0),

@@ -63,7 +63,6 @@ class MyApp extends StatelessWidget {
         '/ride': (context) => Ride(),
         '/rideSummary': (context) => RideSummary(),
         '/chatScreen': (context) => ChatScreen(),
-
       },
     );
   }
