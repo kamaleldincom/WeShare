@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 // import 'package:weshare_main/screens/Dashboard.dart';
+import 'package:weshare_main/screens/AccountDetails.dart';
+import 'package:weshare_main/screens/Dashboard.dart';
 import 'package:weshare_main/screens/Notifications.dart';
 // import 'package:weshare_main/screens/newRides.dart';
 import 'package:weshare_main/screens/chat_screen.dart';
@@ -27,7 +29,8 @@ class MyApp extends StatelessWidget {
 
     return MaterialApp(
       theme: ThemeData(
-        primarySwatch: Colors.blue,
+        // brightness: Brightness.dark,
+        primaryColor: Color(0xFF5C79FF),
         accentColor: Color(0xFF5C79FF),
         // fontFamily: 'SegoeUI',
         textTheme: ThemeData.light().textTheme.copyWith(
@@ -63,6 +66,7 @@ class MyApp extends StatelessWidget {
         '/ride': (context) => Ride(),
         '/rideSummary': (context) => RideSummary(),
         '/chatScreen': (context) => ChatScreen(),
+        '/AccountDetails': (context) => AccountDetails(),
       },
     );
   }

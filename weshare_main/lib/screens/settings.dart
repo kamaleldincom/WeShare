@@ -71,7 +71,10 @@ class Settings extends StatelessWidget {
               child: Column(
                 children: <Widget>[
                   SettingsButtons(
-                      Icons.account_circle, 'Account Details', true, () {}),
+                      Icons.account_circle, 
+                      'Account Details', 
+                      true, 
+                      () {Navigator.pushNamed(context, '/AccountDetails');},),
                   SettingsButtons(Icons.lock, 'Privacy Policy', true, () {}),
                   SettingsButtons(Icons.help, 'Help & Support', true, () {}),
                   SettingsButtons(
