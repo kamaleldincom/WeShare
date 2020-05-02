@@ -24,7 +24,8 @@ const textInputDecoration = InputDecoration(
     ));
 
     
-
+// The main button with (like the the login in)
+//just pass a text and your're ready to go
 Ink buttonWithGradient(String text) {
   //assignto a child insid any button and pass the text ypu like
   return Ink(
@@ -148,3 +149,197 @@ var linearGradientvertical = LinearGradient(
       begin: Alignment.topCenter,
       end: Alignment.bottomCenter,
       colors: <Color>[Color(0xFF76D3FF), Color(0xFF5C79FF)]);
+
+
+
+// Card for the current ride Screen pass context, text for the button and color
+// e.g. currentRIdeCard(context,'Start Ride', Colors.green)
+
+Container currentRideCard(BuildContext context, String text, var color) {
+    return Container(
+                margin: EdgeInsets.symmetric(horizontal: 5),
+                padding: EdgeInsets.only(bottom: 20),
+                child: Card(
+                  elevation: 4.0,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(8.0),
+                  ),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: <Widget>[
+                      Container(
+                        margin: EdgeInsets.all(10),
+                        height: 150,
+                        decoration: BoxDecoration(
+                          color: Colors.blue,
+                          borderRadius: BorderRadius.circular(8.0),
+                        ),
+                      ),
+                      Container(
+                        height: 52,
+                        child: Row(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: <Widget>[
+                            Column(
+                              mainAxisAlignment:
+                                  MainAxisAlignment.spaceEvenly,
+                              children: <Widget>[
+                                Container(
+                                  padding: EdgeInsets.all(0),
+                                  height: 16,
+                                  child: CircleAvatar(
+                                    backgroundColor: Colors.grey,
+                                  ),
+                                ),
+                                SizedBox(height: 20),
+                                Container(
+                                  height: 16,
+                                  child: CircleAvatar(
+                                    backgroundColor: Colors.grey,
+                                  ),
+                                )
+                              ],
+                            ),
+                            Column(
+                              mainAxisAlignment:
+                                  MainAxisAlignment.spaceBetween,
+                              children: <Widget>[
+                                Text(' Electrical (FKE) P05'),
+                                Text(' Electrical (FKE) P05'),
+                              ],
+                            ),
+                            SizedBox(
+                              width: 70,
+                            ),
+                            startLeaveButton(text ,color),
+                          ],
+                        ),
+                      ),
+                      SizedBox(
+                        height: 10,
+                      ),
+                      Container(
+                        padding: EdgeInsets.only(top: 5, bottom: 8),
+                        decoration: BoxDecoration(
+                          // color: ,
+                          color: Colors.grey[200],
+                          borderRadius: BorderRadius.circular(8.0),
+                        ),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: <Widget>[
+                            Container(
+                              margin: EdgeInsetsDirectional.fromSTEB(
+                                  10, 0, 0, 10),
+                              child: Text(
+                                'Chats',
+                                style: TextStyle(
+                                  color: Colors.grey,
+                                  fontSize: 14.0,
+                                ),
+                              ),
+                            ),
+                            Container(
+                              padding: EdgeInsets.symmetric(horizontal: 10),
+                              child: Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: <Widget>[
+                                  Row(
+                                    children: <Widget>[
+                                      CircleAvatar(
+                                        backgroundColor: Colors.blue[300],
+                                        child: Text(
+                                          '+1',
+                                          style: TextStyle(
+                                            color: Colors.white,
+                                          ),
+                                        ),
+                                      ),
+                                      CircleAvatar(
+                                        backgroundColor: Colors.blue[300],
+                                        child: Text(
+                                          '+1',
+                                          style: TextStyle(
+                                            color: Colors.white,
+                                          ),
+                                        ),
+                                      ),
+                                      CircleAvatar(
+                                        backgroundColor: Colors.blue[300],
+                                        child: Text(
+                                          '+1',
+                                          style: TextStyle(
+                                            color: Colors.white,
+                                          ),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                  Column(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: <Widget>[
+                                      Text(
+                                        '7:43 AM',
+                                        style: TextStyle(
+                                          color: Colors.grey,
+                                          fontSize: 14,
+                                        ),
+                                      ),
+                                      Text(
+                                        'Mutasim: I’m waiting in fro…',
+                                        style: TextStyle(
+                                          color: Colors.black,
+                                          fontSize: 12,
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                  Container(
+                                    height: 26,
+                                    child: CircleAvatar(
+                                      backgroundColor:
+                                          Theme.of(context).accentColor,
+                                      child: Text(
+                                        '1',
+                                        style: TextStyle(
+                                          color: Colors.white,
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              );
+  }
+
+  Container startLeaveButton(String text, var color) {
+    return Container(
+      height: 50.0,
+      constraints: BoxConstraints(maxWidth: 130.0, maxHeight: 45),
+      child: FlatButton(
+        onPressed: () {},
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(50.0),
+        ),
+        color: color,
+        child: Container(
+          constraints: BoxConstraints(maxWidth: 115.0, maxHeight: 50),
+          alignment: Alignment.center,
+          child: Text(text, style: TextStyle(color: Colors.white)),
+        ),
+      ),
+    );
+}
+
+//---------------------------------------------------------------------------------------------------------------

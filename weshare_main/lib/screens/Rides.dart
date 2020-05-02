@@ -1,5 +1,7 @@
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 
+import 'constants.dart';
 
 class Rides extends StatefulWidget {
   @override
@@ -7,7 +9,6 @@ class Rides extends StatefulWidget {
 }
 
 class _RidesState extends State<Rides> {
-
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
@@ -33,7 +34,7 @@ class _RidesState extends State<Rides> {
                   SizedBox(height: 30.0),
                   Container(
                     height: 60,
-                    padding: EdgeInsets.symmetric(horizontal: 5,vertical: 5),
+                    padding: EdgeInsets.symmetric(horizontal: 5, vertical: 5),
                     margin: EdgeInsets.all(15),
                     decoration: BoxDecoration(
                         color: Colors.white,
@@ -46,7 +47,7 @@ class _RidesState extends State<Rides> {
                               Color(0xFF8496FD)
                             ])),
                     child: TabBar(
-                      labelColor: Theme.of(context).accentColor,
+                        labelColor: Theme.of(context).accentColor,
                         unselectedLabelColor: Colors.white,
                         indicatorSize: TabBarIndicatorSize.tab,
                         indicator: BoxDecoration(
@@ -59,11 +60,12 @@ class _RidesState extends State<Rides> {
                           Tab(
                             child: Align(
                               alignment: Alignment.center,
-                              child: Text("Current",
-                              style: TextStyle(
-                              fontSize: 20.0,
-                              fontWeight: FontWeight.bold,
-                              ),
+                              child: Text(
+                                "Current",
+                                style: TextStyle(
+                                  fontSize: 20.0,
+                                  fontWeight: FontWeight.bold,
+                                ),
                               ),
                             ),
                           ),
@@ -71,11 +73,10 @@ class _RidesState extends State<Rides> {
                             child: Align(
                               alignment: Alignment.center,
                               child: Text("History",
-                              style: TextStyle(
-                              fontSize: 20.0,
-                              fontWeight: FontWeight.bold,
-                              )
-                              ),
+                                  style: TextStyle(
+                                    fontSize: 20.0,
+                                    fontWeight: FontWeight.bold,
+                                  )),
                             ),
                           ),
                         ]),
@@ -85,187 +86,17 @@ class _RidesState extends State<Rides> {
             ),
           ),
           body: TabBarView(children: [
-                        Container(
+            Container(
+              // padding: EdgeInsets.only(bottom: 10),
               child: ListView.builder(
                 scrollDirection: Axis.vertical,
                 // itemExtent: 100.0,
                 shrinkWrap: true,
                 itemCount: 4,
-                itemBuilder: (context, index) => Card(
-              elevation: 4.0,
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(8.0),
-              ),
-              child: Column(
-                // mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: <Widget>[
-                  Container(
-                    margin: EdgeInsets.all(10),
-                    // padding: EdgeInsets.symmetric(vertical: ),
-
-                    height: 150,
-                    decoration: BoxDecoration(
-                      color: Colors.blue,
-                      borderRadius: BorderRadius.circular(8.0),
-                    ),
-                  ),
-                  Container(
-                    height: 52,
-                    child: Row(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: <Widget>[
-                        Column(
-                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                          children: <Widget>[
-                            Container(
-                              padding: EdgeInsets.all(0),
-                              height: 16,
-                              child: CircleAvatar(
-                                backgroundColor: Colors.grey,
-                              ),
-                            ),
-                            SizedBox(height: 20),
-                            Container(
-                              height: 16,
-                              child: CircleAvatar(
-                                backgroundColor: Colors.grey,
-                              ),
-                            )
-                          ],
-                        ),
-                        Column(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: <Widget>[
-                            Text(' Electrical (FKE) P05'),
-                            Text(' Electrical (FKE) P05'),
-                          ],
-                        ),
-                        SizedBox(
-                          width: 80,
-                        ),
-                        Builder(builder: (context) {
-              return Container(
-                height: 60.0,
-                child: FlatButton(
-                          onPressed: () {},
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(50.0),
-                          ),
-                          color: Colors.grey,
-                          child: Container(
-                    constraints:
-                        BoxConstraints(maxWidth: 115.0, minHeight: 50.0),
-                    alignment: Alignment.center,
-                    child: Text('Leave ride',
-                                  style: TextStyle(color: Colors.white)),
-                  ),
-                          ),
-              );
-            }),
-                      ],
-                    ),
-                  ),
-                  SizedBox(
-                    height: 20,
-                  ),
-
-                        Container(
-                          padding: EdgeInsets.only(top: 5,bottom:8),
-                          decoration: BoxDecoration(
-                            // color: ,
-                          color: Colors.grey[200],
-                            borderRadius: BorderRadius.circular(8.0),
-                          ),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: <Widget>[
-
-                  Container(
-                            margin: EdgeInsetsDirectional.fromSTEB(10, 0, 0, 10),
-                            child: Text(
-                              'Chats',
-                              style: TextStyle(
-                                color: Colors.grey,
-                                fontSize: 14.0,
-                              ),
-                            ),
-                          ),
-                              Container(
-                                padding: EdgeInsets.symmetric(horizontal: 10),
-                                child: Row(
-                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                  children: <Widget>[
-                                    Row(
-                                      children: <Widget>[
-                                        CircleAvatar(
-                                          backgroundColor: Colors.blue[300],
-                                          child: Text(
-                                            '+1',
-                                            style: TextStyle(
-                                              color: Colors.white,
-                                            ),
-                                          ),
-                                        ),
-                                        CircleAvatar(
-                                          backgroundColor: Colors.blue[300],
-                                          child: Text(
-                                            '+1',
-                                            style: TextStyle(
-                                              color: Colors.white,
-                                            ),
-                                          ),
-                                        ),
-                                        CircleAvatar(
-                                          backgroundColor: Colors.blue[300],
-                                          child: Text(
-                                            '+1',
-                                            style: TextStyle(
-                                              color: Colors.white,
-                                            ),
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                    Column(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: <Widget>[
-                           Text(
-                        '7:43 AM',
-                        style: TextStyle(
-                          color: Colors.grey,
-                          fontSize: 14,
-                        ),
-                      ),
-                      Text(
-                        'Mutasim: I’m waiting in fro…',
-                        style: TextStyle(
-                          color: Colors.black,
-                          fontSize: 12,
-                        ),
-                      ),
-                          ],
-                        ),
-                                    Container(
-                            height: 26,
-                            child: CircleAvatar(
-                              backgroundColor: Theme.of(context).accentColor,
-                              child: Text('1', style: TextStyle(color: Colors.white,),),
-                            ),
-                          ),
-                                  ],
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                ],
+                itemBuilder: (context, index) => currentRideCard(context,'Leave ride',Colors.grey ),
               ),
             ),
-              ),),
-
-               Container(
+            Container(
               child: ListView.builder(
                 scrollDirection: Axis.vertical,
                 itemExtent: 100.0,
@@ -310,15 +141,23 @@ class _RidesState extends State<Rides> {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         crossAxisAlignment: CrossAxisAlignment.end,
                         children: <Widget>[
-                          Text('at 7:30 AM', style: TextStyle(color: Colors.grey),),
-                          Text('By Ali Qasmi', style: TextStyle(color: Colors.grey),),
+                          Text(
+                            'at 7:30 AM',
+                            style: TextStyle(color: Colors.grey),
+                          ),
+                          Text(
+                            'By Ali Qasmi',
+                            style: TextStyle(color: Colors.grey),
+                          ),
                         ]),
                   ),
                 ),
               ),
             ),
-
           ]),
         ));
   }
+
+  
+
 }
