@@ -38,6 +38,7 @@ class _ChatScreenState extends State<ChatScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: GestureDetector(
+        
         child: Column(
           children: <Widget>[
             Container(

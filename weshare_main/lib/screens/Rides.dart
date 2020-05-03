@@ -16,8 +16,10 @@ class _RidesState extends State<Rides> {
         child: Scaffold(
           backgroundColor: Theme.of(context).backgroundColor,
           appBar: PreferredSize(
+            
             preferredSize: Size.fromHeight(150.0),
             child: AppBar(
+              brightness: Brightness.light,
               backgroundColor: Colors.grey[100],
               elevation: 0,
               automaticallyImplyLeading: false,

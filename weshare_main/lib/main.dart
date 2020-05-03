@@ -8,7 +8,7 @@ import 'package:weshare_main/screens/chat_screen.dart';
 import 'package:weshare_main/screens/ride_summary.dart';
 // import 'package:weshare_main/screens/Profile.dart';
 // import 'package:weshare_main/screens/Rides.dart';
-import 'package:weshare_main/screens/temp.dart';
+import 'package:weshare_main/screens/rrDetails.dart';
 import 'package:weshare_main/screens/history.dart';
 import 'package:weshare_main/screens/authentication/Login.dart';
 import 'package:weshare_main/screens/constants.dart';
@@ -74,9 +74,10 @@ class MyApp extends StatelessWidget {
         '/postRide': (context) => PostRideInterface(),
         '/startEndRide': (context) => StartEndRideInterface(),
         '/AccountDetails': (context) => AccountDetails(),
-        '/ride': (context) => Ride(),
+        '/RrDetails': (context) => RrDetails(),
         '/rideSummary': (context) => RideSummary(),
         '/chatScreen': (context) => ChatScreen(),
+        
       },
     );
   }

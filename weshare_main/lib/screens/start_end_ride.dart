@@ -3,6 +3,7 @@
 */
 import 'package:flutter/material.dart';
 import 'package:badges/badges.dart';
+import './constants.dart';
 
 class StartEndRideInterface extends StatefulWidget {
   @override
@@ -15,7 +16,9 @@ class _StartEndRideInterfaceState extends State<StartEndRideInterface> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.yellow,
       appBar: AppBar(
+        brightness: Brightness.light,
         leading: BackButton(
           color: Color(0xFF5C79FF),
         ),
@@ -24,6 +27,7 @@ class _StartEndRideInterfaceState extends State<StartEndRideInterface> {
         centerTitle: true,
       ),
       body: Container(
+        // color: Colors.blue,
         constraints: BoxConstraints.expand(),
         child: Stack(
           children: <Widget>[
@@ -42,92 +46,7 @@ class _StartEndRideInterfaceState extends State<StartEndRideInterface> {
                       shape: RoundedRectangleBorder(
                           side: BorderSide(color: Colors.grey[400]),
                           borderRadius: BorderRadius.circular(10.0)),
-                      child: ListTile(
-                        contentPadding: EdgeInsets.only(left: 12, right: 25),
-                        leading: Container(
-                          width: 70,
-                          child: Column(
-                            children: <Widget>[
-                              Row(
-                                children: <Widget>[
-                                  Text(
-                                    'Chat',
-                                    style: TextStyle(
-                                        color: Colors.grey[400], fontSize: 11),
-                                    textAlign: TextAlign.start,
-                                  ),
-                                ],
-                              ),
-                              SizedBox(height: 5),
-                              Row(
-                                children: <Widget>[
-                                  Container(
-                                    width: 70,
-                                    child: Stack(
-                                      children: <Widget>[
-                                        CircleAvatar(
-                                          backgroundImage:
-                                              AssetImage('assets/driver.png'),
-                                          radius: 15,
-                                        ),
-                                        Positioned(
-                                          left: 12,
-                                          child: CircleAvatar(
-                                            backgroundImage:
-                                                AssetImage('assets/driver.png'),
-                                            radius: 15,
-                                          ),
-                                        ),
-                                        Positioned(
-                                          left: 25,
-                                          child: CircleAvatar(
-                                            backgroundImage:
-                                                AssetImage('assets/driver.png'),
-                                            radius: 15,
-                                          ),
-                                        ),
-                                        Positioned(
-                                          left: 25,
-                                          child: CircleAvatar(
-                                            backgroundImage:
-                                                AssetImage('assets/driver.png'),
-                                            radius: 15,
-                                          ),
-                                        ),
-                                        Positioned(
-                                          left: 37,
-                                          child: CircleAvatar(
-                                            child: Text('+1'),
-                                            radius: 15,
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ],
-                          ),
-                        ),
-                        title: Text('7:45 AM',
-                            style: TextStyle(
-                              fontSize: 13,
-                              color: Colors.grey[500],
-                            )),
-                        subtitle: Text('You: Be in front gate guys!',
-                            style: TextStyle(
-                              fontSize: 13,
-                              fontWeight: FontWeight.bold,
-                              color: Colors.grey[500],
-                            )),
-                        trailing: Badge(
-                          badgeColor: Color(0xFF5C79FF),
-                          borderRadius: 50,
-                          toAnimate: true,
-                          badgeContent:
-                              Text('1', style: TextStyle(color: Colors.white)),
-                        ),
-                      ),
+                      child: chatsLT(context),
                     ),
                   ),
                   SizedBox(height: 0.7),

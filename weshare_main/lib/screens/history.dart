@@ -14,6 +14,7 @@ class _HistoryState extends State<History> {
   Widget build(BuildContext context) {
     return Container(
       child: ListView.builder(
+        
         scrollDirection: Axis.vertical,
         itemExtent: 100.0,
         shrinkWrap: true,
@@ -25,37 +26,39 @@ class _HistoryState extends State<History> {
           margin: EdgeInsets.symmetric(horizontal: 15, vertical: 7),
           elevation: 0.0,
           child: ListTile(
+            onTap: (){
+              Navigator.pushNamed(context, '/rideSummary');
+            },
             leading: Column(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: <Widget>[
-                Row(
-                  children: <Widget>[
-                    Icon(
-                      Icons.trip_origin,
-                      color: Theme.of(context).accentColor,
-                      size: 15,
-                    ),
-                    Text(' Electrical (FKE) P05'),
-                    
-                  ],
+                Container(
+                  padding: EdgeInsets.all(0),
+                  height: 16,
+                  child: CircleAvatar(
+                    backgroundColor: Colors.blue,
+                  ),
                 ),
-                // SizedBox(height: 10),
-                Row(
-                  children: <Widget>[
-                    Icon(
-                      Icons.brightness_1,
-                      color: Color(0xFF686868),
-                      size: 15,
-                    ),
-                    Text(' Electrical (FKE) P05'),
-                    
-                  ],
+                SizedBox(height: 20),
+                Container(
+                  height: 16,
+                  child: CircleAvatar(
+                    backgroundColor: Colors.grey,
+                  ),
                 )
               ],
             ),
-            
+            title: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: <Widget>[
+                Text(' Electrical (FKE) P05'),
+                // SizedBox(height: 1),
+                Text(' Electrical (FKE) P05'),
+              ],
+            ),
             trailing: Column(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 crossAxisAlignment: CrossAxisAlignment.end,
                 children: <Widget>[
                   Text(
