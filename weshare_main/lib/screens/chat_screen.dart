@@ -115,7 +115,7 @@ class _ChatScreenState extends State<ChatScreen> {
             // _buildMessageTextField(getValue, context),
             Container(
               padding: EdgeInsets.fromLTRB(10, 15, 10, 34),
-              height: 100.0,
+              // height: 100.0,
               color: Colors.white,
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -123,6 +123,8 @@ class _ChatScreenState extends State<ChatScreen> {
                   Expanded(
                     child: TextField(
                       controller: widget.theMessage,
+                      maxLines: 2,
+                      minLines: 1,
                       textCapitalization: TextCapitalization.sentences,
                       onChanged: (value) {
                         setState(() {
