@@ -26,35 +26,36 @@ class _HistoryState extends State<History> {
           elevation: 0.0,
           child: ListTile(
             leading: Column(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: <Widget>[
-                Container(
-                  padding: EdgeInsets.all(0),
-                  height: 16,
-                  child: CircleAvatar(
-                    backgroundColor: Colors.blue,
-                  ),
+                Row(
+                  children: <Widget>[
+                    Icon(
+                      Icons.trip_origin,
+                      color: Theme.of(context).accentColor,
+                      size: 15,
+                    ),
+                    Text(' Electrical (FKE) P05'),
+                    
+                  ],
                 ),
-                SizedBox(height: 20),
-                Container(
-                  height: 16,
-                  child: CircleAvatar(
-                    backgroundColor: Colors.grey,
-                  ),
+                // SizedBox(height: 10),
+                Row(
+                  children: <Widget>[
+                    Icon(
+                      Icons.brightness_1,
+                      color: Color(0xFF686868),
+                      size: 15,
+                    ),
+                    Text(' Electrical (FKE) P05'),
+                    
+                  ],
                 )
               ],
             ),
-            title: Column(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: <Widget>[
-                Text(' Electrical (FKE) P05'),
-                // SizedBox(height: 1),
-                Text(' Electrical (FKE) P05'),
-              ],
-            ),
+            
             trailing: Column(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 crossAxisAlignment: CrossAxisAlignment.end,
                 children: <Widget>[
                   Text(

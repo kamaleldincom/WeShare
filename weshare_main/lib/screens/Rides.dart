@@ -14,7 +14,7 @@ class _RidesState extends State<Rides> {
     return DefaultTabController(
         length: 2,
         child: Scaffold(
-          backgroundColor: Colors.grey[100],
+          backgroundColor: Theme.of(context).backgroundColor,
           appBar: PreferredSize(
             preferredSize: Size.fromHeight(150.0),
             child: AppBar(
@@ -35,7 +35,7 @@ class _RidesState extends State<Rides> {
                   SizedBox(height: 10.0),
                   Container(
                     height: 60,
-                    padding: EdgeInsets.symmetric(horizontal: 5, vertical: 5),
+                    padding: EdgeInsets.symmetric(horizontal: 8, vertical: 8),
                     margin: EdgeInsets.all(15),
                     decoration: BoxDecoration(
                         color: Colors.white,
@@ -86,10 +86,14 @@ class _RidesState extends State<Rides> {
               ),
             ),
           ),
-          body: TabBarView(children: [
+          body: TabBarView(
+            
+            children: [
             Container(
+              
               // padding: EdgeInsets.only(bottom: 10),
               child: ListView.builder(
+                
                 scrollDirection: Axis.vertical,
                 // itemExtent: 100.0,
                 shrinkWrap: true,

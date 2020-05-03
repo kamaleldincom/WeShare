@@ -108,7 +108,8 @@ class _LoginState extends State<Login> {
                         shadowColor: Colors.black,
                         borderRadius: BorderRadius.all(Radius.circular(10.0)),
                         child: TextFormField(
-                          decoration: textInputDecoration,
+                          decoration: textInputDecoration.copyWith(
+                              hintText: 'test@test.com'),
                           validator: (val) =>
                               val.isEmpty ? 'Enter an email' : null,
                           onChanged: (val) {
@@ -127,7 +128,8 @@ class _LoginState extends State<Login> {
                         shadowColor: Colors.black,
                         borderRadius: BorderRadius.all(Radius.circular(10.0)),
                         child: TextFormField(
-                          decoration: textInputDecoration,
+                          decoration:
+                              textInputDecoration.copyWith(hintText: '123456'),
                           validator: (val) => val.length < 6
                               ? 'Enter a password 6+ chars long'
                               : null,
@@ -150,21 +152,20 @@ class _LoginState extends State<Login> {
                           height: 60.0,
                           child: RaisedButton(
                               onPressed: () async {
-                                if (_formKey.currentState.validate()) {
-                                  if (email == 'test@test.com' &&
-                                      password == '123456') {
-                                    Navigator.pushReplacementNamed(
-                                        context, '/nav');
-                                  } else {
-                                    SnackBar registrationBar = SnackBar(
-                                      content: Text(
-                                        'Invalid Login/Password.. Try Again!',
-                                      ),
-                                    );
-                                    Scaffold.of(context)
-                                        .showSnackBar(registrationBar);
-                                  }
-                                }
+                                // if (_formKey.currentState.validate()) {
+                                //   if (email == 'test@test.com' &&
+                                //       password == '123456') {
+                                Navigator.pushReplacementNamed(context, '/nav');
+                                //   } else {
+                                //     SnackBar registrationBar = SnackBar(
+                                //       content: Text(
+                                //         'Invalid Login/Password.. Try Again!',
+                                //       ),
+                                //     );
+                                //     Scaffold.of(context)
+                                //         .showSnackBar(registrationBar);
+                                //   }
+                                // }
                               },
                               shape: RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(10.0)),

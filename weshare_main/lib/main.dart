@@ -36,6 +36,9 @@ class MyApp extends StatelessWidget {
         // brightness: Brightness.dark,
         primaryColor: Color(0xFF5C79FF),
         accentColor: Color(0xFF5C79FF),
+        backgroundColor: Color(0xFFF1F3F5),
+        
+
         // fontFamily: 'SegoeUI',
         textTheme: ThemeData.light().textTheme.copyWith(
                 title: TextStyle(

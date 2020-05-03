@@ -193,164 +193,209 @@ Widget appBarBuilder(title, bool backArrowNeeded, actionsToDo) {
 
 Container currentRideCard(BuildContext context, String text, var color) {
     return Container(
-                margin: EdgeInsets.symmetric(horizontal: 5),
+                margin: EdgeInsets.symmetric(horizontal: 10),
                 padding: EdgeInsets.only(bottom: 20),
                 child: Card(
-                  elevation: 1.0,
+                  elevation: 0.0,
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(8.0),
                   ),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: <Widget>[
-                      Container(
-                        margin: EdgeInsets.all(10),
-                        height: 150,
-                        decoration: BoxDecoration(
-                          color: Colors.blue,
-                          borderRadius: BorderRadius.circular(8.0),
-                        ),
-                      ),
-                      Container(
-                        height: 52,
-                        child: Row(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: <Widget>[
-                            Column(
-                              mainAxisAlignment:
-                                  MainAxisAlignment.spaceEvenly,
-                              children: <Widget>[
-                                Container(
-                                  padding: EdgeInsets.all(0),
-                                  height: 16,
-                                  child: CircleAvatar(
-                                    backgroundColor: Colors.grey,
-                                  ),
-                                ),
-                                SizedBox(height: 20),
-                                Container(
-                                  height: 16,
-                                  child: CircleAvatar(
-                                    backgroundColor: Colors.grey,
-                                  ),
-                                )
-                              ],
-                            ),
-                            Column(
-                              mainAxisAlignment:
-                                  MainAxisAlignment.spaceBetween,
-                              children: <Widget>[
-                                Text(' Electrical (FKE) P05'),
-                                Text(' Electrical (FKE) P05'),
-                              ],
-                            ),
-                            SizedBox(
-                              width: 70,
-                            ),
-                            startLeaveButton(text ,color),
-                          ],
-                        ),
-                      ),
-                      SizedBox(
-                        height: 10,
-                      ),
-                      Container(
-                        padding: EdgeInsets.only(top: 5, bottom: 8),
-                        decoration: BoxDecoration(
-                          // color: ,
-                          color: Colors.grey[100],
-                          borderRadius: BorderRadius.circular(8.0),
-                        ),
+                      GestureDetector(
+                        onTap: (){
+                          // Navigator.pushNamed(context, "/");
+                        },
                         child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
                           children: <Widget>[
                             Container(
-                              margin: EdgeInsetsDirectional.fromSTEB(
-                                  10, 0, 0, 10),
-                              child: Text(
-                                'Chats',
-                                style: TextStyle(
-                                  color: Colors.grey,
-                                  fontSize: 14.0,
-                                ),
+                              margin: EdgeInsets.all(10),
+                              height: 150,
+                              decoration: BoxDecoration(
+                                color: Colors.blue,
+                                borderRadius: BorderRadius.circular(8.0),
                               ),
                             ),
                             Container(
-                              padding: EdgeInsets.symmetric(horizontal: 10),
+                              padding: EdgeInsets.symmetric(horizontal:10),
+                              height: 52,
                               child: Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
+                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                crossAxisAlignment: CrossAxisAlignment.start,
                                 children: <Widget>[
-                                  Row(
-                                    children: <Widget>[
-                                      CircleAvatar(
-                                        backgroundColor: Colors.blue[300],
-                                        child: Text(
-                                          '+1',
-                                          style: TextStyle(
-                                            color: Colors.white,
-                                          ),
-                                        ),
-                                      ),
-                                      CircleAvatar(
-                                        backgroundColor: Colors.blue[300],
-                                        child: Text(
-                                          '+1',
-                                          style: TextStyle(
-                                            color: Colors.white,
-                                          ),
-                                        ),
-                                      ),
-                                      CircleAvatar(
-                                        backgroundColor: Colors.blue[300],
-                                        child: Text(
-                                          '+1',
-                                          style: TextStyle(
-                                            color: Colors.white,
-                                          ),
-                                        ),
-                                      ),
-                                    ],
-                                  ),
                                   Column(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceBetween,
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
+                                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                                     children: <Widget>[
-                                      Text(
-                                        '7:43 AM',
-                                        style: TextStyle(
-                                          color: Colors.grey,
-                                          fontSize: 14,
-                                        ),
+                                      Row(
+                                        children: <Widget>[
+                                          Icon(
+                                            Icons.trip_origin,
+                                            color: Color(0xFF686868),
+                                            size: 15,
+                                          ),
+                                          Text(' Electrical (FKE) P05'),
+    
+                                        ],
                                       ),
-                                      Text(
-                                        'Mutasim: I’m waiting in fro…',
-                                        style: TextStyle(
-                                          color: Colors.black,
-                                          fontSize: 12,
-                                        ),
-                                      ),
+                                      SizedBox(height: 10),
+                                      Row(
+                                        children: <Widget>[
+                                          Icon(
+                                            Icons.brightness_1,
+                                            color: Color(0xFF686868),
+                                            size: 15,
+                                          ),
+                                          Text(' Electrical (FKE) P05'),
+                                        ],
+                                      )
                                     ],
                                   ),
-                                  Container(
-                                    height: 26,
-                                    child: CircleAvatar(
-                                      backgroundColor:
-                                          Theme.of(context).accentColor,
-                                      child: Text(
-                                        '1',
-                                        style: TextStyle(
-                                          color: Colors.white,
-                                        ),
-                                      ),
-                                    ),
+                                  SizedBox(
+                                    width: 70,
                                   ),
+                                  startLeaveButton(text ,color),
                                 ],
                               ),
                             ),
                           ],
+                        ),
+                      ),
+                      
+                      SizedBox(
+                        height: 10,
+                      ),
+                      GestureDetector(
+                        onTap: (){
+                          Navigator.pushNamed(context, '/chatScreen');
+                        },
+                        child: Container(
+                          padding: EdgeInsets.only(top: 5, bottom: 8),
+                          decoration: BoxDecoration(
+                            // color: ,
+                            color: Color(0xFFF9F9F9),
+                            borderRadius: BorderRadius.circular(8.0),
+                          ),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: <Widget>[
+                              Container(
+                                margin: EdgeInsetsDirectional.fromSTEB(
+                                    10, 0, 0, 10),
+                                child: Text(
+                                  'Chats',
+                                  style: TextStyle(
+                                    color: Colors.grey,
+                                    fontSize: 14.0,
+                                  ),
+                                ),
+                              ),
+                              Container(
+                                
+                                padding: EdgeInsets.symmetric(horizontal: 10),
+                                child: Row(
+                                  
+
+                                  
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  
+                                  children: <Widget>[
+                                   
+                                // SizedBox(height: 5),
+                                Row(
+                                  
+                                  children: <Widget>[
+                                    Row(
+                                      children: <Widget>[
+                                        Container(
+                                          width: 70,
+                                          child: Stack(
+                                            children: <Widget>[
+                                              CircleAvatar(
+                                                backgroundImage:
+                                                    AssetImage('assets/driver.png'),
+                                                radius: 15,
+                                              ),
+                                              Positioned(
+                                                left: 12,
+                                                child: CircleAvatar(
+                                                  backgroundImage:
+                                                      AssetImage('assets/driver.png'),
+                                                  radius: 15,
+                                                ),
+                                              ),
+                                              Positioned(
+                                                left: 25,
+                                                child: CircleAvatar(
+                                                  backgroundImage:
+                                                      AssetImage('assets/driver.png'),
+                                                  radius: 15,
+                                                ),
+                                              ),
+                                              Positioned(
+                                                left: 25,
+                                                child: CircleAvatar(
+                                                  backgroundImage:
+                                                      AssetImage('assets/driver.png'),
+                                                  radius: 15,
+                                                ),
+                                              ),
+                                              Positioned(
+                                                left: 37,
+                                                child: CircleAvatar(
+                                                  child: Text('+1'),
+                                                  radius: 15,
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                   SizedBox(width: 15),
+                                   Column(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceBetween,
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: <Widget>[
+                                        Text(
+                                          '7:43 AM',
+                                          style: TextStyle(
+                                            color: Colors.grey,
+                                            fontSize: 14,
+                                          ),
+                                        ),
+                                        Text(
+                                          'Mutasim: I’m waiting in fro…',
+                                          style: TextStyle(
+                                            color: Colors.black,
+                                            fontSize: 12,
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ],
+                                ),
+                                    Container(
+                                      height: 26,
+                                      child: CircleAvatar(
+                                        backgroundColor:
+                                            Theme.of(context).accentColor,
+                                        child: Text(
+                                          '1',
+                                          style: TextStyle(
+                                            color: Colors.white,
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ],
+                          ),
                         ),
                       ),
                     ],

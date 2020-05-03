@@ -64,7 +64,6 @@ class _DashboardState extends State<Dashboard> {
                       borderRadius: BorderRadius.circular(10)
                     ),
                     alignment: Alignment.center,
-                    // color: Colors.orange[100*(index%9)],
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: <Widget>[

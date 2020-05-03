@@ -89,7 +89,7 @@ class _ChatScreenState extends State<ChatScreen> {
             ),
             Expanded(
               child: Container(
-                color: Colors.grey[200],
+                color: Theme.of(context).backgroundColor,
                 child: ListView.builder(
                   reverse: true,
                   padding: EdgeInsets.only(top: 15.0),
@@ -187,17 +187,13 @@ _buildMessage(Message message, context) {
 _buildMessageTextField(getValue, context) {
   String message;
   return Container(
-    padding: EdgeInsets.fromLTRB(4, 0, 4, 8),
-    height: 80.0,
+    padding: EdgeInsets.fromLTRB(10, 15, 10, 34),
+    height: 100.0,
     color: Colors.white,
     child: Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: <Widget>[
-        IconButton(
-          icon: Icon(Icons.location_on),
-          iconSize: 25.0,
-          color: Colors.grey[600],
-          onPressed: () {},
-        ),
+        
         Expanded(
           child: TextField(
             textCapitalization: TextCapitalization.sentences,
@@ -207,11 +203,18 @@ _buildMessageTextField(getValue, context) {
             },
             decoration: InputDecoration(
               suffixIcon: Container(
-                width: 30,
+                width: 100,
                 // margin: EdgeInsets.only(right:1),
                 child: Row(
                   // mainAxisAlignment: MainAxisAlignment.start ,
                   children: <Widget>[
+                    
+                    IconButton(
+                      icon: Icon(Icons.attachment),
+                      iconSize: 25.0,
+                      color: Colors.grey[600],
+                      onPressed: () {},
+                    ),
                     IconButton(
                       icon: Icon(
                         Icons.camera_alt,
@@ -223,7 +226,7 @@ _buildMessageTextField(getValue, context) {
                 ),
               ),
               filled: true,
-              fillColor: Colors.grey[300],
+              fillColor: Theme.of(context).backgroundColor,
               focusColor: Colors.grey,
               enabledBorder: OutlineInputBorder(
                 borderRadius: BorderRadius.all(Radius.circular(50.0)),
