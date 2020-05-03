@@ -11,11 +11,16 @@ class Message {
 }
 
 class ChatScreen extends StatefulWidget {
+  final theMessage = TextEditingController();
   @override
   _ChatScreenState createState() => _ChatScreenState();
 }
 
 class _ChatScreenState extends State<ChatScreen> {
+  clearTextInput(textHolder) {
+    textHolder.clear();
+  }
+
   List<Message> messages = [
     Message('5:30 PM', 'I’m waiting at the Gate', false),
     Message('5:30 PM', 'Me too', true),
@@ -23,27 +28,31 @@ class _ChatScreenState extends State<ChatScreen> {
     Message('5:30 PM', 'We are waiting for you', true)
   ];
 
+  String message = '';
+  bool sent;
+
   void addMessage(value) {
     // String time = DateTime.now().hour.toString() +':'+ DateTime.now().minute.toString();
     // messages.insert(0,Message(time, value, true));
     messages.insert(0, Message('11:30', value, true));
   }
 
-  void getValue(value) {
+  String getValue(value) {
     addMessage(value);
     setState(() {});
+    return '';
   }
+
+  // bool
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: GestureDetector(
-        
         child: Column(
           children: <Widget>[
             Container(
               height: 130.0,
-              
               padding: EdgeInsets.only(top: 30),
               decoration: BoxDecoration(
                 // boxShadow: [BoxShadow(blurRadius: 3, color: Colors.black, offset: ),],
@@ -103,7 +112,109 @@ class _ChatScreenState extends State<ChatScreen> {
                 ),
               ),
             ),
-            _buildMessageTextField(getValue, context),
+            // _buildMessageTextField(getValue, context),
+            Container(
+              padding: EdgeInsets.fromLTRB(10, 15, 10, 34),
+              height: 100.0,
+              color: Colors.white,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: <Widget>[
+                  Expanded(
+                    child: TextField(
+                      controller: widget.theMessage,
+                      textCapitalization: TextCapitalization.sentences,
+                      onChanged: (value) {
+                        setState(() {
+                          if (sent == true) {
+                            value = '';
+
+                            sent = false;
+                          } else {
+                            message = value;
+                          }
+                        });
+                      },
+                      decoration: InputDecoration(
+                        suffixIcon: Container(
+                          width: 150,
+                          // margin: EdgeInsets.only(right:1),
+                          child: Row(
+                            // mainAxisAlignment: MainAxisAlignment.start ,
+                            children: <Widget>[
+                              message != ''
+                                  ? IconButton(
+                                      icon: Icon(Icons.cancel),
+                                      iconSize: 20.0,
+                                      color: Colors.grey[600],
+                                      onPressed: () {
+                                        widget.theMessage.clear();
+
+                                        message = '';
+                                        setState(() {});
+                                      },
+                                    )
+                                  : Container(),
+                              IconButton(
+                                icon: Icon(Icons.attachment),
+                                iconSize: 25.0,
+                                color: Colors.grey[600],
+                                onPressed: () {},
+                              ),
+                              IconButton(
+                                icon: Icon(
+                                  Icons.camera_alt,
+                                  color: Colors.grey[600],
+                                ),
+                                onPressed: () {},
+                              ),
+                            ],
+                          ),
+                        ),
+                        filled: true,
+                        fillColor: Theme.of(context).backgroundColor,
+                        focusColor: Colors.grey,
+                        enabledBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.all(Radius.circular(50.0)),
+                          borderSide:
+                              BorderSide(color: Colors.white, width: 0.0),
+                        ),
+                        focusedBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.all(Radius.circular(50.0)),
+                          borderSide:
+                              BorderSide(color: Colors.white, width: 0.0),
+                        ),
+                        hintText: 'Types a message...',
+                      ),
+                    ),
+                  ),
+                  SizedBox(
+                    width: 5,
+                  ),
+                  Container(
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.all(Radius.circular(50.0)),
+                      gradient: linearGradientvertical,
+                    ),
+                    child: IconButton(
+                      icon: Icon(Icons.send),
+                      iconSize: 25.0,
+                      color: Colors.white,
+                      onPressed: () {
+                        if (message != '') {
+                          // message = getValue(message);
+                          addMessage(message);
+                          widget.theMessage.clear();
+                          message = '';
+                          sent = false;
+                          setState(() {});
+                        }
+                      },
+                    ),
+                  ),
+                ],
+              ),
+            ),
           ],
         ),
       ),
@@ -120,7 +231,10 @@ _buildMessage(Message message, context) {
         radius: 25.0,
       ));
     } else {
-      return Container(height: 0,width: 0,);
+      return Container(
+        height: 0,
+        width: 0,
+      );
     }
   }
 
@@ -131,7 +245,9 @@ _buildMessage(Message message, context) {
           message.me ? MainAxisAlignment.end : MainAxisAlignment.start,
       children: <Widget>[
         addAvatar(message.me),
-        SizedBox(width: 5,),
+        SizedBox(
+          width: 5,
+        ),
         Container(
           constraints: BoxConstraints(
             maxWidth: 290.0,
@@ -157,7 +273,7 @@ _buildMessage(Message message, context) {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: <Widget>[
               Flexible(
-                              child: Text(
+                child: Text(
                   message.text,
                   style: TextStyle(
                     color: message.me ? Colors.white : Colors.grey[700],
@@ -185,80 +301,165 @@ _buildMessage(Message message, context) {
   return msg;
 }
 
-_buildMessageTextField(getValue, context) {
-  String message;
-  return Container(
-    padding: EdgeInsets.fromLTRB(10, 15, 10, 34),
-    height: 100.0,
-    color: Colors.white,
-    child: Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: <Widget>[
-        
-        Expanded(
-          child: TextField(
-            textCapitalization: TextCapitalization.sentences,
-            onChanged: (value) {
-              // sent?value='':message=value;
-              message = value;
-            },
-            decoration: InputDecoration(
-              suffixIcon: Container(
-                width: 100,
-                // margin: EdgeInsets.only(right:1),
-                child: Row(
-                  // mainAxisAlignment: MainAxisAlignment.start ,
-                  children: <Widget>[
-                    
-                    IconButton(
-                      icon: Icon(Icons.attachment),
-                      iconSize: 25.0,
-                      color: Colors.grey[600],
-                      onPressed: () {},
-                    ),
-                    IconButton(
-                      icon: Icon(
-                        Icons.camera_alt,
-                        color: Colors.grey[600],
-                      ),
-                      onPressed: () {},
-                    ),
-                  ],
-                ),
-              ),
-              filled: true,
-              fillColor: Theme.of(context).backgroundColor,
-              focusColor: Colors.grey,
-              enabledBorder: OutlineInputBorder(
-                borderRadius: BorderRadius.all(Radius.circular(50.0)),
-                borderSide: BorderSide(color: Colors.white, width: 0.0),
-              ),
-              focusedBorder: OutlineInputBorder(
-                borderRadius: BorderRadius.all(Radius.circular(50.0)),
-                borderSide: BorderSide(color: Colors.white, width: 0.0),
-              ),
-              hintText: 'Types a message...',
-            ),
-          ),
-        ),
-        SizedBox(
-          width: 5,
-        ),
-        Container(
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.all(Radius.circular(50.0)),
-            gradient: linearGradientvertical,
-          ),
-          child: IconButton(
-            icon: Icon(Icons.send),
-            iconSize: 25.0,
-            color: Colors.white,
-            onPressed: () {
-              getValue(message);
-            },
-          ),
-        ),
-      ],
-    ),
-  );
-}
+// _buildMessageTextField(getValue, context) {
+//   String message;
+//   bool sent;
+//   return Container(
+//     padding: EdgeInsets.fromLTRB(10, 15, 10, 34),
+//     height: 100.0,
+//     color: Colors.white,
+//     child: Row(
+//       mainAxisAlignment: MainAxisAlignment.spaceBetween,
+//       children: <Widget>[
+//         Expanded(
+//           child: TextField(
+
+//             textCapitalization: TextCapitalization.sentences,
+//             onChanged: (value) {
+//               // sent?value='':message=value;
+
+//               // setState((){
+//               //   value ="";
+//               // });
+//               if (sent == true) {
+//                 value = '';
+//               }else{
+
+//                 message = value;
+//               }
+
+//               // value= "";
+//             },
+//             decoration: InputDecoration(
+//               suffixIcon: Container(
+//                 width: 100,
+//                 // margin: EdgeInsets.only(right:1),
+//                 child: Row(
+//                   // mainAxisAlignment: MainAxisAlignment.start ,
+//                   children: <Widget>[
+
+//                     IconButton(
+//                       icon: Icon(Icons.attachment),
+//                       iconSize: 25.0,
+//                       color: Colors.grey[600],
+//                       onPressed: () {},
+//                     ),
+//                     IconButton(
+//                       icon: Icon(
+//                         Icons.camera_alt,
+//                         color: Colors.grey[600],
+//                       ),
+//                       onPressed: () {},
+//                     ),
+//                   ],
+//                 ),
+//               ),
+//               filled: true,
+//               fillColor: Theme.of(context).backgroundColor,
+//               focusColor: Colors.grey,
+//               enabledBorder: OutlineInputBorder(
+//                 borderRadius: BorderRadius.all(Radius.circular(50.0)),
+//                 borderSide: BorderSide(color: Colors.white, width: 0.0),
+//               ),
+//               focusedBorder: OutlineInputBorder(
+//                 borderRadius: BorderRadius.all(Radius.circular(50.0)),
+//                 borderSide: BorderSide(color: Colors.white, width: 0.0),
+//               ),
+//               hintText: 'Types a message...',
+//             ),
+//           ),
+//         ),
+//         SizedBox(
+//           width: 5,
+//         ),
+//         Container(
+//           decoration: BoxDecoration(
+//             borderRadius: BorderRadius.all(Radius.circular(50.0)),
+//             gradient: linearGradientvertical,
+//           ),
+//           child: IconButton(
+//             icon: Icon(Icons.send),
+//             iconSize: 25.0,
+//             color: Colors.white,
+//             onPressed: () {
+//               message = getValue(message);
+//               sent = true;
+//             },
+//           ),
+//         ),
+//       ],
+//     ),
+//   );
+// }
+// }
+// }
+// }
+// }
+// }
+// }
+// }
+// }
+// }
+// }
+// }
+// }
+// }
+// }
+// }
+// }
+// }
+// }
+// }
+// }
+// }
+// }
+// }
+// }
+// }
+// }
+// }
+// }
+// }
+// }
+// }
+// }
+// }
+// }
+// }
+// }
+// }
+// }
+// }
+// }
+// }
+// }
+// }
+// }
+// }
+// }
+// }
+// }
+// }
+// }
+// }
+// }
+// }
+// }
+// }
+// }
+// }
+// }
+// }
+// }
+// }
+// }
+// }
+// }
+// }
+// }
+// }
+// }
+// }
+// }
+// }
+// }
