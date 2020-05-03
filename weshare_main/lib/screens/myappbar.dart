@@ -9,19 +9,21 @@ class MyAppBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      padding: const EdgeInsets.all(16.0),
-      child: CircleAvatar(
-        backgroundImage: AssetImage('assets/logo-circle.png'),
-        radius: 25.0,
-        
+    return Center(
+      child: Container(
+        padding: const EdgeInsets.all(16.0),
+        child: CircleAvatar(
+          backgroundImage: AssetImage('assets/logo-circle.png'),
+          radius: 25.0,
+          
+        ),
+        // Text(
+        //   'WeShare',
+        //   style: TextStyle(
+        //     color: Colors.white,
+        //   ),
+        // ),
       ),
-      // Text(
-      //   'WeShare',
-      //   style: TextStyle(
-      //     color: Colors.white,
-      //   ),
-      // ),
     );
   }
 }

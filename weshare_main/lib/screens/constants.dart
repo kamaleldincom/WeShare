@@ -1,5 +1,6 @@
 import 'package:badges/badges.dart';
 import 'package:flutter/material.dart';
+import 'package:weshare_main/screens/postRide.dart';
 import 'Dashboard.dart';
 import 'Notifications.dart';
 import 'Profile.dart';
@@ -52,7 +53,9 @@ Ink buttonWithGradient(String text) {
 }
 
 
-
+////////////////////////////
+/// Rider Navigation Bar ///
+/// ////////////////////////////
 class BtmNavBar extends StatefulWidget {
   @override
   _BtmNavBarState createState() => _BtmNavBarState();
@@ -62,9 +65,9 @@ class _BtmNavBarState extends State<BtmNavBar> {
   int _currentIndex = 0;
   final List<Widget> _pages = [
     Dashboard(),
-    Rides(),
+    Rides(0),
     Notifications(),
-    Profile(),
+    Profile(0),
   ];
   // void onTapped(int index) {
   //   setState(() {
@@ -95,6 +98,99 @@ class _BtmNavBarState extends State<BtmNavBar> {
               ),
               title: Text(
                 'Dashboard',
+                style: TextStyle(
+                  fontSize: 12,
+                  fontWeight: FontWeight.w500,
+                ),
+              ),
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(
+                Icons.explore,
+              ),
+              title: Text(
+                'Rides',
+                style: TextStyle(
+                  fontSize: 12,
+                  fontWeight: FontWeight.w500,
+                ),
+              ),
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(
+                Icons.notifications,
+              ),
+              title: Text(
+                'Notifications',
+                style: TextStyle(
+                  fontSize: 12,
+                  fontWeight: FontWeight.w500,
+                ),
+              ),
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(
+                Icons.person,
+              ),
+              title: Text(
+                'Profile',
+                style: TextStyle(
+                  fontSize: 12,
+                  fontWeight: FontWeight.w500,
+                ),
+              ),
+            ),
+          ],
+        ));
+  }
+}
+
+////////////////////////////
+/// Driver Navigation Bar ///
+/// ////////////////////////
+class BtnDriver extends StatefulWidget {
+  @override
+  _BtnDriverState createState() => _BtnDriverState();
+} 
+
+class _BtnDriverState extends State<BtnDriver> {
+  int _currentIndex = 3;
+  final List<Widget> _pages = [
+    PostRideInterface(),
+    Rides(1),
+    Notifications(),
+    Profile(1),
+  ];
+  // void onTapped(int index) {
+  //   setState(() {
+  //     _currentIndex = index;
+  //   });
+  // }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+        body: _pages[_currentIndex],
+        bottomNavigationBar: BottomNavigationBar(
+          currentIndex: _currentIndex,
+          onTap: (int index) {
+            _currentIndex = index;
+            setState(() {});
+          },
+          // onTap: onTapped,
+          type: BottomNavigationBarType.fixed,
+          iconSize: 26,
+          selectedFontSize: 12,
+          unselectedItemColor: Colors.black26,
+          selectedItemColor: Color(0xFF5C79FF),
+          items: [
+            BottomNavigationBarItem(
+              icon: Icon(
+                Icons.add_circle,
+                size: 30,
+              ),
+              title: Text(
+                'Add Ride',
                 style: TextStyle(
                   fontSize: 12,
                   fontWeight: FontWeight.w500,
@@ -192,7 +288,7 @@ Widget appBarBuilder(title, bool backArrowNeeded, actionsToDo) {
 // Card for the current ride Screen pass context, text for the button and color
 // e.g. currentRIdeCard(context,'Start Ride', Colors.green)
 
-Container currentRideCard(BuildContext context, String text, var color) {
+Container currentRideCard(BuildContext context,int index) {
     return Container(
                 margin: EdgeInsets.symmetric(horizontal: 10),
                 padding: EdgeInsets.only(bottom: 20),
@@ -206,7 +302,12 @@ Container currentRideCard(BuildContext context, String text, var color) {
                     children: <Widget>[
                       GestureDetector(
                         onTap: (){
+                          if(index==0)
                           Navigator.pushNamed(context, "/RrDetails");
+                          else if (index==1){
+                            Navigator.pushNamed(context, "/startEndRide");
+                          }
+                          
                         },
                         child: Column(
                           children: <Widget>[
@@ -255,14 +356,36 @@ Container currentRideCard(BuildContext context, String text, var color) {
                                   SizedBox(
                                     width: 70,
                                   ),
-                                  startLeaveButton(text ,color),
+    Container(
+      height: 50.0,
+      constraints: BoxConstraints(maxWidth: 130.0, maxHeight: 45),
+      child: FlatButton(
+        onPressed: () {
+          // index == 0? 
+          if(index==0){
+
+          }else{
+            Navigator.pushNamed(context, "/startEndRide");
+          }
+        },
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(50.0),
+        ),
+        color: index==0? Colors.grey:Colors.green,
+        child: Container(
+          constraints: BoxConstraints(maxWidth: 115.0, maxHeight: 50),
+          alignment: Alignment.center,
+          child:index==0? Text('Leave ride', style: TextStyle(color: Colors.white)) :Text('Start Ride', style: TextStyle(color: Colors.white)),
+        ),
+      ),
+    ),
+                                  // startLeaveButton(text ,color),
                                 ],
                               ),
                             ),
                           ],
                         ),
                       ),
-                      
                       SizedBox(
                         height: 10,
                       ),

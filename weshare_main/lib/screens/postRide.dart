@@ -31,7 +31,9 @@ class PostRideInterface extends StatelessWidget {
                   children: <Widget>[
                     RaisedButton(
                       padding: EdgeInsets.all(20),
-                      onPressed: () {},
+                      onPressed: () {
+                        Navigator.pushNamed(context, '/provide-ride');
+                      },
                       shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(20)),
                       color: Colors.grey[100],

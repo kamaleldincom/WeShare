@@ -3,12 +3,17 @@ import 'package:flutter/material.dart';
 import 'constants.dart';
 
 class Profile extends StatefulWidget {
+
+  int index;
+
+  Profile(this.index);
   @override
   _ProfileState createState() => _ProfileState();
 }
 
 class _ProfileState extends State<Profile> {
   
+
   @override
   Widget build(BuildContext context) {
     
@@ -160,14 +165,17 @@ class _ProfileState extends State<Profile> {
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: <Widget>[
                       FlatButton(
-                        color: Colors.white,
+                        color: widget.index == 0 ?Colors.white:Colors.transparent,
                         padding: EdgeInsets.fromLTRB(65, 10, 65, 10),
-                        onPressed: () {},
+                        onPressed: () {
+
+                          Navigator.pushReplacementNamed(context, '/nav');
+                        },
                         child: Text(
                           'Rider',
                           style: TextStyle(
                             fontSize: 20.0,
-                            color: Color(0xFF5C79FF),
+                            color: widget.index == 0 ? Color(0xFF5C79FF):Colors.white,
                             fontWeight: FontWeight.bold,
                           ),
                         ),
@@ -176,15 +184,21 @@ class _ProfileState extends State<Profile> {
                         ),
                       ),
                       FlatButton(
+                        color:widget.index == 1?Colors.white:Colors.transparent,
                         padding: EdgeInsets.fromLTRB(55, 10, 55, 10),
-                        onPressed: () {},
+                        onPressed: () {
+                          Navigator.pushReplacementNamed(context, '/driverNav');
+                        },
                         child: Text(
                           'Driver',
                           style: TextStyle(
                             fontSize: 20.0,
-                            color: Colors.white,
+                            color: widget.index == 1 ?Color(0xFF5C79FF):Colors.white,
                             fontWeight: FontWeight.bold,
                           ),
+                        ),
+                        shape: new RoundedRectangleBorder(
+                          borderRadius: new BorderRadius.circular(7.0),
                         ),
                       )
                     ]),

@@ -40,7 +40,6 @@ class _RrDetailsState extends State<RrDetails> {
               child: Column(
                 children: <Widget>[
                   Card(
-                    
                     margin: EdgeInsets.all(0),
                     elevation: 0.0,
                     shape: RoundedRectangleBorder(

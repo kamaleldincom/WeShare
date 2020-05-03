@@ -56,7 +56,7 @@ class MyApp extends StatelessWidget {
         ),
       ),
       debugShowCheckedModeBanner: false,
-      home: Settings(),
+     // home: Settings(),
       initialRoute: '/splash',
       routes: {
         // '/': (context) => Loading(),
@@ -70,6 +70,7 @@ class MyApp extends StatelessWidget {
         '/history': (context) => History(),
         // '/dashboard': (context) => Dashboard(),
         '/nav': (context) => BtmNavBar(),
+        '/driverNav': (context) => BtnDriver(),
         '/provide-ride': (context) => ProvideRide(),
         '/postRide': (context) => PostRideInterface(),
         '/startEndRide': (context) => StartEndRideInterface(),

@@ -4,6 +4,9 @@ import 'package:weshare_main/screens/history.dart';
 import 'constants.dart';
 
 class Rides extends StatefulWidget {
+
+  int index;
+  Rides(this.index);
   @override
   _RidesState createState() => _RidesState();
 }
@@ -100,8 +103,8 @@ class _RidesState extends State<Rides> {
                 // itemExtent: 100.0,
                 shrinkWrap: true,
                 itemCount: 4,
-                itemBuilder: (context, index) =>
-                    currentRideCard(context, 'Leave ride', Colors.grey),
+                itemBuilder: (context, index) => 
+                    currentRideCard(context, widget.index),
               ),
             ),
             History(),
