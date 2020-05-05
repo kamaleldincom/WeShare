@@ -1,5 +1,6 @@
 import 'package:badges/badges.dart';
 import 'package:flutter/material.dart';
+import 'package:weshare_main/models/mock_data.dart';
 import 'package:weshare_main/screens/postRide.dart';
 import 'Dashboard.dart';
 import 'Notifications.dart';
@@ -64,7 +65,7 @@ class BtmNavBar extends StatefulWidget {
 class _BtmNavBarState extends State<BtmNavBar> {
   int _currentIndex = 0;
   final List<Widget> _pages = [
-    Dashboard(),
+    Dashboard(rides),
     Rides(0),
     Notifications(),
     Profile(0),
