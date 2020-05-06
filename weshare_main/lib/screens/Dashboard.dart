@@ -6,7 +6,7 @@ import 'myappbar.dart';
 import 'myflexiableappbar.dart';
 
 class Dashboard extends StatefulWidget {
-  List<Ride> _rides;
+  final List<Ride> _rides;
   
   Dashboard(this._rides);
 
@@ -58,10 +58,7 @@ class _DashboardState extends State<Dashboard> {
             // SliverList //
             ///////////////
             SliverList(
-              delegate: SliverChildBuilderDelegate(
-                (context, index){
-                  
-                  childCount: 3;
+              delegate: SliverChildBuilderDelegate((context, index){
                   return Container(
                     height: 210,
                     margin: EdgeInsets.only(top: 15, left: 15, right: 15),
@@ -90,7 +87,7 @@ class _DashboardState extends State<Dashboard> {
                                   radius: 21.5,
                                   child: CircleAvatar(
                                     // backgroundImage: AssetImage('assets/person1.jpeg'),
-                                    backgroundImage: AssetImage(widget._rides[1].user.photo),
+                                    backgroundImage: AssetImage(widget._rides[index].user.photo),
                                     radius: 20,
                                   ),
                                 ),
@@ -104,7 +101,7 @@ class _DashboardState extends State<Dashboard> {
                                     Title(
                                       color: Colors.black, 
                                       child: Text(
-                                        widget._rides[1].user.name,
+                                        widget._rides[index].user.name,
                                         style: TextStyle(
                                           fontWeight: FontWeight.w500,
                                           fontSize: 15,
@@ -163,7 +160,7 @@ class _DashboardState extends State<Dashboard> {
                                             height: 3,
                                           ),
                                           Text(
-                                              widget._rides[1].time,
+                                              widget._rides[index].time,
                                               style: TextStyle(
                                                 fontWeight: FontWeight.w500,
                                                 fontSize: 12,
@@ -208,7 +205,7 @@ class _DashboardState extends State<Dashboard> {
                                                           ),
                                                         ),
                                                         Text(
-                                                            widget._rides[1].origin,
+                                                            widget._rides[index].origin,
                                                             style: TextStyle(
                                                               fontWeight: FontWeight.w500,
                                                               fontSize: 15,
@@ -252,7 +249,7 @@ class _DashboardState extends State<Dashboard> {
                                                           ),
                                                         ),
                                                         Text(
-                                                            widget._rides[1].destination,
+                                                            widget._rides[index].destination,
                                                             style: TextStyle(
                                                               fontWeight: FontWeight.w400,
                                                               fontSize: 15,
@@ -292,7 +289,7 @@ class _DashboardState extends State<Dashboard> {
                                             height: 3,
                                           ),
                                           Text(
-                                              widget._rides[1].seatsAvailable.toString(),
+                                              widget._rides[index].seatsAvailable.toString(),
                                               style: TextStyle(
                                                 fontWeight: FontWeight.w500,
                                                 fontSize: 24,
@@ -334,7 +331,7 @@ class _DashboardState extends State<Dashboard> {
                                       width: 3,
                                     ),  
                                     Text(
-                                        widget._rides[1].price.toString(),
+                                        widget._rides[index].price.toString(),
                                         style: TextStyle(
                                           fontWeight: FontWeight.w500,
                                           fontSize: 22,
@@ -406,7 +403,7 @@ class _DashboardState extends State<Dashboard> {
                                                               backgroundColor: Colors.white,
                                                               radius: 21.5,
                                                               child: CircleAvatar(
-                                                                backgroundImage: AssetImage(widget._rides[1].user.photo),
+                                                                backgroundImage: AssetImage(widget._rides[index].user.photo),
                                                                 radius: 20,
                                                               ),
                                                             ),
@@ -414,7 +411,7 @@ class _DashboardState extends State<Dashboard> {
                                                           Title(
                                                             color: Colors.black, 
                                                             child: Text(
-                                                              widget._rides[1].user.name,
+                                                              widget._rides[index].user.name,
                                                               style: TextStyle(
                                                                 fontWeight: FontWeight.w500,
                                                                 fontSize: 15,
@@ -455,7 +452,7 @@ class _DashboardState extends State<Dashboard> {
                                                                 height: 1,
                                                               ),
                                                               Text(
-                                                                  widget._rides[1].time,
+                                                                  widget._rides[index].time,
                                                                   style: TextStyle(
                                                                     fontWeight: FontWeight.w500,
                                                                     fontSize: 12,
@@ -499,7 +496,7 @@ class _DashboardState extends State<Dashboard> {
                                                                                     ),
                                                                                   ),
                                                                                   Text(
-                                                                                      widget._rides[1].origin,
+                                                                                      widget._rides[index].origin,
                                                                                       style: TextStyle(
                                                                                         fontWeight: FontWeight.w500,
                                                                                         fontSize: 13,
@@ -543,7 +540,7 @@ class _DashboardState extends State<Dashboard> {
                                                                                     ),
                                                                                   ),
                                                                                   Text(
-                                                                                      widget._rides[1].destination,
+                                                                                      widget._rides[index].destination,
                                                                                       style: TextStyle(
                                                                                         fontWeight: FontWeight.w400,
                                                                                         fontSize: 13,
@@ -595,7 +592,7 @@ class _DashboardState extends State<Dashboard> {
                                                             width: 3,
                                                           ),
                                                           Text(
-                                                              widget._rides[1].price.toString(),
+                                                              widget._rides[index].price.toString(),
                                                               style: TextStyle(
                                                                 fontWeight: FontWeight.w500,
                                                                 fontSize: 22,
@@ -648,9 +645,8 @@ class _DashboardState extends State<Dashboard> {
                       ],
                     ),
                   );
-                  
-                  
-                }
+                },
+                childCount: widget._rides.length,
               )
             ),
           ],
