@@ -151,7 +151,8 @@ class SignUpStep2 extends StatefulWidget {
 
 class _SignUpStep2State extends State<SignUpStep2> {
   String _gender;
-  String _genderResult;
+  // String _genderResult;
+  bool validNo = false;
   FocusNode focusNode = FocusNode();
   final formKey = GlobalKey<FormState>();
   List dataSource = [
@@ -168,12 +169,12 @@ class _SignUpStep2State extends State<SignUpStep2> {
   final _formKey = GlobalKey<FormState>();
 
   var error = '';
-  String _setEerror() {
+  void _setEerror() {
     setState(() {
       error = 'Plese choose gender';
       print(error);
     });
-    return error = 'Plese choose gender';
+    // return error = 'Plese choose gender';
   }
 
 // phone number dropdown ------------------------
@@ -181,13 +182,13 @@ class _SignUpStep2State extends State<SignUpStep2> {
   String initialCountry = 'MY';
   PhoneNumber number = PhoneNumber(isoCode: 'MY');
 
-  void getPhoneNumber(String phoneNumber) async {
-    PhoneNumber number =
-        await PhoneNumber.getRegionInfoFromPhoneNumber(phoneNumber, 'US');
-    setState(() {
-      this.number = number;
-    });
-  }
+  // void getPhoneNumber(String phoneNumber) async {
+  //   PhoneNumber number =
+  //       await PhoneNumber.getRegionInfoFromPhoneNumber(phoneNumber, 'US');
+  //   setState(() {
+  //     this.number = number;
+  //   });
+  // }
 
   @override
   void dispose() {
@@ -234,6 +235,11 @@ class _SignUpStep2State extends State<SignUpStep2> {
                     },
                     onInputValidated: (bool value) {
                       print(value);
+                      if (value){
+                        validNo = true;
+                      }else{
+                        validNo = false;
+                      }
                     },
                     selectorType: PhoneInputSelectorType.DIALOG,
                     ignoreBlank: false,
@@ -256,44 +262,53 @@ class _SignUpStep2State extends State<SignUpStep2> {
                   textAlign: TextAlign.start,
                   style: TextStyle(color: Colors.grey, fontSize: 14.0)),
               //  CustomDropDown(_setEerror),
-              Card(
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(10.0),
-                ),
-                child: Container(
+              // Card(
+              //   shape: RoundedRectangleBorder(
+              //     borderRadius: BorderRadius.circular(10.0),
+              //   ),
+              //   child: 
+                Container(
+                  // height: 60,
                   // padding: EdgeInsets.all(16),
-                  child: DropDownFormField(
-                    innerBackgroundColor: Colors.white,
-                    wedgeIcon: Icon(Icons.keyboard_arrow_down),
-                    wedgeColor: Colors.grey,
-                    innerTextStyle: TextStyle(color: Colors.grey),
-                    focusNode: focusNode,
-                    inputDecoration: OutlinedDropDownDecoration(
-                      labelStyle: TextStyle(color: Colors.green),
-                      labelText: "",
-                      // borderColor: Colors.white
-                      borderRadius: BorderRadius.circular(200.0),
-                      borderStyle: BorderStyle.none,
+                  child: Card(
+                            shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(10.0),
+                ),          
+                                      child: DropDownFormField(
+                      innerBackgroundColor: Colors.white,
+                      wedgeIcon: Icon(Icons.keyboard_arrow_down),
+                      wedgeColor: Colors.grey,
+                      innerTextStyle: TextStyle(color: Colors.grey),
+                      focusNode: focusNode,
+                      inputDecoration: 
+                      // textInputDecoration,
+                      OutlinedDropDownDecoration(
+                        labelStyle: TextStyle(color: Colors.green),
+                        labelText: "",
+                        // borderColor: Colors.white
+                        borderRadius: BorderRadius.circular(200.0),
+                        borderStyle: BorderStyle.none,
+                      ),
+                      hintText: '',
+                      validator: (val) => val==null? '   please choose gender':null,
+                      value: _gender,
+                      onSaved: (value) {
+                        setState(() {
+                          _gender = value;
+                        });
+                      },
+                      onChanged: (val) {
+                        setState(() {
+                          _gender = val;
+                        });
+                      },
+                      dataSource: dataSource,
+                      textField: 'display',
+                      valueField: 'value',
                     ),
-                    hintText: '',
-                    validator: (val) => val.isEmpty ? _setEerror() : false,
-                    value: _gender,
-                    onSaved: (value) {
-                      setState(() {
-                        _gender = value;
-                      });
-                    },
-                    onChanged: (val) {
-                      setState(() {
-                        _gender = val;
-                      });
-                    },
-                    dataSource: dataSource,
-                    textField: 'display',
-                    valueField: 'value',
                   ),
                 ),
-              ),
+              // ),
               SizedBox(
                 height: 20.0,
               ),
@@ -307,22 +322,22 @@ class _SignUpStep2State extends State<SignUpStep2> {
                   height: 60.0,
                   child: RaisedButton(
                       onPressed: () async {
-                        // if (_formKey.currentState.validate()) {
-                          //   if (email == 'test@test.com' &&
-                          //       password == '123456') {
-                          //     Navigator.pushReplacementNamed(
-                          //         context, '/nav');
-                          //   } else {
-                          //     SnackBar registrationBar = SnackBar(
-                          //       content: Text(
-                          //         'Invalid Login/Password.. Try Again!',
-                          //       ),
-                          //     );
-                          //     Scaffold.of(context)
-                          //         .showSnackBar(registrationBar);
-                          //   }
-                        // }
-                        Navigator.of(context).pushReplacementNamed('/nav');
+                        if (_formKey.currentState.validate()) {
+                            if (validNo) {
+                              Navigator.pushReplacementNamed(
+                                  context, '/nav');
+                            } else {
+                              // error = 'please choose gender';
+                              SnackBar registrationBar = SnackBar(
+                                content: Text(
+                                  'Invalid phone number Try Again!',
+                                ),
+                              );
+                              Scaffold.of(context)
+                                  .showSnackBar(registrationBar);
+                            }
+                        }
+                        // Navigator.of(context).pushReplacementNamed('/nav');
                       },
                       shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(10.0)),
