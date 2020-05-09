@@ -26,7 +26,6 @@ const textInputDecoration = InputDecoration(
       // borderRadius: BorderRadius.circular( 20.0),
     ));
 
-    
 // The main button with (like the the login in)
 //just pass a text and your're ready to go
 Ink buttonWithGradient(String text) {
@@ -54,7 +53,6 @@ Ink buttonWithGradient(String text) {
   );
 }
 
-
 ////////////////////////////
 /// Rider Navigation Bar ///
 /// ////////////////////////////
@@ -67,7 +65,7 @@ class _BtmNavBarState extends State<BtmNavBar> {
   int _currentIndex = 0;
   final List<Widget> _pages = [
     Dashboard(rides),
-    Rides(0,rides),
+    Rides(0, rides),
     Notifications(),
     Profile(0),
   ];
@@ -153,13 +151,13 @@ class _BtmNavBarState extends State<BtmNavBar> {
 class BtnDriver extends StatefulWidget {
   @override
   _BtnDriverState createState() => _BtnDriverState();
-} 
+}
 
 class _BtnDriverState extends State<BtnDriver> {
   int _currentIndex = 3;
   final List<Widget> _pages = [
     PostRideInterface(),
-    Rides(1,rides),
+    Rides(1, rides),
     Notifications(),
     Profile(1),
   ];
@@ -290,356 +288,340 @@ Widget appBarBuilder(title, bool backArrowNeeded, actionsToDo) {
 // Card for the current ride Screen pass context, text for the button and color
 // e.g. currentRIdeCard(context,'Start Ride', Colors.green)
 
-Container currentRideCard(BuildContext context,int index,Ride _rides) {
-    return Container(
-                margin: EdgeInsets.symmetric(horizontal: 10),
-                padding: EdgeInsets.only(bottom: 20),
-                child: Card(
-                  elevation: 0.0,
-                  shape: RoundedRectangleBorder(
+Container currentRideCard(BuildContext context, int index, Ride _rides) {
+  return Container(
+    margin: EdgeInsets.symmetric(horizontal: 10),
+    padding: EdgeInsets.only(bottom: 20),
+    child: Card(
+      elevation: 0.0,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(8.0),
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: <Widget>[
+          GestureDetector(
+            onTap: () {
+              if (index == 0)
+                Navigator.pushNamed(context, "/RrDetails");
+              else if (index == 1) {
+                Navigator.pushNamed(context, "/startEndRide");
+              }
+            },
+            child: Column(
+              children: <Widget>[
+                Container(
+                  margin: EdgeInsets.all(10),
+                  height: 150,
+                  decoration: BoxDecoration(
+                    color: Colors.blue,
                     borderRadius: BorderRadius.circular(8.0),
                   ),
-                  child: Column(
+                ),
+                Container(
+                  padding: EdgeInsets.symmetric(horizontal: 10),
+                  height: 52,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: <Widget>[
-                      GestureDetector(
-                        onTap: (){
-                          if(index==0)
-                          Navigator.pushNamed(context, "/RrDetails");
-                          else if (index==1){
-                            Navigator.pushNamed(context, "/startEndRide");
-                          }
-                        },
-                        child: Column(
-                          children: <Widget>[
-                            Container(
-                              margin: EdgeInsets.all(10),
-                              height: 150,
-                              decoration: BoxDecoration(
-                                color: Colors.blue,
-                                borderRadius: BorderRadius.circular(8.0),
-                              ),
-                            ),
-                            Container(
-                              padding: EdgeInsets.symmetric(horizontal:10),
-                              height: 52,
-                              child: Row(
-                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: <Widget>[
-                                  Column(
-                                    crossAxisAlignment: CrossAxisAlignment.start,
-                                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                                    children: <Widget>[
-                                      Row(
-                                        children: <Widget>[
-                                          Icon(
-                                            Icons.trip_origin,
-                                            color: Color(0xFF686868),
-                                            size: 15,
-                                          ),
-                                          Text(_rides.origin),
-    
-                                        ],
-                                      ),
-                                      SizedBox(height: 10),
-                                      Row(
-                                        children: <Widget>[
-                                          Icon(
-                                            Icons.brightness_1,
-                                            color: Color(0xFF686868),
-                                            size: 15,
-                                          ),
-                                          Text(_rides.destination),
-                                        ],
-                                      )
-                                    ],
-                                  ),
-                                  SizedBox(
-                                    width: 70,
-                                  ),
-    Container(
-      height: 50.0,
-      constraints: BoxConstraints(maxWidth: 130.0, maxHeight: 45),
-      child: FlatButton(
-        onPressed: () {
-          // index == 0? 
-          if(index==0){
-
-          }else{
-            Navigator.pushNamed(context, "/startEndRide");
-          }
-        },
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(50.0),
-        ),
-        color: index==0? Colors.grey:Colors.green,
-        child: Container(
-          constraints: BoxConstraints(maxWidth: 115.0, maxHeight: 50),
-          alignment: Alignment.center,
-          child:index==0? Text('Leave ride', style: TextStyle(color: Colors.white)) :Text('Start Ride', style: TextStyle(color: Colors.white)),
-        ),
-      ),
-    ),
-                                  // startLeaveButton(text ,color),
-                                ],
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                      SizedBox(
-                        height: 10,
-                      ),
-                      GestureDetector(
-                        onTap: (){
-                          Navigator.pushNamed(context, '/chatScreen');
-                        },
-                        child: Container(
-                          padding: EdgeInsets.only(top: 5, bottom: 8),
-                          decoration: BoxDecoration(
-                            // color: ,
-                            color: Color(0xFFF9F9F9),
-                            borderRadius: BorderRadius.circular(8.0),
-                          ),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: <Widget>[
+                          Row(
                             children: <Widget>[
-                              Container(
-                                margin: EdgeInsetsDirectional.fromSTEB(
-                                    10, 0, 0, 10),
-                                child: Text(
-                                  'Chats',
-                                  style: TextStyle(
-                                    color: Colors.grey,
-                                    fontSize: 14.0,
-                                  ),
-                                ),
+                              Icon(
+                                Icons.trip_origin,
+                                color: Color(0xFF686868),
+                                size: 15,
                               ),
-                              Container(
-                                
-                                padding: EdgeInsets.symmetric(horizontal: 10),
-                                child: Row(
-                                  
-
-                                  
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
-                                  
-                                  children: <Widget>[
-                                   
-                                // SizedBox(height: 5),
-                                Row(
-                                  
-                                  children: <Widget>[
-                                    Row(
-                                      children: <Widget>[
-                                        Container(
-                                          width: 70,
-                                          child: Stack(
-                                            children: <Widget>[
-                                              CircleAvatar(
-                                                backgroundImage:
-                                                    AssetImage('assets/driver.png'),
-                                                radius: 15,
-                                              ),
-                                              Positioned(
-                                                left: 12,
-                                                child: CircleAvatar(
-                                                  backgroundImage:
-                                                      AssetImage('assets/driver.png'),
-                                                  radius: 15,
-                                                ),
-                                              ),
-                                              Positioned(
-                                                left: 25,
-                                                child: CircleAvatar(
-                                                  backgroundImage:
-                                                      AssetImage('assets/driver.png'),
-                                                  radius: 15,
-                                                ),
-                                              ),
-                                              Positioned(
-                                                left: 25,
-                                                child: CircleAvatar(
-                                                  backgroundImage:
-                                                      AssetImage('assets/driver.png'),
-                                                  radius: 15,
-                                                ),
-                                              ),
-                                              Positioned(
-                                                left: 37,
-                                                child: CircleAvatar(
-                                                  child: Text('+1'),
-                                                  radius: 15,
-                                                ),
-                                              ),
-                                            ],
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                   SizedBox(width: 15),
-                                   Column(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceBetween,
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      children: <Widget>[
-                                        Text(
-                                          '7:43 AM',
-                                          style: TextStyle(
-                                            color: Colors.grey,
-                                            fontSize: 14,
-                                          ),
-                                        ),
-                                        Text(
-                                          'Mutasim: I’m waiting in fro…',
-                                          style: TextStyle(
-                                            color: Colors.black,
-                                            fontSize: 12,
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                  ],
-                                ),
-                                    Container(
-                                      height: 26,
-                                      child: CircleAvatar(
-                                        backgroundColor:
-                                            Theme.of(context).accentColor,
-                                        child: Text(
-                                          '1',
-                                          style: TextStyle(
-                                            color: Colors.white,
-                                          ),
-                                        ),
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ),
+                              Text(_rides.origin),
                             ],
                           ),
+                          SizedBox(height: 10),
+                          Row(
+                            children: <Widget>[
+                              Icon(
+                                Icons.brightness_1,
+                                color: Color(0xFF686868),
+                                size: 15,
+                              ),
+                              Text(_rides.destination),
+                            ],
+                          )
+                        ],
+                      ),
+
+                      Container(
+                        height: 50.0,
+                        constraints:
+                            BoxConstraints(maxWidth: 130.0, maxHeight: 45),
+                        child: FlatButton(
+                          onPressed: () {
+                            // index == 0?
+                            if (index == 0) {
+                            } else {
+                              Navigator.pushNamed(context, "/startEndRide");
+                            }
+                          },
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(50.0),
+                          ),
+                          color: index == 0 ? Colors.grey : Colors.green,
+                          child: Container(
+                            constraints:
+                                BoxConstraints(maxWidth: 115.0, maxHeight: 50),
+                            alignment: Alignment.center,
+                            child: index == 0
+                                ? Text('Leave ride',
+                                    style: TextStyle(color: Colors.white))
+                                : Text('Start Ride',
+                                    style: TextStyle(color: Colors.white)),
+                          ),
                         ),
                       ),
+                      // startLeaveButton(text ,color),
                     ],
                   ),
                 ),
-              );
-  }
-
-  Container startLeaveButton(String text, var color) {
-    return Container(
-      height: 50.0,
-      constraints: BoxConstraints(maxWidth: 130.0, maxHeight: 45),
-      child: FlatButton(
-        onPressed: () {},
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(50.0),
-        ),
-        color: color,
-        child: Container(
-          constraints: BoxConstraints(maxWidth: 115.0, maxHeight: 50),
-          alignment: Alignment.center,
-          child: Text(text, style: TextStyle(color: Colors.white)),
-        ),
+              ],
+            ),
+          ),
+          SizedBox(
+            height: 10,
+          ),
+          GestureDetector(
+            onTap: () {
+              Navigator.pushNamed(context, '/chatScreen');
+            },
+            child: Container(
+              padding: EdgeInsets.only(top: 5, bottom: 8),
+              decoration: BoxDecoration(
+                // color: ,
+                color: Color(0xFFF9F9F9),
+                borderRadius: BorderRadius.circular(8.0),
+              ),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: <Widget>[
+                  Container(
+                    margin: EdgeInsetsDirectional.fromSTEB(10, 0, 0, 10),
+                    child: Text(
+                      'Chats',
+                      style: TextStyle(
+                        color: Colors.grey,
+                        fontSize: 14.0,
+                      ),
+                    ),
+                  ),
+                  Container(
+                    padding: EdgeInsets.symmetric(horizontal: 10),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: <Widget>[
+                        // SizedBox(height: 5),
+                        Row(
+                          children: <Widget>[
+                            Row(
+                              children: <Widget>[
+                                Container(
+                                  width: 70,
+                                  child: Stack(
+                                    children: <Widget>[
+                                      CircleAvatar(
+                                        backgroundImage:
+                                            AssetImage('assets/driver.png'),
+                                        radius: 15,
+                                      ),
+                                      Positioned(
+                                        left: 12,
+                                        child: CircleAvatar(
+                                          backgroundImage:
+                                              AssetImage('assets/driver.png'),
+                                          radius: 15,
+                                        ),
+                                      ),
+                                      Positioned(
+                                        left: 25,
+                                        child: CircleAvatar(
+                                          backgroundImage:
+                                              AssetImage('assets/driver.png'),
+                                          radius: 15,
+                                        ),
+                                      ),
+                                      Positioned(
+                                        left: 25,
+                                        child: CircleAvatar(
+                                          backgroundImage:
+                                              AssetImage('assets/driver.png'),
+                                          radius: 15,
+                                        ),
+                                      ),
+                                      Positioned(
+                                        left: 37,
+                                        child: CircleAvatar(
+                                          child: Text('+1'),
+                                          radius: 15,
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ],
+                            ),
+                            SizedBox(width: 15),
+                            Column(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: <Widget>[
+                                Text(
+                                  '7:43 AM',
+                                  style: TextStyle(
+                                    color: Colors.grey,
+                                    fontSize: 14,
+                                  ),
+                                ),
+                                Text(
+                                  'Mutasim: I’m waiting in fro…',
+                                  style: TextStyle(
+                                    color: Colors.black,
+                                    fontSize: 12,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ],
+                        ),
+                        Container(
+                          height: 26,
+                          child: CircleAvatar(
+                            backgroundColor: Theme.of(context).accentColor,
+                            child: Text(
+                              '1',
+                              style: TextStyle(
+                                color: Colors.white,
+                              ),
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ),
+        ],
       ),
-    );
+    ),
+  );
+}
+
+Container startLeaveButton(String text, var color) {
+  return Container(
+    height: 50.0,
+    constraints: BoxConstraints(maxWidth: 130.0, maxHeight: 45),
+    child: FlatButton(
+      onPressed: () {},
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(50.0),
+      ),
+      color: color,
+      child: Container(
+        constraints: BoxConstraints(maxWidth: 115.0, maxHeight: 50),
+        alignment: Alignment.center,
+        child: Text(text, style: TextStyle(color: Colors.white)),
+      ),
+    ),
+  );
 }
 
 //---------------------------------------------------------------------------------------------------------------
 
-//chats List tile 
+//chats List tile
 ListTile chatsLT(BuildContext context) {
-    return ListTile(
-      onTap: (){
-        Navigator.pushNamed(context, '/chatScreen');
-      },
-      contentPadding: EdgeInsets.only(left: 12, right: 25),
-      leading: Container(
-        width: 70,
-        child: Column(
-          children: <Widget>[
-            Row(
-              children: <Widget>[
-                Text(
-                  'Chat',
-                  style: TextStyle(
-                      color: Colors.grey[400], fontSize: 11),
-                  textAlign: TextAlign.start,
-                ),
-              ],
-            ),
-            SizedBox(height: 5),
-            Row(
-              children: <Widget>[
-                Container(
-                  width: 70,
-                  child: Stack(
-                    children: <Widget>[
-                      CircleAvatar(
-                        backgroundImage:
-                            AssetImage('assets/driver.png'),
+  return ListTile(
+    onTap: () {
+      Navigator.pushNamed(context, '/chatScreen');
+    },
+    contentPadding: EdgeInsets.only(left: 12, right: 25),
+    leading: Container(
+      width: 70,
+      child: Column(
+        children: <Widget>[
+          Row(
+            children: <Widget>[
+              Text(
+                'Chat',
+                style: TextStyle(color: Colors.grey[400], fontSize: 11),
+                textAlign: TextAlign.start,
+              ),
+            ],
+          ),
+          SizedBox(height: 5),
+          Row(
+            children: <Widget>[
+              Container(
+                width: 70,
+                child: Stack(
+                  children: <Widget>[
+                    CircleAvatar(
+                      backgroundImage: AssetImage('assets/driver.png'),
+                      radius: 15,
+                    ),
+                    Positioned(
+                      left: 12,
+                      child: CircleAvatar(
+                        backgroundImage: AssetImage('assets/driver.png'),
                         radius: 15,
                       ),
-                      Positioned(
-                        left: 12,
-                        child: CircleAvatar(
-                          backgroundImage:
-                              AssetImage('assets/driver.png'),
-                          radius: 15,
-                        ),
+                    ),
+                    Positioned(
+                      left: 25,
+                      child: CircleAvatar(
+                        backgroundImage: AssetImage('assets/driver.png'),
+                        radius: 15,
                       ),
-                      Positioned(
-                        left: 25,
-                        child: CircleAvatar(
-                          backgroundImage:
-                              AssetImage('assets/driver.png'),
-                          radius: 15,
-                        ),
+                    ),
+                    Positioned(
+                      left: 25,
+                      child: CircleAvatar(
+                        backgroundImage: AssetImage('assets/driver.png'),
+                        radius: 15,
                       ),
-                      Positioned(
-                        left: 25,
-                        child: CircleAvatar(
-                          backgroundImage:
-                              AssetImage('assets/driver.png'),
-                          radius: 15,
-                        ),
+                    ),
+                    Positioned(
+                      left: 37,
+                      child: CircleAvatar(
+                        child: Text('+1'),
+                        radius: 15,
                       ),
-                      Positioned(
-                        left: 37,
-                        child: CircleAvatar(
-                          child: Text('+1'),
-                          radius: 15,
-                        ),
-                      ),
-                    ],
-                  ),
+                    ),
+                  ],
                 ),
-              ],
-            ),
-          ],
-        ),
+              ),
+            ],
+          ),
+        ],
       ),
-      title: Text('7:45 AM',
-            style: TextStyle(
-            fontSize: 13,
-            color: Colors.grey[500],
-          )),
-      subtitle: Text('You: Be in front gate guys!',
-          style: TextStyle(
-            fontSize: 13,
-            fontWeight: FontWeight.bold,
-            color: Colors.grey[500],
-          )),
-      trailing: Badge(
-        badgeColor: Color(0xFF5C79FF),
-        borderRadius: 50,
-        toAnimate: true,
-        badgeContent:
-            Text('1', style: TextStyle(color: Colors.white)),
-      ),
-    );
-  }
+    ),
+    title: Text('7:45 AM',
+        style: TextStyle(
+          fontSize: 13,
+          color: Colors.grey[500],
+        )),
+    subtitle: Text('You: Be in front gate guys!',
+        style: TextStyle(
+          fontSize: 13,
+          fontWeight: FontWeight.bold,
+          color: Colors.grey[500],
+        )),
+    trailing: Badge(
+      badgeColor: Color(0xFF5C79FF),
+      borderRadius: 50,
+      toAnimate: true,
+      badgeContent: Text('1', style: TextStyle(color: Colors.white)),
+    ),
+  );
+}
