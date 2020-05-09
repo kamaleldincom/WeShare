@@ -1,15 +1,22 @@
 import 'package:flutter/material.dart';
+import 'package:weshare_main/models/ride.dart';
 
 import 'constants.dart';
 
 class RideSummary extends StatefulWidget {
+  
   @override
+
   _RideSummaryState createState() => _RideSummaryState();
 }
 
 class _RideSummaryState extends State<RideSummary> {
+  Ride ride;
+  Map map = {};
   @override
   Widget build(BuildContext context) {
+
+     ride = ModalRoute.of(context).settings.arguments;
     return Scaffold(
       backgroundColor: Color(0xFFF1F3F5),
       appBar: AppBar(
@@ -30,8 +37,12 @@ class _RideSummaryState extends State<RideSummary> {
               children: <Widget>[
                 Center(
                   child: CircleAvatar(
-                    backgroundImage: AssetImage('assets/logo.png'),
-                    radius: 45.0,
+                    backgroundColor: Colors.white,
+                    radius: 47.0,
+                                      child: CircleAvatar(
+                      backgroundImage: AssetImage(ride.user.photo),
+                      radius: 45.0,
+                    ),
                   ),
                 ),
                 Padding(
@@ -39,7 +50,7 @@ class _RideSummaryState extends State<RideSummary> {
                   child: Center(
                     child: Column(children: <Widget>[
                       Text(
-                        'Ahmed Kamal',
+                        ride.user.name,
                         style: TextStyle(
                           color: Colors.white,
                           fontSize: 16.0,
@@ -50,7 +61,7 @@ class _RideSummaryState extends State<RideSummary> {
                         height: 5.0,
                       ),
                       Text(
-                        '+60130000000',
+                        ride.user.phoneNumber,
                         style: TextStyle(
                           color: Colors.white,
                           fontSize: 16.0,
@@ -117,9 +128,10 @@ class _RideSummaryState extends State<RideSummary> {
                                 Column(
                                   mainAxisAlignment:
                                       MainAxisAlignment.spaceBetween,
+                                  crossAxisAlignment: CrossAxisAlignment.start,
                                   children: <Widget>[
-                                    Text(' Electrical (FKE) P05'),
-                                    Text(' Electrical (FKE) P05'),
+                                    Text(ride.origin),
+                                    Text(ride.destination),
                                   ],
                                 ),
                               ],
@@ -252,7 +264,7 @@ class _RideSummaryState extends State<RideSummary> {
                             Column(
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: <Widget>[
-                                Text('RM 1',
+                                Text(ride.price.toString(),
                                     style: TextStyle(
                                       color: Colors.black,
                                       fontSize: 20,

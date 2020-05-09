@@ -4,7 +4,7 @@
 import 'package:weshare_main/models/user.dart';
 
 class Ride{
-
+  
   User user;
   String origin;
   String destination;

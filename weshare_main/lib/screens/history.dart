@@ -1,9 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:weshare_main/models/ride.dart';
 
 class History extends StatefulWidget {
-  const History({
-    Key key,
-  }) : super(key: key);
+  // const History({
+  //   Key key,
+  // }) : super(key: key);
+
+  final List<Ride> _rides;
+  final int index;
+  History(this.index,this._rides);
 
   @override
   _HistoryState createState() => _HistoryState();
@@ -18,7 +23,7 @@ class _HistoryState extends State<History> {
         scrollDirection: Axis.vertical,
         itemExtent: 100.0,
         shrinkWrap: true,
-        itemCount: 4,
+        itemCount: widget._rides.length ,
         itemBuilder: (context, index) => Card(
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(10.0),
@@ -27,7 +32,8 @@ class _HistoryState extends State<History> {
           elevation: 0.0,
           child: ListTile(
             onTap: (){
-              Navigator.pushNamed(context, '/rideSummary');
+              Navigator.pushNamed(context, '/rideSummary', arguments:  widget._rides[index]);
+
             },
             leading: Column(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -52,9 +58,9 @@ class _HistoryState extends State<History> {
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
-                Text(' Electrical (FKE) P05'),
+                Text(widget._rides[index].origin),
                 // SizedBox(height: 1),
-                Text(' Electrical (FKE) P05'),
+                Text(widget._rides[index].destination),
               ],
             ),
             trailing: Column(
@@ -62,7 +68,7 @@ class _HistoryState extends State<History> {
                 crossAxisAlignment: CrossAxisAlignment.end,
                 children: <Widget>[
                   Text(
-                    'at 7:30 AM',
+                    'at ${widget._rides[index].time}',
                     style: TextStyle(color: Colors.grey),
                   ),
                   Text(

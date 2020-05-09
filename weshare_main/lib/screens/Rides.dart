@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:weshare_main/models/ride.dart';
 import 'package:weshare_main/screens/history.dart';
 
 import 'constants.dart';
 
 class Rides extends StatefulWidget {
-
-  int index;
-  Rides(this.index);
+  final List<Ride> _rides;
+  final int index;
+  Rides(this.index,this._rides);
   @override
   _RidesState createState() => _RidesState();
 }
@@ -95,19 +96,18 @@ class _RidesState extends State<Rides> {
             
             children: [
             Container(
-              
               // padding: EdgeInsets.only(bottom: 10),
               child: ListView.builder(
                 
                 scrollDirection: Axis.vertical,
                 // itemExtent: 100.0,
                 shrinkWrap: true,
-                itemCount: 4,
+                itemCount: widget._rides.length,
                 itemBuilder: (context, index) => 
-                    currentRideCard(context, widget.index),
+                    currentRideCard(context, widget.index,widget._rides[index]),
               ),
             ),
-            History(),
+            History(widget.index, widget._rides),
           ]),
         ));
   }

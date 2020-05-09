@@ -1,6 +1,7 @@
 import 'package:badges/badges.dart';
 import 'package:flutter/material.dart';
 import 'package:weshare_main/models/mock_data.dart';
+import 'package:weshare_main/models/ride.dart';
 import 'package:weshare_main/screens/postRide.dart';
 import 'Dashboard.dart';
 import 'Notifications.dart';
@@ -66,7 +67,7 @@ class _BtmNavBarState extends State<BtmNavBar> {
   int _currentIndex = 0;
   final List<Widget> _pages = [
     Dashboard(rides),
-    Rides(0),
+    Rides(0,rides),
     Notifications(),
     Profile(0),
   ];
@@ -158,7 +159,7 @@ class _BtnDriverState extends State<BtnDriver> {
   int _currentIndex = 3;
   final List<Widget> _pages = [
     PostRideInterface(),
-    Rides(1),
+    Rides(1,rides),
     Notifications(),
     Profile(1),
   ];
@@ -289,7 +290,7 @@ Widget appBarBuilder(title, bool backArrowNeeded, actionsToDo) {
 // Card for the current ride Screen pass context, text for the button and color
 // e.g. currentRIdeCard(context,'Start Ride', Colors.green)
 
-Container currentRideCard(BuildContext context,int index) {
+Container currentRideCard(BuildContext context,int index,Ride _rides) {
     return Container(
                 margin: EdgeInsets.symmetric(horizontal: 10),
                 padding: EdgeInsets.only(bottom: 20),
@@ -308,7 +309,6 @@ Container currentRideCard(BuildContext context,int index) {
                           else if (index==1){
                             Navigator.pushNamed(context, "/startEndRide");
                           }
-                          
                         },
                         child: Column(
                           children: <Widget>[
@@ -328,6 +328,7 @@ Container currentRideCard(BuildContext context,int index) {
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: <Widget>[
                                   Column(
+                                    crossAxisAlignment: CrossAxisAlignment.start,
                                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                                     children: <Widget>[
                                       Row(
@@ -337,7 +338,7 @@ Container currentRideCard(BuildContext context,int index) {
                                             color: Color(0xFF686868),
                                             size: 15,
                                           ),
-                                          Text(' Electrical (FKE) P05'),
+                                          Text(_rides.origin),
     
                                         ],
                                       ),
@@ -349,7 +350,7 @@ Container currentRideCard(BuildContext context,int index) {
                                             color: Color(0xFF686868),
                                             size: 15,
                                           ),
-                                          Text(' Electrical (FKE) P05'),
+                                          Text(_rides.destination),
                                         ],
                                       )
                                     ],

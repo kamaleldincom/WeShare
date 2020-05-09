@@ -67,7 +67,7 @@ class MyApp extends StatelessWidget {
         // '/profile': (context) => Profile(),
         '/notifications': (context) => Notifications(),
         // '/rides': (context) => Rides(),
-        '/history': (context) => History(),
+        // '/history': (context) => History(),
         // '/dashboard': (context) => Dashboard(),
         '/nav': (context) => BtmNavBar(),
         '/driverNav': (context) => BtnDriver(),

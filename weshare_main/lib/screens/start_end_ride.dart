@@ -132,7 +132,7 @@ class _StartEndRideInterfaceState extends State<StartEndRideInterface> {
                                 ),
                               ),
                               SizedBox(
-                                width: 35,
+                                width: 55,
                               ),
                               Container(
                                 child: Column(
