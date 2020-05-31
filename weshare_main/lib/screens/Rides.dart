@@ -6,8 +6,8 @@ import 'constants.dart';
 
 class Rides extends StatefulWidget {
   final List<Ride> _rides;
-  final int index;
-  Rides(this.index,this._rides);
+  final String usertype;
+  Rides(this._rides,this.usertype);
   @override
   _RidesState createState() => _RidesState();
 }
@@ -104,10 +104,10 @@ class _RidesState extends State<Rides> {
                 shrinkWrap: true,
                 itemCount: widget._rides.length,
                 itemBuilder: (context, index) => 
-                    currentRideCard(context, widget.index,widget._rides[index]),
+                    currentRideCard(context,widget._rides[index],widget.usertype),
               ),
             ),
-            History(widget.index, widget._rides),
+            History(widget.usertype, widget._rides),
           ]),
         ));
   }

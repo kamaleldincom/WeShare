@@ -1,8 +1,4 @@
-/*                                This page is dedicated for the drivers to start and their rides
-                                   end their rides when dropping off the rider(Only Driver Side)
-*/
 import 'package:flutter/material.dart';
-import 'package:badges/badges.dart';
 import './constants.dart';
 
 class StartEndRideInterface extends StatefulWidget {
@@ -31,7 +27,7 @@ class _StartEndRideInterfaceState extends State<StartEndRideInterface> {
         constraints: BoxConstraints.expand(),
         child: Stack(
           children: <Widget>[
-            // MAP GOES HERE
+            // MAP GOES HERE    
 
             //! Chat Info.
             Positioned(

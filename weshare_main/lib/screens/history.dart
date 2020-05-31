@@ -7,8 +7,9 @@ class History extends StatefulWidget {
   // }) : super(key: key);
 
   final List<Ride> _rides;
-  final int index;
-  History(this.index,this._rides);
+  
+  final String usertype;
+  History(this.usertype,this._rides);
 
   @override
   _HistoryState createState() => _HistoryState();
