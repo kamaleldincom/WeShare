@@ -4,9 +4,9 @@ import 'constants.dart';
 
 class Profile extends StatefulWidget {
 
-  int index;
-
-  Profile(this.index);
+  // int index;
+  final String usertype;
+  Profile(this.usertype);
   @override
   _ProfileState createState() => _ProfileState();
 }
@@ -165,17 +165,16 @@ class _ProfileState extends State<Profile> {
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: <Widget>[
                       FlatButton(
-                        color: widget.index == 0 ?Colors.white:Colors.transparent,
+                        color: widget.usertype == 'Rider' ?Colors.white:Colors.transparent,
                         padding: EdgeInsets.fromLTRB(65, 10, 65, 10),
                         onPressed: () {
-
                           Navigator.pushReplacementNamed(context, '/nav');
                         },
                         child: Text(
                           'Rider',
                           style: TextStyle(
                             fontSize: 20.0,
-                            color: widget.index == 0 ? Color(0xFF5C79FF):Colors.white,
+                            color: widget.usertype == 'Rider' ? Color(0xFF5C79FF):Colors.white,
                             fontWeight: FontWeight.bold,
                           ),
                         ),
@@ -184,7 +183,7 @@ class _ProfileState extends State<Profile> {
                         ),
                       ),
                       FlatButton(
-                        color:widget.index == 1?Colors.white:Colors.transparent,
+                        color:widget.usertype== 'Driver' ?Colors.white:Colors.transparent,
                         padding: EdgeInsets.fromLTRB(55, 10, 55, 10),
                         onPressed: () {
                           Navigator.pushReplacementNamed(context, '/driverNav');
@@ -193,7 +192,7 @@ class _ProfileState extends State<Profile> {
                           'Driver',
                           style: TextStyle(
                             fontSize: 20.0,
-                            color: widget.index == 1 ?Color(0xFF5C79FF):Colors.white,
+                            color: widget.usertype == 'Driver' ?Color(0xFF5C79FF):Colors.white,
                             fontWeight: FontWeight.bold,
                           ),
                         ),
