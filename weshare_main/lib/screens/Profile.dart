@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'constants.dart';
 
 class Profile extends StatefulWidget {
-
   // int index;
   final String usertype;
   Profile(this.usertype);
@@ -12,106 +11,102 @@ class Profile extends StatefulWidget {
 }
 
 class _ProfileState extends State<Profile> {
-  
-
   @override
   Widget build(BuildContext context) {
-    
-        return WillPopScope(
-              onWillPop: () => Future.value(false),
-              child: Scaffold(
-              backgroundColor: Color(0xFFF1F3F5),
-              appBar: AppBar(
-                automaticallyImplyLeading: false,
-                title: Text(
-                  'Profile',
-                  style: TextStyle(
-                    fontWeight: FontWeight.w600,
-                  ),
-                ),
-                elevation: 0.0,
-                centerTitle: true,
-                backgroundColor: Color(0xFF76D3FF),
-              ),
-              body: Column(
+    return WillPopScope(
+      onWillPop: () => Future.value(false),
+      child: Scaffold(
+        backgroundColor: Color(0xFFF1F3F5),
+        appBar: AppBar(
+          automaticallyImplyLeading: false,
+          title: Text(
+            'Profile',
+            style: TextStyle(
+              fontWeight: FontWeight.w600,
+            ),
+          ),
+          elevation: 0.0,
+          centerTitle: true,
+          backgroundColor: Color(0xFF76D3FF),
+        ),
+        body: Column(
+          children: <Widget>[
+            Container(
+              height: 270.0,
+              decoration: BoxDecoration(gradient: linearGradientvertical),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
-                  Container(
-                    height: 270.0,
-                    decoration: BoxDecoration(
-                        gradient: linearGradientvertical),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: <Widget>[
-                    Center(
+                  Center(
+                    child: CircleAvatar(
+                      backgroundColor: Colors.white,
+                      radius: 50,
                       child: CircleAvatar(
-                        backgroundColor: Colors.white,
-                        radius: 50,
-                        child: CircleAvatar(
-                          backgroundImage: AssetImage('assets/person.jpeg'),
-                          radius: 48.0,
+                        backgroundImage: AssetImage('assets/person.jpeg'),
+                        radius: 48.0,
+                      ),
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.fromLTRB(0.0, 8.0, 0.0, 0.0),
+                    child: Center(
+                      child: Column(children: <Widget>[
+                        Text(
+                          'Ahmed Kamal',
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 16.0,
+                          ),
                         ),
-                      ),
+                        SizedBox(
+                          height: 5.0,
+                        ),
+                        Text(
+                          '+60130000000',
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 16.0,
+                          ),
+                        ),
+                        SizedBox(
+                          height: 5.0,
+                        ),
+                        Text(
+                          'ahmed@kamaleldin.com',
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 16.0,
+                          ),
+                        ),
+                      ]),
                     ),
-                    Padding(
-                      padding: const EdgeInsets.fromLTRB(0.0, 8.0, 0.0, 0.0),
-                      child: Center(
-                        child: Column(children: <Widget>[
-                          Text(
-                            'Ahmed Kamal',
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 16.0,
-                            ),
-                          ),
-                          SizedBox(
-                            height: 5.0,
-                          ),
-                          Text(
-                            '+60130000000',
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 16.0,
-                            ),
-                          ),
-                          SizedBox(
-                            height: 5.0,
-                          ),
-                          Text(
-                            'ahmed@kamaleldin.com',
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 16.0,
-                            ),
-                          ),
-                        ]),
-                      ),
-                    ),
-                    SizedBox(
-                      height: 35.0,
-                    ),
-                    Container(
-                      child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                          crossAxisAlignment: CrossAxisAlignment.end,
-                          children: <Widget>[
-                            FlatButton(
-                              padding: EdgeInsets.symmetric(horizontal:15, vertical: 13),
-                              onPressed: () {},
-                              child: Text(
-                                'Help & Support',
-                                style: TextStyle(
-                                  fontSize: 20.0,
-                                  color: Colors.white,
-                                  fontWeight: FontWeight.bold,
-                                ),
+                  ),
+                  SizedBox(
+                    height: 35.0,
+                  ),
+                  Container(
+                    child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        crossAxisAlignment: CrossAxisAlignment.end,
+                        children: <Widget>[
+                          FlatButton(
+                            padding: EdgeInsets.symmetric(
+                                horizontal: 15, vertical: 13),
+                            onPressed: () {},
+                            child: Text(
+                              'Help & Support',
+                              style: TextStyle(
+                                fontSize: 20.0,
+                                color: Colors.white,
+                                fontWeight: FontWeight.bold,
                               ),
                             ),
-                           
-                            Builder(builder: (context) {
+                          ),
+                          Builder(builder: (context) {
                             return FlatButton(
                               onPressed: () {
-                                Navigator.pushNamed(context, '/settings');
-                        
+                                Navigator.pushNamed(context, '/settings',
+                                    arguments: widget.usertype);
                               },
                               padding: EdgeInsets.fromLTRB(30, 13, 15, 13),
                               child: Row(
@@ -135,82 +130,91 @@ class _ProfileState extends State<Profile> {
                                 ],
                               ),
                             );
-                             }),
-                          ]),
-                    ),
-                  ],
-                ),
+                          }),
+                        ]),
+                  ),
+                ],
               ),
-              SizedBox(
-                height: 15,
+            ),
+            SizedBox(
+              height: 15,
+            ),
+            Text(
+              'Switch Mode',
+              style: TextStyle(
+                color: Colors.grey,
               ),
-              Text(
-                'Switch Mode',
-                style: TextStyle(
-                  color: Colors.grey,
-                ),
-              ),
-              Container(
-                height: 60,
-                margin: EdgeInsets.all(15),
-                decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(10),
-                    gradient: LinearGradient(
-                        begin: Alignment.bottomLeft,
-                        end: Alignment.topRight,
-                        colors: <Color>[Color(0xFF9ADAFC), Color(0xFF8496FD)])),
-                child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: <Widget>[
-                      FlatButton(
-                        color: widget.usertype == 'Rider' ?Colors.white:Colors.transparent,
-                        padding: EdgeInsets.fromLTRB(65, 10, 65, 10),
-                        onPressed: () {
-                          Navigator.pushReplacementNamed(context, '/nav');
-                        },
-                        child: Text(
-                          'Rider',
-                          style: TextStyle(
-                            fontSize: 20.0,
-                            color: widget.usertype == 'Rider' ? Color(0xFF5C79FF):Colors.white,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                        shape: new RoundedRectangleBorder(
-                          borderRadius: new BorderRadius.circular(7.0),
+            ),
+            Container(
+              height: 60,
+              margin: EdgeInsets.all(15),
+              decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(10),
+                  gradient: LinearGradient(
+                      begin: Alignment.bottomLeft,
+                      end: Alignment.topRight,
+                      colors: <Color>[Color(0xFF9ADAFC), Color(0xFF8496FD)])),
+              child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: <Widget>[
+                    FlatButton(
+                      color: widget.usertype == 'Rider'
+                          ? Colors.white
+                          : Colors.transparent,
+                      padding: EdgeInsets.fromLTRB(65, 10, 65, 10),
+                      onPressed: () {
+                        Navigator.pushReplacementNamed(context, '/nav');
+                      },
+                      child: Text(
+                        'Rider',
+                        style: TextStyle(
+                          fontSize: 20.0,
+                          color: widget.usertype == 'Rider'
+                              ? Color(0xFF5C79FF)
+                              : Colors.white,
+                          fontWeight: FontWeight.bold,
                         ),
                       ),
-                      FlatButton(
-                        color:widget.usertype== 'Driver' ?Colors.white:Colors.transparent,
-                        padding: EdgeInsets.fromLTRB(55, 10, 55, 10),
-                        onPressed: () {
-                          Navigator.pushReplacementNamed(context, '/driverNav');
-                        },
-                        child: Text(
-                          'Driver',
-                          style: TextStyle(
-                            fontSize: 20.0,
-                            color: widget.usertype == 'Driver' ?Color(0xFF5C79FF):Colors.white,
-                            fontWeight: FontWeight.bold,
-                          ),
+                      shape: new RoundedRectangleBorder(
+                        borderRadius: new BorderRadius.circular(7.0),
+                      ),
+                    ),
+                    FlatButton(
+                      color: widget.usertype == 'Driver'
+                          ? Colors.white
+                          : Colors.transparent,
+                      padding: EdgeInsets.fromLTRB(55, 10, 55, 10),
+                      onPressed: () {
+                        Navigator.pushReplacementNamed(context, '/driverNav');
+                      },
+                      child: Text(
+                        'Driver',
+                        style: TextStyle(
+                          fontSize: 20.0,
+                          color: widget.usertype == 'Driver'
+                              ? Color(0xFF5C79FF)
+                              : Colors.white,
+                          fontWeight: FontWeight.bold,
                         ),
-                        shape: new RoundedRectangleBorder(
-                          borderRadius: new BorderRadius.circular(7.0),
-                        ),
-                      )
-                    ]),
-              ),
-              Container(
-                height: 200,
-                margin: EdgeInsets.all(15),
-                decoration: BoxDecoration(
-                    color: Colors.white, borderRadius: BorderRadius.circular(10)),
-              ),
-            ],
-          ),),
+                      ),
+                      shape: new RoundedRectangleBorder(
+                        borderRadius: new BorderRadius.circular(7.0),
+                      ),
+                    )
+                  ]),
+            ),
+            Container(
+              height: 200,
+              margin: EdgeInsets.all(15),
+              decoration: BoxDecoration(
+                  color: Colors.white, borderRadius: BorderRadius.circular(10)),
+            ),
+          ],
+        ),
+      ),
     );
-        // bottomNavigationBar: BtmNavBar());
+    // bottomNavigationBar: BtmNavBar());
   }
 }

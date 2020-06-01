@@ -5,6 +5,8 @@ import './constants.dart';
 class Settings extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    final userType = ModalRoute.of(context).settings.arguments;
+
     return Scaffold(
       backgroundColor: Color(0xFFF1F3F5),
 
@@ -57,10 +59,16 @@ class Settings extends StatelessWidget {
               child: Column(
                 children: <Widget>[
                   SettingsButtons(
-                      Icons.account_circle, 
-                      'Account Details', 
-                      true, 
-                      () {Navigator.pushNamed(context, '/AccountDetails');},),
+                    Icons.account_circle,
+                    'Account Details',
+                    true,
+                    () {
+                      Navigator.pushNamed(context, '/AccountDetails');
+                    },
+                  ),
+                  if (userType == 'Driver')
+                    SettingsButtons(
+                        Icons.directions_car, 'Car Details', true, () {}),
                   SettingsButtons(Icons.lock, 'Privacy Policy', true, () {}),
                   SettingsButtons(Icons.help, 'Help & Support', true, () {}),
                   SettingsButtons(
