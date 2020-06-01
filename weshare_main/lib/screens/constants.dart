@@ -67,7 +67,7 @@ class _BtmNavBarState extends State<BtmNavBar> {
     Dashboard(rides),
     Rides(rides, 'Rider'),
     Notifications(),
-    Profile(0),
+    Profile('Rider'),
   ];
   // void onTapped(int index) {
   //   setState(() {
@@ -159,7 +159,7 @@ class _BtnDriverState extends State<BtnDriver> {
     PostRideInterface(),
     Rides(rides, 'Driver'),
     Notifications(),
-    Profile(1),
+    Profile('Driver'),
   ];
   // void onTapped(int index) {
   //   setState(() {
