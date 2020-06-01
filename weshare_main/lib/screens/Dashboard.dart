@@ -1,14 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:weshare_main/models/ride.dart';
+import 'package:weshare_main/weshare_icons.dart';
 
 import 'constants.dart';
 import 'myappbar.dart';
 import 'myflexiableappbar.dart';
 
 class Dashboard extends StatefulWidget {
-  final List<Ride> _rides;
-  
-  Dashboard(this._rides);
+  Dashboard(List<Ride> rides);
 
   @override
   _DashboardState createState() => _DashboardState();
@@ -37,6 +36,7 @@ class _DashboardState extends State<Dashboard> {
         //   actions: <Widget>[
             
         //   ],
+          
         // ),
         body: CustomScrollView(
           slivers: <Widget>[
@@ -58,15 +58,17 @@ class _DashboardState extends State<Dashboard> {
             // SliverList //
             ///////////////
             SliverList(
-              delegate: SliverChildBuilderDelegate((context, index){
+              delegate: SliverChildBuilderDelegate(
+                (context, index){
                   return Container(
                     height: 210,
                     margin: EdgeInsets.only(top: 15, left: 15, right: 15),
                     decoration: BoxDecoration(
                       color: Colors.white, 
-                      borderRadius: BorderRadius.circular(10),
+                      borderRadius: BorderRadius.circular(10)
                     ),
                     alignment: Alignment.center,
+                    // color: Colors.orange[100*(index%9)],
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: <Widget>[
@@ -86,8 +88,7 @@ class _DashboardState extends State<Dashboard> {
                                   backgroundColor: Colors.white,
                                   radius: 21.5,
                                   child: CircleAvatar(
-                                    // backgroundImage: AssetImage('assets/person1.jpeg'),
-                                    backgroundImage: AssetImage(widget._rides[index].user.photo),
+                                    backgroundImage: AssetImage('assets/person1.jpeg'),
                                     radius: 20,
                                   ),
                                 ),
@@ -101,7 +102,7 @@ class _DashboardState extends State<Dashboard> {
                                     Title(
                                       color: Colors.black, 
                                       child: Text(
-                                        widget._rides[index].user.name,
+                                        'Ali Qasmi',
                                         style: TextStyle(
                                           fontWeight: FontWeight.w500,
                                           fontSize: 15,
@@ -112,7 +113,7 @@ class _DashboardState extends State<Dashboard> {
                                       height: 3,
                                     ),
                                     Text(
-                                        '13h ago', ///    change later /// ... /// ... ///
+                                        '13h ago',
                                         style: TextStyle(
                                           fontWeight: FontWeight.w300,
                                           fontSize: 12,
@@ -160,7 +161,7 @@ class _DashboardState extends State<Dashboard> {
                                             height: 3,
                                           ),
                                           Text(
-                                              widget._rides[index].time,
+                                              '7:45 AM',
                                               style: TextStyle(
                                                 fontWeight: FontWeight.w500,
                                                 fontSize: 12,
@@ -174,7 +175,6 @@ class _DashboardState extends State<Dashboard> {
                                     Container(
                                       child: Column(
                                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                        crossAxisAlignment: CrossAxisAlignment.start,
                                         children: <Widget>[
                                           Container(
                                             margin: EdgeInsets.all(0),
@@ -205,7 +205,7 @@ class _DashboardState extends State<Dashboard> {
                                                           ),
                                                         ),
                                                         Text(
-                                                            widget._rides[index].origin,
+                                                            'Desa Skudai Apartments',
                                                             style: TextStyle(
                                                               fontWeight: FontWeight.w500,
                                                               fontSize: 15,
@@ -249,7 +249,7 @@ class _DashboardState extends State<Dashboard> {
                                                           ),
                                                         ),
                                                         Text(
-                                                            widget._rides[index].destination,
+                                                            'school of Electrical (P05)',
                                                             style: TextStyle(
                                                               fontWeight: FontWeight.w400,
                                                               fontSize: 15,
@@ -289,7 +289,7 @@ class _DashboardState extends State<Dashboard> {
                                             height: 3,
                                           ),
                                           Text(
-                                              widget._rides[index].seatsAvailable.toString(),
+                                              '2',
                                               style: TextStyle(
                                                 fontWeight: FontWeight.w500,
                                                 fontSize: 24,
@@ -329,9 +329,9 @@ class _DashboardState extends State<Dashboard> {
                                     ),
                                     SizedBox(
                                       width: 3,
-                                    ),  
+                                    ),
                                     Text(
-                                        widget._rides[index].price.toString(),
+                                        '1.50',
                                         style: TextStyle(
                                           fontWeight: FontWeight.w500,
                                           fontSize: 22,
@@ -403,7 +403,7 @@ class _DashboardState extends State<Dashboard> {
                                                               backgroundColor: Colors.white,
                                                               radius: 21.5,
                                                               child: CircleAvatar(
-                                                                backgroundImage: AssetImage(widget._rides[index].user.photo),
+                                                                backgroundImage: AssetImage('assets/person1.jpeg'),
                                                                 radius: 20,
                                                               ),
                                                             ),
@@ -411,7 +411,7 @@ class _DashboardState extends State<Dashboard> {
                                                           Title(
                                                             color: Colors.black, 
                                                             child: Text(
-                                                              widget._rides[index].user.name,
+                                                              'Ali Qasmi',
                                                               style: TextStyle(
                                                                 fontWeight: FontWeight.w500,
                                                                 fontSize: 15,
@@ -452,7 +452,7 @@ class _DashboardState extends State<Dashboard> {
                                                                 height: 1,
                                                               ),
                                                               Text(
-                                                                  widget._rides[index].time,
+                                                                  '7:45 AM',
                                                                   style: TextStyle(
                                                                     fontWeight: FontWeight.w500,
                                                                     fontSize: 12,
@@ -496,7 +496,7 @@ class _DashboardState extends State<Dashboard> {
                                                                                     ),
                                                                                   ),
                                                                                   Text(
-                                                                                      widget._rides[index].origin,
+                                                                                      'Desa Skudai Apartments',
                                                                                       style: TextStyle(
                                                                                         fontWeight: FontWeight.w500,
                                                                                         fontSize: 13,
@@ -540,7 +540,7 @@ class _DashboardState extends State<Dashboard> {
                                                                                     ),
                                                                                   ),
                                                                                   Text(
-                                                                                      widget._rides[index].destination,
+                                                                                      'school of Electrical (P05)',
                                                                                       style: TextStyle(
                                                                                         fontWeight: FontWeight.w400,
                                                                                         fontSize: 13,
@@ -592,7 +592,7 @@ class _DashboardState extends State<Dashboard> {
                                                             width: 3,
                                                           ),
                                                           Text(
-                                                              widget._rides[index].price.toString(),
+                                                              '1.50',
                                                               style: TextStyle(
                                                                 fontWeight: FontWeight.w500,
                                                                 fontSize: 22,
@@ -645,8 +645,9 @@ class _DashboardState extends State<Dashboard> {
                       ],
                     ),
                   );
-                },
-                childCount: widget._rides.length,
+                  childCount: 9;
+
+                }
               )
             ),
           ],

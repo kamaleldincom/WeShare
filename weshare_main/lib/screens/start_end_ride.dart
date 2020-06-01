@@ -58,6 +58,9 @@ class _StartEndRideInterfaceState extends State<StartEndRideInterface> {
                       child: Column(
                         children: <Widget>[
                           Row(
+                            crossAxisAlignment: CrossAxisAlignment.start, 
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween, 
+
                             children: <Widget>[
                               Container(
                                 alignment: Alignment.topLeft,
@@ -65,6 +68,7 @@ class _StartEndRideInterfaceState extends State<StartEndRideInterface> {
                                 child: Column(
                                   children: <Widget>[
                                     Row(
+                                      
                                       children: <Widget>[
                                         SizedBox(
                                           width: 22,
@@ -127,60 +131,12 @@ class _StartEndRideInterfaceState extends State<StartEndRideInterface> {
                                   ],
                                 ),
                               ),
-                              SizedBox(
-                                width: 55,
+                              rideStarted ? Container() : Text(
+                                'Ride at 1:15 PM',
+                                style: TextStyle(color: Colors.grey),
                               ),
-                              Container(
-                                child: Column(
-                                  children: <Widget>[
-                                    Row(
-                                      children: <Widget>[
-                                        Container(
-                                          width: 55,
-                                          child: MaterialButton(
-                                            onPressed: () {},
-                                            color: Colors.redAccent,
-                                            textColor: Colors.white,
-                                            child: Icon(
-                                              Icons.phone,
-                                              size: 20,
-                                            ),
-                                            padding: EdgeInsets.all(5),
-                                            shape: CircleBorder(),
-                                          ),
-                                        ),
-                                        Container(
-                                          width: 55,
-                                          child: MaterialButton(
-                                            onPressed: () {},
-                                            color: Colors.blue[300],
-                                            textColor: Colors.white,
-                                            child: Icon(
-                                              Icons.more_horiz,
-                                              size: 20,
-                                            ),
-                                            padding: EdgeInsets.all(5),
-                                            shape: CircleBorder(),
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                    FlatButton(
-                                      shape: RoundedRectangleBorder(
-                                          borderRadius:
-                                              BorderRadius.circular(50.0)),
-                                      color: Colors.black,
-                                      child: Text(
-                                        'EDIT POINTS',
-                                        style: TextStyle(
-                                            color: Colors.white, fontSize: 10),
-                                      ),
-                                      onPressed: () {},
-                                    ),
-                                  ],
-                                ),
-                              )
-                            ],
+
+                              ],
                           ),
                           SizedBox(height: rideStarted ? 35 : 15),
                           SizedBox(

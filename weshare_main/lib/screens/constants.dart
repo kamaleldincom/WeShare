@@ -313,9 +313,205 @@ Container currentRideCard(BuildContext context, Ride _rides, String usertype) {
             child: Column(
               children: <Widget>[
                 Container(
-                  padding: EdgeInsets.only(left: 10,right:10, top: 20,bottom:10),
+                  padding: EdgeInsets.only(left: 10,right:10, top: 10),
                   // height: 55,
-                  child: Row(
+                  child: usertype == 'Rider'
+                    ? Column(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: <Widget>[
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: <Widget>[
+                          Container(
+                            // height: 70,
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: <Widget>[
+                                Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: <Widget>[
+                                    Row(
+                                      children: <Widget>[
+                                        SizedBox(
+                                          width: 16,
+                                        ),
+                                        Text(
+                                          'Origin',
+                                          style: TextStyle(
+                                            fontSize: 9,
+                                            color: Colors.grey[500],
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                    Row(
+                                      children: <Widget>[
+                                        Icon(
+                                          Icons.trip_origin,
+                                          color: Color(0xFF686868),
+                                          size: 15,
+                                        ),
+                                        Text(
+                                          _rides.origin,
+                                          style: TextStyle(
+                                            fontSize: 13,
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ],
+                                ),
+                                SizedBox(height: 5),
+                                Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: <Widget>[
+                                    Row(
+                                      children: <Widget>[
+                                        SizedBox(
+                                          width: 16,
+                                        ),
+                                        Text('Destination',
+                                            style: TextStyle(
+                                              fontSize: 9,
+                                              color: Colors.grey[500],
+                                            )),
+                                      ],
+                                    ),
+                                  
+                                Row(
+                                  children: <Widget>[
+                                    Icon(
+                                      Icons.brightness_1,
+                                      color: Color(0xFF686868),
+                                      size: 15,
+                                    ),
+                                    Text(
+                                      _rides.destination,
+                                      style: TextStyle(
+                                        fontSize: 13,
+                                      ),
+                                      textAlign: TextAlign.start,
+                                    ),
+                                  ],
+                                ),
+                                
+                               ],
+                                ), 
+                              ],
+                            ),
+                          ),
+                          Container(
+                                child: Row(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: <Widget>[
+                                    Text(
+                                        'MYR',
+                                        style: TextStyle(
+                                          fontWeight: FontWeight.w300,
+                                          fontSize: 12,
+                                          color: Colors.grey,
+                                        ),
+                                    ),
+                                    SizedBox(
+                                      width: 3,
+                                    ),
+                                    Text(
+                                        '1.50',
+                                        style: TextStyle(
+                                          fontWeight: FontWeight.w500,
+                                          fontSize: 22,
+                                          color: Colors.grey[700],
+                                        ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                              
+                        ],
+                      ),
+                      SizedBox(height: 15),
+                      Container(
+                        margin: EdgeInsets.symmetric(vertical:5),
+                        child: Container(
+                                // height: 70,
+                                // width: 150,
+                                
+
+                                child: Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    children: <Widget>[
+                                      
+                                      Column(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        children: <Widget>[
+                                          Row(
+                                            mainAxisAlignment:
+                                            MainAxisAlignment.start,
+                                            children: <Widget>[
+                                              Icon(
+                                                Icons.motorcycle,
+                                                color: Colors.black,
+                                                size: 20,
+                                              ),
+                                              SizedBox(
+                                                width: 5,
+                                              ),
+                                              Text('Blue Proton Saga',
+                                                  style: TextStyle(
+                                                      fontWeight: FontWeight.bold,
+                                                      fontSize: 15)),
+                                            ],
+                                          ),
+                                          Row(
+                                            mainAxisAlignment:
+                                            MainAxisAlignment.start,
+                                            children: <Widget>[
+                                              Icon(
+                                                Icons.timer,
+                                                color: Colors.red,
+                                                size: 20,
+                                              ),
+                                              SizedBox(
+                                                width: 5,
+                                              ),
+                                              Text('12 minutes...',
+                                                  style: TextStyle(
+                                                      fontWeight: FontWeight.bold,
+                                                      fontSize: 12,
+                                                      color: Colors.grey
+                                                      )),
+                                            ],
+                                          ),
+                                        ],
+                                      ),
+                                      Container(
+                                        height: 35,
+                                        padding: EdgeInsets.only(left: 7, right: 7),
+                                        decoration: BoxDecoration(
+                                          color: Colors.black,
+                                          borderRadius:
+                                              BorderRadius.circular(6),
+                                          border: Border.all(
+                                              color: Colors.black, width: 1),
+                                        ),
+                                        child: Center(
+                                            child: Text('JHB 1080',
+                                                style: TextStyle(
+                                                    fontWeight: FontWeight.bold,
+                                                    color: Colors.white))),
+                                      )
+                                    ]),
+                              )
+                            
+                      ),
+                    ],
+                  ) :
+                    Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: <Widget>[
@@ -399,47 +595,7 @@ Container currentRideCard(BuildContext context, Ride _rides, String usertype) {
                         ),
                       ),
                       Container(
-                        child: usertype == 'Rider'
-                            ? Container(
-                                height: 70,
-                                width: 150,
-                                padding: EdgeInsets.only(
-                                    top: 6, bottom: 4, left: 4, right: 4),
-                                // margin: EdgeInsets.all(15),
-                                decoration: BoxDecoration(
-                                  color: Colors.white,
-                                  borderRadius: BorderRadius.circular(10),
-                                  border:
-                                      Border.all(color: Colors.black, width: 1),
-                                ),
-
-                                child: Column(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceBetween,
-                                    children: <Widget>[
-                                      Text('Blue Proton Saga',
-                                          style: TextStyle(
-                                              fontWeight: FontWeight.bold,
-                                              fontSize: 15)),
-                                      Container(
-                                        height: 35,
-                                        padding: EdgeInsets.only(left: 7, right: 7),
-                                        decoration: BoxDecoration(
-                                          color: Colors.black,
-                                          borderRadius:
-                                              BorderRadius.circular(6),
-                                          border: Border.all(
-                                              color: Colors.black, width: 1),
-                                        ),
-                                        child: Center(
-                                            child: Text('JHB 1080',
-                                                style: TextStyle(
-                                                    fontWeight: FontWeight.bold,
-                                                    color: Colors.white))),
-                                      )
-                                    ]),
-                              )
-                            : FlatButton(
+                        child: FlatButton(
                                 onPressed: () {
                                   // index == 0?
                                   if (usertype == 'Rider') {
@@ -463,6 +619,7 @@ Container currentRideCard(BuildContext context, Ride _rides, String usertype) {
                       ),
                     ],
                   ),
+                
                 ),
 
 
