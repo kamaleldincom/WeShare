@@ -5,6 +5,7 @@ import 'package:weshare_main/screens/Dashboard.dart';
 import 'package:weshare_main/screens/Notifications.dart';
 // import 'package:weshare_main/screens/newRides.dart';
 import 'package:weshare_main/screens/chat_screen.dart';
+import './screens/edit_car_details.dart';
 import 'package:weshare_main/screens/ride_summary.dart';
 // import 'package:weshare_main/screens/Profile.dart';
 // import 'package:weshare_main/screens/Rides.dart';
@@ -19,7 +20,6 @@ import 'package:weshare_main/screens/settings.dart';
 import 'package:weshare_main/screens/start_end_ride.dart';
 
 import 'screens/provide-ride.dart';
-
 
 void main() => runApp(MyApp());
 
@@ -37,7 +37,6 @@ class MyApp extends StatelessWidget {
         primaryColor: Color(0xFF5C79FF),
         accentColor: Color(0xFF5C79FF),
         backgroundColor: Color(0xFFF1F3F5),
-        
 
         // fontFamily: 'SegoeUI',
         textTheme: ThemeData.light().textTheme.copyWith(
@@ -56,7 +55,7 @@ class MyApp extends StatelessWidget {
         ),
       ),
       debugShowCheckedModeBanner: false,
-     // home: Settings(),
+      // home: Settings(),
       initialRoute: '/splash',
       routes: {
         // '/': (context) => Loading(),
@@ -78,7 +77,7 @@ class MyApp extends StatelessWidget {
         '/RrDetails': (context) => RrDetails(),
         '/rideSummary': (context) => RideSummary(),
         '/chatScreen': (context) => ChatScreen(),
-        
+        '/editCarDetails': (context) => EditCarDetails(),
       },
     );
   }

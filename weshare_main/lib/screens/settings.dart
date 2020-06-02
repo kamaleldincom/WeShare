@@ -67,8 +67,10 @@ class Settings extends StatelessWidget {
                     },
                   ),
                   if (userType == 'Driver')
-                    SettingsButtons(
-                        Icons.directions_car, 'Car Details', true, () {}),
+                    SettingsButtons(Icons.directions_car, 'Car Details', true,
+                        () {
+                      Navigator.pushNamed(context, '/editCarDetails');
+                    }),
                   SettingsButtons(Icons.lock, 'Privacy Policy', true, () {}),
                   SettingsButtons(Icons.help, 'Help & Support', true, () {}),
                   SettingsButtons(
