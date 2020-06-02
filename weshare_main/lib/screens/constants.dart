@@ -454,7 +454,7 @@ Container currentRideCard(BuildContext context, Ride _rides, String usertype) {
                                             MainAxisAlignment.start,
                                             children: <Widget>[
                                               Icon(
-                                                Icons.motorcycle,
+                                                Icons.directions_car,
                                                 color: Colors.black,
                                                 size: 20,
                                               ),
