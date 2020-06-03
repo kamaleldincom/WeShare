@@ -304,6 +304,7 @@ Container currentRideCard(BuildContext context, Ride _rides, String usertype) {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
             GestureDetector(
+              behavior: HitTestBehavior.opaque,
               onTap: () {
                 if (usertype == 'Rider')
                   Navigator.pushNamed(context, "/RrDetails");
@@ -651,11 +652,13 @@ Container currentRideCard(BuildContext context, Ride _rides, String usertype) {
                               ],
                             ),
                     ),
+                  
                   ],
                 ),
               ),
             ),
             GestureDetector(
+              behavior: HitTestBehavior.opaque,
               onTap: () {
                 Navigator.pushNamed(context, '/chatScreen');
               },
