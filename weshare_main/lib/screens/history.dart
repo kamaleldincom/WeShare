@@ -72,10 +72,10 @@ class _HistoryState extends State<History> {
                     'at ${widget._rides[index].time}',
                     style: TextStyle(color: Colors.grey),
                   ),
-                  Text(
+                  widget.usertype == 'Rider' ?Text(
                     'By Ali Qasmi',
                     style: TextStyle(color: Colors.grey),
-                  ),
+                  ):Text(''),
                 ]),
           ),
         ),
