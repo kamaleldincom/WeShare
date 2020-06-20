@@ -3,8 +3,24 @@ import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 import './constants.dart';
+import 'camera.dart';
+
+
+
+import 'dart:async';
+import 'dart:io';
+
+import 'package:camera/camera.dart';
+import 'package:flutter/material.dart';
+import 'package:path/path.dart' show join;
+import 'package:path_provider/path_provider.dart';
+
+
 
 class DriverRegistration extends StatefulWidget {
+  final String imagePath;
+
+  const DriverRegistration([this.imagePath]);
   @override
   _DriverRegistrationState createState() => _DriverRegistrationState();
 }
@@ -92,7 +108,7 @@ class _DriverRegistrationState extends State<DriverRegistration> {
                                   height: 200,
                                   width: 320,
                                   // color: Colors.amber,
-                                  child: Column(
+                                  child: widget.imagePath == null ? Column(
                                     mainAxisAlignment:
                                         MainAxisAlignment.spaceAround,
                                     children: <Widget>[
@@ -104,7 +120,12 @@ class _DriverRegistrationState extends State<DriverRegistration> {
                                         ),
                                       ),
                                       RaisedButton(
-                                        onPressed: () {},
+                                        onPressed: () {
+                                          Navigator.push( context,
+                                              new MaterialPageRoute( builder:(BuildContext context) =>
+                                                          new CamerScreen())
+                                          );
+                                        },
                                         color: Colors.white,
                                         shape: RoundedRectangleBorder(
                                           side: BorderSide(
@@ -129,7 +150,10 @@ class _DriverRegistrationState extends State<DriverRegistration> {
                                         ),
                                       )
                                     ],
-                                  )),
+
+                                  )
+                            :Image.file(File(widget.imagePath)),
+                                  ),
                             )
                           ],
                         )),
