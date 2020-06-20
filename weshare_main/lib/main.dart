@@ -18,6 +18,7 @@ import 'package:weshare_main/screens/splash.dart';
 import 'package:flutter/services.dart';
 import 'package:weshare_main/screens/settings.dart';
 import 'package:weshare_main/screens/start_end_ride.dart';
+import 'package:weshare_main/screens/driver_registeration.dart';
 
 import 'screens/provide-ride.dart';
 
@@ -55,8 +56,8 @@ class MyApp extends StatelessWidget {
         ),
       ),
       debugShowCheckedModeBanner: false,
-      // home: Settings(),
-      initialRoute: '/splash',
+      home: DriverRegistration(),
+      //initialRoute: '/splash',
       routes: {
         // '/': (context) => Loading(),
         // '/home': (context) => Home(),

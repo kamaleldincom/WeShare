@@ -19,6 +19,8 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  smooth_page_indicator: ^0.1.5
+  dotted_border: ^1.0.5
 
   intl: ^0.15.8 
   getflutter: ^1.0.11
