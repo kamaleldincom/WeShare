@@ -20,6 +20,7 @@ import 'package:weshare_main/screens/settings.dart';
 import 'package:weshare_main/screens/start_end_ride.dart';
 import 'package:weshare_main/screens/driver_registeration.dart';
 
+import 'screens/Profile.dart';
 import 'screens/provide-ride.dart';
 
 void main() => runApp(MyApp());
@@ -56,15 +57,15 @@ class MyApp extends StatelessWidget {
         ),
       ),
       debugShowCheckedModeBanner: false,
-      home: DriverRegistration(0),
-      //initialRoute: '/splash',
+      // home: DriverRegistration(0),
+      initialRoute: '/splash',
       routes: {
         // '/': (context) => Loading(),
         // '/home': (context) => Home(),
         '/settings': (context) => Settings(),
         '/login': (context) => Login(),
         '/splash': (context) => Splash(),
-        // '/profile': (context) => Profile(),
+     //   '/profile': (context) => Profile(),
         '/notifications': (context) => Notifications(),
         // '/rides': (context) => Rides(),
         // '/history': (context) => History(),
@@ -79,6 +80,7 @@ class MyApp extends StatelessWidget {
         '/rideSummary': (context) => RideSummary(),
         '/chatScreen': (context) => ChatScreen(),
         '/editCarDetails': (context) => EditCarDetails(),
+        '/driverRegistration': (context) => DriverRegistration(0),
       },
     );
   }

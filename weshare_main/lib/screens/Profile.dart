@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:weshare_main/screens/driver_registeration.dart';
 
 import 'constants.dart';
 
@@ -11,11 +12,13 @@ class Profile extends StatefulWidget {
 }
 
 class _ProfileState extends State<Profile> {
+   final _scaffoldKey = GlobalKey<ScaffoldState>();
   @override
   Widget build(BuildContext context) {
     return WillPopScope(
       onWillPop: () => Future.value(false),
       child: Scaffold(
+        key: _scaffoldKey,
         backgroundColor: Color(0xFFF1F3F5),
         appBar: AppBar(
           automaticallyImplyLeading: false,
@@ -166,6 +169,7 @@ class _ProfileState extends State<Profile> {
                       padding: EdgeInsets.fromLTRB(65, 10, 65, 10),
                       onPressed: () {
                         Navigator.pushReplacementNamed(context, '/nav');
+                        
                       },
                       child: Text(
                         'Rider',
@@ -188,6 +192,91 @@ class _ProfileState extends State<Profile> {
                       padding: EdgeInsets.fromLTRB(55, 10, 55, 10),
                       onPressed: () {
                         Navigator.pushReplacementNamed(context, '/driverNav');
+                        // Navigator.pushNamed(
+                        //         _scaffoldKey.currentContext ,
+                        //            '/driverRegistration');
+
+
+                    //pop-uo for driver registration
+                    //      AlertDialog warning = AlertDialog(
+                    //       shape: RoundedRectangleBorder(
+                    //           borderRadius: BorderRadius.circular(10.0)),
+                    //       title: Image.asset(
+                    //         'assets/confused.png',
+                    //         height: 110,
+                    //       ),
+                    //       content: Container(
+                    //         height: 370,
+                    //         child: Column(
+                    //           crossAxisAlignment: CrossAxisAlignment.start,
+                    //           children: <Widget>[
+                    //             Text('Let\'s make our network even bigger...',
+                    //                 style: TextStyle(
+                    //                   fontWeight: FontWeight.bold,
+                    //                 )),
+                    //             Text('WELCOME ON BOARD!', textAlign: TextAlign.center,
+                    //                 style: TextStyle(
+                    //                   fontSize: 20,
+                                      
+                    //                 )),
+                    //             SizedBox(height: 25),
+                    //             Text(
+                    //                 ' You just need to enter your basic info to apply in FOUR easy steps:',
+                    //                 style: TextStyle()),
+                    //             SizedBox(height: 20),
+                    //             Text(
+                    //                 '* A selfie.', textAlign: TextAlign.left,
+                    //                ),
+                    //             Text(
+                    //                 '* Your IC/Passport No.',  textAlign: TextAlign.left,
+                    //                ),
+                    //             Text(
+                    //                 '* Your license number.',  textAlign: TextAlign.left,
+                    //                ),
+                    //             Text(
+                    //                 '* Your car details (type, color, and plate number)',  textAlign: TextAlign.left,
+                    //                ),
+                    //             SizedBox(height: 20),
+                    //             Text(
+                    //                 'That\'s it!!',  textAlign: TextAlign.left,
+                    //                ),
+                    //             SizedBox(height: 50),
+                              
+                          
+                    //         FlatButton(
+                    //   onPressed: () async {
+                    //     Navigator.pushNamed(
+                    //             _scaffoldKey.currentContext ,
+                    //                '/driverRegistration');
+
+
+                    //   },
+                    //   color: Colors.white,
+                    //   shape: RoundedRectangleBorder(
+                    //     side: BorderSide(
+                    //         color: Theme.of(context).accentColor, width: 2.5),
+                    //     borderRadius: BorderRadius.circular(10.0),
+                    //   ),
+                    //   child: Container(
+                    //     constraints:
+                    //         BoxConstraints(maxWidth: 310.0, minHeight: 60.0),
+                    //     alignment: Alignment.center,
+                    //     child: Text(
+                    //       'Next',
+                    //       textAlign: TextAlign.center,
+                    //       style: TextStyle(
+                    //         color: Theme.of(context).accentColor,
+                    //         fontSize: 20,
+                    //         fontWeight: FontWeight.w600,
+                    //       ),
+                    //     ),
+                    //   ),
+                    // )
+                    //           ],
+                    //         ),
+                    //       ),
+                    //     );
+                    //     showDialog(context: _scaffoldKey.currentContext, child: warning);
                       },
                       child: Text(
                         'Driver',
