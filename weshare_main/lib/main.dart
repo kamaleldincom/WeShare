@@ -56,7 +56,7 @@ class MyApp extends StatelessWidget {
         ),
       ),
       debugShowCheckedModeBanner: false,
-      home: DriverRegistration(),
+      home: DriverRegistration(0),
       //initialRoute: '/splash',
       routes: {
         // '/': (context) => Loading(),

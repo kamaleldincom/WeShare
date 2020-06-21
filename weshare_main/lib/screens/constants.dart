@@ -26,10 +26,10 @@ const textInputDecoration = InputDecoration(
       // borderRadius: BorderRadius.circular( 20.0),
     ));
 
-// The main button with (like the the login in)
+// The main button with gradient (like the login in)
 //just pass a text and your're ready to go
-Ink buttonWithGradient(String text) {
-  //assignto a child insid any button and pass the text ypu like
+Ink buttonWithGradient(String text,[double maxwidth =310 ]) {
+  //assign to a child inside any button and pass the text you like
   return Ink(
     decoration: BoxDecoration(
         gradient: LinearGradient(
@@ -38,7 +38,7 @@ Ink buttonWithGradient(String text) {
             colors: <Color>[Color(0xFF76D3FF), Color(0xFF5C79FF)]),
         borderRadius: BorderRadius.circular(10.0)),
     child: Container(
-      constraints: BoxConstraints(maxWidth: 310.0, minHeight: 60.0),
+      constraints: BoxConstraints(maxWidth: maxwidth, minHeight: 60.0),
       alignment: Alignment.center,
       child: Text(
         text,
