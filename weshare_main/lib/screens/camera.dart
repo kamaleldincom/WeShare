@@ -7,7 +7,7 @@ import 'package:path_provider/path_provider.dart';
 
 import 'driver_registeration.dart';
 
-class CamerScreen extends StatefulWidget {
+class CamerScreen extends StatefulWidget  {
   final bool isSelfie;
   final index;
   CamerScreen(this.index,this.isSelfie);
