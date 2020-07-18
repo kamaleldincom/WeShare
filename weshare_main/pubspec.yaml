@@ -24,7 +24,9 @@ dependencies:
   camera: ^0.5.8+2
   path_provider: ^1.6.11
   path: ^1.6.2
-
+  firebase_auth: ^0.16.1
+  cloud_firestore: ^0.13.7
+  
 
   intl: ^0.15.8 
   getflutter: ^1.0.11
