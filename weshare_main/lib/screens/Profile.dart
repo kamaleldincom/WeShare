@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:weshare_main/screens/driver_registeration.dart';
+import 'package:weshare_main/services/auth.dart';
 
 import 'constants.dart';
 
@@ -12,6 +13,8 @@ class Profile extends StatefulWidget {
 }
 
 class _ProfileState extends State<Profile> {
+    AuthService _auth = AuthService();
+
    final _scaffoldKey = GlobalKey<ScaffoldState>();
   @override
   Widget build(BuildContext context) {
@@ -107,9 +110,14 @@ class _ProfileState extends State<Profile> {
                           ),
                           Builder(builder: (context) {
                             return FlatButton(
-                              onPressed: () {
+                              onPressed: () async{
                                 Navigator.pushNamed(context, '/settings',
                                     arguments: widget.usertype);
+                                  //   Navigator.pushNamed(context, '/login');
+                                  // await _auth.signOut();
+                                    // setState(() {
+                                      
+                                    // });
                               },
                               padding: EdgeInsets.fromLTRB(30, 13, 15, 13),
                               child: Row(

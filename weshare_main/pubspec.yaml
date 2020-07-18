@@ -26,7 +26,7 @@ dependencies:
   path: ^1.6.2
   firebase_auth: ^0.16.1
   cloud_firestore: ^0.13.7
-  
+  provider: ^4.3.1
 
   intl: ^0.15.8 
   getflutter: ^1.0.11

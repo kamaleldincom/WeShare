@@ -2,6 +2,7 @@
 import 'package:flutter/material.dart';
 import 'package:intl_phone_number_input/intl_phone_number_input.dart';
 import 'package:material_dropdown_formfield/material_dropdown_formfield.dart';
+import 'package:weshare_main/services/auth.dart';
 
 import '../constants.dart';
 import 'auth_consts.dart';
@@ -15,8 +16,12 @@ class SignUpStep1 extends StatefulWidget {
 }
 
 class _SignUpStep1State extends State<SignUpStep1> {
+
+  AuthService auth = AuthService();
   final _formKey = GlobalKey<FormState>();
   String error = '';
+  String email = '';
+  String password = '';
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -27,9 +32,13 @@ class _SignUpStep1State extends State<SignUpStep1> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
               SizedBox(
-                height: 50.0,
+                height: 40.0,
               ),
-
+              Container(
+                height:330,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: <Widget>[
               Text('Full Name',
                   textAlign: TextAlign.start,
                   style: TextStyle(color: Colors.grey, fontSize: 14.0)),
@@ -44,7 +53,7 @@ class _SignUpStep1State extends State<SignUpStep1> {
                 ),
               ),
               SizedBox(
-                height: 20.0,
+                height: 18.0,
               ),
               Text('Email',
                   textAlign: TextAlign.start,
@@ -57,12 +66,12 @@ class _SignUpStep1State extends State<SignUpStep1> {
                   decoration: textInputDecoration,
                   validator: (val) => val.isEmpty ? 'Enter an email' : null,
                   onChanged: (val) {
-                    // setState(() => email = val);
+                    setState(() => email = val);
                   },
                 ),
               ),
               SizedBox(
-                height: 20.0,
+                height: 18.0,
               ),
               Text('Password',
                   textAlign: TextAlign.start,
@@ -77,36 +86,36 @@ class _SignUpStep1State extends State<SignUpStep1> {
                       val.length < 6 ? 'Enter a password 6+ chars long' : null,
                   obscureText: true,
                   onChanged: (val) {
-                    // setState(() => password = val);
+                    setState(() => password = val);
                   },
                 ),
               ),
               SizedBox(
-                height: 20.0,
+                height: 15.0,
               ),
               Text(
                 error,
                 style: TextStyle(color: Colors.red, fontSize: 14.0),
               ),
-              //SnackBar
+       ],)       //SnackBar
+),
               Builder(builder: (context) {
                 return Container(
                   height: 60.0,
                   child: RaisedButton(
                     onPressed: () async {
-                      // if (_formKey.currentState.validate()) {
-                      //   if (email == 'test@test.com' && password == '123456') {
-                      //   } else {
-                      //     SnackBar registrationBar = SnackBar(
-                      //       content: Text(
-                      //         'Invalid Login/Password.. Try Again!',
-                      //       ),
-                      //     );
-                      //     Scaffold.of(context).showSnackBar(registrationBar);
-                      // Navigator.push(context, '/');
-                      widget.next();
+                      if (_formKey.currentState.validate()) {
+
+                        dynamic result = await auth.registerUser(email, password);
+                          print(result);
+                          if (result == null) {
+                            setState(() {
+                              error = 'please supply a valid email';
+                            });
+                          }
+                          // widget.next();
                       // }
-                      // }
+                      }
                     },
                     color: Colors.transparent,
                     elevation: 0.0,

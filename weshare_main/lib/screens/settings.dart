@@ -1,8 +1,17 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:weshare_main/services/auth.dart';
 import 'dart:ui';
 import './constants.dart';
 
-class Settings extends StatelessWidget {
+class Settings extends StatefulWidget {
+  @override
+  _SettingsState createState() => _SettingsState();
+}
+
+class _SettingsState extends State<Settings> {
+  AuthService _auth = AuthService();
+
   @override
   Widget build(BuildContext context) {
     final userType = ModalRoute.of(context).settings.arguments;
@@ -94,8 +103,10 @@ class Settings extends StatelessWidget {
                 fontWeight: FontWeight.bold,
                 fontSize: 17),
           ),
-          onPressed: () {
-            Navigator.pushNamed(context, '/login');
+          onPressed: () async {
+            // Navigator.pushNamed(context, '/login');
+            Navigator.pop(context);
+            await _auth.signOut();
           },
           color: Colors.grey[500],
           shape: RoundedRectangleBorder(

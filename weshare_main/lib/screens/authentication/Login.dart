@@ -1,5 +1,7 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:weshare_main/screens/authentication/sign_up.dart';
+import 'package:weshare_main/services/auth.dart';
 import '../constants.dart';
 import 'package:weshare_main/screens/authentication/auth_consts.dart';
 
@@ -30,6 +32,8 @@ class _LoginState extends State<Login> {
     index = 0;
     setState(() {});
   }
+
+  AuthService _auth = AuthService();
 
   String email = 'test@test.com';
   String password = '123456';
@@ -152,20 +156,24 @@ class _LoginState extends State<Login> {
                           height: 60.0,
                           child: RaisedButton(
                               onPressed: () async {
-                                // if (_formKey.currentState.validate()) {
-                                //   if (email == 'test@test.com' &&
-                                //       password == '123456') {
-                                Navigator.pushReplacementNamed(context, '/nav');
-                                //   } else {
-                                //     SnackBar registrationBar = SnackBar(
-                                //       content: Text(
-                                //         'Invalid Login/Password.. Try Again!',
-                                //       ),
-                                //     );
-                                //     Scaffold.of(context)
-                                //         .showSnackBar(registrationBar);
-                                //   }
-                                // }
+                                if (_formKey.currentState.validate()) {
+
+                                     await _auth.signInWithEmailAndPassword(email, password);
+                                
+                                  // if (email == 'test@test.com' &&
+                                  //     password == '123456') {
+                                    // Navigator.pushReplacementNamed(
+                                    //     context, '/nav');
+                                  // } else {
+                                  //   SnackBar registrationBar = SnackBar(
+                                  //     content: Text(
+                                  //       'Invalid Login/Password.. Try Again!',
+                                  //     ),
+                                  //   );
+                                  //   Scaffold.of(context)
+                                  //       .showSnackBar(registrationBar);
+                                  // }
+                                }
                               },
                               shape: RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(10.0)),
