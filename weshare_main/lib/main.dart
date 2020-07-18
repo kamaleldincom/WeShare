@@ -8,6 +8,7 @@ import 'package:weshare_main/screens/Notifications.dart';
 // import 'package:weshare_main/screens/newRides.dart';
 import 'package:weshare_main/screens/chat_screen.dart';
 import 'package:weshare_main/services/auth.dart';
+import 'package:weshare_main/wrapper.dart';
 import './screens/edit_car_details.dart';
 import 'package:weshare_main/screens/ride_summary.dart';
 // import 'package:weshare_main/screens/Profile.dart';
