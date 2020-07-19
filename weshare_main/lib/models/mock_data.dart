@@ -7,8 +7,8 @@ User user2 = User(name: 'Ibrahim Salim', email:'salim@hotmail.com', password:'Sa
 
 // List<Ride> rides = [Ride(user: user1 ,from:'Desa Skudai Apartments',to:'Electrical (FKE) P05',dateTime:DateTime.now(),dateAdded:DateTime.now(), seatsAvailable:3,genderPreference: 'Male',price: 2,note: ''),
 //                     Ride(user: user2 ,from:'Melawis Apartments',to:'School of Computing',dateTime:DateTime.now(),dateAdded:DateTime.now(), seatsAvailable:5,genderPreference: 'Female',price: 1.8,note: ''),
-List<Ride> rides = [Ride(user: user1 ,from:'Desa Skudai Apartments',to:'Electrical (FKE) P05',dateTime:'11-11-1101',dateAdded:'11-11-1101', seatsAvailable:3,genderPreference: 'Male',price: 2,note: ''),
-                    Ride(user: user2 ,from:'Melawis Apartments',to:'School of Computing',dateTime:'11-11-1101',dateAdded:'11-11-1101', seatsAvailable:5,genderPreference: 'Female',price: 1.8,note: ''),
+List<Ride> rides = [Ride(user: user1 ,from:'Desa Skudai Apartments',to:'Electrical (FKE) P05',dateTime:'11-11-2001 10:23:12',dateAdded:'11-11-2001 10:23:12', seatsAvailable:3,genderPreference: 'Male',price: 2,note: ''),
+                    Ride(user: user2 ,from:'Melawis Apartments',to:'School of Computing',dateTime:'11-11-2001 10:23:12',dateAdded:'11-11-2001 10:23:12', seatsAvailable:5,genderPreference: 'Female',price: 1.8,note: ''),
 ];
 
 

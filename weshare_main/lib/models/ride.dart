@@ -26,10 +26,10 @@ class Ride{
     DateTime tmp = DateFormat("yyyy-MM-dd hh:mm:ss").parse(datetime);
     return timeago.format(tmp);
   }
-  String pickuptime(String datetime){
-    DateTime tmp = DateFormat("yyyy-MM-dd hh:mm:ss").parse(datetime);
-    return timeago.format(tmp);
-  }
+  // String pickuptime(String datetime){
+  //   DateTime tmp = DateFormat("yyyy-MM-dd hh:mm:ss").parse(datetime);
+  //   return timeago.format(tmp);
+  // }
 }
 
 class Driver {
