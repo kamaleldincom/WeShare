@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:path/path.dart';
 import 'package:provider/provider.dart';
 import 'package:weshare_main/models/ride.dart';
+import 'package:weshare_main/models/user.dart';
 import 'package:weshare_main/services/database.dart';
 import 'package:weshare_main/weshare_icons.dart';
 
@@ -91,6 +92,7 @@ class _RidesSliverListState extends State<RidesSliverList> {
   @override
   Widget build(BuildContext context)   {
     final rides = Provider.of<List<Ride>>(context)?? [];
+    User user = Provider.of<User>(context)?? [];
     print("ride: $rides");
     return SliverList(
       delegate: SliverChildBuilderDelegate(
@@ -641,7 +643,11 @@ class _RidesSliverListState extends State<RidesSliverList> {
                                               ),
                                             ),
                                             RaisedButton(
-                                              onPressed: (){},
+                                              onPressed: (){
+                                                Ride ride = rides[index];
+                                                print(user.uid);
+                                                
+                                              },
                                               color: Theme.of(context).accentColor,
                                               child: Text(
                                                 'Join Ride',

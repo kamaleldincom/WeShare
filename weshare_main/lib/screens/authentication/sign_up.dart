@@ -19,14 +19,12 @@ class SignUpStep1 extends StatefulWidget {
 
 class _SignUpStep1State extends State<SignUpStep1> {
 
-
-  
-
   AuthService auth = AuthService();
   final _formKey = GlobalKey<FormState>();
   String error = '';
   String email = '';
   String password = '';
+  String name = '';
   
   @override
   Widget build(BuildContext context) {
@@ -55,7 +53,9 @@ class _SignUpStep1State extends State<SignUpStep1> {
                 child: TextFormField(
                   decoration: textInputDecoration,
                   validator: (val) => val.isEmpty ? 'Enter a name' : null,
-                  onChanged: (val) {},
+                  onChanged: (val) {
+                    setState(() => name = val);
+                  },
                 ),
               ),
               SizedBox(
@@ -112,14 +112,17 @@ class _SignUpStep1State extends State<SignUpStep1> {
                     onPressed: () async {
                       if (_formKey.currentState.validate()) {
 
-                        dynamic result = await auth.registerUser(email, password);
-                          print(result);
-                          if (result == null) {
-                            setState(() {
-                              error = 'please supply a valid email';
-                            });
-                          }
-                          // widget.next();
+                        // dynamic result = await auth.registerUser(email, password);
+                          // print(result);
+                          // if (result == null) {
+                          //   setState(() {
+                          //     error = 'please supply a valid email';
+                          //   });
+                          // }
+                            widget.user.email = email;
+                            widget.user.password = password;
+                            widget.user.name = name;
+                          widget.next();
                       // }
                       }
                     },
@@ -159,12 +162,16 @@ class _SignUpStep1State extends State<SignUpStep1> {
 
 class SignUpStep2 extends StatefulWidget {
   final previous;
-  SignUpStep2(this.previous);
+  User user;
+  SignUpStep2(this.previous, this.user);
   @override
   _SignUpStep2State createState() => _SignUpStep2State();
 }
 
 class _SignUpStep2State extends State<SignUpStep2> {
+  
+  AuthService auth = AuthService();
+
   String _gender;
   // String _genderResult;
   bool validNo = false;
@@ -180,7 +187,7 @@ class _SignUpStep2State extends State<SignUpStep2> {
       "value": "Female",
     },
   ];
-
+    // print("user2: ${widget.user}");
   final _formKey = GlobalKey<FormState>();
 
   var error = '';
@@ -214,6 +221,8 @@ class _SignUpStep2State extends State<SignUpStep2> {
 
   @override
   Widget build(BuildContext context) {
+      // print(widget.user);
+
     return Container(
         padding: EdgeInsets.symmetric(vertical: 20, horizontal: 50.0),
         child: Form(
@@ -246,7 +255,8 @@ class _SignUpStep2State extends State<SignUpStep2> {
                     // autoFocus: false,
                     inputDecoration: textInputDecoration,
                     onInputChanged: (PhoneNumber number) {
-                      print(number.phoneNumber);
+                      // print(number.phoneNumber);
+                     widget.user.phoneNumber = number.phoneNumber;
                     },
                     onInputValidated: (bool value) {
                       print(value);
@@ -310,6 +320,7 @@ class _SignUpStep2State extends State<SignUpStep2> {
                       onSaved: (value) {
                         setState(() {
                           _gender = value;
+                          
                         });
                       },
                       onChanged: (val) {
@@ -339,8 +350,12 @@ class _SignUpStep2State extends State<SignUpStep2> {
                       onPressed: () async {
                         if (_formKey.currentState.validate()) {
                             if (validNo) {
-                              Navigator.pushReplacementNamed(
-                                  context, '/nav');
+                              // Navigator.pushReplacementNamed(
+                              //     context, '/nav');
+                               
+                               widget.user.gender = _gender;
+                               auth.registerUser(widget.user);
+
                             } else {
                               // error = 'please choose gender';
                               SnackBar registrationBar = SnackBar(

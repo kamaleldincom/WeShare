@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:weshare_main/models/ride.dart';
+import 'package:weshare_main/models/user.dart';
 
 class DatabaseService {
   final String uid;
@@ -8,8 +9,20 @@ class DatabaseService {
   final CollectionReference ridesCollection =
       Firestore.instance.collection('rides');
 
+  final CollectionReference usersCollection =
+      Firestore.instance.collection('users');
+
   Future getRides() async {
     return await ridesCollection.getDocuments();
+  }
+
+  Future insertUser(User user) async {
+    return await usersCollection.document(uid).setData({
+      'name': user.name,
+      'email': user.email,
+      'phoneNumber': user.phoneNumber,
+      'gender': user.gender,
+    });
   }
 
   Driver _driverFromSnapsoht(Map<String, dynamic> data) {

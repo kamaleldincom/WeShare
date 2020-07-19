@@ -19,22 +19,22 @@ class _LoginState extends State<Login> {
 
   List<Widget> signUp(_next, _previous) {
     return [
-      SignUpStep1(_next),
-      SignUpStep2(_previous),
+      SignUpStep1(_next,user),
+      SignUpStep2(_previous,user),
     ];
   }
 
 User user = User.form();
-  User _next(User user) {
+  void _next() {
     index = 1;
     setState(() {});
-    return user;
+    // return user;
   }
 
-  User _previous() {
+  void _previous() {
     index = 0;
     setState(() {});
-    User user;
+    // User user;
   }
 
   AuthService _auth = AuthService();
@@ -44,6 +44,7 @@ User user = User.form();
   String error = '';
 
   Widget build(BuildContext context) {
+    print('userlogin $user');
     return DefaultTabController(
       initialIndex: 0,
       length: 2,

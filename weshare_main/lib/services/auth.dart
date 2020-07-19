@@ -3,6 +3,7 @@
 
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:weshare_main/models/user.dart';
+import 'package:weshare_main/services/database.dart';
 
 class AuthService {
   final FirebaseAuth  _auth = FirebaseAuth.instance;
@@ -29,11 +30,12 @@ class AuthService {
   }
 
   // sign up
-  Future registerUser(String email, String password) async{
+  Future registerUser(User user) async{
     try {
-    AuthResult result =  await _auth.createUserWithEmailAndPassword(email: email, password: password);
-    FirebaseUser user = result.user;
-    return _userFormFirebaseUser(user);
+    AuthResult result =  await _auth.createUserWithEmailAndPassword(email: user.email, password: user.password);
+    FirebaseUser fireUser = result.user;
+    await DatabaseService(uid: user.uid).insertUser(user);
+    return _userFormFirebaseUser(fireUser);
       
     } catch (e) {
       print(e.toString());
