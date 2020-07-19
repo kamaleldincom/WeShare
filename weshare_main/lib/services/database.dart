@@ -41,16 +41,41 @@ class DatabaseService {
           price: doc.data['price'],
           seatsAvailable: doc.data['availableSeats'],
           driver: _driverFromSnapsoht(doc.data['driver'])
-
           );
 
-
-      print(ride.dateAdded);
+      return ride;
+    }).toList();
+  }
+  List<Rode> _rodesListFromSnapshot(QuerySnapshot snapshot) {
+    return snapshot.documents.map((doc) {
+       Rode ride = Rode(
+          from: doc.data['from'],
+          to: doc.data['to'],
+          dateAdded: doc.data['dateAdded'],
+          dateTime: doc.data['dateTime'],
+          price: doc.data['price'],
+          seatsAvailable: doc.data['availableSeats'],
+          driver: _driverFromSnapsoht(doc.data['driver'])
+          );
       return ride;
     }).toList();
   }
 
+  Stream<List<Rode>> get userRides {
+    return usersCollection.document(uid).collection('rides').where('status', isEqualTo: 'posted')
+    .snapshots()
+    .map(_rodesListFromSnapshot);
+  }
   Stream<List<Ride>> get rides {
     return ridesCollection.snapshots().map(_ridesListFromSnapshot);
   }
+
+
+  // Future joinRide(Ride ride, User user){
+  //     return await usersCollection.document(uid).setData({      'name': user.name,
+  //     'email': user.email,
+  //     'phoneNumber': user.phoneNumber,
+  //     'gender': user.gender,
+  //   });
+  // }
 }

@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:path/path.dart';
 import 'package:provider/provider.dart';
 import 'package:weshare_main/models/ride.dart';
+import 'package:weshare_main/models/user.dart';
 import 'package:weshare_main/screens/history.dart';
 import 'package:weshare_main/services/database.dart';
 
@@ -17,8 +19,10 @@ class Rides extends StatefulWidget {
 class _RidesState extends State<Rides> {
   @override
   Widget build(BuildContext context) {
-    return StreamProvider<List<Ride>>.value(
-          value:  DatabaseService().rides,
+  User user = Provider.of<User>(context)??[];
+  List<Ride> ride = Provider.of<List<Ride>>(context)??[];
+    return StreamProvider<List<Rode>>.value(
+          value:  DatabaseService(uid:user.uid).userRides,
           child: DefaultTabController(
           length: 2,
           child: Scaffold(
@@ -102,19 +106,45 @@ class _RidesState extends State<Rides> {
               children: [
               Container(
                 // padding: EdgeInsets.only(bottom: 10),
-                child: ListView.builder(
-                  
-                  scrollDirection: Axis.vertical,
-                  // itemExtent: 100.0,
-                  shrinkWrap: true,
-                  itemCount: widget._rides.length,
-                  itemBuilder: (context, index) => 
-                      currentRideCard(context,widget._rides[index],widget.usertype),
-                ),
+                child: CurrentListView(widget.usertype),
               ),
-              History(widget.usertype, widget._rides),
+              History(widget.usertype, ride),
             ]),
           )),
+    );
+  }
+}
+
+class CurrentListView extends StatefulWidget {
+  // const CurrentListView({
+    // Key key,
+    // @required this.rides,
+    // @required this.ride,
+    // @required this.widget,
+  // }) : super(key: key);
+
+  // final List<Rode> rides;
+  // final List<Ride> ride;
+  CurrentListView(this.usertype);
+  final usertype;
+
+  @override
+  _CurrentListViewState createState() => _CurrentListViewState();
+}
+
+class _CurrentListViewState extends State<CurrentListView> {
+  @override
+  Widget build(BuildContext context) {
+    List<Rode> rides = Provider.of<List<Rode>>(context)??[];
+
+    return ListView.builder(
+      
+      scrollDirection: Axis.vertical,
+      // itemExtent: 100.0,
+      shrinkWrap: true,
+      itemCount: rides.length,
+      itemBuilder: (context, index) => 
+          currentRideCard(context,rides[index],widget.usertype),
     );
   }
 }

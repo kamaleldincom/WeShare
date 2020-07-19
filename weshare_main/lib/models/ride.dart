@@ -9,15 +9,17 @@ class Ride{
   User user;
   String from;
   String to;
+  // String date;
+  String time;
   String dateTime;
   String dateAdded;
+  String date;
   int seatsAvailable;
   String genderPreference;
   double price;
   String note;
   Driver driver;
-
-  Ride({this.user,this.from, this.to, this.dateTime, this.dateAdded, this.seatsAvailable, this.genderPreference, this.price, this.note, this.driver}){
+  Ride({this.user,this.from, this.to, this.date, time, this.dateTime, this.dateAdded, this.seatsAvailable, this.genderPreference, this.price, this.note, this.driver}){
      this.dateAdded = ago(dateAdded);
   }
 
@@ -38,7 +40,7 @@ class Driver {
   Driver(Map<String, dynamic> data){
     this.name = data['name'];
 
-    this.car = Car(cid:data['car']['id'],plateNumber: data['car']['plateNo'],seatsNo: data['car']['seatsNo'],color:data['car']['color'],type:data['car']['type']);
+    this.car = Car(cid:data['car']['id'],plateNumber: data['car']['plateNumber'],seatsNo: data['car']['seatsNo'],color:data['car']['color'],type:data['car']['type']);
   }
   // license
   // idDoc
@@ -53,4 +55,30 @@ class Car {
   String color;
 
   Car({this.cid,this.color,this.plateNumber,this.type,this.seatsNo});
+}
+
+
+class Rode{
+  String rid;
+  User user;
+  String from;
+  String to;
+  // String date;
+  String time;
+  String dateTime;
+  String dateAdded;
+  String date;
+  int seatsAvailable;
+  String genderPreference;
+  double price;
+  String note;
+  Driver driver;
+  Rode({this.user,this.from, this.to, this.date, time, this.dateTime, this.dateAdded, this.seatsAvailable, this.genderPreference, this.price, this.note, this.driver}){
+     this.dateAdded = ago(dateAdded);
+  }
+
+  String ago(String datetime){
+    DateTime tmp = DateFormat("yyyy-MM-dd hh:mm:ss").parse(datetime);
+    return timeago.format(tmp);
+  }
 }

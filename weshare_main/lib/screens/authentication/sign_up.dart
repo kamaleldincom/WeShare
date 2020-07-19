@@ -18,14 +18,13 @@ class SignUpStep1 extends StatefulWidget {
 }
 
 class _SignUpStep1State extends State<SignUpStep1> {
-
   AuthService auth = AuthService();
   final _formKey = GlobalKey<FormState>();
   String error = '';
   String email = '';
   String password = '';
   String name = '';
-  
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -39,91 +38,94 @@ class _SignUpStep1State extends State<SignUpStep1> {
                 height: 40.0,
               ),
               Container(
-                height:330,
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: <Widget>[
-              Text('Full Name',
-                  textAlign: TextAlign.start,
-                  style: TextStyle(color: Colors.grey, fontSize: 14.0)),
-              Material(
-                elevation: 2.0,
-                shadowColor: Colors.black,
-                borderRadius: BorderRadius.all(Radius.circular(10.0)),
-                child: TextFormField(
-                  decoration: textInputDecoration,
-                  validator: (val) => val.isEmpty ? 'Enter a name' : null,
-                  onChanged: (val) {
-                    setState(() => name = val);
-                  },
-                ),
-              ),
-              SizedBox(
-                height: 18.0,
-              ),
-              Text('Email',
-                  textAlign: TextAlign.start,
-                  style: TextStyle(color: Colors.grey, fontSize: 14.0)),
-              Material(
-                elevation: 2.0,
-                shadowColor: Colors.black,
-                borderRadius: BorderRadius.all(Radius.circular(10.0)),
-                child: TextFormField(
-                  decoration: textInputDecoration,
-                  validator: (val) => val.isEmpty ? 'Enter an email' : null,
-                  onChanged: (val) {
-                    setState(() => email = val);
-                  },
-                ),
-              ),
-              SizedBox(
-                height: 18.0,
-              ),
-              Text('Password',
-                  textAlign: TextAlign.start,
-                  style: TextStyle(color: Colors.grey, fontSize: 14.0)),
-              Material(
-                elevation: 2.0,
-                shadowColor: Colors.black,
-                borderRadius: BorderRadius.all(Radius.circular(10.0)),
-                child: TextFormField(
-                  decoration: textInputDecoration,
-                  validator: (val) =>
-                      val.length < 6 ? 'Enter a password 6+ chars long' : null,
-                  obscureText: true,
-                  onChanged: (val) {
-                    setState(() => password = val);
-                  },
-                ),
-              ),
-              SizedBox(
-                height: 15.0,
-              ),
-              Text(
-                error,
-                style: TextStyle(color: Colors.red, fontSize: 14.0),
-              ),
-       ],)       //SnackBar
-),
+                  height: 330,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: <Widget>[
+                      Text('Full Name',
+                          textAlign: TextAlign.start,
+                          style: TextStyle(color: Colors.grey, fontSize: 14.0)),
+                      Material(
+                        elevation: 2.0,
+                        shadowColor: Colors.black,
+                        borderRadius: BorderRadius.all(Radius.circular(10.0)),
+                        child: TextFormField(
+                          decoration: textInputDecoration,
+                          validator: (val) =>
+                              val.isEmpty ? 'Enter a name' : null,
+                          onChanged: (val) {
+                            setState(() => name = val);
+                          },
+                        ),
+                      ),
+                      SizedBox(
+                        height: 18.0,
+                      ),
+                      Text('Email',
+                          textAlign: TextAlign.start,
+                          style: TextStyle(color: Colors.grey, fontSize: 14.0)),
+                      Material(
+                        elevation: 2.0,
+                        shadowColor: Colors.black,
+                        borderRadius: BorderRadius.all(Radius.circular(10.0)),
+                        child: TextFormField(
+                          decoration: textInputDecoration,
+                          validator: (val) =>
+                              val.isEmpty ? 'Enter an email' : null,
+                          onChanged: (val) {
+                            setState(() => email = val);
+                          },
+                        ),
+                      ),
+                      SizedBox(
+                        height: 18.0,
+                      ),
+                      Text('Password',
+                          textAlign: TextAlign.start,
+                          style: TextStyle(color: Colors.grey, fontSize: 14.0)),
+                      Material(
+                        elevation: 2.0,
+                        shadowColor: Colors.black,
+                        borderRadius: BorderRadius.all(Radius.circular(10.0)),
+                        child: TextFormField(
+                          decoration: textInputDecoration,
+                          validator: (val) => val.length < 6
+                              ? 'Enter a password 6+ chars long'
+                              : null,
+                          obscureText: true,
+                          onChanged: (val) {
+                            setState(() => password = val);
+                          },
+                        ),
+                      ),
+                      SizedBox(
+                        height: 15.0,
+                      ),
+                      Text(
+                        error,
+                        style: TextStyle(color: Colors.red, fontSize: 14.0),
+                      ),
+                    ],
+                  ) //SnackBar
+                  ),
               Builder(builder: (context) {
                 return Container(
                   height: 60.0,
                   child: RaisedButton(
                     onPressed: () async {
                       if (_formKey.currentState.validate()) {
-
                         // dynamic result = await auth.registerUser(email, password);
-                          // print(result);
-                          // if (result == null) {
-                          //   setState(() {
-                          //     error = 'please supply a valid email';
-                          //   });
-                          // }
-                            widget.user.email = email;
-                            widget.user.password = password;
-                            widget.user.name = name;
-                          widget.next();
-                      // }
+                        // print(result);
+                        // if (result == null) {
+                        //   setState(() {
+                        //     error = 'please supply a valid email';
+                        //   });
+                        // }
+                        widget.user.email = email;
+                        widget.user.password = password;
+                        widget.user.name = name;
+                        widget.next();
+                        // }
                       }
                     },
                     color: Colors.transparent,
@@ -169,7 +171,6 @@ class SignUpStep2 extends StatefulWidget {
 }
 
 class _SignUpStep2State extends State<SignUpStep2> {
-  
   AuthService auth = AuthService();
 
   String _gender;
@@ -187,7 +188,7 @@ class _SignUpStep2State extends State<SignUpStep2> {
       "value": "Female",
     },
   ];
-    // print("user2: ${widget.user}");
+  // print("user2: ${widget.user}");
   final _formKey = GlobalKey<FormState>();
 
   var error = '';
@@ -221,7 +222,7 @@ class _SignUpStep2State extends State<SignUpStep2> {
 
   @override
   Widget build(BuildContext context) {
-      // print(widget.user);
+    // print(widget.user);
 
     return Container(
         padding: EdgeInsets.symmetric(vertical: 20, horizontal: 50.0),
@@ -256,13 +257,13 @@ class _SignUpStep2State extends State<SignUpStep2> {
                     inputDecoration: textInputDecoration,
                     onInputChanged: (PhoneNumber number) {
                       // print(number.phoneNumber);
-                     widget.user.phoneNumber = number.phoneNumber;
+                      widget.user.phoneNumber = number.phoneNumber;
                     },
                     onInputValidated: (bool value) {
                       print(value);
-                      if (value){
+                      if (value) {
                         validNo = true;
-                      }else{
+                      } else {
                         validNo = false;
                       }
                     },
@@ -291,49 +292,49 @@ class _SignUpStep2State extends State<SignUpStep2> {
               //   shape: RoundedRectangleBorder(
               //     borderRadius: BorderRadius.circular(10.0),
               //   ),
-              //   child: 
-                Container(
-                  // height: 60,
-                  // padding: EdgeInsets.all(16),
-                  child: Card(
-                            shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(10.0),
-                ),          
-                                      child: DropDownFormField(
-                      innerBackgroundColor: Colors.white,
-                      wedgeIcon: Icon(Icons.keyboard_arrow_down),
-                      wedgeColor: Colors.grey,
-                      innerTextStyle: TextStyle(color: Colors.grey),
-                      focusNode: focusNode,
-                      inputDecoration: 
-                      // textInputDecoration,
-                      OutlinedDropDownDecoration(
-                        labelStyle: TextStyle(color: Colors.green),
-                        labelText: "",
-                        // borderColor: Colors.white
-                        borderRadius: BorderRadius.circular(200.0),
-                        borderStyle: BorderStyle.none,
-                      ),
-                      hintText: '',
-                      validator: (val) => val==null? '   please choose gender':null,
-                      value: _gender,
-                      onSaved: (value) {
-                        setState(() {
-                          _gender = value;
-                          
-                        });
-                      },
-                      onChanged: (val) {
-                        setState(() {
-                          _gender = val;
-                        });
-                      },
-                      dataSource: dataSource,
-                      textField: 'display',
-                      valueField: 'value',
+              //   child:
+              Container(
+                // height: 60,
+                // padding: EdgeInsets.all(16),
+                child: Card(
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(10.0),
+                  ),
+                  child: DropDownFormField(
+                    innerBackgroundColor: Colors.white,
+                    wedgeIcon: Icon(Icons.keyboard_arrow_down),
+                    wedgeColor: Colors.grey,
+                    innerTextStyle: TextStyle(color: Colors.grey),
+                    focusNode: focusNode,
+                    inputDecoration:
+                        // textInputDecoration,
+                        OutlinedDropDownDecoration(
+                      labelStyle: TextStyle(color: Colors.green),
+                      labelText: "",
+                      // borderColor: Colors.white
+                      borderRadius: BorderRadius.circular(200.0),
+                      borderStyle: BorderStyle.none,
                     ),
+                    hintText: '',
+                    validator: (val) =>
+                        val == null ? '   please choose gender' : null,
+                    value: _gender,
+                    onSaved: (value) {
+                      setState(() {
+                        _gender = value;
+                      });
+                    },
+                    onChanged: (val) {
+                      setState(() {
+                        _gender = val;
+                      });
+                    },
+                    dataSource: dataSource,
+                    textField: 'display',
+                    valueField: 'value',
                   ),
                 ),
+              ),
               // ),
               SizedBox(
                 height: 20.0,
@@ -349,23 +350,21 @@ class _SignUpStep2State extends State<SignUpStep2> {
                   child: RaisedButton(
                       onPressed: () async {
                         if (_formKey.currentState.validate()) {
-                            if (validNo) {
-                              // Navigator.pushReplacementNamed(
-                              //     context, '/nav');
-                               
-                               widget.user.gender = _gender;
-                               auth.registerUser(widget.user);
+                          if (validNo) {
+                            // Navigator.pushReplacementNamed(
+                            //     context, '/nav');
 
-                            } else {
-                              // error = 'please choose gender';
-                              SnackBar registrationBar = SnackBar(
-                                content: Text(
-                                  'Invalid phone number Try Again!',
-                                ),
-                              );
-                              Scaffold.of(context)
-                                  .showSnackBar(registrationBar);
-                            }
+                            widget.user.gender = _gender;
+                            auth.registerUser(widget.user);
+                          } else {
+                            // error = 'please choose gender';
+                            SnackBar registrationBar = SnackBar(
+                              content: Text(
+                                'Invalid phone number Try Again!',
+                              ),
+                            );
+                            Scaffold.of(context).showSnackBar(registrationBar);
+                          }
                         }
                         // Navigator.of(context).pushReplacementNamed('/nav');
                       },
@@ -383,4 +382,3 @@ class _SignUpStep2State extends State<SignUpStep2> {
         ));
   }
 }
-

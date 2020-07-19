@@ -294,7 +294,8 @@ Widget appBarBuilder(title, bool backArrowNeeded, actionsToDo) {
 // Card for the current ride Screen pass context, text for the button and color
 // e.g. currentRIdeCard(context,'Start Ride', Colors.green)
 
-Container currentRideCard(BuildContext context, Ride _rides, String usertype) {
+Container currentRideCard(BuildContext context, Rode _rides, String usertype) {
+  // print(_rides.dateTime);
   return Container(
     margin: EdgeInsets.symmetric(
       horizontal: 10,
@@ -335,7 +336,7 @@ Container currentRideCard(BuildContext context, Ride _rides, String usertype) {
                           ),
                           SizedBox(width: 10),
                           Text(
-                            'Ali Qasmi',
+                            '${_rides.driver.name}',
                             style: TextStyle(
                               fontWeight: FontWeight.bold,
                             ),
@@ -454,7 +455,7 @@ Container currentRideCard(BuildContext context, Ride _rides, String usertype) {
                                             width: 3,
                                           ),
                                           Text(
-                                            '1.50',
+                                            '${_rides.price}',
                                             style: TextStyle(
                                               fontWeight: FontWeight.w500,
                                               fontSize: 22,
@@ -493,7 +494,7 @@ Container currentRideCard(BuildContext context, Ride _rides, String usertype) {
                                                     SizedBox(
                                                       width: 5,
                                                     ),
-                                                    Text('Blue Proton Saga',
+                                                    Text('${_rides.driver.car.color}'+ ' ${_rides.driver.car.type}',
                                                         style: TextStyle(
                                                             fontWeight:
                                                                 FontWeight.bold,
@@ -536,7 +537,7 @@ Container currentRideCard(BuildContext context, Ride _rides, String usertype) {
                                                     width: 1),
                                               ),
                                               child: Center(
-                                                  child: Text('JHB 1080',
+                                                  child: Text('${_rides.driver.car.plateNumber}',
                                                       style: TextStyle(
                                                           fontWeight:
                                                               FontWeight.bold,
@@ -802,7 +803,7 @@ Container currentRideCard(BuildContext context, Ride _rides, String usertype) {
                 // border: Border.all(color: Colors.black, width: 1),
               ),
               child: Center(
-                  child: Text('Ride at 22:22',
+                  child: Text('${_rides.dateTime}',
                       style: TextStyle(
                           fontWeight: FontWeight.w500 ,color: Colors.white))),
             )),
