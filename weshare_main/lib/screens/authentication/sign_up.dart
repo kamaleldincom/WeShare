@@ -2,14 +2,16 @@
 import 'package:flutter/material.dart';
 import 'package:intl_phone_number_input/intl_phone_number_input.dart';
 import 'package:material_dropdown_formfield/material_dropdown_formfield.dart';
+import 'package:weshare_main/models/user.dart';
 import 'package:weshare_main/services/auth.dart';
 
 import '../constants.dart';
 import 'auth_consts.dart';
 
 class SignUpStep1 extends StatefulWidget {
+  User user;
   final next;
-  SignUpStep1(this.next);
+  SignUpStep1(this.next, [this.user]);
 
   @override
   _SignUpStep1State createState() => _SignUpStep1State();
@@ -17,11 +19,15 @@ class SignUpStep1 extends StatefulWidget {
 
 class _SignUpStep1State extends State<SignUpStep1> {
 
+
+  
+
   AuthService auth = AuthService();
   final _formKey = GlobalKey<FormState>();
   String error = '';
   String email = '';
   String password = '';
+  
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -363,96 +369,3 @@ class _SignUpStep2State extends State<SignUpStep2> {
   }
 }
 
-// ------------------------ ------------------------ ------------------------ ------------------------
-
-// class CustomDropDown extends StatefulWidget {
-//   var error;
-//   CustomDropDown(this.error);
-//   @override
-//   _CustomDropDownState createState() => _CustomDropDownState();
-// }
-
-// class _CustomDropDownState extends State<CustomDropDown> {
-//   String _gender;
-//   String _genderResult;
-//   FocusNode focusNode = FocusNode();
-//   final formKey = GlobalKey<FormState>();
-//   List dataSource=[
-//     {
-//       "display": "Male",
-//       "value": "Male",
-//     },
-//     {
-//       "display": "Female",
-//       "value": "Female",
-//     },
-//   ];
-
-//   @override
-// //   void initState() {
-// //     super.initState();
-// //     _gender = '';
-// //     _genderResult = '';
-// //     focusNode.addListener(() {
-// //       focusNode.unfocus(disposition: UnfocusDisposition.previouslyFocusedChild);
-// // //      focusNode.
-// //     });
-// //   }
-
-//   void _saveForm() {
-//     var form = formKey.currentState;
-//     if (form.validate()) {
-//       setState(() {
-//         _genderResult = _gender;
-//       });
-//     }
-//   }
-
-//   @override
-//   Widget build(BuildContext context) {
-//     return Card(
-//       shape: RoundedRectangleBorder(
-//                   borderRadius: BorderRadius.circular(10.0),
-//                 ),
-//           child: Container(
-//               // padding: EdgeInsets.all(16),
-//               child: DropDownFormField(
-//                 innerBackgroundColor: Colors.white,
-//                 wedgeIcon: Icon(Icons.keyboard_arrow_down),
-//                 wedgeColor: Colors.grey,
-//                 innerTextStyle: TextStyle(color: Colors.grey),
-//                 focusNode: focusNode,
-//                 inputDecoration: OutlinedDropDownDecoration(
-//                     labelStyle: TextStyle(color: Colors.green),
-//                     labelText: "",
-//                     // borderColor: Colors.white
-//                      borderRadius: BorderRadius.circular(200.0),
-//                      borderStyle: BorderStyle.none,
-//                     ),
-//                 hintText: '',
-//                 validator: (val) {
-//                   if (val != 'Male' || val != 'Female') {
-//                     widget.error();
-//                   }else{
-//                     return null;
-//                   }
-//                 },
-//                 value: _gender,
-//                 onSaved: (value) {
-//                   setState(() {
-//                     _gender = value;
-//                   });
-//                 },
-//                 onChanged: (val) {
-//                   setState(() {
-//                     _gender = val;
-//                   });
-//                 },
-//                 dataSource: dataSource,
-//                 textField: 'display',
-//                 valueField: 'value',
-//               ),
-//             ),
-//     );
-//   }
-// }

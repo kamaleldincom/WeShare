@@ -38,6 +38,7 @@ dependencies:
   flare_splash_screen: ^3.0.1
   intl_phone_number_input: ^0.4.0+2
   material_dropdown_formfield: ^0.1.4
+  timeago: ^2.0.26
 
 
 dev_dependencies:

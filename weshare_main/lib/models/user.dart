@@ -12,6 +12,7 @@ class User {
 
 
   User({this.name,this.email,this.gender,this.password,this.phoneNumber,this.photo,isDriver});
+  User.form({this.name,this.email,this.gender,this.password,this.phoneNumber,this.photo,isDriver});
   User.signIn({this.uid});
   User.signUp({this.uid});
 

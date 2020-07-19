@@ -130,8 +130,8 @@ class _RideSummaryState extends State<RideSummary> {
                                       MainAxisAlignment.spaceBetween,
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: <Widget>[
-                                    Text(ride.origin),
-                                    Text(ride.destination),
+                                    Text(ride.from),
+                                    Text(ride.to),
                                   ],
                                 ),
                               ],

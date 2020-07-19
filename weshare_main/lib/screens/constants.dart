@@ -1,8 +1,10 @@
 import 'package:badges/badges.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:weshare_main/models/mock_data.dart';
 import 'package:weshare_main/models/ride.dart';
 import 'package:weshare_main/screens/postRide.dart';
+import 'package:weshare_main/services/database.dart';
 import 'Dashboard.dart';
 import 'Notifications.dart';
 import 'Profile.dart';
@@ -63,12 +65,7 @@ class BtmNavBar extends StatefulWidget {
 
 class _BtmNavBarState extends State<BtmNavBar> {
   int _currentIndex = 0;
-  final List<Widget> _pages = [
-    Dashboard(rides),
-    Rides(rides, 'Rider'),
-    Notifications(),
-    Profile('Rider'),
-  ];
+  
   // void onTapped(int index) {
   //   setState(() {
   //     _currentIndex = index;
@@ -77,71 +74,80 @@ class _BtmNavBarState extends State<BtmNavBar> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-        body: _pages[_currentIndex],
-        bottomNavigationBar: BottomNavigationBar(
-          currentIndex: _currentIndex,
-          onTap: (int index) {
-            _currentIndex = index;
-            setState(() {});
-          },
-          // onTap: onTapped,
-          type: BottomNavigationBarType.fixed,
-          iconSize: 26,
-          selectedFontSize: 12,
-          unselectedItemColor: Colors.black26,
-          selectedItemColor: Color(0xFF5C79FF),
-          items: [
-            BottomNavigationBarItem(
-              icon: Icon(
-                Icons.view_agenda,
-              ),
-              title: Text(
-                'Dashboard',
-                style: TextStyle(
-                  fontSize: 12,
-                  fontWeight: FontWeight.w500,
+    final List<Widget> _pages = [
+    Dashboard(),
+    Rides(rides, 'Rider'),
+    Notifications(),
+    Profile('Rider'),
+  ];
+    return StreamProvider<List<Ride>>.value(
+      value: DatabaseService().rides,
+          child: Scaffold(
+          body: _pages[_currentIndex],
+          bottomNavigationBar: BottomNavigationBar(
+            currentIndex: _currentIndex,
+            onTap: (int index) {
+              _currentIndex = index;
+              setState(() {});
+            },
+            // onTap: onTapped,
+            type: BottomNavigationBarType.fixed,
+            iconSize: 26,
+            selectedFontSize: 12,
+            unselectedItemColor: Colors.black26,
+            selectedItemColor: Color(0xFF5C79FF),
+            items: [
+              BottomNavigationBarItem(
+                icon: Icon(
+                  Icons.view_agenda,
+                ),
+                title: Text(
+                  'Dashboard',
+                  style: TextStyle(
+                    fontSize: 12,
+                    fontWeight: FontWeight.w500,
+                  ),
                 ),
               ),
-            ),
-            BottomNavigationBarItem(
-              icon: Icon(
-                Icons.explore,
-              ),
-              title: Text(
-                'Rides',
-                style: TextStyle(
-                  fontSize: 12,
-                  fontWeight: FontWeight.w500,
+              BottomNavigationBarItem(
+                icon: Icon(
+                  Icons.explore,
+                ),
+                title: Text(
+                  'Rides',
+                  style: TextStyle(
+                    fontSize: 12,
+                    fontWeight: FontWeight.w500,
+                  ),
                 ),
               ),
-            ),
-            BottomNavigationBarItem(
-              icon: Icon(
-                Icons.notifications,
-              ),
-              title: Text(
-                'Notifications',
-                style: TextStyle(
-                  fontSize: 12,
-                  fontWeight: FontWeight.w500,
+              BottomNavigationBarItem(
+                icon: Icon(
+                  Icons.notifications,
+                ),
+                title: Text(
+                  'Notifications',
+                  style: TextStyle(
+                    fontSize: 12,
+                    fontWeight: FontWeight.w500,
+                  ),
                 ),
               ),
-            ),
-            BottomNavigationBarItem(
-              icon: Icon(
-                Icons.person,
-              ),
-              title: Text(
-                'Profile',
-                style: TextStyle(
-                  fontSize: 12,
-                  fontWeight: FontWeight.w500,
+              BottomNavigationBarItem(
+                icon: Icon(
+                  Icons.person,
+                ),
+                title: Text(
+                  'Profile',
+                  style: TextStyle(
+                    fontSize: 12,
+                    fontWeight: FontWeight.w500,
+                  ),
                 ),
               ),
-            ),
-          ],
-        ));
+            ],
+          )),
+    );
   }
 }
 
@@ -384,7 +390,7 @@ Container currentRideCard(BuildContext context, Ride _rides, String usertype) {
                                                     size: 15,
                                                   ),
                                                   Text(
-                                                    _rides.origin,
+                                                    _rides.from,
                                                     style: TextStyle(
                                                       fontSize: 13,
                                                     ),
@@ -418,7 +424,7 @@ Container currentRideCard(BuildContext context, Ride _rides, String usertype) {
                                                     size: 15,
                                                   ),
                                                   Text(
-                                                    _rides.destination,
+                                                    _rides.to,
                                                     style: TextStyle(
                                                       fontSize: 13,
                                                     ),
@@ -579,7 +585,7 @@ Container currentRideCard(BuildContext context, Ride _rides, String usertype) {
                                                 size: 15,
                                               ),
                                               Text(
-                                                _rides.origin,
+                                                _rides.from,
                                                 style: TextStyle(
                                                   fontSize: 13,
                                                 ),
@@ -612,7 +618,7 @@ Container currentRideCard(BuildContext context, Ride _rides, String usertype) {
                                                 size: 15,
                                               ),
                                               Text(
-                                                _rides.destination,
+                                                _rides.to,
                                                 style: TextStyle(
                                                   fontSize: 13,
                                                 ),

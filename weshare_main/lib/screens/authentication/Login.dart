@@ -1,5 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:weshare_main/models/user.dart';
 import 'package:weshare_main/screens/authentication/sign_up.dart';
 import 'package:weshare_main/services/auth.dart';
 import '../constants.dart';
@@ -23,14 +24,17 @@ class _LoginState extends State<Login> {
     ];
   }
 
-  void _next() {
+User user = User.form();
+  User _next(User user) {
     index = 1;
     setState(() {});
+    return user;
   }
 
-  void _previous() {
+  User _previous() {
     index = 0;
     setState(() {});
+    User user;
   }
 
   AuthService _auth = AuthService();
@@ -187,6 +191,7 @@ class _LoginState extends State<Login> {
                     ],
                   ),
                 )),
+            
             signUp(_next, _previous)[index],
           ]),
         ),

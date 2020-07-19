@@ -59,9 +59,9 @@ class _HistoryState extends State<History> {
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
-                Text(widget._rides[index].origin),
+                Text(widget._rides[index].from),
                 // SizedBox(height: 1),
-                Text(widget._rides[index].destination),
+                Text(widget._rides[index].to),
               ],
             ),
             trailing: Column(
@@ -69,7 +69,7 @@ class _HistoryState extends State<History> {
                 crossAxisAlignment: CrossAxisAlignment.end,
                 children: <Widget>[
                   Text(
-                    'at ${widget._rides[index].time}',
+                    'at ${widget._rides[index].dateTime}',
                     style: TextStyle(color: Colors.grey),
                   ),
                   widget.usertype == 'Rider' ?Text(
