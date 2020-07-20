@@ -46,28 +46,31 @@ class DatabaseService {
       return ride;
     }).toList();
   }
-  List<Rode> _rodesListFromSnapshot(QuerySnapshot snapshot) {
+  List<CurrentRides> _rodesListFromSnapshot(QuerySnapshot snapshot) {
     return snapshot.documents.map((doc) {
-       Rode ride = Rode(
+       CurrentRides ride = CurrentRides(
           from: doc.data['from'],
           to: doc.data['to'],
           dateAdded: doc.data['dateAdded'],
           dateTime: doc.data['dateTime'],
           price: doc.data['price'],
           seatsAvailable: doc.data['availableSeats'],
+          status: doc.data['status'],
           driver: _driverFromSnapsoht(doc.data['driver'])
           );
       return ride;
     }).toList();
   }
 
-  Stream<List<Rode>> get userRides {
-    return usersCollection.document(uid).collection('rides').where('status', isEqualTo: 'posted')
+  Stream<List<CurrentRides>> get userRides {
+    return usersCollection.document(uid).collection('rides')
     .snapshots()
     .map(_rodesListFromSnapshot);
   }
+
+
   Stream<List<Ride>> get rides {
-    return ridesCollection.snapshots().map(_ridesListFromSnapshot);
+    return ridesCollection.where('status', isEqualTo: 'posted').where('availableSeats',isGreaterThan: 0).snapshots().map(_ridesListFromSnapshot);
   }
 
 
@@ -78,4 +81,15 @@ class DatabaseService {
   //     'gender': user.gender,
   //   });
   // }
+
+
+  List<CurrentRides> filterRides(List<CurrentRides> rides, String status) {
+    List<CurrentRides> filtered = [];
+    for (var item in rides) {
+      if (item.status == status) {
+        filtered.add(item);
+      }
+    }
+    return filtered;
+  }
 }

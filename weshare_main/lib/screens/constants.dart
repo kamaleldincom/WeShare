@@ -294,7 +294,7 @@ Widget appBarBuilder(title, bool backArrowNeeded, actionsToDo) {
 // Card for the current ride Screen pass context, text for the button and color
 // e.g. currentRIdeCard(context,'Start Ride', Colors.green)
 
-Container currentRideCard(BuildContext context, Rode _rides, String usertype) {
+Container currentRideCard(BuildContext context, CurrentRides _rides, String usertype) {
   // print(_rides.dateTime);
   return Container(
     margin: EdgeInsets.symmetric(

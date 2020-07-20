@@ -21,7 +21,7 @@ class _RidesState extends State<Rides> {
   Widget build(BuildContext context) {
   User user = Provider.of<User>(context)??[];
   List<Ride> ride = Provider.of<List<Ride>>(context)??[];
-    return StreamProvider<List<Rode>>.value(
+    return StreamProvider<List<CurrentRides>>.value(
           value:  DatabaseService(uid:user.uid).userRides,
           child: DefaultTabController(
           length: 2,
@@ -108,7 +108,7 @@ class _RidesState extends State<Rides> {
                 // padding: EdgeInsets.only(bottom: 10),
                 child: CurrentListView(widget.usertype),
               ),
-              History(widget.usertype, ride),
+              History(widget.usertype, widget._rides),
             ]),
           )),
     );
@@ -135,7 +135,10 @@ class CurrentListView extends StatefulWidget {
 class _CurrentListViewState extends State<CurrentListView> {
   @override
   Widget build(BuildContext context) {
-    List<Rode> rides = Provider.of<List<Rode>>(context)??[];
+    
+  DatabaseService dbserveice = DatabaseService();
+  List<CurrentRides> rides = dbserveice.filterRides(Provider.of<List<CurrentRides>>(context)??[], "posted");
+  
 
     return ListView.builder(
       

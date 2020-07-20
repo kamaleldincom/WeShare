@@ -1,10 +1,9 @@
 import 'package:timeago/timeago.dart' as timeago;
 
-
 import 'package:intl/intl.dart';
 import 'package:weshare_main/models/user.dart';
 
-class Ride{
+class Ride {
   String rid;
   User user;
   String from;
@@ -18,13 +17,25 @@ class Ride{
   String genderPreference;
   double price;
   String note;
+  String status;
   Driver driver;
-  Ride({this.user,this.from, this.to, this.date, time, this.dateTime, this.dateAdded, this.seatsAvailable, this.genderPreference, this.price, this.note, this.driver}){
-     this.dateAdded = ago(dateAdded);
+  Ride(
+      {this.user,
+      this.from,
+      this.to,
+      this.date,
+      time,
+      this.dateTime,
+      this.dateAdded,
+      this.seatsAvailable,
+      this.genderPreference,
+      this.price,
+      this.note,
+      this.driver}) {
+    this.dateAdded = ago(dateAdded);
   }
 
-
-  String ago(String datetime){
+  String ago(String datetime) {
     DateTime tmp = DateFormat("yyyy-MM-dd hh:mm:ss").parse(datetime);
     return timeago.format(tmp);
   }
@@ -37,10 +48,15 @@ class Ride{
 class Driver {
   String name;
   Car car;
-  Driver(Map<String, dynamic> data){
+  Driver(Map<String, dynamic> data) {
     this.name = data['name'];
 
-    this.car = Car(cid:data['car']['id'],plateNumber: data['car']['plateNumber'],seatsNo: data['car']['seatsNo'],color:data['car']['color'],type:data['car']['type']);
+    this.car = Car(
+        cid: data['car']['id'],
+        plateNumber: data['car']['plateNumber'],
+        seatsNo: data['car']['seatsNo'],
+        color: data['car']['color'],
+        type: data['car']['type']);
   }
   // license
   // idDoc
@@ -54,11 +70,10 @@ class Car {
   String plateNumber;
   String color;
 
-  Car({this.cid,this.color,this.plateNumber,this.type,this.seatsNo});
+  Car({this.cid, this.color, this.plateNumber, this.type, this.seatsNo});
 }
 
-
-class Rode{
+class CurrentRides {
   String rid;
   User user;
   String from;
@@ -72,13 +87,30 @@ class Rode{
   String genderPreference;
   double price;
   String note;
+  String status;
   Driver driver;
-  Rode({this.user,this.from, this.to, this.date, time, this.dateTime, this.dateAdded, this.seatsAvailable, this.genderPreference, this.price, this.note, this.driver}){
-     this.dateAdded = ago(dateAdded);
+  CurrentRides(
+      {this.user,
+      this.from,
+      this.to,
+      this.date,
+      time,
+      this.dateTime,
+      this.dateAdded,
+      this.seatsAvailable,
+      this.genderPreference,
+      this.price,
+      this.note,
+      this.status,
+      this.driver}) {
+    // this.dateAdded = ago(dateAdded);
   }
 
-  String ago(String datetime){
+  String ago(String datetime) {
     DateTime tmp = DateFormat("yyyy-MM-dd hh:mm:ss").parse(datetime);
     return timeago.format(tmp);
   }
+
 }
+
+  

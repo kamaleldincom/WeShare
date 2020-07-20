@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:weshare_main/models/ride.dart';
+import 'package:weshare_main/services/database.dart';
 
 class History extends StatefulWidget {
   // const History({
@@ -16,15 +18,21 @@ class History extends StatefulWidget {
 }
 
 class _HistoryState extends State<History> {
+
+
   @override
   Widget build(BuildContext context) {
+    DatabaseService dbserveice = DatabaseService();
+  List<CurrentRides> rides = dbserveice.filterRides(Provider.of<List<CurrentRides>>(context)??[], "completed");
+  
+  
     return Container(
       child: ListView.builder(
         
         scrollDirection: Axis.vertical,
         itemExtent: 100.0,
         shrinkWrap: true,
-        itemCount: widget._rides.length ,
+        itemCount: rides.length ,
         itemBuilder: (context, index) => Card(
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(10.0),
@@ -33,7 +41,7 @@ class _HistoryState extends State<History> {
           elevation: 0.0,
           child: ListTile(
             onTap: (){
-              Navigator.pushNamed(context, '/rideSummary', arguments:  widget._rides[index]);
+              Navigator.pushNamed(context, '/rideSummary', arguments:  rides[index]);
 
             },
             leading: Column(
@@ -59,9 +67,9 @@ class _HistoryState extends State<History> {
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
-                Text(widget._rides[index].from),
+                Text(rides[index].from),
                 // SizedBox(height: 1),
-                Text(widget._rides[index].to),
+                Text(rides[index].to),
               ],
             ),
             trailing: Column(
@@ -69,7 +77,7 @@ class _HistoryState extends State<History> {
                 crossAxisAlignment: CrossAxisAlignment.end,
                 children: <Widget>[
                   Text(
-                    'at ${widget._rides[index].dateTime}',
+                    'at ${rides[index].dateTime}',
                     style: TextStyle(color: Colors.grey),
                   ),
                   widget.usertype == 'Rider' ?Text(
