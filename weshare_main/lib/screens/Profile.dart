@@ -271,7 +271,6 @@ class _ProfileState extends State<Profile> {
                       //             _scaffoldKey.currentContext ,
                       //                '/driverRegistration');
 
-
                       //   },
                       //   color: Colors.white,
                       //   shape: RoundedRectangleBorder(

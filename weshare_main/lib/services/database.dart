@@ -26,6 +26,8 @@ class DatabaseService {
     });
   }
 
+
+
   Driver _driverFromSnapsoht(Map<String, dynamic> data) {
     // print(data);
     return Driver(data);
@@ -115,7 +117,8 @@ class DatabaseService {
         email: snapshot.data['email'],
         name: snapshot.data['name'],
         gender: snapshot.data['gender'],
-        phoneNumber: snapshot.data['phoneNumber']
+        phoneNumber: snapshot.data['phoneNumber'],
+        isDriver: snapshot.data['isDriver']
       );
       // print('user: ${user.email}');
     return user;

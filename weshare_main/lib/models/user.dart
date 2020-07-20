@@ -11,7 +11,7 @@ class User{
   bool isDriver;
 
 
-  User({this.uid,this.name,this.email,this.gender,this.password,this.phoneNumber,this.photo,isDriver});
+  User({this.uid,this.name,this.email,this.gender,this.password,this.phoneNumber,this.photo, this.isDriver});
   User.form({this.name,this.email,this.gender,this.password,this.phoneNumber,this.photo,isDriver});
   User.signIn({this.uid});
   User.signUp({this.uid});
