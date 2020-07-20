@@ -94,4 +94,42 @@ class DatabaseService {
     }
     return filtered;
   }
+
+
+  Future<User> getUserDetails(String uid){
+    return 
+    usersCollection.document(uid).get().then((doc){
+      return userFromSnapshots(doc);
+    });
+
+    // return  usersCollection.document(uid);
+    // document.get() => then((document) {
+    // print(document("name"));
+    // document.map();
+  // });
+  }
+
+  User userFromSnapshots(DocumentSnapshot snapshot){
+    
+     User user = User(
+        email: snapshot.data['email'],
+        name: snapshot.data['name'],
+        gender: snapshot.data['gender'],
+        phoneNumber: snapshot.data['phoneNumber']
+      );
+      // print('user: ${user.email}');
+    return user;
+  }
+  // User _userFromSnapshot(QuerySnapshot snapshot){
+    
+  //    User user = User(
+  //       email: snapshot.data['email'],
+  //       name: snapshot.data['name'],
+  //       gender: snapshot.data['gender'],
+  //       phoneNumber: snapshot.data['phoneNumber']
+  //     );
+  //     print('user: ${user.email}');
+  //   return user;
+  // }
+
 }
