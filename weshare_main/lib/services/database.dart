@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:weshare_main/models/ride.dart';
 import 'package:weshare_main/models/user.dart';
 
@@ -34,15 +35,17 @@ class DatabaseService {
     // List<Ride> rides;
     return snapshot.documents.map((doc) {
        Ride ride = Ride(
+          rid: doc.documentID,
           from: doc.data['from'],
           to: doc.data['to'],
           dateAdded: doc.data['dateAdded'],
           dateTime: doc.data['dateTime'],
           price: doc.data['price'],
-          seatsAvailable: doc.data['availableSeats'],
+          availableSeats: doc.data['availableSeats'],
+          status: doc.data['status'],
           driver: _driverFromSnapsoht(doc.data['driver'])
           );
-
+  // print("docdata: ${doc.documentID}");
       return ride;
     }).toList();
   }
@@ -54,7 +57,7 @@ class DatabaseService {
           dateAdded: doc.data['dateAdded'],
           dateTime: doc.data['dateTime'],
           price: doc.data['price'],
-          seatsAvailable: doc.data['availableSeats'],
+          availableSeats: doc.data['availableSeats'],
           status: doc.data['status'],
           driver: _driverFromSnapsoht(doc.data['driver'])
           );
@@ -73,14 +76,13 @@ class DatabaseService {
     return ridesCollection.where('status', isEqualTo: 'posted').where('availableSeats',isGreaterThan: 0).snapshots().map(_ridesListFromSnapshot);
   }
 
+  Future joinRide(Ride ride, User user) async{
 
-  // Future joinRide(Ride ride, User user){
-  //     return await usersCollection.document(uid).setData({      'name': user.name,
-  //     'email': user.email,
-  //     'phoneNumber': user.phoneNumber,
-  //     'gender': user.gender,
-  //   });
-  // }
+    ridesCollection.document(ride.rid).updateData({"availableSeats":FieldValue.increment(-1)});
+    usersCollection.document(user.uid).collection('rides').document(ride.rid).setData(ride.toMap(ride));
+    
+
+  }
 
 
   List<CurrentRides> filterRides(List<CurrentRides> rides, String status) {

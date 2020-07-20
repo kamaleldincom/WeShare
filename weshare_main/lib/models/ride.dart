@@ -13,24 +13,27 @@ class Ride {
   String dateTime;
   String dateAdded;
   String date;
-  int seatsAvailable;
+  int availableSeats;
   String genderPreference;
   double price;
   String note;
   String status;
   Driver driver;
   Ride(
-      {this.user,
+      {
+      this.rid,
+      this.user,
       this.from,
       this.to,
       this.date,
       time,
       this.dateTime,
       this.dateAdded,
-      this.seatsAvailable,
+      this.availableSeats,
       this.genderPreference,
       this.price,
       this.note,
+      this.status,
       this.driver}) {
     this.dateAdded = ago(dateAdded);
   }
@@ -43,6 +46,19 @@ class Ride {
   //   DateTime tmp = DateFormat("yyyy-MM-dd hh:mm:ss").parse(datetime);
   //   return timeago.format(tmp);
   // }
+
+
+  Map<String, dynamic> toMap(Ride ride){
+
+    return {
+      'from':ride.from,
+      'to':ride.to,
+      'dateTime': ride.dateTime,
+      'price': ride.price,
+      'driver': ride.driver.toMap(ride.driver),
+      'status': ride.status
+    };
+  }
 }
 
 class Driver {
@@ -53,13 +69,18 @@ class Driver {
 
     this.car = Car(
         cid: data['car']['id'],
-        plateNumber: data['car']['plateNumber'],
+        plateNumber: data['car']['plateNo'],
         seatsNo: data['car']['seatsNo'],
         color: data['car']['color'],
         type: data['car']['type']);
   }
-  // license
-  // idDoc
+  
+  Map<String, dynamic> toMap(Driver driver){
+    return {
+      'name': driver.name,
+      'car' : driver.car.toMap(driver.car)
+    };
+  }
 }
 
 class Car {
@@ -71,6 +92,14 @@ class Car {
   String color;
 
   Car({this.cid, this.color, this.plateNumber, this.type, this.seatsNo});
+  Map<String, dynamic> toMap(Car car){
+    return {
+      'color': car.color,
+      'plateNo' : car.plateNumber,
+      'seatsNo': car.seatsNo,
+      'type': car.type
+    };
+  }
 }
 
 class CurrentRides {
@@ -83,7 +112,7 @@ class CurrentRides {
   String dateTime;
   String dateAdded;
   String date;
-  int seatsAvailable;
+  int availableSeats;
   String genderPreference;
   double price;
   String note;
@@ -94,10 +123,10 @@ class CurrentRides {
       this.from,
       this.to,
       this.date,
-      time,
+      this.time,
       this.dateTime,
       this.dateAdded,
-      this.seatsAvailable,
+      this.availableSeats,
       this.genderPreference,
       this.price,
       this.note,

@@ -22,8 +22,10 @@ class Dashboard extends StatefulWidget {
 
 class _DashboardState extends State<Dashboard> {
 
+
   @override
   Widget build(BuildContext context) {
+    User user = Provider.of<User>(context)??null;
   // final rides = Provider.of<List<Ride>>(widget.context);
     return StreamProvider<List<Ride>>.value(
       value: DatabaseService().rides,
@@ -88,6 +90,7 @@ class RidesSliverList extends StatefulWidget {
 }
 
 class _RidesSliverListState extends State<RidesSliverList> {
+  DatabaseService databaseService = DatabaseService();
 
   @override
   Widget build(BuildContext context)   {
@@ -329,7 +332,7 @@ class _RidesSliverListState extends State<RidesSliverList> {
                                     height: 3,
                                   ),
                                   Text(
-                                      '${rides[index].seatsAvailable}',
+                                      '${rides[index].availableSeats}',
                                       style: TextStyle(
                                         fontWeight: FontWeight.w500,
                                         fontSize: 24,
@@ -645,8 +648,9 @@ class _RidesSliverListState extends State<RidesSliverList> {
                                             RaisedButton(
                                               onPressed: (){
                                                 Ride ride = rides[index];
-                                                print(user.uid);
-                                                
+                                                print('ride id : ${ride.rid}');
+                                                 databaseService.joinRide(ride, user);
+                                                 Navigator.pop(context);
                                               },
                                               color: Theme.of(context).accentColor,
                                               child: Text(
