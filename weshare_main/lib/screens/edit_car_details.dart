@@ -1,4 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:path/path.dart';
+import 'package:provider/provider.dart';
+import 'package:weshare_main/models/ride.dart';
+import 'package:weshare_main/models/user.dart';
+import 'package:weshare_main/screens/Profile.dart';
+import 'package:weshare_main/services/database.dart';
 import '../screens/constants.dart';
 
 class EditCarDetails extends StatelessWidget {
@@ -9,17 +15,26 @@ class EditCarDetails extends StatelessWidget {
   final _scaffoldKey = GlobalKey<ScaffoldState>();
   final _formKey = GlobalKey<FormState>();
 
-  void _saveForm() {
+
+  void _saveForm(String uid) async {
     final isValid = _formKey.currentState.validate();
     if (!isValid) {
+
       return;
     }
+
     _formKey.currentState.save();
-    _scaffoldKey.currentState.showSnackBar(
-      SnackBar(
-        content: Text('✅ Your car information has been updated!'),
-      ),
-    );
+
+    Car car =  Car(color:carColor,type: carType,seatsNo: int.parse(emptySeats),plateNumber: carPlateNo );
+
+    await DatabaseService(uid: uid).editCarDetails(car);
+  
+    // _scaffoldKey.currentState.showSnackBar(
+      // SnackBar(
+      //   content: Text('✅ Your car information has been updated!'),
+      // ),
+
+    // );
 
     print(carType);
     print(carPlateNo);
@@ -29,6 +44,8 @@ class EditCarDetails extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+      User user = Provider.of<User>(context);
+
     return Scaffold(
       key: _scaffoldKey,
       backgroundColor: Color(0xFFF1F3F5),
@@ -168,7 +185,9 @@ class EditCarDetails extends StatelessWidget {
                         fontSize: 17),
                   ),
                   onPressed: () {
-                    _saveForm();
+
+                    _saveForm(user.uid);
+                    Navigator.pushReplacement(context, MaterialPageRoute(builder: (BuildContext context) =>BtnDriver()));
                   },
                   color: Color(0xFF5C79FF),
                   shape: RoundedRectangleBorder(

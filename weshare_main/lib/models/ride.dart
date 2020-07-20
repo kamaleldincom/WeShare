@@ -20,22 +20,8 @@ class Ride {
   String status;
   Driver driver;
   Ride(
-      {
-      this.rid,
-      this.user,
-      this.from,
-      this.to,
-      this.date,
-      time,
-      this.dateTime,
-      this.dateAdded,
-      this.availableSeats,
-      this.genderPreference,
-      this.price,
-      this.note,
-      this.status,
-      this.driver}) {
-    this.dateAdded = ago(dateAdded);
+      {this.rid,this.user,this.from,this.to,this.date,time,this.dateTime,this.dateAdded,this.availableSeats,this.genderPreference,this.price,this.note,this.status,this.driver}) {
+    this.dateAdded = ago('2005-10-10 10:10:10');
   }
 
   String ago(String datetime) {
@@ -49,7 +35,6 @@ class Ride {
 
 
   Map<String, dynamic> toMap(Ride ride){
-
     return {
       'from':ride.from,
       'to':ride.to,
@@ -68,7 +53,7 @@ class Driver {
     this.name = data['name'];
 
     this.car = Car(
-        cid: data['car']['id'],
+        // cid: data['car']['id'],
         plateNumber: data['car']['plateNo'],
         seatsNo: data['car']['seatsNo'],
         color: data['car']['color'],
@@ -92,6 +77,7 @@ class Car {
   String color;
 
   Car({this.cid, this.color, this.plateNumber, this.type, this.seatsNo});
+  
   Map<String, dynamic> toMap(Car car){
     return {
       'color': car.color,
@@ -134,6 +120,7 @@ class CurrentRides {
       this.driver}) {
     // this.dateAdded = ago(dateAdded);
   }
+  
 
   String ago(String datetime) {
     DateTime tmp = DateFormat("yyyy-MM-dd hh:mm:ss").parse(datetime);

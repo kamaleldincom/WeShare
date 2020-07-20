@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:weshare_main/models/ride.dart';
 import 'package:weshare_main/models/user.dart';
+import 'package:weshare_main/screens/edit_car_details.dart';
 
 class DatabaseService {
   final String uid;
@@ -26,17 +27,24 @@ class DatabaseService {
     });
   }
 
-
-
   Driver _driverFromSnapsoht(Map<String, dynamic> data) {
     // print(data);
     return Driver(data);
+  }
+  Car _carFromSnapsoht(Map<String, dynamic> data) {
+    // print(data);
+    return Car(
+      color: data['color'],
+      type: data['type'],
+      plateNumber: data['plateNo'],
+      seatsNo: data['seatsNo']
+      );
   }
 
   List<Ride> _ridesListFromSnapshot(QuerySnapshot snapshot) {
     // List<Ride> rides;
     return snapshot.documents.map((doc) {
-       Ride ride = Ride(
+      Ride ride = Ride(
           rid: doc.documentID,
           from: doc.data['from'],
           to: doc.data['to'],
@@ -45,15 +53,15 @@ class DatabaseService {
           price: doc.data['price'],
           availableSeats: doc.data['availableSeats'],
           status: doc.data['status'],
-          driver: _driverFromSnapsoht(doc.data['driver'])
-          );
-  // print("docdata: ${doc.documentID}");
+          driver: _driverFromSnapsoht(doc.data['driver']));
+      // print("docdata: ${doc.documentID}");
       return ride;
     }).toList();
   }
+
   List<CurrentRides> _rodesListFromSnapshot(QuerySnapshot snapshot) {
     return snapshot.documents.map((doc) {
-       CurrentRides ride = CurrentRides(
+      CurrentRides ride = CurrentRides(
           from: doc.data['from'],
           to: doc.data['to'],
           dateAdded: doc.data['dateAdded'],
@@ -61,31 +69,37 @@ class DatabaseService {
           price: doc.data['price'],
           availableSeats: doc.data['availableSeats'],
           status: doc.data['status'],
-          driver: _driverFromSnapsoht(doc.data['driver'])
-          );
+          driver: _driverFromSnapsoht(doc.data['driver']));
       return ride;
     }).toList();
   }
 
   Stream<List<CurrentRides>> get userRides {
-    return usersCollection.document(uid).collection('rides')
-    .snapshots()
-    .map(_rodesListFromSnapshot);
+    return usersCollection
+        .document(uid)
+        .collection('rides')
+        .snapshots()
+        .map(_rodesListFromSnapshot);
   }
-
 
   Stream<List<Ride>> get rides {
-    return ridesCollection.where('status', isEqualTo: 'posted').where('availableSeats',isGreaterThan: 0).snapshots().map(_ridesListFromSnapshot);
+    return ridesCollection
+        .where('status', isEqualTo: 'posted')
+        .where('availableSeats', isGreaterThan: 0)
+        .snapshots()
+        .map(_ridesListFromSnapshot);
   }
 
-  Future joinRide(Ride ride, User user) async{
-
-    ridesCollection.document(ride.rid).updateData({"availableSeats":FieldValue.increment(-1)});
-    usersCollection.document(user.uid).collection('rides').document(ride.rid).setData(ride.toMap(ride));
-    
-
+  Future joinRide(Ride ride, User user) async {
+    ridesCollection
+        .document(ride.rid)
+        .updateData({"availableSeats": FieldValue.increment(-1)});
+    usersCollection
+        .document(user.uid)
+        .collection('rides')
+        .document(ride.rid)
+        .setData(ride.toMap(ride));
   }
-
 
   List<CurrentRides> filterRides(List<CurrentRides> rides, String status) {
     List<CurrentRides> filtered = [];
@@ -97,10 +111,8 @@ class DatabaseService {
     return filtered;
   }
 
-
-  Future<User> getUserDetails(String uid){
-    return 
-    usersCollection.document(uid).get().then((doc){
+  Future<User> getUserDetails(String uid) {
+    return usersCollection.document(uid).get().then((doc) {
       return userFromSnapshots(doc);
     });
 
@@ -108,23 +120,22 @@ class DatabaseService {
     // document.get() => then((document) {
     // print(document("name"));
     // document.map();
-  // });
+    // });
   }
 
-  User userFromSnapshots(DocumentSnapshot snapshot){
-    
-     User user = User(
+  User userFromSnapshots(DocumentSnapshot snapshot) {
+    User user = User(
         email: snapshot.data['email'],
         name: snapshot.data['name'],
         gender: snapshot.data['gender'],
         phoneNumber: snapshot.data['phoneNumber'],
-        isDriver: snapshot.data['isDriver']
-      );
-      // print('user: ${user.email}');
+        isDriver: snapshot.data['isDriver'],
+        car: _carFromSnapsoht(snapshot.data['car']));
+    // print('user: ${user.car.type}');
     return user;
   }
   // User _userFromSnapshot(QuerySnapshot snapshot){
-    
+
   //    User user = User(
   //       email: snapshot.data['email'],
   //       name: snapshot.data['name'],
@@ -134,5 +145,38 @@ class DatabaseService {
   //     print('user: ${user.email}');
   //   return user;
   // }
+
+
+
+ Future editCarDetails(Car car) async {
+    return await usersCollection.document(uid).updateData({
+      'car':car.toMap(car),
+      'isDriver': true
+    }
+      );
+  }
+
+ Future<bool> isDriver() async {
+     
+    return usersCollection.document(uid).get().then((doc) =>doc.data['isDriver'] );
+  }
+
+
+  Future provideRide(Ride ride, User user) async {
+   
+    print(ride.toMap(ride));
+    ride.driver =  Driver(user.toMap(user));
+    // ridesCollection
+    //     .document(ride.rid)
+    //     .setData(
+    //       ride.toMap(ride),
+    //     );
+    // usersCollection
+    //     .document(user.uid)
+    //     .collection('providedRides')
+    //     .document(ride.rid)
+    //     .setData(ride.toMap(ride));
+  }
+
 
 }
