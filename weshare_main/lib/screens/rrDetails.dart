@@ -330,9 +330,37 @@ class _RrDetailsState extends State<RrDetails> {
                             //   borderRadius: BorderRadius.circular(5.0),
                             // ),
                             onPressed: () {
-                              print('ride id: ${ride.rid}');
-                              DatabaseService().leaveRide(ride.rid, user.uid);
-                              Navigator.pop(context);
+                              AlertDialog warning = AlertDialog(
+                                shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(10.0)),
+                                title: Image.asset(
+                                  'assets/confused.png',
+                                  height: 110,
+                                ),
+                                content:
+                                    Text('Would you like to cancel the trip?',
+                                        style: TextStyle(
+                                          fontWeight: FontWeight.bold,
+                                        )),
+                                actions: <Widget>[
+                                  FlatButton(
+                                    child: Text('No'),
+                                    onPressed: () {
+                                      Navigator.pop(context);
+                                    },
+                                  ),
+                                  FlatButton(
+                                    child: Text('Yes'),
+                                    onPressed: () {
+                                      print('ride id: ${ride.rid}');
+                                      DatabaseService()
+                                          .leaveRide(ride.rid, user.uid);
+                                      Navigator.pop(context);
+                                    },
+                                  ),
+                                ],
+                              );
+                              showDialog(context: context, child: warning);
                             },
                             color: Colors.grey,
                             child: Container(
