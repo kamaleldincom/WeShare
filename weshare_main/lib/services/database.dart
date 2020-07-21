@@ -47,11 +47,11 @@ class DatabaseService {
     return snapshot.documents.map((doc) {
       Ride ride = Ride(
           rid: doc.documentID,
+          did: doc.data['did'],
           from: doc.data['from'],
           to: doc.data['to'],
           dateAdded: doc.data['dateAdded'],
           dateTime: doc.data['dateTime'],
-          did: doc.data['did'],
           riders: doc.data['riders'],
           price: doc.data['price'],
           availableSeats: doc.data['availableSeats'],
@@ -65,13 +65,14 @@ class DatabaseService {
   List<CurrentRides> _rodesListFromSnapshot(QuerySnapshot snapshot) {
     return snapshot.documents.map((doc) {
       CurrentRides ride = CurrentRides(
+          rid: doc.documentID,
+          did: doc.data['did'],
           from: doc.data['from'],
           to: doc.data['to'],
           dateAdded: doc.data['dateAdded'],
           dateTime: doc.data['dateTime'],
           riders: doc.data['riders'],
           price: doc.data['price'],
-          did: doc.data['did'],
           availableSeats: doc.data['availableSeats'],
           status: doc.data['status'],
           driver: _driverFromSnapsoht(doc.data['driver']));
@@ -98,15 +99,19 @@ class DatabaseService {
     return ridesCollection
         .where('status', isEqualTo: 'posted')
         .where('availableSeats', isGreaterThan: 0)
-        // .where('rid', is)
         .snapshots()
         .map(_ridesListFromSnapshot);
   }
 
   Future joinRide(Ride ride, User user) async {
-    ridesCollection
-        .document(ride.rid)
-        .updateData({"availableSeats": FieldValue.increment(-1)});
+    ride.riders = [user.uid];
+
+    print('uid from joinRide: ${ride.riders[0]}');
+    ride.riders.add(user.uid);
+    ridesCollection.document(ride.rid).updateData({
+      "availableSeats": FieldValue.increment(-1),
+      "riders": FieldValue.arrayUnion([user.uid])
+    });
     usersCollection
         .document(user.uid)
         .collection('rides')
@@ -162,7 +167,7 @@ class DatabaseService {
     ride.driver = Driver(user.toMap(user));
 
     ridesCollection.add(ride.toMap(ride)).then((value) {
-      print('${value.documentID}');
+      print('doc id : ${value.documentID}');
       ride.rid = value.documentID;
 
       usersCollection
@@ -171,5 +176,27 @@ class DatabaseService {
           .document(ride.rid)
           .setData(ride.toMap(ride));
     });
+  }
+
+  bool hasJoined(List riders, String uid) {
+    // * better to be done locally
+    print(riders);
+    bool joined = false;
+    for (var item in riders) {
+      if (item == uid) {
+        return true;
+      }
+    }
+    return joined;
+  }
+
+  Future<void> leaveRide(String rid, String uid) async {
+    ridesCollection.document(rid).updateData({
+      "availableSeats": FieldValue.increment(1),
+      "riders": FieldValue.arrayRemove([uid])
+    });
+    // print(uid);
+    // print(rid);
+    usersCollection.document(uid).collection('rides').document(rid).delete();
   }
 }

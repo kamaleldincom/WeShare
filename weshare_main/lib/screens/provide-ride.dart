@@ -1,3 +1,4 @@
+import 'package:duration/duration.dart';
 import 'package:flutter/material.dart';
 import 'dart:ui';
 import 'package:intl/intl.dart';
@@ -651,6 +652,7 @@ class _ProvideRideState extends State<ProvideRide> {
                             // print();
                             // print(tripTime);
                             Ride ride = Ride(
+                              did: user.uid,
                               availableSeats: dropDownValue,
                               from: origin,
                               to: destination,
@@ -658,7 +660,6 @@ class _ProvideRideState extends State<ProvideRide> {
                               dateTime: "$tripDate $tripTime",
                               price: tripFares,
                               note: notes,
-                              did: user.uid,
                               status: 'posted',
                             );
                             print("from : $origin");

@@ -5,6 +5,7 @@ import 'package:weshare_main/models/user.dart';
 
 class Ride {
   String rid;
+  String did;
   User user;
   String from;
   String to;
@@ -20,9 +21,9 @@ class Ride {
   String status;
   Driver driver;
   List<dynamic> riders;
-  String did;
   Ride(
-      {this.rid,
+      {this.did,
+      this.rid,
       this.user,
       this.from,
       this.to,
@@ -37,7 +38,8 @@ class Ride {
       this.note,
       this.did,
       this.status,
-      this.driver}) {
+      this.driver,
+      this.riders}) {
     this.dateAdded = ago('2005-10-10 10:10:10');
   }
 
@@ -52,7 +54,8 @@ class Ride {
 
   Map<String, dynamic> toMap(Ride ride) {
     return {
-      'rid': ride.rid,
+      'did': did,
+      'rid': rid,
       'from': ride.from,
       'to': ride.to,
       'riders': ride.riders,
@@ -61,7 +64,6 @@ class Ride {
       'price': ride.price,
       'driver': ride.driver.toMap(ride.driver),
       'status': ride.status,
-      'did': ride.did
     };
   }
 }
@@ -107,6 +109,7 @@ class Car {
 
 class CurrentRides {
   String rid;
+  String did;
   User user;
   String from;
   String to;
@@ -119,12 +122,13 @@ class CurrentRides {
   String genderPreference;
   double price;
   List<dynamic> riders;
-  String did;
   String note;
   String status;
   Driver driver;
   CurrentRides(
-      {this.user,
+      {this.rid,
+      this.did,
+      this.user,
       this.from,
       this.to,
       this.date,
@@ -138,7 +142,8 @@ class CurrentRides {
       this.riders,
       this.note,
       this.status,
-      this.driver}) {
+      this.driver,
+      this.riders}) {
     // this.dateAdded = ago(dateAdded);
   }
 
