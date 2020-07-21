@@ -20,7 +20,20 @@ class Ride {
   String status;
   Driver driver;
   Ride(
-      {this.rid,this.user,this.from,this.to,this.date,time,this.dateTime,this.dateAdded,this.availableSeats,this.genderPreference,this.price,this.note,this.status,this.driver}) {
+      {this.rid,
+      this.user,
+      this.from,
+      this.to,
+      this.date,
+      time,
+      this.dateTime,
+      this.dateAdded,
+      this.availableSeats,
+      this.genderPreference,
+      this.price,
+      this.note,
+      this.status,
+      this.driver}) {
     this.dateAdded = ago('2005-10-10 10:10:10');
   }
 
@@ -33,11 +46,11 @@ class Ride {
   //   return timeago.format(tmp);
   // }
 
-
-  Map<String, dynamic> toMap(Ride ride){
+  Map<String, dynamic> toMap(Ride ride) {
     return {
-      'from':ride.from,
-      'to':ride.to,
+      'from': ride.from,
+      'to': ride.to,
+      'availableSeats': ride.availableSeats,
       'dateTime': ride.dateTime,
       'price': ride.price,
       'driver': ride.driver.toMap(ride.driver),
@@ -59,12 +72,9 @@ class Driver {
         color: data['car']['color'],
         type: data['car']['type']);
   }
-  
-  Map<String, dynamic> toMap(Driver driver){
-    return {
-      'name': driver.name,
-      'car' : driver.car.toMap(driver.car)
-    };
+
+  Map<String, dynamic> toMap(Driver driver) {
+    return {'name': driver.name, 'car': driver.car.toMap(driver.car)};
   }
 }
 
@@ -77,11 +87,11 @@ class Car {
   String color;
 
   Car({this.cid, this.color, this.plateNumber, this.type, this.seatsNo});
-  
-  Map<String, dynamic> toMap(Car car){
+
+  Map<String, dynamic> toMap(Car car) {
     return {
       'color': car.color,
-      'plateNo' : car.plateNumber,
+      'plateNo': car.plateNumber,
       'seatsNo': car.seatsNo,
       'type': car.type
     };
@@ -120,13 +130,9 @@ class CurrentRides {
       this.driver}) {
     // this.dateAdded = ago(dateAdded);
   }
-  
 
   String ago(String datetime) {
     DateTime tmp = DateFormat("yyyy-MM-dd hh:mm:ss").parse(datetime);
     return timeago.format(tmp);
   }
-
 }
-
-  

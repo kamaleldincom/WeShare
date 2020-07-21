@@ -30,7 +30,7 @@ const textInputDecoration = InputDecoration(
 
 // The main button with gradient (like the login in)
 //just pass a text and your're ready to go
-Ink buttonWithGradient(String text,[double maxwidth =310 ]) {
+Ink buttonWithGradient(String text, [double maxwidth = 310]) {
   //assign to a child inside any button and pass the text you like
   return Ink(
     decoration: BoxDecoration(
@@ -65,7 +65,7 @@ class BtmNavBar extends StatefulWidget {
 
 class _BtmNavBarState extends State<BtmNavBar> {
   int _currentIndex = 0;
-  
+
   // void onTapped(int index) {
   //   setState(() {
   //     _currentIndex = index;
@@ -75,14 +75,14 @@ class _BtmNavBarState extends State<BtmNavBar> {
   @override
   Widget build(BuildContext context) {
     final List<Widget> _pages = [
-    Dashboard(),
-    Rides(rides, 'Rider'),
-    Notifications(),
-    Profile('Rider'),
-  ];
+      Dashboard(),
+      Rides(rides, 'Rider'),
+      Notifications(),
+      Profile('Rider'),
+    ];
     return StreamProvider<List<Ride>>.value(
       value: DatabaseService().rides,
-          child: Scaffold(
+      child: Scaffold(
           body: _pages[_currentIndex],
           bottomNavigationBar: BottomNavigationBar(
             currentIndex: _currentIndex,
@@ -294,8 +294,9 @@ Widget appBarBuilder(title, bool backArrowNeeded, actionsToDo) {
 // Card for the current ride Screen pass context, text for the button and color
 // e.g. currentRIdeCard(context,'Start Ride', Colors.green)
 
-Container currentRideCard(BuildContext context, CurrentRides _rides, String usertype) {
-  // print(_rides.dateTime);
+Container currentRideCard(
+    BuildContext context, CurrentRides _rides, String usertype) {
+  print("constants: ${_rides.to}");
   return Container(
     margin: EdgeInsets.symmetric(
       horizontal: 10,
@@ -494,7 +495,9 @@ Container currentRideCard(BuildContext context, CurrentRides _rides, String user
                                                     SizedBox(
                                                       width: 5,
                                                     ),
-                                                    Text('${_rides.driver.car.color}'+ ' ${_rides.driver.car.type}',
+                                                    Text(
+                                                        '${_rides.driver.car.color}' +
+                                                            ' ${_rides.driver.car.type}',
                                                         style: TextStyle(
                                                             fontWeight:
                                                                 FontWeight.bold,
@@ -537,7 +540,8 @@ Container currentRideCard(BuildContext context, CurrentRides _rides, String user
                                                     width: 1),
                                               ),
                                               child: Center(
-                                                  child: Text('${_rides.driver.car.plateNumber}',
+                                                  child: Text(
+                                                      '${_rides.driver.car.plateNumber}',
                                                       style: TextStyle(
                                                           fontWeight:
                                                               FontWeight.bold,
@@ -659,7 +663,6 @@ Container currentRideCard(BuildContext context, CurrentRides _rides, String user
                               ],
                             ),
                     ),
-                  
                   ],
                 ),
               ),
@@ -805,7 +808,7 @@ Container currentRideCard(BuildContext context, CurrentRides _rides, String user
               child: Center(
                   child: Text('${_rides.dateTime}',
                       style: TextStyle(
-                          fontWeight: FontWeight.w500 ,color: Colors.white))),
+                          fontWeight: FontWeight.w500, color: Colors.white))),
             )),
       ]),
     ),

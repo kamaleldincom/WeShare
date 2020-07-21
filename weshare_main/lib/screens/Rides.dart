@@ -11,7 +11,7 @@ import 'constants.dart';
 class Rides extends StatefulWidget {
   final List<Ride> _rides;
   final String usertype;
-  Rides(this._rides,this.usertype);
+  Rides(this._rides, this.usertype);
   @override
   _RidesState createState() => _RidesState();
 }
@@ -19,16 +19,15 @@ class Rides extends StatefulWidget {
 class _RidesState extends State<Rides> {
   @override
   Widget build(BuildContext context) {
-  User user = Provider.of<User>(context)??[];
-  List<Ride> ride = Provider.of<List<Ride>>(context)??[];
+    User user = Provider.of<User>(context) ?? [];
+    //  List<Ride> ride = Provider.of<List<Ride>>(context) ?? [];
     return StreamProvider<List<CurrentRides>>.value(
-          value:  DatabaseService(uid:user.uid).userRides,
-          child: DefaultTabController(
+      value: DatabaseService(uid: user.uid).userRides,
+      child: DefaultTabController(
           length: 2,
           child: Scaffold(
             backgroundColor: Theme.of(context).backgroundColor,
             appBar: PreferredSize(
-              
               preferredSize: Size.fromHeight(150.0),
               child: AppBar(
                 brightness: Brightness.light,
@@ -100,10 +99,7 @@ class _RidesState extends State<Rides> {
                 ),
               ),
             ),
-            body: TabBarView(
-              
-              
-              children: [
+            body: TabBarView(children: [
               Container(
                 // padding: EdgeInsets.only(bottom: 10),
                 child: CurrentListView(widget.usertype),
@@ -117,10 +113,10 @@ class _RidesState extends State<Rides> {
 
 class CurrentListView extends StatefulWidget {
   // const CurrentListView({
-    // Key key,
-    // @required this.rides,
-    // @required this.ride,
-    // @required this.widget,
+  // Key key,
+  // @required this.rides,
+  // @required this.ride,
+  // @required this.widget,
   // }) : super(key: key);
 
   // final List<Rode> rides;
@@ -135,19 +131,18 @@ class CurrentListView extends StatefulWidget {
 class _CurrentListViewState extends State<CurrentListView> {
   @override
   Widget build(BuildContext context) {
-    
-  DatabaseService dbserveice = DatabaseService();
-    List<CurrentRides> rides = dbserveice.filterRides(Provider.of<List<CurrentRides>>(context)??[], "posted");
-  
+    DatabaseService dbserveice = DatabaseService();
+    List<CurrentRides> rides = dbserveice.filterRides(
+        Provider.of<List<CurrentRides>>(context) ?? [], "posted");
+    //  print('trying rides: ${rides}');
 
     return ListView.builder(
-      
       scrollDirection: Axis.vertical,
       // itemExtent: 100.0,
       shrinkWrap: true,
       itemCount: rides.length,
-      itemBuilder: (context, index) => 
-          currentRideCard(context,rides[index],widget.usertype),
+      itemBuilder: (context, index) =>
+          currentRideCard(context, rides[index], widget.usertype),
     );
   }
 }

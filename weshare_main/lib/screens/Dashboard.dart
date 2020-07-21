@@ -21,35 +21,33 @@ class Dashboard extends StatefulWidget {
 }
 
 class _DashboardState extends State<Dashboard> {
-
-
   @override
   Widget build(BuildContext context) {
-    User user = Provider.of<User>(context)??null;
-  // final rides = Provider.of<List<Ride>>(widget.context);
+    User user = Provider.of<User>(context) ?? null;
+    // final rides = Provider.of<List<Ride>>(widget.context);
     return StreamProvider<List<Ride>>.value(
       value: DatabaseService().rides,
-          child: WillPopScope(
-            onWillPop: () => Future.value(false),
-            child: Scaffold(
+      child: WillPopScope(
+        onWillPop: () => Future.value(false),
+        child: Scaffold(
           backgroundColor: Color(0xFFF1F3F5),
           // appBar: AppBar(
           //   brightness: Brightness.light,
           //   automaticallyImplyLeading: false,
           // backgroundColor: Color(0xFFF1F3F5),
-            // title: Text(
-            //   'WeShare',
-            //   style: TextStyle(
-            //     color: Colors.black,
-            //     fontWeight: FontWeight.w600,
-            //   ),  
+          // title: Text(
+          //   'WeShare',
+          //   style: TextStyle(
+          //     color: Colors.black,
+          //     fontWeight: FontWeight.w600,
+          //   ),
           //   ),
           //   elevation: 0.0,
           //   centerTitle: true,
           //   actions: <Widget>[
-              
+
           //   ],
-            
+
           // ),
           body: CustomScrollView(
             slivers: <Widget>[
@@ -93,322 +91,340 @@ class _RidesSliverListState extends State<RidesSliverList> {
   DatabaseService databaseService = DatabaseService();
 
   @override
-  Widget build(BuildContext context)   {
-    final rides = Provider.of<List<Ride>>(context)?? [];
-    User user = Provider.of<User>(context)?? [];
-    print("ride: $rides");
+  Widget build(BuildContext context) {
+    final rides = Provider.of<List<Ride>>(context) ?? [];
+    User user = Provider.of<User>(context) ?? [];
+
     return SliverList(
-      delegate: SliverChildBuilderDelegate(
-      
-        (BuildContext context, index){
-        
-          return Container(
-            height: 210,
-            margin: EdgeInsets.only(top: 15, left: 15, right: 15),
-            decoration: BoxDecoration(
-              color: Colors.white, 
-              borderRadius: BorderRadius.circular(10)
-            ),
-            alignment: Alignment.center,
-            // color: Colors.orange[100*(index%9)],
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: <Widget>[
-                ///////////////
-                // DriverInfo //
-                ///////////////
-                Container(
-                  padding: EdgeInsets.all(10),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: <Widget>[
-                      CircleAvatar(
-                        backgroundColor: Theme.of(context).accentColor,
-                        radius: 22,
+        delegate: SliverChildBuilderDelegate(
+      (BuildContext context, index) {
+        String dateTime = rides[index].dateTime ?? " ";
+        var characterIndex = dateTime.indexOf(" ");
+        var date = dateTime.substring(0, characterIndex);
+        var time = dateTime.substring(characterIndex);
+
+        return Container(
+          height: 210,
+          margin: EdgeInsets.only(top: 15, left: 15, right: 15),
+          decoration: BoxDecoration(
+              color: Colors.white, borderRadius: BorderRadius.circular(10)),
+          alignment: Alignment.center,
+          // color: Colors.orange[100*(index%9)],
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: <Widget>[
+              ///////////////
+              // DriverInfo //
+              ///////////////
+              Container(
+                padding: EdgeInsets.all(10),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: <Widget>[
+                    CircleAvatar(
+                      backgroundColor: Theme.of(context).accentColor,
+                      radius: 22,
+                      child: CircleAvatar(
+                        backgroundColor: Colors.white,
+                        radius: 21.5,
                         child: CircleAvatar(
-                          backgroundColor: Colors.white,
-                          radius: 21.5,
-                          child: CircleAvatar(
-                            backgroundImage: AssetImage('assets/person1.jpeg'),
-                            radius: 20,
+                          backgroundImage: AssetImage('assets/person1.jpeg'),
+                          radius: 20,
+                        ),
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: <Widget>[
+                          Title(
+                            color: Colors.black,
+                            child: Text(
+                              '${rides[index].driver.name}',
+                              style: TextStyle(
+                                fontWeight: FontWeight.w500,
+                                fontSize: 15,
+                              ),
+                            ),
                           ),
-                        ),
+                          SizedBox(
+                            height: 3,
+                          ),
+                          Text(
+                            // '13h ago',
+                            '${rides[index].dateAdded}',
+                            style: TextStyle(
+                              fontWeight: FontWeight.w300,
+                              fontSize: 12,
+                              color: Colors.grey,
+                            ),
+                          ),
+                        ],
                       ),
-                      Padding(
-                        padding: const EdgeInsets.symmetric(horizontal:8.0),
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: <Widget>[
-                            Title(
-                              color: Colors.black, 
-                              child: Text(
-                                '${rides[index].driver.name}',
-                                style: TextStyle(
-                                  fontWeight: FontWeight.w500,
-                                  fontSize: 15,
-                                ),
-                              ),
-                            ),
-                            SizedBox(
-                              height: 3,
-                            ),
-                            Text(
-                                // '13h ago',
-                                '${rides[index].dateAdded}',
-                                style: TextStyle(
-                                  fontWeight: FontWeight.w300,
-                                  fontSize: 12,
-                                  color: Colors.grey,
-                                ),
-                            ),
-                          ],
-                        ),
-                      ),
-                      
-                    ],
-                  ),
+                    ),
+                  ],
                 ),
-                ///////////////
-                // RideDetails //
-                ///////////////
-                Container(
-                  padding: EdgeInsets.symmetric(horizontal:10),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: <Widget>[
-                      Container(
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: <Widget>[
-                            Container(
-                              child: Column(
-                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: <Widget>[
-                                  Title(
-                                    color: Colors.black, 
-                                    child: Text(
-                                      'Pickup at',
-                                      style: TextStyle(
-                                        fontWeight: FontWeight.w300,
-                                        fontSize: 11,
-                                        color: Colors.grey,
-                                      ),
+              ),
+              ///////////////
+              // RideDetails //
+              ///////////////
+              Container(
+                padding: EdgeInsets.symmetric(horizontal: 10),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: <Widget>[
+                    Container(
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: <Widget>[
+                          Container(
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: <Widget>[
+                                Title(
+                                  color: Colors.black,
+                                  child: Text(
+                                    'Pickup at',
+                                    style: TextStyle(
+                                      fontWeight: FontWeight.w300,
+                                      fontSize: 11,
+                                      color: Colors.grey,
                                     ),
                                   ),
-                                  SizedBox(
-                                    height: 3,
+                                ),
+                                SizedBox(
+                                  height: 3,
+                                ),
+                                Text(
+                                  '${time}',
+                                  style: TextStyle(
+                                    fontWeight: FontWeight.w500,
+                                    fontSize: 12,
+                                    color: Colors.grey[700],
                                   ),
-                                  Text(
-                                      '7:45 AM',
-                                      style: TextStyle(
-                                        fontWeight: FontWeight.w500,
-                                        fontSize: 12,
-                                        color: Colors.grey[700],
+                                ),
+                                Text(
+                                  '${date}',
+                                  style: TextStyle(
+                                    fontWeight: FontWeight.w500,
+                                    fontSize: 12,
+                                    color: Colors.grey[700],
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                          SizedBox(
+                            width: 10,
+                          ),
+                          Container(
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: <Widget>[
+                                Container(
+                                  margin: EdgeInsets.all(0),
+                                  child: Row(
+                                    mainAxisAlignment: MainAxisAlignment.start,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: <Widget>[
+                                      Icon(
+                                        Icons.trip_origin,
+                                        color: Theme.of(context).accentColor,
+                                        size: 15,
                                       ),
+                                      SizedBox(width: 10),
+                                      Container(
+                                        child: Column(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.spaceBetween,
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                          children: <Widget>[
+                                            Title(
+                                              color: Colors.black,
+                                              child: Text(
+                                                'From',
+                                                style: TextStyle(
+                                                  fontWeight: FontWeight.w300,
+                                                  fontSize: 11,
+                                                  color: Colors.grey,
+                                                ),
+                                              ),
+                                            ),
+                                            Text(
+                                              '${rides[index].from}',
+                                              style: TextStyle(
+                                                fontWeight: FontWeight.w500,
+                                                fontSize: 15,
+                                                color: Colors.grey[800],
+                                              ),
+                                            ),
+                                          ],
+                                          // brightness_1
+                                        ),
+                                      ),
+                                    ],
                                   ),
-                                ],
+                                ),
+                                SizedBox(
+                                  height: 20,
+                                ),
+                                Container(
+                                  margin: EdgeInsets.all(0),
+                                  child: Row(
+                                    mainAxisAlignment: MainAxisAlignment.start,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: <Widget>[
+                                      Icon(
+                                        Icons.brightness_1,
+                                        color: Theme.of(context).accentColor,
+                                        size: 15,
+                                      ),
+                                      SizedBox(width: 10),
+                                      Container(
+                                        child: Column(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.spaceBetween,
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                          children: <Widget>[
+                                            Title(
+                                              color: Colors.black,
+                                              child: Text(
+                                                'To',
+                                                style: TextStyle(
+                                                  fontWeight: FontWeight.w300,
+                                                  fontSize: 11,
+                                                  color: Colors.grey,
+                                                ),
+                                              ),
+                                            ),
+                                            Text(
+                                              '${rides[index].to}',
+                                              style: TextStyle(
+                                                fontWeight: FontWeight.w400,
+                                                fontSize: 15,
+                                                color: Colors.grey,
+                                              ),
+                                            ),
+                                          ],
+                                          // brightness_1
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                    Container(
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: <Widget>[
+                          Title(
+                            color: Colors.black,
+                            child: Text(
+                              'Available Seats',
+                              style: TextStyle(
+                                fontWeight: FontWeight.w400,
+                                fontSize: 12,
+                                color: Colors.grey,
                               ),
                             ),
-                            SizedBox(width: 10,),
-                            Container(
-                              child: Column(
-                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                children: <Widget>[
-                                  Container(
-                                    margin: EdgeInsets.all(0),
-                                    child: Row(
-                                      mainAxisAlignment: MainAxisAlignment.start,
-                                      crossAxisAlignment: CrossAxisAlignment.start,
-                                      children: <Widget>[
-                                        Icon(
-                                          Icons.trip_origin,
-                                          color: Theme.of(context).accentColor,
-                                          size: 15,
-                                        ),
-                                        SizedBox(width:10),
-                                        Container(
-                                          child: Column(
-                                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                              crossAxisAlignment: CrossAxisAlignment.start,
-                                              children: <Widget>[
-                                                Title(
-                                                  color: Colors.black, 
-                                                  child: Text(
-                                                    'From',
-                                                    style: TextStyle(
-                                                      fontWeight: FontWeight.w300,
-                                                      fontSize: 11,
-                                                      color: Colors.grey,
-                                                    ),
-                                                  ),
-                                                ),
-                                                Text(
-                                                    '${rides[index].from}',
-                                                    style: TextStyle(
-                                                      fontWeight: FontWeight.w500,
-                                                      fontSize: 15,
-                                                      color: Colors.grey[800],
-                                                    ),
-                                                ),
-                                              ],
-                                            // brightness_1
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                  SizedBox(height: 20,),
-                                  Container(
-                                    margin: EdgeInsets.all(0),
-                                    child: Row(
-                                      mainAxisAlignment: MainAxisAlignment.start,
-                                      crossAxisAlignment: CrossAxisAlignment.start,
-                                      children: <Widget>[
-                                        Icon(
-                                          Icons.brightness_1,
-                                          color: Theme.of(context).accentColor,
-                                          size: 15,
-                                        ),
-                                        SizedBox(width:10),
-                                        Container(
-                                          child: Column(
-                                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                              crossAxisAlignment: CrossAxisAlignment.start,
-                                              children: <Widget>[
-                                                Title(
-                                                  color: Colors.black, 
-                                                  child: Text(
-                                                    'To',
-                                                    style: TextStyle(
-                                                      fontWeight: FontWeight.w300,
-                                                      fontSize: 11,
-                                                      color: Colors.grey,
-                                                    ),
-                                                  ),
-                                                ),
-                                                Text(
-                                                    '${rides[index].to}',
-                                                    style: TextStyle(
-                                                      fontWeight: FontWeight.w400,
-                                                      fontSize: 15,
-                                                      color: Colors.grey,
-                                                    ),
-                                                ),
-                                              ],
-                                            // brightness_1
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                ],
-                              ),
+                          ),
+                          SizedBox(
+                            height: 3,
+                          ),
+                          Text(
+                            '${rides[index].availableSeats}',
+                            style: TextStyle(
+                              fontWeight: FontWeight.w500,
+                              fontSize: 24,
+                              color: Colors.black,
                             ),
-                          ],
-                        ),
+                          ),
+                        ],
                       ),
-                      Container(
-                        child: Column(
-                                mainAxisAlignment: MainAxisAlignment.start,
-                                crossAxisAlignment: CrossAxisAlignment.center,
-                                children: <Widget>[
-                                  Title(
-                                    color: Colors.black, 
-                                    child: Text(
-                                      'Available Seats',
-                                      style: TextStyle(
-                                        fontWeight: FontWeight.w400,
-                                        fontSize: 12,
-                                        color: Colors.grey,
-                                      ),
-                                    ),
-                                  ),
-                                  SizedBox(
-                                    height: 3,
-                                  ),
-                                  Text(
-                                      '${rides[index].availableSeats}',
-                                      style: TextStyle(
-                                        fontWeight: FontWeight.w500,
-                                        fontSize: 24,
-                                        color: Colors.black,
-                                      ),
-                                  ),
-                                ],
-                              ),
-                      ),
-                    ],
-                  ),
+                    ),
+                  ],
                 ),
-                ///////////////
-                // FocusData  + Join//
-                ///////////////
-                Container(
-                  padding: EdgeInsets.all(10),
-                  height: 55,
-                  decoration: BoxDecoration(
-                    color: Color(0xFFF9F9F9),
-                    borderRadius: BorderRadius.circular(10),
-                  ),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: <Widget>[
-                      Container(
-                        child: Row(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: <Widget>[
-                            Text(
-                                'MYR',
-                                style: TextStyle(
-                                  fontWeight: FontWeight.w300,
-                                  fontSize: 12,
-                                  color: Colors.grey,
-                                ),
+              ),
+              ///////////////
+              // FocusData  + Join//
+              ///////////////
+              Container(
+                padding: EdgeInsets.all(10),
+                height: 55,
+                decoration: BoxDecoration(
+                  color: Color(0xFFF9F9F9),
+                  borderRadius: BorderRadius.circular(10),
+                ),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: <Widget>[
+                    Container(
+                      child: Row(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: <Widget>[
+                          Text(
+                            'MYR',
+                            style: TextStyle(
+                              fontWeight: FontWeight.w300,
+                              fontSize: 12,
+                              color: Colors.grey,
                             ),
-                            SizedBox(
-                              width: 3,
+                          ),
+                          SizedBox(
+                            width: 3,
+                          ),
+                          Text(
+                            '${rides[index].price}',
+                            style: TextStyle(
+                              fontWeight: FontWeight.w500,
+                              fontSize: 22,
+                              color: Colors.grey[700],
                             ),
-                            Text(
-                                '${rides[index].price}',
-                                style: TextStyle(
-                                  fontWeight: FontWeight.w500,
-                                  fontSize: 22,
-                                  color: Colors.grey[700],
-                                ),
-                            ),
-                          ],
-                        ),
+                          ),
+                        ],
                       ),
-                      ///////////////
-                      // Join btn //
-                      ///////////////
-                      RaisedButton(
-                        color: Theme.of(context).accentColor,
-                        // padding: EdgeInsets.all(5),
-                        onPressed: () {
+                    ),
+                    ///////////////
+                    // Join btn //
+                    ///////////////
+                    RaisedButton(
+                      color: Theme.of(context).accentColor,
+                      // padding: EdgeInsets.all(5),
+                      onPressed: () {
                         ///////////////
                         // PopUp Dialog //
                         ///////////////
-                          showDialog(
+                        showDialog(
                             context: context,
-                            builder: (BuildContext context){
+                            builder: (BuildContext context) {
                               return Dialog(
                                 shape: RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(10),
                                 ),
                                 child: Container(
                                   height: 500,
-                                  decoration: BoxDecoration(
-                                  ),
+                                  decoration: BoxDecoration(),
                                   // margin: EdgeInsets.symmetric(horizontal:15,),
                                   // padding: EdgeInsets.all(10),
                                   child: Column(
-                                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
                                     // crossAxisAlignment: CrossAxisAlignment.start,
                                     children: <Widget>[
                                       ///////////////
@@ -419,49 +435,59 @@ class _RidesSliverListState extends State<RidesSliverList> {
                                         height: 250,
                                         // width: 350,
                                         decoration: BoxDecoration(
-                                          color: Colors.grey[200],
-                                          borderRadius: BorderRadius.circular(10),
-                                          border: Border.all(width: 1, color: Colors.grey,)
-                                        ),
+                                            color: Colors.grey[200],
+                                            borderRadius:
+                                                BorderRadius.circular(10),
+                                            border: Border.all(
+                                              width: 1,
+                                              color: Colors.grey,
+                                            )),
                                       ),
                                       ///////////////
                                       // Ride and Driver Details //
                                       ///////////////
                                       Container(
-                                        margin: EdgeInsets.symmetric(horizontal: 10),
+                                        margin: EdgeInsets.symmetric(
+                                            horizontal: 10),
                                         child: Column(
-                                          mainAxisAlignment: MainAxisAlignment.center,
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.center,
                                           children: <Widget>[
                                             ///////////////
                                             // Driver //
                                             ///////////////
                                             Container(
                                               child: Column(
-                                                mainAxisAlignment: MainAxisAlignment.center,
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment.center,
                                                 children: <Widget>[
                                                   CircleAvatar(
-                                                    backgroundColor: Theme.of(context).accentColor,
+                                                    backgroundColor:
+                                                        Theme.of(context)
+                                                            .accentColor,
                                                     radius: 22,
                                                     child: CircleAvatar(
-                                                      backgroundColor: Colors.white,
+                                                      backgroundColor:
+                                                          Colors.white,
                                                       radius: 21.5,
                                                       child: CircleAvatar(
-                                                        backgroundImage: AssetImage('assets/person1.jpeg'),
+                                                        backgroundImage: AssetImage(
+                                                            'assets/person1.jpeg'),
                                                         radius: 20,
                                                       ),
                                                     ),
                                                   ),
                                                   Title(
-                                                    color: Colors.black, 
+                                                    color: Colors.black,
                                                     child: Text(
                                                       'Ali Qasmi',
                                                       style: TextStyle(
-                                                        fontWeight: FontWeight.w500,
+                                                        fontWeight:
+                                                            FontWeight.w500,
                                                         fontSize: 15,
                                                       ),
                                                     ),
                                                   ),
-                                                  
                                                 ],
                                               ),
                                             ),
@@ -472,20 +498,27 @@ class _RidesSliverListState extends State<RidesSliverList> {
                                               height: 15,
                                             ),
                                             Row(
-                                              mainAxisAlignment: MainAxisAlignment.start,
-                                              crossAxisAlignment: CrossAxisAlignment.start,
-                                              children: <Widget>[   
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.start,
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.start,
+                                              children: <Widget>[
                                                 Container(
                                                   child: Column(
-                                                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                                    mainAxisAlignment:
+                                                        MainAxisAlignment
+                                                            .spaceBetween,
+                                                    crossAxisAlignment:
+                                                        CrossAxisAlignment
+                                                            .start,
                                                     children: <Widget>[
                                                       Title(
-                                                        color: Colors.black, 
+                                                        color: Colors.black,
                                                         child: Text(
                                                           'Pickup at',
                                                           style: TextStyle(
-                                                            fontWeight: FontWeight.w300,
+                                                            fontWeight:
+                                                                FontWeight.w300,
                                                             fontSize: 11,
                                                             color: Colors.grey,
                                                           ),
@@ -495,111 +528,165 @@ class _RidesSliverListState extends State<RidesSliverList> {
                                                         height: 1,
                                                       ),
                                                       Text(
-                                                          '7:45 AM',
-                                                          style: TextStyle(
-                                                            fontWeight: FontWeight.w500,
-                                                            fontSize: 12,
-                                                            color: Colors.grey[700],
-                                                          ),
+                                                        '7:45 AM',
+                                                        style: TextStyle(
+                                                          fontWeight:
+                                                              FontWeight.w500,
+                                                          fontSize: 12,
+                                                          color:
+                                                              Colors.grey[700],
+                                                        ),
                                                       ),
                                                     ],
                                                   ),
-                                                ),                                                         
-                                                SizedBox(width: 10,),
+                                                ),
+                                                SizedBox(
+                                                  width: 10,
+                                                ),
                                                 Container(
-                                                        child: Column(
-                                                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                                  child: Column(
+                                                    mainAxisAlignment:
+                                                        MainAxisAlignment
+                                                            .spaceBetween,
+                                                    children: <Widget>[
+                                                      Container(
+                                                        margin:
+                                                            EdgeInsets.all(0),
+                                                        child: Row(
+                                                          mainAxisAlignment:
+                                                              MainAxisAlignment
+                                                                  .start,
+                                                          crossAxisAlignment:
+                                                              CrossAxisAlignment
+                                                                  .start,
                                                           children: <Widget>[
-                                                            Container(
-                                                              margin: EdgeInsets.all(0),
-                                                              child: Row(
-                                                                mainAxisAlignment: MainAxisAlignment.start,
-                                                                crossAxisAlignment: CrossAxisAlignment.start,
-                                                                children: <Widget>[
-                                                                  Icon(
-                                                                    Icons.trip_origin,
-                                                                    color: Theme.of(context).accentColor,
-                                                                    size: 15,
-                                                                  ),
-                                                                  SizedBox(width:3),
-                                                                  Container(
-                                                                    child: Column(
-                                                                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                                                        crossAxisAlignment: CrossAxisAlignment.start,
-                                                                        children: <Widget>[
-                                                                          Title(
-                                                                            color: Colors.black, 
-                                                                            child: Text(
-                                                                              'From',
-                                                                              style: TextStyle(
-                                                                                fontWeight: FontWeight.w300,
-                                                                                fontSize: 11,
-                                                                                color: Colors.grey,
-                                                                              ),
-                                                                            ),
-                                                                          ),
-                                                                          Text(
-                                                                              'Desa Skudai Apartments',
-                                                                              style: TextStyle(
-                                                                                fontWeight: FontWeight.w500,
-                                                                                fontSize: 13,
-                                                                                color: Colors.grey[800],
-                                                                              ),
-                                                                          ),
-                                                                        ],
-                                                                      // brightness_1
-                                                                    ),
-                                                                  ),
-                                                                ],
-                                                              ),
+                                                            Icon(
+                                                              Icons.trip_origin,
+                                                              color: Theme.of(
+                                                                      context)
+                                                                  .accentColor,
+                                                              size: 15,
                                                             ),
-                                                            SizedBox(height: 10,),
+                                                            SizedBox(width: 3),
                                                             Container(
-                                                              margin: EdgeInsets.all(0),
-                                                              child: Row(
-                                                                mainAxisAlignment: MainAxisAlignment.start,
-                                                                crossAxisAlignment: CrossAxisAlignment.start,
-                                                                children: <Widget>[
-                                                                  Icon(
-                                                                    Icons.brightness_1,
-                                                                    color: Theme.of(context).accentColor,
-                                                                    size: 15,
+                                                              child: Column(
+                                                                mainAxisAlignment:
+                                                                    MainAxisAlignment
+                                                                        .spaceBetween,
+                                                                crossAxisAlignment:
+                                                                    CrossAxisAlignment
+                                                                        .start,
+                                                                children: <
+                                                                    Widget>[
+                                                                  Title(
+                                                                    color: Colors
+                                                                        .black,
+                                                                    child: Text(
+                                                                      'From',
+                                                                      style:
+                                                                          TextStyle(
+                                                                        fontWeight:
+                                                                            FontWeight.w300,
+                                                                        fontSize:
+                                                                            11,
+                                                                        color: Colors
+                                                                            .grey,
+                                                                      ),
+                                                                    ),
                                                                   ),
-                                                                  SizedBox(width:3),
-                                                                  Container(
-                                                                    child: Column(
-                                                                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                                                        crossAxisAlignment: CrossAxisAlignment.start,
-                                                                        children: <Widget>[
-                                                                          Title(
-                                                                            color: Colors.black, 
-                                                                            child: Text(
-                                                                              'To',
-                                                                              style: TextStyle(
-                                                                                fontWeight: FontWeight.w300,
-                                                                                fontSize: 11,
-                                                                                color: Colors.grey,
-                                                                              ),
-                                                                            ),
-                                                                          ),
-                                                                          Text(
-                                                                              'school of Electrical (P05)',
-                                                                              style: TextStyle(
-                                                                                fontWeight: FontWeight.w400,
-                                                                                fontSize: 13,
-                                                                                color: Colors.grey,
-                                                                              ),
-                                                                          ),
-                                                                        ],
-                                                                      // brightness_1
+                                                                  Text(
+                                                                    'Desa Skudai Apartments',
+                                                                    style:
+                                                                        TextStyle(
+                                                                      fontWeight:
+                                                                          FontWeight
+                                                                              .w500,
+                                                                      fontSize:
+                                                                          13,
+                                                                      color: Colors
+                                                                              .grey[
+                                                                          800],
                                                                     ),
                                                                   ),
                                                                 ],
+                                                                // brightness_1
                                                               ),
                                                             ),
                                                           ],
                                                         ),
-                                                      ),                                                                                             
+                                                      ),
+                                                      SizedBox(
+                                                        height: 10,
+                                                      ),
+                                                      Container(
+                                                        margin:
+                                                            EdgeInsets.all(0),
+                                                        child: Row(
+                                                          mainAxisAlignment:
+                                                              MainAxisAlignment
+                                                                  .start,
+                                                          crossAxisAlignment:
+                                                              CrossAxisAlignment
+                                                                  .start,
+                                                          children: <Widget>[
+                                                            Icon(
+                                                              Icons
+                                                                  .brightness_1,
+                                                              color: Theme.of(
+                                                                      context)
+                                                                  .accentColor,
+                                                              size: 15,
+                                                            ),
+                                                            SizedBox(width: 3),
+                                                            Container(
+                                                              child: Column(
+                                                                mainAxisAlignment:
+                                                                    MainAxisAlignment
+                                                                        .spaceBetween,
+                                                                crossAxisAlignment:
+                                                                    CrossAxisAlignment
+                                                                        .start,
+                                                                children: <
+                                                                    Widget>[
+                                                                  Title(
+                                                                    color: Colors
+                                                                        .black,
+                                                                    child: Text(
+                                                                      'To',
+                                                                      style:
+                                                                          TextStyle(
+                                                                        fontWeight:
+                                                                            FontWeight.w300,
+                                                                        fontSize:
+                                                                            11,
+                                                                        color: Colors
+                                                                            .grey,
+                                                                      ),
+                                                                    ),
+                                                                  ),
+                                                                  Text(
+                                                                    'school of Electrical (P05)',
+                                                                    style:
+                                                                        TextStyle(
+                                                                      fontWeight:
+                                                                          FontWeight
+                                                                              .w400,
+                                                                      fontSize:
+                                                                          13,
+                                                                      color: Colors
+                                                                          .grey,
+                                                                    ),
+                                                                  ),
+                                                                ],
+                                                                // brightness_1
+                                                              ),
+                                                            ),
+                                                          ],
+                                                        ),
+                                                      ),
+                                                    ],
+                                                  ),
+                                                ),
                                               ],
                                             ),
                                           ],
@@ -608,51 +695,57 @@ class _RidesSliverListState extends State<RidesSliverList> {
                                       ///////////////
                                       // focus Data + Join //
                                       ///////////////
-                                      Container( 
+                                      Container(
                                         padding: EdgeInsets.all(10),
                                         height: 60,
                                         decoration: BoxDecoration(
                                           color: Color(0xFFF9F9F9),
-                                          borderRadius: BorderRadius.circular(10),
+                                          borderRadius:
+                                              BorderRadius.circular(10),
                                         ),
                                         child: Row(
-                                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                          
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.spaceBetween,
                                           children: <Widget>[
                                             Container(
                                               child: Row(
-                                                crossAxisAlignment: CrossAxisAlignment.start,
+                                                crossAxisAlignment:
+                                                    CrossAxisAlignment.start,
                                                 children: <Widget>[
                                                   Text(
-                                                      'MYR',
-                                                      style: TextStyle(
-                                                        fontWeight: FontWeight.w300,
-                                                        fontSize: 12,
-                                                        color: Colors.grey,
-                                                      ),
+                                                    'MYR',
+                                                    style: TextStyle(
+                                                      fontWeight:
+                                                          FontWeight.w300,
+                                                      fontSize: 12,
+                                                      color: Colors.grey,
+                                                    ),
                                                   ),
                                                   SizedBox(
                                                     width: 3,
                                                   ),
                                                   Text(
-                                                      '1.50',
-                                                      style: TextStyle(
-                                                        fontWeight: FontWeight.w500,
-                                                        fontSize: 22,
-                                                        color: Colors.grey[700],
-                                                      ),
+                                                    '1.50',
+                                                    style: TextStyle(
+                                                      fontWeight:
+                                                          FontWeight.w500,
+                                                      fontSize: 22,
+                                                      color: Colors.grey[700],
+                                                    ),
                                                   ),
                                                 ],
                                               ),
                                             ),
                                             RaisedButton(
-                                              onPressed: (){
+                                              onPressed: () {
                                                 Ride ride = rides[index];
                                                 print('ride id : ${ride.rid}');
-                                                 databaseService.joinRide(ride, user);
-                                                 Navigator.pop(context);
+                                                databaseService.joinRide(
+                                                    ride, user);
+                                                Navigator.pop(context);
                                               },
-                                              color: Theme.of(context).accentColor,
+                                              color:
+                                                  Theme.of(context).accentColor,
                                               child: Text(
                                                 'Join Ride',
                                                 style: TextStyle(
@@ -662,7 +755,9 @@ class _RidesSliverListState extends State<RidesSliverList> {
                                                 ),
                                               ),
                                               shape: new RoundedRectangleBorder(
-                                                borderRadius: new BorderRadius.circular(7.0),
+                                                borderRadius:
+                                                    new BorderRadius.circular(
+                                                        7.0),
                                               ),
                                             ),
                                           ],
@@ -672,31 +767,28 @@ class _RidesSliverListState extends State<RidesSliverList> {
                                   ),
                                 ),
                               );
-                            }
-                          );
-                        },
-                        child: Text(
-                          'Join',
-                          style: TextStyle(
-                            fontSize: 19.0,
-                            color: Colors.white,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                        shape: new RoundedRectangleBorder(
-                          borderRadius: new BorderRadius.circular(7.0),
+                            });
+                      },
+                      child: Text(
+                        'Join',
+                        style: TextStyle(
+                          fontSize: 19.0,
+                          color: Colors.white,
+                          fontWeight: FontWeight.bold,
                         ),
                       ),
-                    ],
-                  ),
+                      shape: new RoundedRectangleBorder(
+                        borderRadius: new BorderRadius.circular(7.0),
+                      ),
+                    ),
+                  ],
                 ),
-              ],
-            ),
-          );
-
-        },
-      childCount:rides.length,
-      )
-    );
+              ),
+            ],
+          ),
+        );
+      },
+      childCount: rides.length,
+    ));
   }
 }

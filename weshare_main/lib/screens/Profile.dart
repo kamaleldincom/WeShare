@@ -201,10 +201,10 @@ class _ProfileState extends State<Profile> {
                               padding: EdgeInsets.fromLTRB(65, 10, 65, 10),
                               onPressed: () {
                                 Navigator.pushReplacement(
-                                      context,
-                                      MaterialPageRoute(
-                                          builder: (BuildContext context) =>
-                                              BtmNavBar()));
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (BuildContext context) =>
+                                            BtmNavBar()));
                               },
                               child: Text(
                                 'Rider',
@@ -257,38 +257,48 @@ class _ProfileState extends State<Profile> {
                                               'Let\'s make our network even bigger...',
                                               style: TextStyle(
                                                 fontWeight: FontWeight.bold,
+                                                fontSize: 14,
                                               )),
-                                          Text('WELCOME ON BOARD!',
-                                              textAlign: TextAlign.center,
+                                          SizedBox(height: 7),
+                                          Text('WELCOME ON BOARD! ⚡🚗',
+                                              textAlign: TextAlign.right,
                                               style: TextStyle(
-                                                fontSize: 20,
+                                                fontSize: 17,
                                               )),
                                           SizedBox(height: 25),
                                           Text(
                                               ' You just need to enter your basic info to apply in FOUR easy steps:',
-                                              style: TextStyle()),
+                                              style: TextStyle(
+                                                fontSize: 14,
+                                              )),
                                           SizedBox(height: 20),
+                                          Text('* A Selfie.',
+                                              textAlign: TextAlign.left,
+                                              style: TextStyle(
+                                                fontSize: 14,
+                                              )),
+                                          Text('* Your IC/Passport Photo.',
+                                              textAlign: TextAlign.left,
+                                              style: TextStyle(
+                                                fontSize: 14,
+                                              )),
+                                          Text('* Your license Photo.',
+                                              textAlign: TextAlign.left,
+                                              style: TextStyle(
+                                                fontSize: 14,
+                                              )),
                                           Text(
-                                            '* A selfie.',
-                                            textAlign: TextAlign.left,
-                                          ),
-                                          Text(
-                                            '* Your IC/Passport No.',
-                                            textAlign: TextAlign.left,
-                                          ),
-                                          Text(
-                                            '* Your license number.',
-                                            textAlign: TextAlign.left,
-                                          ),
-                                          Text(
-                                            '* Your car details (type, color, and plate number)',
-                                            textAlign: TextAlign.left,
-                                          ),
+                                              '* Your car details (type, color, and plate number)',
+                                              textAlign: TextAlign.left,
+                                              style: TextStyle(
+                                                fontSize: 14,
+                                              )),
                                           SizedBox(height: 20),
-                                          Text(
-                                            'That\'s it!!',
-                                            textAlign: TextAlign.left,
-                                          ),
+                                          Text('That\'s it!!',
+                                              textAlign: TextAlign.left,
+                                              style: TextStyle(
+                                                fontSize: 14,
+                                              )),
                                           SizedBox(height: 50),
                                           FlatButton(
                                             onPressed: () async {
@@ -314,7 +324,7 @@ class _ProfileState extends State<Profile> {
                                                   minHeight: 60.0),
                                               alignment: Alignment.center,
                                               child: Text(
-                                                'Next',
+                                                'Let\'s Get Started!',
                                                 textAlign: TextAlign.center,
                                                 style: TextStyle(
                                                   color: Theme.of(context)
