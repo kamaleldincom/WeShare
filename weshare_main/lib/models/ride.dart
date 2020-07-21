@@ -21,25 +21,24 @@ class Ride {
   String status;
   Driver driver;
   List<dynamic> riders;
-  Ride(
-      {this.did,
-      this.rid,
-      this.user,
-      this.from,
-      this.to,
-      this.date,
-      this.time,
-      this.dateTime,
-      this.dateAdded,
-      this.availableSeats,
-      this.genderPreference,
-      this.price,
-      this.riders,
-      this.note,
-      this.did,
-      this.status,
-      this.driver,
-      this.riders}) {
+  Ride({
+    this.rid,
+    this.user,
+    this.from,
+    this.to,
+    this.date,
+    this.time,
+    this.dateTime,
+    this.dateAdded,
+    this.availableSeats,
+    this.genderPreference,
+    this.price,
+    this.riders,
+    this.note,
+    this.did,
+    this.status,
+    this.driver,
+  }) {
     this.dateAdded = ago('2005-10-10 10:10:10');
   }
 
@@ -138,12 +137,10 @@ class CurrentRides {
       this.availableSeats,
       this.genderPreference,
       this.price,
-      this.did,
       this.riders,
       this.note,
       this.status,
-      this.driver,
-      this.riders}) {
+      this.driver}) {
     // this.dateAdded = ago(dateAdded);
   }
 
