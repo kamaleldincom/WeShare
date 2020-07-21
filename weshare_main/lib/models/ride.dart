@@ -19,19 +19,23 @@ class Ride {
   String note;
   String status;
   Driver driver;
+  List<dynamic> riders;
+  String did;
   Ride(
       {this.rid,
       this.user,
       this.from,
       this.to,
       this.date,
-      time,
+      this.time,
       this.dateTime,
       this.dateAdded,
       this.availableSeats,
       this.genderPreference,
       this.price,
+      this.riders,
       this.note,
+      this.did,
       this.status,
       this.driver}) {
     this.dateAdded = ago('2005-10-10 10:10:10');
@@ -48,13 +52,16 @@ class Ride {
 
   Map<String, dynamic> toMap(Ride ride) {
     return {
+      'rid': ride.rid,
       'from': ride.from,
       'to': ride.to,
+      'riders': ride.riders,
       'availableSeats': ride.availableSeats,
       'dateTime': ride.dateTime,
       'price': ride.price,
       'driver': ride.driver.toMap(ride.driver),
-      'status': ride.status
+      'status': ride.status,
+      'did': ride.did
     };
   }
 }
@@ -111,6 +118,8 @@ class CurrentRides {
   int availableSeats;
   String genderPreference;
   double price;
+  List<dynamic> riders;
+  String did;
   String note;
   String status;
   Driver driver;
@@ -125,6 +134,8 @@ class CurrentRides {
       this.availableSeats,
       this.genderPreference,
       this.price,
+      this.did,
+      this.riders,
       this.note,
       this.status,
       this.driver}) {

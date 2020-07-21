@@ -22,7 +22,7 @@ class _RidesState extends State<Rides> {
     User user = Provider.of<User>(context) ?? [];
     //  List<Ride> ride = Provider.of<List<Ride>>(context) ?? [];
     return StreamProvider<List<CurrentRides>>.value(
-      value: DatabaseService(uid: user.uid).userRides,
+      value: DatabaseService(uid: user.uid).userRides(widget.usertype),
       child: DefaultTabController(
           length: 2,
           child: Scaffold(

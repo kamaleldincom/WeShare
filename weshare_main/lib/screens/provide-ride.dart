@@ -654,9 +654,11 @@ class _ProvideRideState extends State<ProvideRide> {
                               availableSeats: dropDownValue,
                               from: origin,
                               to: destination,
+                              riders: [],
                               dateTime: "$tripDate $tripTime",
                               price: tripFares,
                               note: notes,
+                              did: user.uid,
                               status: 'posted',
                             );
                             print("from : $origin");
@@ -707,7 +709,7 @@ class _ProvideRideState extends State<ProvideRide> {
                                             maxWidth: 310.0, minHeight: 60.0),
                                         alignment: Alignment.center,
                                         child: Text(
-                                          'Next',
+                                          'OK!',
                                           textAlign: TextAlign.center,
                                           style: TextStyle(
                                             color:

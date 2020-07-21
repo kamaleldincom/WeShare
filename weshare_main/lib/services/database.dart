@@ -51,6 +51,8 @@ class DatabaseService {
           to: doc.data['to'],
           dateAdded: doc.data['dateAdded'],
           dateTime: doc.data['dateTime'],
+          did: doc.data['did'],
+          riders: doc.data['riders'],
           price: doc.data['price'],
           availableSeats: doc.data['availableSeats'],
           status: doc.data['status'],
@@ -67,7 +69,9 @@ class DatabaseService {
           to: doc.data['to'],
           dateAdded: doc.data['dateAdded'],
           dateTime: doc.data['dateTime'],
+          riders: doc.data['riders'],
           price: doc.data['price'],
+          did: doc.data['did'],
           availableSeats: doc.data['availableSeats'],
           status: doc.data['status'],
           driver: _driverFromSnapsoht(doc.data['driver']));
@@ -75,15 +79,14 @@ class DatabaseService {
     }).toList();
   }
 
-  Stream<List<CurrentRides>> get userRides {
-    return usersCollection
-        .document(uid)
-        .collection('rides')
-        .snapshots()
-        .map(_rodesListFromSnapshot);
-  }
-
-  Stream<List<CurrentRides>> get driverRides {
+  Stream<List<CurrentRides>> userRides(var userType) {
+    if (userType == 'Rider') {
+      return usersCollection
+          .document(uid)
+          .collection('rides')
+          .snapshots()
+          .map(_rodesListFromSnapshot);
+    }
     return usersCollection
         .document(uid)
         .collection('providedRides')
@@ -95,6 +98,7 @@ class DatabaseService {
     return ridesCollection
         .where('status', isEqualTo: 'posted')
         .where('availableSeats', isGreaterThan: 0)
+        // .where('rid', is)
         .snapshots()
         .map(_ridesListFromSnapshot);
   }

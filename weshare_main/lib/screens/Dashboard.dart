@@ -95,10 +95,11 @@ class _RidesSliverListState extends State<RidesSliverList> {
     final rides = Provider.of<List<Ride>>(context) ?? [];
     User user = Provider.of<User>(context) ?? [];
 
+    var dashboardList = rides.where((ride) => ride.did != user.uid).toList();
     return SliverList(
         delegate: SliverChildBuilderDelegate(
       (BuildContext context, index) {
-        String dateTime = rides[index].dateTime ?? " ";
+        String dateTime = dashboardList[index].dateTime ?? " ";
         var characterIndex = dateTime.indexOf(" ");
         var date = dateTime.substring(0, characterIndex);
         var time = dateTime.substring(characterIndex);
@@ -143,7 +144,7 @@ class _RidesSliverListState extends State<RidesSliverList> {
                           Title(
                             color: Colors.black,
                             child: Text(
-                              '${rides[index].driver.name}',
+                              '${dashboardList[index].driver.name}',
                               style: TextStyle(
                                 fontWeight: FontWeight.w500,
                                 fontSize: 15,
@@ -155,7 +156,7 @@ class _RidesSliverListState extends State<RidesSliverList> {
                           ),
                           Text(
                             // '13h ago',
-                            '${rides[index].dateAdded}',
+                            '${dashboardList[index].dateAdded}',
                             style: TextStyle(
                               fontWeight: FontWeight.w300,
                               fontSize: 12,
@@ -202,7 +203,7 @@ class _RidesSliverListState extends State<RidesSliverList> {
                                   height: 3,
                                 ),
                                 Text(
-                                  '${time}',
+                                  '$time',
                                   style: TextStyle(
                                     fontWeight: FontWeight.w500,
                                     fontSize: 12,
@@ -210,7 +211,7 @@ class _RidesSliverListState extends State<RidesSliverList> {
                                   ),
                                 ),
                                 Text(
-                                  '${date}',
+                                  '$date',
                                   style: TextStyle(
                                     fontWeight: FontWeight.w500,
                                     fontSize: 12,
@@ -259,7 +260,7 @@ class _RidesSliverListState extends State<RidesSliverList> {
                                               ),
                                             ),
                                             Text(
-                                              '${rides[index].from}',
+                                              '${dashboardList[index].from}',
                                               style: TextStyle(
                                                 fontWeight: FontWeight.w500,
                                                 fontSize: 15,
@@ -308,7 +309,7 @@ class _RidesSliverListState extends State<RidesSliverList> {
                                               ),
                                             ),
                                             Text(
-                                              '${rides[index].to}',
+                                              '${dashboardList[index].to}',
                                               style: TextStyle(
                                                 fontWeight: FontWeight.w400,
                                                 fontSize: 15,
@@ -348,7 +349,7 @@ class _RidesSliverListState extends State<RidesSliverList> {
                             height: 3,
                           ),
                           Text(
-                            '${rides[index].availableSeats}',
+                            '${dashboardList[index].availableSeats}',
                             style: TextStyle(
                               fontWeight: FontWeight.w500,
                               fontSize: 24,
@@ -390,7 +391,7 @@ class _RidesSliverListState extends State<RidesSliverList> {
                             width: 3,
                           ),
                           Text(
-                            '${rides[index].price}',
+                            '${dashboardList[index].price}',
                             style: TextStyle(
                               fontWeight: FontWeight.w500,
                               fontSize: 22,
@@ -788,7 +789,7 @@ class _RidesSliverListState extends State<RidesSliverList> {
           ),
         );
       },
-      childCount: rides.length,
+      childCount: dashboardList.length,
     ));
   }
 }

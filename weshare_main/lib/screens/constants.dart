@@ -296,7 +296,6 @@ Widget appBarBuilder(title, bool backArrowNeeded, actionsToDo) {
 
 Container currentRideCard(
     BuildContext context, CurrentRides _rides, String usertype) {
-  print("constants: ${_rides.to}");
   return Container(
     margin: EdgeInsets.symmetric(
       horizontal: 10,
