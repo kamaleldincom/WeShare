@@ -296,7 +296,6 @@ Widget appBarBuilder(title, bool backArrowNeeded, actionsToDo) {
 
 Container currentRideCard(
     BuildContext context, CurrentRides _rides, String usertype) {
-  print("constants: ${_rides.to}");
   return Container(
     margin: EdgeInsets.symmetric(
       horizontal: 10,
@@ -315,9 +314,9 @@ Container currentRideCard(
               behavior: HitTestBehavior.opaque,
               onTap: () {
                 if (usertype == 'Rider')
-                  Navigator.pushNamed(context, "/RrDetails");
+                  Navigator.pushNamed(context, "/RrDetails",arguments: _rides);
                 else if (usertype == 'Driver') {
-                  Navigator.pushNamed(context, "/startEndRide");
+                  Navigator.pushNamed(context, "/startEndRide" );
                 }
               },
               child: Container(

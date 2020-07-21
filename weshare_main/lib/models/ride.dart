@@ -4,7 +4,9 @@ import 'package:intl/intl.dart';
 import 'package:weshare_main/models/user.dart';
 
 class Ride {
+
   String rid;
+  String did;
   User user;
   String from;
   String to;
@@ -19,13 +21,16 @@ class Ride {
   String note;
   String status;
   Driver driver;
+  List<dynamic> riders;
   Ride(
-      {this.rid,
+      {
+      this.did,
+      this.rid,
       this.user,
       this.from,
       this.to,
       this.date,
-      time,
+      this.time,
       this.dateTime,
       this.dateAdded,
       this.availableSeats,
@@ -33,7 +38,9 @@ class Ride {
       this.price,
       this.note,
       this.status,
-      this.driver}) {
+      this.driver,
+      this.riders
+      }) {
     this.dateAdded = ago('2005-10-10 10:10:10');
   }
 
@@ -48,13 +55,16 @@ class Ride {
 
   Map<String, dynamic> toMap(Ride ride) {
     return {
+      'did': did,
+      'rid': rid,
       'from': ride.from,
       'to': ride.to,
       'availableSeats': ride.availableSeats,
       'dateTime': ride.dateTime,
       'price': ride.price,
       'driver': ride.driver.toMap(ride.driver),
-      'status': ride.status
+      'riders': ride.riders,
+      'status': ride.status,
     };
   }
 }
@@ -100,6 +110,7 @@ class Car {
 
 class CurrentRides {
   String rid;
+  String did;
   User user;
   String from;
   String to;
@@ -114,8 +125,12 @@ class CurrentRides {
   String note;
   String status;
   Driver driver;
+  List<dynamic> riders;
   CurrentRides(
-      {this.user,
+      {
+      this.rid,
+      this.did,
+      this.user,
       this.from,
       this.to,
       this.date,
@@ -127,7 +142,9 @@ class CurrentRides {
       this.price,
       this.note,
       this.status,
-      this.driver}) {
+      this.driver,
+      this.riders
+      }) {
     // this.dateAdded = ago(dateAdded);
   }
 

@@ -47,6 +47,7 @@ class DatabaseService {
     return snapshot.documents.map((doc) {
       Ride ride = Ride(
           rid: doc.documentID,
+          did: doc.data['did'],
           from: doc.data['from'],
           to: doc.data['to'],
           dateAdded: doc.data['dateAdded'],
@@ -63,6 +64,8 @@ class DatabaseService {
   List<CurrentRides> _rodesListFromSnapshot(QuerySnapshot snapshot) {
     return snapshot.documents.map((doc) {
       CurrentRides ride = CurrentRides(
+          rid: doc.documentID,
+          did: doc.data['did'],
           from: doc.data['from'],
           to: doc.data['to'],
           dateAdded: doc.data['dateAdded'],
@@ -70,6 +73,7 @@ class DatabaseService {
           price: doc.data['price'],
           availableSeats: doc.data['availableSeats'],
           status: doc.data['status'],
+          riders: doc.data['riders'],
           driver: _driverFromSnapsoht(doc.data['driver']));
       return ride;
     }).toList();
@@ -158,7 +162,7 @@ class DatabaseService {
     ride.driver = Driver(user.toMap(user));
 
     ridesCollection.add(ride.toMap(ride)).then((value) {
-      print('${value.documentID}');
+      print('doc id : ${value.documentID}');
       ride.rid = value.documentID;
 
       usersCollection
@@ -168,4 +172,26 @@ class DatabaseService {
           .setData(ride.toMap(ride));
     });
   }
+  bool hasJoined(List riders,String uid){
+    // * better to be done locally
+    for (var item in riders) {
+      item == uid ? true:false;
+        if (item == uid) {
+          return true;
+        } else {
+          return false;
+        }
+    }
+  }
+
+  Future<void> leaveRide(String rid,String uid) async {
+        // await ridesCollection
+        // .document(rid)
+        // .updateData({
+        //             "availableSeats": FieldValue.increment(1)});
+        // print(uid);
+        // print(rid);
+        usersCollection.document(uid).collection('rides').document(rid).delete();
+  }
+
 }
