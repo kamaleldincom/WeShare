@@ -21,6 +21,7 @@ class Dashboard extends StatefulWidget {
 }
 
 class _DashboardState extends State<Dashboard> {
+  final _scaffold = GlobalKey<ScaffoldState>();
   @override
   Widget build(BuildContext context) {
     User user = Provider.of<User>(context) ?? null;
@@ -30,6 +31,7 @@ class _DashboardState extends State<Dashboard> {
       child: WillPopScope(
         onWillPop: () => Future.value(false),
         child: Scaffold(
+          key: _scaffold,
           backgroundColor: Color(0xFFF1F3F5),
           // appBar: AppBar(
           //   brightness: Brightness.light,
@@ -68,7 +70,7 @@ class _DashboardState extends State<Dashboard> {
               ///////////////
               // SliverList //
               ///////////////
-              RidesSliverList(),
+              RidesSliverList(scaffold:  _scaffold),
             ],
           ),
           // bottomNavigationBar: BtmNavBar(),
@@ -79,7 +81,9 @@ class _DashboardState extends State<Dashboard> {
 }
 
 class RidesSliverList extends StatefulWidget {
+  final scaffold;
   const RidesSliverList({
+    this.scaffold,
     Key key,
   }) : super(key: key);
 
@@ -739,10 +743,22 @@ class _RidesSliverListState extends State<RidesSliverList> {
                                             RaisedButton(
                                               onPressed: () {
                                                 Ride ride = rides[index];
-                                                print('ride id : ${ride.rid}');
-                                                databaseService.joinRide(
-                                                    ride, user);
-                                                Navigator.pop(context);
+                                                if (databaseService.hasJoined(
+                                                    ride.riders, user.uid)) {
+                                                      Navigator.pop(context);
+                                                  SnackBar registrationBar = SnackBar(
+                                                    content: Text(
+                                                      'Sorry, You joined this ride!',
+                                                    ),
+                                                  );
+                                                widget.scaffold.currentState.showSnackBar(registrationBar);
+                                                } else {
+                                                  print(
+                                                      'ride id : ${ride.rid}');
+                                                  databaseService.joinRide(
+                                                      ride, user);
+                                                  Navigator.pop(context);
+                                                }
                                               },
                                               color:
                                                   Theme.of(context).accentColor,

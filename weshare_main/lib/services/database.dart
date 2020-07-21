@@ -55,6 +55,7 @@ class DatabaseService {
           price: doc.data['price'],
           availableSeats: doc.data['availableSeats'],
           status: doc.data['status'],
+          riders: doc.data['riders'],
           driver: _driverFromSnapsoht(doc.data['driver']));
       // print("docdata: ${doc.documentID}");
       return ride;
@@ -99,14 +100,20 @@ class DatabaseService {
     return ridesCollection
         .where('status', isEqualTo: 'posted')
         .where('availableSeats', isGreaterThan: 0)
+        // .where(uid, isEqualTo: false)
         .snapshots()
         .map(_ridesListFromSnapshot);
   }
 
   Future joinRide(Ride ride, User user) async {
+    ride.riders = [user.uid];
+    
+    print('uid from joinRide: ${ride.riders[0]}');
+    ride.riders.add(user.uid);
     ridesCollection
         .document(ride.rid)
-        .updateData({"availableSeats": FieldValue.increment(-1)});
+        .updateData({"availableSeats": FieldValue.increment(-1),
+                      "riders": FieldValue.arrayUnion([user.uid])});
     usersCollection
         .document(user.uid)
         .collection('rides')
@@ -174,21 +181,21 @@ class DatabaseService {
   }
   bool hasJoined(List riders,String uid){
     // * better to be done locally
+    print(riders);
+    bool joined = false;
     for (var item in riders) {
-      item == uid ? true:false;
         if (item == uid) {
-          return true;
-        } else {
-          return false;
+        return true;
         }
     }
+    return joined;
   }
 
   Future<void> leaveRide(String rid,String uid) async {
-        // await ridesCollection
-        // .document(rid)
-        // .updateData({
-        //             "availableSeats": FieldValue.increment(1)});
+  ridesCollection.document(rid).updateData({
+                    "availableSeats": FieldValue.increment(1),
+                    "riders": FieldValue.arrayRemove([uid])
+                    });
         // print(uid);
         // print(rid);
         usersCollection.document(uid).collection('rides').document(rid).delete();
