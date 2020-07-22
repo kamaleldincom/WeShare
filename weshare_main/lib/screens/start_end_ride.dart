@@ -35,7 +35,7 @@ class _StartEndRideInterfaceState extends State<StartEndRideInterface> {
         constraints: BoxConstraints.expand(),
         child: Stack(
           children: <Widget>[
-            // MAP GOES HERE    
+            // MAP GOES HERE
 
             //! Chat Info.
             Positioned(
@@ -66,9 +66,8 @@ class _StartEndRideInterfaceState extends State<StartEndRideInterface> {
                       child: Column(
                         children: <Widget>[
                           Row(
-                            crossAxisAlignment: CrossAxisAlignment.start, 
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween, 
-
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: <Widget>[
                               Container(
                                 alignment: Alignment.topLeft,
@@ -76,7 +75,6 @@ class _StartEndRideInterfaceState extends State<StartEndRideInterface> {
                                 child: Column(
                                   children: <Widget>[
                                     Row(
-                                      
                                       children: <Widget>[
                                         SizedBox(
                                           width: 22,
@@ -139,12 +137,13 @@ class _StartEndRideInterfaceState extends State<StartEndRideInterface> {
                                   ],
                                 ),
                               ),
-                              rideStarted ? Container() : Text(
-                                'Ride at 1:15 PM',
-                                style: TextStyle(color: Colors.grey),
-                              ),
-
-                              ],
+                              rideStarted
+                                  ? Container()
+                                  : Text(
+                                      'Ride at 1:15 PM',
+                                      style: TextStyle(color: Colors.grey),
+                                    ),
+                            ],
                           ),
                           SizedBox(height: rideStarted ? 35 : 15),
                           SizedBox(
@@ -160,7 +159,8 @@ class _StartEndRideInterfaceState extends State<StartEndRideInterface> {
                                           style:
                                               TextStyle(color: Colors.white)),
                                       onPressed: () {
-                                        DatabaseService().endRide(ride, user.uid);
+                                        DatabaseService()
+                                            .endRide(ride, user.uid);
                                       },
                                     )
                                   : FlatButton(
@@ -172,9 +172,9 @@ class _StartEndRideInterfaceState extends State<StartEndRideInterface> {
                                           style:
                                               TextStyle(color: Colors.white)),
                                       onPressed: () {
-                                        DatabaseService().startRide(ride, user.uid);
+                                        DatabaseService()
+                                            .startRide(ride, user.uid);
                                         setState(() {
-
                                           rideStarted = true;
                                         });
                                       },
@@ -216,7 +216,9 @@ class _StartEndRideInterfaceState extends State<StartEndRideInterface> {
                                           FlatButton(
                                             child: Text('Yes'),
                                             onPressed: () {
-                                              DatabaseService().cancelRide(ride, user.uid);
+                                              DatabaseService()
+                                                  .cancelRide(ride, user.uid);
+                                              Navigator.pop(context);
                                               Navigator.pop(context);
                                             },
                                           ),

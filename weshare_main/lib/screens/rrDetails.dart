@@ -352,9 +352,9 @@ class _RrDetailsState extends State<RrDetails> {
                                   FlatButton(
                                     child: Text('Yes'),
                                     onPressed: () {
-                                      print('ride id: ${ride.rid}');
                                       DatabaseService()
                                           .leaveRide(ride.rid, user.uid);
+                                      Navigator.pop(context);
                                       Navigator.pop(context);
                                     },
                                   ),
