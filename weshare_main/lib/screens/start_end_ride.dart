@@ -159,7 +159,9 @@ class _StartEndRideInterfaceState extends State<StartEndRideInterface> {
                                       child: Text('END RIDE',
                                           style:
                                               TextStyle(color: Colors.white)),
-                                      onPressed: () {},
+                                      onPressed: () {
+                                        DatabaseService().endRide(ride, user.uid);
+                                      },
                                     )
                                   : FlatButton(
                                       shape: RoundedRectangleBorder(

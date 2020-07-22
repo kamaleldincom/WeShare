@@ -233,5 +233,22 @@ class DatabaseService {
      usersCollection.document(rider).collection('rides').document(ride.rid).delete();
   }
   }
+  Future endRide(CurrentRides ride, String uid) async{
+
+   ridesCollection.document(ride.rid).updateData({
+      "status": "completed",
+    });
+    usersCollection.document(uid).collection('providedRides').document(ride.rid).updateData({
+      "status": "completed",
+    });
+    List riders = await ridesCollection.document(ride.rid).get().then((doc) => doc.data['riders']);
+    for (var rider in riders) {
+     usersCollection.document(rider).collection('rides').document(ride.rid).updateData({
+      "status": "completed",
+    });
+  }
+  }
+
+
 
 }
