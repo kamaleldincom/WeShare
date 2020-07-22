@@ -71,8 +71,11 @@ class _DashboardState extends State<Dashboard> {
               // SliverList //
               ///////////////
               RidesSliverList(scaffold:  _scaffold),
+              
             ],
+            
           ),
+          
           // bottomNavigationBar: BtmNavBar(),
         ),
       ),
@@ -195,7 +198,7 @@ class _RidesSliverListState extends State<RidesSliverList> {
                                 Title(
                                   color: Colors.black,
                                   child: Text(
-                                    'Pickup at',
+                                    'Pickup time',
                                     style: TextStyle(
                                       fontWeight: FontWeight.w300,
                                       fontSize: 11,
@@ -204,21 +207,21 @@ class _RidesSliverListState extends State<RidesSliverList> {
                                   ),
                                 ),
                                 SizedBox(
-                                  height: 3,
+                                  height: 2,
                                 ),
                                 Text(
                                   '$time',
                                   style: TextStyle(
                                     fontWeight: FontWeight.w500,
-                                    fontSize: 12,
-                                    color: Colors.grey[700],
+                                    fontSize: 14,
+                                    color: Colors.grey[800],
                                   ),
                                 ),
                                 Text(
                                   '$date',
                                   style: TextStyle(
                                     fontWeight: FontWeight.w500,
-                                    fontSize: 12,
+                                    fontSize: 11,
                                     color: Colors.grey[700],
                                   ),
                                 ),
@@ -226,11 +229,13 @@ class _RidesSliverListState extends State<RidesSliverList> {
                             ),
                           ),
                           SizedBox(
-                            width: 10,
+                            width: 15,
                           ),
                           Container(
                             child: Column(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              
                               children: <Widget>[
                                 Container(
                                   margin: EdgeInsets.all(0),
@@ -244,7 +249,7 @@ class _RidesSliverListState extends State<RidesSliverList> {
                                         color: Theme.of(context).accentColor,
                                         size: 15,
                                       ),
-                                      SizedBox(width: 10),
+                                      SizedBox(width: 5),
                                       Container(
                                         child: Column(
                                           mainAxisAlignment:
@@ -270,6 +275,7 @@ class _RidesSliverListState extends State<RidesSliverList> {
                                                 fontSize: 15,
                                                 color: Colors.grey[800],
                                               ),
+                                              overflow: TextOverflow.fade, 
                                             ),
                                           ],
                                           // brightness_1
@@ -293,7 +299,7 @@ class _RidesSliverListState extends State<RidesSliverList> {
                                         color: Theme.of(context).accentColor,
                                         size: 15,
                                       ),
-                                      SizedBox(width: 10),
+                                      SizedBox(width: 5),
                                       Container(
                                         child: Column(
                                           mainAxisAlignment:
@@ -319,6 +325,7 @@ class _RidesSliverListState extends State<RidesSliverList> {
                                                 fontSize: 15,
                                                 color: Colors.grey,
                                               ),
+                                              overflow: TextOverflow.fade, 
                                             ),
                                           ],
                                           // brightness_1
@@ -485,7 +492,7 @@ class _RidesSliverListState extends State<RidesSliverList> {
                                                   Title(
                                                     color: Colors.black,
                                                     child: Text(
-                                                      'Ali Qasmi',
+                                                      '${dashboardList[index].driver.name}',
                                                       style: TextStyle(
                                                         fontWeight:
                                                             FontWeight.w500,
@@ -755,9 +762,9 @@ class _RidesSliverListState extends State<RidesSliverList> {
                                                 widget.scaffold.currentState.showSnackBar(registrationBar);
                                                 } else {
                                                   print(
-                                                      'ride id : ${ride.rid}');
+                                                      'ride id : ${dashboardList[index].rid}');
                                                   databaseService.joinRide(
-                                                      ride, user);
+                                                      dashboardList[index], user);
                                                   Navigator.pop(context);
                                                 }
                                               },

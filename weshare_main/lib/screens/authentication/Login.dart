@@ -98,103 +98,111 @@ User user = User.form();
               ),
             ),
           ),
-          body: TabBarView(children: [
-            Container(
-                padding: EdgeInsets.symmetric(vertical: 20, horizontal: 50.0),
-                child: Form(
-                  key: _formKey,
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: <Widget>[
-                      SizedBox(
-                        height: 50.0,
-                      ),
-                      Text('Email',
-                          textAlign: TextAlign.start,
-                          style: TextStyle(color: Colors.grey, fontSize: 14.0)),
-                      Material(
-                        elevation: 2.0,
-                        shadowColor: Colors.black,
-                        borderRadius: BorderRadius.all(Radius.circular(10.0)),
-                        child: TextFormField(
-                          decoration: textInputDecoration.copyWith(
-                              hintText: 'test@test.com'),
-                          validator: (val) =>
-                              val.isEmpty ? 'Enter an email' : null,
-                          onChanged: (val) {
-                            setState(() => email = val);
-                          },
-                        ),
-                      ),
-                      SizedBox(
-                        height: 20.0,
-                      ),
-                      Text('Password',
-                          textAlign: TextAlign.start,
-                          style: TextStyle(color: Colors.grey, fontSize: 14.0)),
-                      Material(
-                        elevation: 2.0,
-                        shadowColor: Colors.black,
-                        borderRadius: BorderRadius.all(Radius.circular(10.0)),
-                        child: TextFormField(
-                          decoration:
-                              textInputDecoration.copyWith(hintText: '123456'),
-                          validator: (val) => val.length < 6
-                              ? 'Enter a password 6+ chars long'
-                              : null,
-                          obscureText: true,
-                          onChanged: (val) {
-                            setState(() => password = val);
-                          },
-                        ),
-                      ),
-                      SizedBox(
-                        height: 20.0,
-                      ),
-                      Text(
-                        error,
-                        style: TextStyle(color: Colors.red, fontSize: 14.0),
-                      ),
-                      //SnackBar
-                      Builder(builder: (context) {
-                        return Container(
-                          height: 60.0,
-                          child: RaisedButton(
-                              onPressed: () async {
-                                if (_formKey.currentState.validate()) {
-
-                                     await _auth.signInWithEmailAndPassword(email, password);
-                                
-                                  // if (email == 'test@test.com' &&
-                                  //     password == '123456') {
-                                    // Navigator.pushReplacementNamed(
-                                    //     context, '/nav');
-                                  // } else {
-                                  //   SnackBar registrationBar = SnackBar(
-                                  //     content: Text(
-                                  //       'Invalid Login/Password.. Try Again!',
-                                  //     ),
-                                  //   );
-                                  //   Scaffold.of(context)
-                                  //       .showSnackBar(registrationBar);
-                                  // }
-                                }
+          body: GestureDetector(
+            onTap: () =>
+                    FocusScope.of(context).requestFocus(new FocusNode()),
+                      child: TabBarView(children: [
+              SingleChildScrollView(
+                  child: Container(
+                    padding: EdgeInsets.symmetric(vertical: 20, horizontal: 50.0),
+                    child: Form(
+                      key: _formKey,
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        
+                        children: <Widget>[
+                          // SizedBox(
+                          //   height: 20.0,
+                          // ),
+                          Text('Email',
+                              textAlign: TextAlign.start,
+                              style: TextStyle(color: Colors.grey, fontSize: 14.0)),
+                          Material(
+                            elevation: 2.0,
+                            shadowColor: Colors.black,
+                            borderRadius: BorderRadius.all(Radius.circular(10.0)),
+                            child: TextFormField(
+                              decoration: textInputDecoration.copyWith(
+                                  hintText: 'test@test.com'),
+                              validator: (val) =>
+                                  val.isEmpty ? 'Enter an email' : null,
+                              onChanged: (val) {
+                                setState(() => email = val);
                               },
-                              shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(10.0)),
-                              padding: EdgeInsets.all(0.0),
-                              child: buttonWithGradient('login')),
-                        );
-                      }),
+                            ),
+                          ),
+                          SizedBox(
+                            height: 20.0,
+                          ),
+                          Text('Password',
+                              textAlign: TextAlign.start,
+                              style: TextStyle(color: Colors.grey, fontSize: 14.0)),
+                          Material(
+                            elevation: 2.0,
+                            shadowColor: Colors.black,
+                            borderRadius: BorderRadius.all(Radius.circular(10.0)),
+                            child: TextFormField(
+                              decoration:
+                                  textInputDecoration.copyWith(hintText: '123456'),
+                              validator: (val) => val.length < 6
+                                  ? 'Enter a password 6+ chars long'
+                                  : null,
+                              obscureText: true,
+                              onChanged: (val) {
+                                setState(() => password = val);
+                              },
+                            ),
+                          ),
+                          SizedBox(
+                            height: 20.0,
+                          ),
+                          Text(
+                            error,
+                            style: TextStyle(color: Colors.red, fontSize: 14.0),
+                          ),
+                          //SnackBar
+                          Builder(builder: (context) {
+                            return Container(
+                              height: 60.0,
+                              child: RaisedButton(
+                                  onPressed: () async {
+                                    if (_formKey.currentState.validate()) {
 
-                      SizedBox(height: 12.0),
-                      bottomSection('Forgot Password?'),
-                    ],
-                  ),
-                )),
-            
-            signUp(_next, _previous)[index],
-          ]),
+                                         await _auth.signInWithEmailAndPassword(email, password);
+                                    
+                                      // if (email == 'test@test.com' &&
+                                      //     password == '123456') {
+                                        // Navigator.pushReplacementNamed(
+                                        //     context, '/nav');
+                                      // } else {
+                                      //   SnackBar registrationBar = SnackBar(
+                                      //     content: Text(
+                                      //       'Invalid Login/Password.. Try Again!',
+                                      //     ),
+                                      //   );
+                                      //   Scaffold.of(context)
+                                      //       .showSnackBar(registrationBar);
+                                      // }
+                                    }
+                                  },
+                                  shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(10.0)),
+                                  padding: EdgeInsets.all(0.0),
+                                  child: buttonWithGradient('login')),
+                            );
+                          }),
+
+                          SizedBox(height: 12.0),
+                          bottomSection('Forgot Password?'),
+                        ],
+                      ),
+                    )),
+              ),
+              
+              signUp(_next, _previous)[index],
+            ]),
+          ),
         ),
       ),
     );
