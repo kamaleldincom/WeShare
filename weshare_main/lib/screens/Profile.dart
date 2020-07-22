@@ -21,7 +21,7 @@ class _ProfileState extends State<Profile> {
   final _scaffoldKey = GlobalKey<ScaffoldState>();
   @override
   Widget build(BuildContext context) {
-    User user = Provider.of<User>(context);
+    User user = Provider.of<User>(context)??[];
     databaseService.getUserDetails(user.uid);
     print('email: ${user.email}');
     // databaseService.getUserDetails(user.uid);

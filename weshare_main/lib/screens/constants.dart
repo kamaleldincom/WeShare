@@ -316,7 +316,7 @@ Container currentRideCard(
                 if (usertype == 'Rider')
                   Navigator.pushNamed(context, "/RrDetails",arguments: _rides);
                 else if (usertype == 'Driver') {
-                  Navigator.pushNamed(context, "/startEndRide" );
+                  Navigator.pushNamed(context, "/startEndRide",  arguments: _rides );
                 }
               },
               child: Container(
@@ -642,7 +642,7 @@ Container currentRideCard(
                                       if (usertype == 'Rider') {
                                       } else {
                                         Navigator.pushNamed(
-                                            context, "/startEndRide");
+                                            context, "/startEndRide", arguments: _rides);
                                       }
                                     },
                                     shape: RoundedRectangleBorder(

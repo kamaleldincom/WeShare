@@ -121,10 +121,18 @@ class DatabaseService {
 
   List<CurrentRides> filterRides(List<CurrentRides> rides, String status) {
     List<CurrentRides> filtered = [];
-    for (var item in rides) {
-      if (item.status == status) {
+    if (status == 'current') {
+      for (var item in rides) {
+      if (item.status == 'posted' || item.status == 'started' ) {
         filtered.add(item);
       }
+    }
+    }else if(status == 'history'){
+      for (var item in rides) {
+      if (item.status == 'completed' ) {
+        filtered.add(item);
+      }
+    }
     }
     return filtered;
   }
@@ -195,8 +203,35 @@ class DatabaseService {
       "availableSeats": FieldValue.increment(1),
       "riders": FieldValue.arrayRemove([uid])
     });
-    // print(uid);
-    // print(rid);
     usersCollection.document(uid).collection('rides').document(rid).delete();
   }
+
+  
+  Future<void> startRide(CurrentRides ride, String uid) async{
+    //  ride.riders.add(user.uid);
+    ridesCollection.document(ride.rid).updateData({
+      "status": "started",
+    });
+    usersCollection.document(uid).collection('providedRides').document(ride.rid).updateData({
+      "status": "started",
+    });
+    List riders = await ridesCollection.document(ride.rid).get().then((doc) => doc.data['riders']);
+  for (var rider in riders) {
+     usersCollection.document(rider).collection('rides').document(ride.rid).updateData({
+      "status": "started",
+    });
+  }
+  }
+
+
+  Future cancelRide(CurrentRides ride, String uid) async{
+
+  List riders = await ridesCollection.document(ride.rid).get().then((doc) => doc.data['riders']);
+  ridesCollection.document(ride.rid).delete();
+  usersCollection.document(uid).collection('providedRides').document(ride.rid).delete();
+  for (var rider in riders) {
+     usersCollection.document(rider).collection('rides').document(ride.rid).delete();
+  }
+  }
+
 }

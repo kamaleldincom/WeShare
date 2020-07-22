@@ -1,4 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:path/path.dart';
+import 'package:provider/provider.dart';
+import 'package:weshare_main/models/ride.dart';
+import 'package:weshare_main/models/user.dart';
+import 'package:weshare_main/services/database.dart';
 import './constants.dart';
 
 class StartEndRideInterface extends StatefulWidget {
@@ -8,9 +13,12 @@ class StartEndRideInterface extends StatefulWidget {
 
 class _StartEndRideInterfaceState extends State<StartEndRideInterface> {
   bool rideStarted = false;
-
+  CurrentRides ride;
   @override
   Widget build(BuildContext context) {
+    ride = ModalRoute.of(context).settings.arguments;
+    User user = Provider.of<User>(context);
+    // print('ride from start $ride');
     return Scaffold(
       backgroundColor: Colors.yellow,
       appBar: AppBar(
@@ -89,7 +97,7 @@ class _StartEndRideInterfaceState extends State<StartEndRideInterface> {
                                           size: 22,
                                         ),
                                         Text(
-                                          'Desa Skudai Apartments',
+                                          '${ride.from}',
                                           style: TextStyle(
                                             fontSize: 13,
                                             fontWeight: FontWeight.bold,
@@ -119,7 +127,7 @@ class _StartEndRideInterfaceState extends State<StartEndRideInterface> {
                                           size: 22,
                                         ),
                                         Text(
-                                          'Electrical (FKE) P05',
+                                          '${ride.to}',
                                           style: TextStyle(
                                             fontSize: 13,
                                             fontWeight: FontWeight.bold,
@@ -162,7 +170,9 @@ class _StartEndRideInterfaceState extends State<StartEndRideInterface> {
                                           style:
                                               TextStyle(color: Colors.white)),
                                       onPressed: () {
+                                        DatabaseService().startRide(ride, user.uid);
                                         setState(() {
+
                                           rideStarted = true;
                                         });
                                       },
@@ -203,7 +213,10 @@ class _StartEndRideInterfaceState extends State<StartEndRideInterface> {
                                           ),
                                           FlatButton(
                                             child: Text('Yes'),
-                                            onPressed: () {},
+                                            onPressed: () {
+                                              DatabaseService().cancelRide(ride, user.uid);
+                                              Navigator.pop(context);
+                                            },
                                           ),
                                         ],
                                       );

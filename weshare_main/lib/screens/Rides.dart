@@ -133,7 +133,7 @@ class _CurrentListViewState extends State<CurrentListView> {
   Widget build(BuildContext context) {
     DatabaseService dbserveice = DatabaseService();
     List<CurrentRides> rides = dbserveice.filterRides(
-        Provider.of<List<CurrentRides>>(context) ?? [], "posted");
+        Provider.of<List<CurrentRides>>(context) ?? [], 'current');
     //  print('trying rides: ${rides}');
 
     return ListView.builder(

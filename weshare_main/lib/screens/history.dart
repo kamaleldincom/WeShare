@@ -23,8 +23,7 @@ class _HistoryState extends State<History> {
   @override
   Widget build(BuildContext context) {
     DatabaseService dbserveice = DatabaseService();
-  List<CurrentRides> rides = dbserveice.filterRides(Provider.of<List<CurrentRides>>(context)??[], "completed");
-  
+  List<CurrentRides> rides = dbserveice.filterRides(Provider.of<List<CurrentRides>>(context)??[], 'history');
   
     return Container(
       child: ListView.builder(
