@@ -21,12 +21,13 @@ class _ProfileState extends State<Profile> {
   final _scaffoldKey = GlobalKey<ScaffoldState>();
   @override
   Widget build(BuildContext context) {
-    User user = Provider.of<User>(context)??[];
+    User user = Provider.of<User>(context);
     databaseService.getUserDetails(user.uid);
     print('email: ${user.email}');
     // databaseService.getUserDetails(user.uid);
     // print(user.email);
     // User user1;
+    if(user.uid != null)
     return FutureBuilder<User>(
         future: databaseService.getUserDetails(user.uid),
         builder: (context, snapshot) {
@@ -232,7 +233,7 @@ class _ProfileState extends State<Profile> {
                                 //            '/driverRegistration');
 
                                 if (user.isDriver) {
-                                  Navigator.pushReplacement(
+                                  Navigator.push(
                                       context,
                                       MaterialPageRoute(
                                           builder: (BuildContext context) =>

@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:weshare_main/services/auth.dart';
+import 'package:weshare_main/wrapper.dart';
 import 'dart:ui';
 import './constants.dart';
 
@@ -104,9 +105,19 @@ class _SettingsState extends State<Settings> {
                 fontSize: 17),
           ),
           onPressed: () async {
-            // Navigator.pushNamed(context, '/login');
-            Navigator.pop(context);
+            if (userType == 'Rider') {
+              Navigator.pop(context);
             await _auth.signOut();
+              
+            } else if(userType == 'Driver'){
+            // Navigator.popUntil(context,
+            //                       ModalRoute.withName('/driverNav'));
+              Navigator.pop(context);
+              Navigator.pop(context);
+              await _auth.signOut();
+            }
+            // Navigator.pop(context);
+            // Navigator.pop(context);
           },
           color: Colors.grey[500],
           shape: RoundedRectangleBorder(
