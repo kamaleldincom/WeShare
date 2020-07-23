@@ -137,10 +137,48 @@ class _RidesSliverListState extends State<RidesSliverList> {
                       child: CircleAvatar(
                         backgroundColor: Colors.white,
                         radius: 21.5,
-                        child: CircleAvatar(
-                          backgroundImage: AssetImage('assets/person1.jpeg'),
-                          radius: 20,
-                        ),
+                        child: FutureBuilder(
+                  future: DatabaseService().getImage(dashboardList[index].did),
+                  builder: (context, snapshot) {
+                    if (snapshot.connectionState ==
+                          ConnectionState.done)
+                      return CircleAvatar(
+                          child: ClipOval(
+                            child:snapshot.data,
+                          ),
+                                // backgroundImage: NetworkImage(snapshot.data.preview),
+                                radius: 20,
+                              );
+
+                    if (snapshot.connectionState ==
+                          ConnectionState.waiting)
+                      return Container(
+                            // height: MediaQuery.of(context).size.height /
+                            //     1.25,
+                            // width: MediaQuery.of(context).size.width /
+                            //     1.25,
+                            // child: CircularProgressIndicator(
+                              // backgroundColor: Colors.transparent,
+
+                              //   strokeWidth: 4,
+                            // )
+                            child: Icon(Icons.person, size: 35)
+                            );
+
+
+                    if (snapshot.connectionState ==
+                          ConnectionState.none) {
+                      
+                    return Container(
+                      child: Icon(Icons.person),
+                    );
+                    }
+                    return Container(
+                      child: Icon(Icons.person, size: 35),
+                    );
+                  },
+              ),
+             
                       ),
                     ),
                     Padding(
