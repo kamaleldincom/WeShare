@@ -1,4 +1,13 @@
+import 'dart:io';
+
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
+import 'package:image_cropper/image_cropper.dart';
+import 'package:image_picker/image_picker.dart';
+// import 'package:firebase_storage/firebase_storage.dart';
+import 'package:flutter/widgets.dart';
+// import 'package:image_cropper/image_cropper.dart';
+// import 'package:image_picker/image_picker.dart';
 
 class AccountDetails extends StatefulWidget {
   @override
@@ -6,6 +15,27 @@ class AccountDetails extends StatefulWidget {
 }
 
 class _AccountDetailsState extends State<AccountDetails> {
+
+
+  //  File imageFile;
+
+  // /// Cropper plugin
+
+
+  // /// Select an image via gallery or camera
+  // Future<void> _pickImage(ImageSource source) async {
+  //   // File selected ;
+  //   return await ImagePicker.pickImage(source: source);
+
+  //   // setState(() {
+  //   //   imageFile = selected;
+  //   // });
+  // }
+
+  /// Remove image
+  // void _clear() {
+  //   setState(() => imageFile = null);
+  // }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -37,15 +67,20 @@ class _AccountDetailsState extends State<AccountDetails> {
           Container(
             child: Column(
               children: <Widget>[
-                CircleAvatar(
-                  backgroundColor: Theme.of(context).accentColor,
-                  radius: 49,
+                InkWell(
+                  onTap: () async{
+                    Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) => ImageCapture(1)));
+                  },
                   child: CircleAvatar(
-                    backgroundColor: Colors.white,
-                    radius: 47,
+                    backgroundColor: Theme.of(context).accentColor,
+                    radius: 49,
                     child: CircleAvatar(
-                      backgroundImage: AssetImage('assets/person.jpeg'),
-                      radius: 45,
+                      backgroundColor: Colors.white,
+                      radius: 47,
+                      child: CircleAvatar(
+                        backgroundImage: AssetImage('assets/person.jpeg'),
+                        radius: 45,
+                      ),
                     ),
                   ),
                 ),
@@ -128,5 +163,192 @@ class _AccountDetailsState extends State<AccountDetails> {
         ),
       ),
     );
+  }
+}
+
+
+
+
+
+class ImageCapture extends StatefulWidget {
+  createState() => _ImageCaptureState();
+  // String u;
+  // ImageCapture(this.u);
+  File imageFile;
+  int s;
+
+  ImageCapture([this.s]);
+
+}
+
+class _ImageCaptureState extends State<ImageCapture> {
+  /// Active image file
+  
+  /// Cropper plugin
+  Future<void> _cropImage() async {
+    File cropped = await ImageCropper.cropImage(
+        cropStyle: CropStyle.circle,
+        sourcePath: widget.imageFile.path,
+        aspectRatioPresets: Platform.isAndroid
+            ? [
+                CropAspectRatioPreset.square,
+              ]:[
+                CropAspectRatioPreset.square,
+              ],
+              
+              // androidUiSettings: [
+
+              // ]
+        // ratioX: 1.0,
+        // ratioY: 1.0,
+        // maxWidth: 512,
+        // maxHeight: 512,
+        // toolbarColor: Colors.purple,
+        // toolbarWidgetColor: Colors.white,
+        // toolbarTitle: 'Crop It'
+        );
+
+
+    setState(() {
+      widget.imageFile = cropped ?? widget.imageFile;
+    });
+  }
+
+  /// Select an image via gallery or camera
+  Future<void> pickImg(ImageSource source) async {
+    File selected = await ImagePicker.pickImage(source: source);
+    widget.s =0;
+    setState(() {
+      widget.imageFile = selected;
+    _cropImage();
+    });
+  }
+
+  /// Remove image
+  void _clear() {
+    setState(() => widget.imageFile = null);
+  }
+
+  @override
+  Widget build(BuildContext context) {
+      // print(' file :${widget.u}');
+      if(widget.s == 1)
+    pickImg(ImageSource.camera);
+    return Scaffold(
+      bottomNavigationBar: BottomAppBar(
+        child: Row(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: <Widget>[
+            IconButton(
+              icon: Icon(
+                Icons.photo_camera,
+                size: 30,
+              ),
+              onPressed: () {
+                widget.s =0;
+               pickImg(ImageSource.camera, );
+              },
+              color: Colors.blue,
+            ),
+            ],
+        ),
+      ),
+      body: ListView(
+        children: <Widget>[
+          if (widget.imageFile != null) ...[
+            Container(
+                padding: EdgeInsets.all(32), child: Image.file(widget.imageFile)),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: <Widget>[
+                FlatButton(
+                  color: Colors.white,
+                  child: Icon(Icons.crop,
+                  // color: Colors.white,
+                  ),
+                  onPressed: _cropImage,
+                ),
+                FlatButton(
+                  color: Colors.pink,
+                  child: Icon(Icons.refresh),
+                  onPressed: _clear,
+                ),
+              ],
+            ),
+            Padding(
+              padding: const EdgeInsets.all(32),
+              child: Uploader(
+                file: widget.imageFile,
+              ),
+            )
+          ]
+        ],
+      ),
+    );
+  }
+}
+
+/// Widget used to handle the management of
+class Uploader extends StatefulWidget {
+  final File file;
+
+  Uploader({Key key, this.file}) : super(key: key);
+
+  createState() => _UploaderState();
+}
+
+class _UploaderState extends State<Uploader> {
+  final FirebaseStorage _storage =
+      FirebaseStorage(storageBucket: 'gs://weshare-5df01.appspot.com');
+
+  StorageUploadTask _uploadTask;
+
+  _startUpload() {
+    String filePath = 'images//${DateTime.now()}.png';
+
+    setState(() {
+      _uploadTask = _storage.ref().child(filePath).putFile(widget.file);
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    if (_uploadTask != null) {
+      return StreamBuilder<StorageTaskEvent>(
+          stream: _uploadTask.events,
+          builder: (context, snapshot) {
+            var event = snapshot?.data?.snapshot;
+
+            double progressPercent = event != null
+                ? event.bytesTransferred / event.totalByteCount
+                : 0;
+                  
+       if (_uploadTask.isComplete)
+       Navigator.pop(context);
+
+            return Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  // if (_uploadTask.isComplete)
+                    // Text('',
+                    //     style: TextStyle(
+                    //         color: Colors.greenAccent,
+                    //         height: 2 )),
+                  LinearProgressIndicator(value: progressPercent),
+                  Text(
+                    '${(progressPercent * 100).toStringAsFixed(2)} % ',
+                    style: TextStyle(fontSize:20),
+                  ),
+                ]);
+          });
+    } else {
+      return FlatButton.icon(
+          color: Colors.blue,
+          label: Text('Save!'),
+          icon: Icon(Icons.cloud_upload),
+          onPressed: _startUpload);
+    }
   }
 }
