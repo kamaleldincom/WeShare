@@ -353,7 +353,7 @@ class _RrDetailsState extends State<RrDetails> {
                                     child: Text('Yes'),
                                     onPressed: () {
                                       DatabaseService()
-                                          .leaveRide(ride.rid, user.uid);
+                                          .leaveRide(ride, user.uid);
                                       Navigator.pop(context);
                                       Navigator.pop(context);
                                     },

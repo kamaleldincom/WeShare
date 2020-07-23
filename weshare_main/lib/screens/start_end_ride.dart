@@ -36,7 +36,7 @@ class _StartEndRideInterfaceState extends State<StartEndRideInterface> {
         child: Stack(
           children: <Widget>[
             // MAP GOES HERE
-
+            
             //! Chat Info.
             Positioned(
               top: MediaQuery.of(context).size.height / 2,

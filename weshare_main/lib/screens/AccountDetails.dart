@@ -8,6 +8,7 @@ import 'package:image_picker/image_picker.dart';
 import 'package:flutter/widgets.dart';
 import 'package:provider/provider.dart';
 import 'package:weshare_main/models/user.dart';
+import 'package:weshare_main/services/database.dart';
 // import 'package:image_cropper/image_cropper.dart';
 // import 'package:image_picker/image_picker.dart';
 
@@ -18,7 +19,10 @@ class AccountDetails extends StatefulWidget {
 
 class _AccountDetailsState extends State<AccountDetails> {
 
+  final _formKey = GlobalKey<FormState>();
 
+String name='';
+String phoneNumber='';
   //  File imageFile;
 
   // /// Cropper plugin
@@ -40,130 +44,225 @@ class _AccountDetailsState extends State<AccountDetails> {
   // }
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Color(0xFFF1F3F5),
+    User user = Provider.of<User>(context);
+    return GestureDetector(
+      onTap: () =>
+          FocusScope.of(context).requestFocus(new FocusNode()),
+          child: Scaffold(
+        resizeToAvoidBottomPadding: false,
+          backgroundColor: Color(0xFFF1F3F5),
 
-      appBar: AppBar(
-        brightness: Brightness.light,
-        backgroundColor: Color(0xFFF1F3F5),
-        leading: BackButton(
-            color: Color(0xFF5C79FF),
-        ),
-          title: Text(
-            'Account Details',
-            style: TextStyle(
-              color: Colors.black,
-              fontWeight: FontWeight.w600,
+          appBar: AppBar(
+          brightness: Brightness.light,
+          backgroundColor: Color(0xFFF1F3F5),
+          leading: BackButton(
+              color: Color(0xFF5C79FF),
+          ),
+            title: Text(
+              'Account Details',
+              style: TextStyle(
+                color: Colors.black,
+                fontWeight: FontWeight.w600,
+              ),
             ),
+            elevation: 0.0,
+            centerTitle: true,
           ),
-          elevation: 0.0,
-          centerTitle: true,
-        ),
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.start,
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: <Widget>[
-          SizedBox(
-            height: 70,
-          ),
-          Container(
-            child: Column(
-              children: <Widget>[
-                InkWell(
-                  onTap: () async{
-                    Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) => ImageCapture(1)));
-                  },
-                  child: CircleAvatar(
-                    backgroundColor: Theme.of(context).accentColor,
-                    radius: 49,
-                    child: CircleAvatar(
-                      backgroundColor: Colors.white,
-                      radius: 47,
-                      child: CircleAvatar(
-                        backgroundImage: AssetImage('assets/person.jpeg'),
-                        radius: 45,
+          body: SingleChildScrollView(
+                      child: Form(
+                        key: _formKey,
+                       child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: <Widget>[
+              SizedBox(
+                height: 70,
+              ),
+              Container(
+                child: Column(
+                  children: <Widget>[
+                    InkWell(
+                        onTap: () async{
+                          Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) => ImageCapture(1)));
+                        },
+                        child: CircleAvatar(
+                          backgroundColor: Theme.of(context).accentColor,
+                          radius: 49,
+                          child: CircleAvatar(
+                            backgroundColor: Colors.white,
+                            radius: 47,
+                            child: FutureBuilder(
+                future: DatabaseService().getImage(user.uid),
+                builder: (context, snapshot) {
+                  if (snapshot.connectionState ==
+                        ConnectionState.done)
+                    return CircleAvatar(
+                        child: ClipOval(
+                          child:snapshot.data,
+                        ),
+                              // backgroundImage: NetworkImage(snapshot.data.preview),
+                              radius: 45,
+                            );
+
+                  if (snapshot.connectionState ==
+                        ConnectionState.waiting)
+                    return Container(
+                          height: MediaQuery.of(context).size.height /
+                              1.25,
+                          width: MediaQuery.of(context).size.width /
+                              1.25,
+                          child: CircularProgressIndicator(
+                            backgroundColor: Colors.transparent,
+
+                              strokeWidth: 4,
+                          ));
+
+                  if (snapshot.connectionState ==
+                        ConnectionState.none) {
+                    
+                  return Container(
+                    child: Icon(Icons.person),
+                  );
+                  }
+                  return Container(
+                    child: Icon(Icons.person),
+                  );
+                },
+              ),
+                          ),
+                        ),
+                    ),
+                    SizedBox(
+                        height: 20,
+                    ),
+                   
+
+
+
+                    FutureBuilder(
+              future: DatabaseService().getUserDetails(user.uid),
+              builder: (BuildContext context,snapshot) {
+
+                if (snapshot.hasData){
+                    user= snapshot.data;
+                
+              return Container(
+                padding: EdgeInsets.all(25),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: <Widget>[
+                    
+                     Title(
+                    
+                        color: Colors.grey[300], 
+                        child: Text(
+                          "${user.name}",
+                          style: TextStyle(
+                            fontSize: 28,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                    ),
+                    
+                    
+                    TextFormField(
+                        // obscureText: true,
+                        decoration: InputDecoration(
+                          // border: OutlineInputBorder(),
+                          labelText: 'Name',
+                        ),
+                        initialValue: "${user.name}",
+                        onChanged: (val){
+                           setState(() => name = val);
+                        },
+                        validator: (val) =>
+                                  val.isEmpty ? 'Enter an Name' : null,
+                    ),
+                    TextFormField(
+                        // obscureText: true,
+                        decoration: InputDecoration(
+                          // border: OutlineInputBorder(),
+                          labelText: 'Phone Number',
+                        ),
+                        initialValue: "${user.phoneNumber}",
+                        validator: (val) =>
+                        val.isEmpty ? 'Enter an a phone number' : null,
+                        onChanged: (val){
+                          setState(() => phoneNumber = val);
+                        },
+                    ),
+                  
+                  
+                  
+                  
+                  
+                    SizedBox(
+                        height: 15,
+                    ),
+                    
+                    SizedBox(
+                        height: 15,
+                    ),
+                    // TextFormField(
+                    //   // obscureText: true,
+                    //   decoration: InputDecoration(
+                    //     // border: OutlineInputBorder(),
+                    //     labelText: 'Address',
+                    //   ),
+                    //   initialValue: "Desa Skudai Apartment,Jalan Sejahtera 15, ",
+                    // ),
+                  ],
+                ),
+              );
+                }
+            return Container(
+              height: 200,
+              child: Center(
+                child: CircularProgressIndicator(
+                                backgroundColor: Colors.transparent,
+                                  strokeWidth: 2,
+                              ),
+              ),
+            );
+              }
+              ),
+              
+                  ],
+                ),
+              ),
+              
+              
+        Container(
+            margin: EdgeInsets.symmetric(horizontal: 10, vertical: 15),
+            child: FlatButton(
+              child: Text(
+                'Save Changes',
+                style: TextStyle(
+                    // fontFamily: 'SegoeUI',
+                    color: Colors.white,
+                    fontWeight: FontWeight.bold,
+                    fontSize: 17),
+              ),
+              onPressed: () {
+                 if (_formKey.currentState.validate()) {
+                   user.phoneNumber = phoneNumber;
+                   user.name = name;
+                  //  print('name: $name');
+                    DatabaseService().updateUserdetails(user);
+                 }
+              },
+              color: Theme.of(context).accentColor,
+              shape: RoundedRectangleBorder(
+                  borderRadius: new BorderRadius.circular(12)),
+              padding: EdgeInsets.symmetric(horizontal: 123, vertical: 18),
+            ),
+            ),
+   
+            ],
+            ),
                       ),
-                    ),
-                  ),
-                ),
-                SizedBox(
-                  height: 20,
-                ),
-                Title(
-                  color: Colors.grey[300], 
-                  child: Text(
-                    "Ahmed Kamal Eldin",
-                    style: TextStyle(
-                      fontSize: 28,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                ),
-              ],
-            ),
           ),
-          
-          Container(
-            padding: EdgeInsets.all(25),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: <Widget>[
-                TextFormField(
-                  // obscureText: true,
-                  decoration: InputDecoration(
-                    // border: OutlineInputBorder(),
-                    labelText: 'Phone Number',
-                  ),
-                  initialValue: "+60 13-170 897",
-                ),
-                SizedBox(
-                  height: 15,
-                ),
-                TextFormField(
-                  // obscureText: true,
-                  decoration: InputDecoration(
-                    // border: OutlineInputBorder(),
-                    labelText: 'E-mail',
-                  ),
-                  initialValue: "ahmed@kamaleldin.com",
-                ),
-                SizedBox(
-                  height: 15,
-                ),
-                TextFormField(
-                  // obscureText: true,
-                  decoration: InputDecoration(
-                    // border: OutlineInputBorder(),
-                    labelText: 'Address',
-                  ),
-                  initialValue: "Desa Skudai Apartment,Jalan Sejahtera 15, ",
-                ),
-              ],
-            ),
-          ),
-        ],
-      ),
-      floatingActionButton: Container(
-        
-        margin: EdgeInsets.symmetric(horizontal: 10, vertical: 15),
-        child: FlatButton(
-          child: Text(
-            'Save Changes',
-            style: TextStyle(
-                // fontFamily: 'SegoeUI',
-                color: Colors.white,
-                fontWeight: FontWeight.bold,
-                fontSize: 17),
-          ),
-          onPressed: () {
-            // Navigator.pushNamed(context, '/login');
-          },
-          color: Theme.of(context).accentColor,
-          shape: RoundedRectangleBorder(
-              borderRadius: new BorderRadius.circular(12)),
-          padding: EdgeInsets.symmetric(horizontal: 123, vertical: 18),
-        ),
-      ),
+           ),
     );
   }
 }

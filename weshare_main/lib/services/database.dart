@@ -2,7 +2,9 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:weshare_main/models/ride.dart';
 import 'package:weshare_main/models/user.dart';
-import 'package:weshare_main/screens/edit_car_details.dart';
+// import 'package:weshare_main/screens/edit_car_details.dart';
+import 'package:firebase_storage/firebase_storage.dart';
+
 
 class DatabaseService {
   final String uid;
@@ -25,6 +27,16 @@ class DatabaseService {
       'phoneNumber': user.phoneNumber,
       'gender': user.gender,
       'isDriver': false,
+    });
+  }
+  Future updateUserdetails(User user) async {
+    print('user name:${user.name}');
+    return await usersCollection.document(user.uid).updateData({
+      'name': user.name,
+      // 'email': user.email,
+      'phoneNumber': user.phoneNumber,
+      // 'gender': user.gender,
+      // 'isDriver': false,
     });
   }
 
@@ -118,6 +130,11 @@ class DatabaseService {
       "availableSeats": FieldValue.increment(-1),
       "riders": FieldValue.arrayUnion([user.uid])
     });
+    
+    usersCollection.document(ride.did).collection('providedRides').document(ride.rid).updateData({
+      "availableSeats": FieldValue.increment(-1),
+      "riders": FieldValue.arrayUnion([user.uid])
+    });
     usersCollection
         .document(user.uid)
         .collection('rides')
@@ -204,12 +221,17 @@ class DatabaseService {
     return joined;
   }
 
-  Future<void> leaveRide(String rid, String uid) async {
-    ridesCollection.document(rid).updateData({
+  Future<void> leaveRide(CurrentRides ride, String uid) async {
+    ridesCollection.document(ride.rid).updateData({
       "availableSeats": FieldValue.increment(1),
       "riders": FieldValue.arrayRemove([uid])
     });
-    usersCollection.document(uid).collection('rides').document(rid).delete();
+
+    usersCollection.document(ride.did).collection('providedRides').document(ride.rid).updateData({
+      "availableSeats": FieldValue.increment(1),
+      "riders": FieldValue.arrayRemove([uid])
+    });
+    usersCollection.document(uid).collection('rides').document(ride.rid).delete();
   }
 
   Future<void> startRide(CurrentRides ride, String uid) async {
@@ -283,5 +305,30 @@ class DatabaseService {
         "status": "completed",
       });
     }
+  }
+
+
+  Future<Image> getImage(String image) async {
+Image m;
+  // downloadUrl = 'downloadUrl'
+  await FirebaseStorage.instance.ref().child('$image/profile.png').getDownloadURL().then((downloadUrl) {
+      print( downloadUrl.toString());
+    m = Image.network(
+      downloadUrl.toString(),
+      fit: BoxFit.scaleDown,
+    );
+  });
+
+  return m;
+  }
+}
+
+
+
+class FireStorageService extends ChangeNotifier {
+  FireStorageService();
+
+  static Future<dynamic> loadFromStorage(BuildContext context, String image) async {
+    return await FirebaseStorage.instance.ref().child(image).getDownloadURL();
   }
 }
