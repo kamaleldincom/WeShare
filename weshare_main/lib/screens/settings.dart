@@ -76,11 +76,11 @@ class _SettingsState extends State<Settings> {
                       Navigator.pushNamed(context, '/AccountDetails');
                     },
                   ),
-                  if (userType == 'Driver')
-                    SettingsButtons(Icons.directions_car, 'Car Details', true,
-                        () {
-                      Navigator.pushNamed(context, '/editCarDetails');
-                    }),
+                  // if (userType == 'Driver')
+                  //   SettingsButtons(Icons.directions_car, 'Car Details', true,
+                  //       () {
+                  //     Navigator.pushNamed(context, '/editCarDetails');
+                  //   }),
                   SettingsButtons(Icons.lock, 'Privacy Policy', true, () {}),
                   SettingsButtons(Icons.help, 'Help & Support', true, () {}),
                   SettingsButtons(

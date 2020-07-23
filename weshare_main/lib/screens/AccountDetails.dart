@@ -247,14 +247,14 @@ class _AccountDetailsState extends State<AccountDetails> {
                     fontSize: 17),
               ),
               onPressed: () {
-                 if (_formKey.currentState.validate() && name != '' && phoneNumber != '' ) {
+                 if (_formKey.currentState.validate() && name != '' || phoneNumber != '' ) {
                    user.phoneNumber = phoneNumber;
                    user.name = name;
                   //  print('name: $name');
                     DatabaseService().updateUserdetails(user);
                     SnackBar registrationBar = SnackBar(
                                                     content: Text(
-                                                      'Sorry, You joined this ride!',
+                                                      'The changes you made will be reflected the next time you open the this page',
                                                     ),
                                                   );
                                                 _scaffold.currentState.showSnackBar(registrationBar);

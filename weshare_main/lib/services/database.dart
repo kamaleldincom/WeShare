@@ -68,7 +68,9 @@ class DatabaseService {
           price: doc.data['price'],
           availableSeats: doc.data['availableSeats'],
           status: doc.data['status'],
-          driver: _driverFromSnapsoht(doc.data['driver']));
+          driver: _driverFromSnapsoht(doc.data['driver']),
+          note: doc.data['note'],
+          );
       // print("docdata: ${doc.documentID}");
       return ride;
     }).toList();

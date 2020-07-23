@@ -39,7 +39,7 @@ class Ride {
     this.status,
     this.driver,
   }) {
-    this.dateAdded = ago('2005-10-10 10:10:10');
+    this.dateAdded = ago(this.dateAdded);
   }
 
   String ago(String datetime) {
@@ -63,6 +63,8 @@ class Ride {
       'price': ride.price,
       'driver': ride.driver.toMap(ride.driver),
       'status': ride.status,
+      'note': ride.note,
+      'dateAdded': DateTime.now().toString(),
     };
   }
 }
@@ -141,7 +143,7 @@ class CurrentRides {
       this.note,
       this.status,
       this.driver}) {
-    // this.dateAdded = ago(dateAdded);
+      this.dateAdded = ago(dateAdded);
   }
 
   String ago(String datetime) {
