@@ -20,9 +20,11 @@ class AccountDetails extends StatefulWidget {
 class _AccountDetailsState extends State<AccountDetails> {
 
   final _formKey = GlobalKey<FormState>();
+  final _scaffold = GlobalKey<ScaffoldState>();
 
-String name='';
-String phoneNumber='';
+  String name= '';
+  String phoneNumber= '';
+
   //  File imageFile;
 
   // /// Cropper plugin
@@ -49,6 +51,7 @@ String phoneNumber='';
       onTap: () =>
           FocusScope.of(context).requestFocus(new FocusNode()),
           child: Scaffold(
+            key: _scaffold,
         resizeToAvoidBottomPadding: false,
           backgroundColor: Color(0xFFF1F3F5),
 
@@ -173,7 +176,7 @@ String phoneNumber='';
                         ),
                         initialValue: "${user.name}",
                         onChanged: (val){
-                           setState(() => name = val);
+                        name = val;
                         },
                         validator: (val) =>
                                   val.isEmpty ? 'Enter an Name' : null,
@@ -188,7 +191,7 @@ String phoneNumber='';
                         validator: (val) =>
                         val.isEmpty ? 'Enter an a phone number' : null,
                         onChanged: (val){
-                          setState(() => phoneNumber = val);
+                         phoneNumber = val;
                         },
                     ),
                   
@@ -244,11 +247,17 @@ String phoneNumber='';
                     fontSize: 17),
               ),
               onPressed: () {
-                 if (_formKey.currentState.validate()) {
+                 if (_formKey.currentState.validate() && name != '' && phoneNumber != '' ) {
                    user.phoneNumber = phoneNumber;
                    user.name = name;
                   //  print('name: $name');
                     DatabaseService().updateUserdetails(user);
+                    SnackBar registrationBar = SnackBar(
+                                                    content: Text(
+                                                      'Sorry, You joined this ride!',
+                                                    ),
+                                                  );
+                                                _scaffold.currentState.showSnackBar(registrationBar);
                  }
               },
               color: Theme.of(context).accentColor,

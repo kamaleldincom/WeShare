@@ -63,11 +63,48 @@ class _ProfileState extends State<Profile> {
                             child: CircleAvatar(
                               backgroundColor: Colors.white,
                               radius: 50,
-                              child: CircleAvatar(
-                                backgroundImage:
-                                    AssetImage('assets/person.jpeg'),
-                                radius: 48.0,
-                              ),
+                              child: FutureBuilder(
+                future: DatabaseService().getImage(user.uid),
+                builder: (context, snapshot) {
+                  if (snapshot.connectionState ==
+                        ConnectionState.done)
+                    return CircleAvatar(
+                        child: ClipOval(
+                          child:snapshot.data,
+                        ),
+                              // backgroundImage: NetworkImage(snapshot.data.preview),
+                              radius: 45,
+                            );
+
+                  if (snapshot.connectionState ==
+                        ConnectionState.waiting)
+                    return Container(
+                          // height: MediaQuery.of(context).size.height /
+                          //     1.25,
+                          // width: MediaQuery.of(context).size.width /
+                          //     1.25,
+                          // child: CircularProgressIndicator(
+                            // backgroundColor: Colors.transparent,
+
+                            //   strokeWidth: 4,
+                          // )
+                          child: Icon(Icons.person, size: 70)
+                          );
+
+
+                  if (snapshot.connectionState ==
+                        ConnectionState.none) {
+                    
+                  return Container(
+                    child: Icon(Icons.person),
+                  );
+                  }
+                  return Container(
+                    child: Icon(Icons.person, size: 70),
+                  );
+                },
+              ),
+                          
                             ),
                           ),
                           Padding(
