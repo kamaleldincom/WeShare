@@ -6,6 +6,8 @@ import 'package:image_cropper/image_cropper.dart';
 import 'package:image_picker/image_picker.dart';
 // import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/widgets.dart';
+import 'package:provider/provider.dart';
+import 'package:weshare_main/models/user.dart';
 // import 'package:image_cropper/image_cropper.dart';
 // import 'package:image_picker/image_picker.dart';
 
@@ -304,16 +306,17 @@ class _UploaderState extends State<Uploader> {
 
   StorageUploadTask _uploadTask;
 
+
+  @override
+  Widget build(BuildContext context) {
+    User user = Provider.of<User>(context);
   _startUpload() {
-    String filePath = 'images//${DateTime.now()}.png';
+    String filePath = '${user.uid}/profile.png';
 
     setState(() {
       _uploadTask = _storage.ref().child(filePath).putFile(widget.file);
     });
   }
-
-  @override
-  Widget build(BuildContext context) {
     if (_uploadTask != null) {
       return StreamBuilder<StorageTaskEvent>(
           stream: _uploadTask.events,
