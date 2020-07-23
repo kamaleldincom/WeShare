@@ -56,7 +56,9 @@ class DatabaseService {
           price: doc.data['price'],
           availableSeats: doc.data['availableSeats'],
           status: doc.data['status'],
-          driver: _driverFromSnapsoht(doc.data['driver']));
+          driver: _driverFromSnapsoht(doc.data['driver']),
+          note: doc.data['note'],
+          );
       // print("docdata: ${doc.documentID}");
       return ride;
     }).toList();
@@ -115,6 +117,10 @@ class DatabaseService {
     // print('uid from joinRide: ${ride.riders[0]}');
     ride.riders.add(user.uid);
     ridesCollection.document(ride.rid).updateData({
+      "availableSeats": FieldValue.increment(-1),
+      "riders": FieldValue.arrayUnion([user.uid])
+    });
+    usersCollection.document(ride.did).collection('providedRides').document(ride.rid).updateData({
       "availableSeats": FieldValue.increment(-1),
       "riders": FieldValue.arrayUnion([user.uid])
     });

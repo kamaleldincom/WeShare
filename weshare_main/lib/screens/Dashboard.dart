@@ -26,6 +26,7 @@ class _DashboardState extends State<Dashboard> {
   Widget build(BuildContext context) {
     User user = Provider.of<User>(context) ?? null;
     // final rides = Provider.of<List<Ride>>(widget.context);
+    //print('arrives here');
     return StreamProvider<List<Ride>>.value(
       value: DatabaseService().rides,
       child: WillPopScope(
@@ -181,58 +182,15 @@ class _RidesSliverListState extends State<RidesSliverList> {
               ///////////////
               Container(
                 padding: EdgeInsets.symmetric(horizontal: 10),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: <Widget>[
-                    Container(
+                
                       child: Row(
-                        mainAxisAlignment: MainAxisAlignment.start,
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: <Widget>[
                           Container(
+                            
                             child: Column(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: <Widget>[
-                                Title(
-                                  color: Colors.black,
-                                  child: Text(
-                                    'Pickup time',
-                                    style: TextStyle(
-                                      fontWeight: FontWeight.w300,
-                                      fontSize: 11,
-                                      color: Colors.grey,
-                                    ),
-                                  ),
-                                ),
-                                SizedBox(
-                                  height: 2,
-                                ),
-                                Text(
-                                  '$time',
-                                  style: TextStyle(
-                                    fontWeight: FontWeight.w500,
-                                    fontSize: 14,
-                                    color: Colors.grey[800],
-                                  ),
-                                ),
-                                Text(
-                                  '$date',
-                                  style: TextStyle(
-                                    fontWeight: FontWeight.w500,
-                                    fontSize: 11,
-                                    color: Colors.grey[700],
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                          SizedBox(
-                            width: 15,
-                          ),
-                          Container(
-                            child: Column(
+                              
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               crossAxisAlignment: CrossAxisAlignment.start,
                               
@@ -251,6 +209,7 @@ class _RidesSliverListState extends State<RidesSliverList> {
                                       ),
                                       SizedBox(width: 5),
                                       Container(
+                                        width: 200,
                                         child: Column(
                                           mainAxisAlignment:
                                               MainAxisAlignment.spaceBetween,
@@ -269,13 +228,14 @@ class _RidesSliverListState extends State<RidesSliverList> {
                                               ),
                                             ),
                                             Text(
-                                              '${dashboardList[index].from}',
+                                              "${dashboardList[index].from}",
                                               style: TextStyle(
                                                 fontWeight: FontWeight.w500,
                                                 fontSize: 15,
                                                 color: Colors.grey[800],
                                               ),
-                                              overflow: TextOverflow.fade, 
+                                              overflow: TextOverflow.ellipsis, 
+                                              
                                             ),
                                           ],
                                           // brightness_1
@@ -285,7 +245,7 @@ class _RidesSliverListState extends State<RidesSliverList> {
                                   ),
                                 ),
                                 SizedBox(
-                                  height: 20,
+                                  height: 10,
                                 ),
                                 Container(
                                   margin: EdgeInsets.all(0),
@@ -301,6 +261,7 @@ class _RidesSliverListState extends State<RidesSliverList> {
                                       ),
                                       SizedBox(width: 5),
                                       Container(
+                                        width: 200,
                                         child: Column(
                                           mainAxisAlignment:
                                               MainAxisAlignment.spaceBetween,
@@ -319,13 +280,13 @@ class _RidesSliverListState extends State<RidesSliverList> {
                                               ),
                                             ),
                                             Text(
-                                              '${dashboardList[index].to}',
+                                              "${dashboardList[index].to}",
                                               style: TextStyle(
                                                 fontWeight: FontWeight.w400,
                                                 fontSize: 15,
                                                 color: Colors.grey,
                                               ),
-                                              overflow: TextOverflow.fade, 
+                                              overflow: TextOverflow.ellipsis, 
                                             ),
                                           ],
                                           // brightness_1
@@ -337,41 +298,51 @@ class _RidesSliverListState extends State<RidesSliverList> {
                               ],
                             ),
                           ),
-                        ],
-                      ),
-                    ),
-                    Container(
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: <Widget>[
-                          Title(
-                            color: Colors.black,
-                            child: Text(
-                              'Available Seats',
-                              style: TextStyle(
-                                fontWeight: FontWeight.w400,
-                                fontSize: 12,
-                                color: Colors.grey,
-                              ),
-                            ),
-                          ),
                           SizedBox(
-                            height: 3,
+                            width: 15,
                           ),
-                          Text(
-                            '${dashboardList[index].availableSeats}',
-                            style: TextStyle(
-                              fontWeight: FontWeight.w500,
-                              fontSize: 24,
-                              color: Colors.black,
+                          Container(
+                            margin: EdgeInsets.only(right: 10),
+                            child: Column(
+                              // mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: <Widget>[
+                                Title(
+                                  color: Colors.black,
+                                  child: Text(
+                                    'Pickup time',
+                                    style: TextStyle(
+                                      fontWeight: FontWeight.w300,
+                                      fontSize: 11,
+                                      color: Colors.grey,
+                                    ),
+                                  ),
+                                ),
+                                SizedBox(
+                                  height: 10,
+                                ),
+                                Text(
+                                  '$time',
+                                  style: TextStyle(
+                                    fontWeight: FontWeight.w500,
+                                    fontSize: 16,
+                                    color: Colors.grey[800],
+                                  ),
+                                ),
+                                Text(
+                                  '$date',
+                                  style: TextStyle(
+                                    fontWeight: FontWeight.w500,
+                                    fontSize: 12,
+                                    color: Colors.grey[700],
+                                  ),
+                                ),
+                              ],
                             ),
                           ),
                         ],
                       ),
-                    ),
-                  ],
-                ),
+                    
               ),
               ///////////////
               // FocusData  + Join//
@@ -395,7 +366,7 @@ class _RidesSliverListState extends State<RidesSliverList> {
                             style: TextStyle(
                               fontWeight: FontWeight.w300,
                               fontSize: 12,
-                              color: Colors.grey,
+                              color: Colors.black,
                             ),
                           ),
                           SizedBox(
@@ -406,12 +377,43 @@ class _RidesSliverListState extends State<RidesSliverList> {
                             style: TextStyle(
                               fontWeight: FontWeight.w500,
                               fontSize: 22,
+                              color: Colors.black,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                    Container(
+                      child: Row(
+                        // mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: <Widget>[
+                          Title(
+                            color: Colors.black,
+                            child: Text(
+                              'Seats',
+                              style: TextStyle(
+                                fontWeight: FontWeight.w300,
+                                fontSize: 12,
+                                color: Colors.grey,
+                              ),
+                            ),
+                          ),
+                          SizedBox(
+                            width: 3,
+                          ),
+                          Text(
+                            '${dashboardList[index].availableSeats}',
+                            style: TextStyle(
+                              fontWeight: FontWeight.w500,
+                              fontSize: 22,
                               color: Colors.grey[700],
                             ),
                           ),
                         ],
                       ),
                     ),
+                  
                     ///////////////
                     // Join btn //
                     ///////////////
@@ -430,7 +432,7 @@ class _RidesSliverListState extends State<RidesSliverList> {
                                   borderRadius: BorderRadius.circular(10),
                                 ),
                                 child: Container(
-                                  height: 500,
+                                  height: 450,
                                   decoration: BoxDecoration(),
                                   // margin: EdgeInsets.symmetric(horizontal:15,),
                                   // padding: EdgeInsets.all(10),
@@ -442,19 +444,19 @@ class _RidesSliverListState extends State<RidesSliverList> {
                                       ///////////////
                                       // route Map //
                                       ///////////////
-                                      Container(
-                                        margin: EdgeInsets.all(10),
-                                        height: 250,
-                                        // width: 350,
-                                        decoration: BoxDecoration(
-                                            color: Colors.grey[200],
-                                            borderRadius:
-                                                BorderRadius.circular(10),
-                                            border: Border.all(
-                                              width: 1,
-                                              color: Colors.grey,
-                                            )),
-                                      ),
+                                      // Container(
+                                      //   margin: EdgeInsets.all(10),
+                                      //   height: 250,
+                                      //   // width: 350,
+                                      //   decoration: BoxDecoration(
+                                      //       color: Colors.grey[200],
+                                      //       borderRadius:
+                                      //           BorderRadius.circular(10),
+                                      //       border: Border.all(
+                                      //         width: 1,
+                                      //         color: Colors.grey,
+                                      //       )),
+                                      // ),
                                       ///////////////
                                       // Ride and Driver Details //
                                       ///////////////
@@ -469,6 +471,7 @@ class _RidesSliverListState extends State<RidesSliverList> {
                                             // Driver //
                                             ///////////////
                                             Container(
+                                              margin: EdgeInsets.only(top: 30),
                                               child: Column(
                                                 mainAxisAlignment:
                                                     MainAxisAlignment.center,
@@ -507,59 +510,21 @@ class _RidesSliverListState extends State<RidesSliverList> {
                                             // Ride //
                                             ///////////////
                                             SizedBox(
-                                              height: 15,
+                                              height: 20,
                                             ),
                                             Row(
                                               mainAxisAlignment:
-                                                  MainAxisAlignment.start,
+                                                  MainAxisAlignment.spaceBetween,
                                               crossAxisAlignment:
                                                   CrossAxisAlignment.start,
                                               children: <Widget>[
+                                                
                                                 Container(
                                                   child: Column(
                                                     mainAxisAlignment:
                                                         MainAxisAlignment
                                                             .spaceBetween,
-                                                    crossAxisAlignment:
-                                                        CrossAxisAlignment
-                                                            .start,
-                                                    children: <Widget>[
-                                                      Title(
-                                                        color: Colors.black,
-                                                        child: Text(
-                                                          'Pickup at',
-                                                          style: TextStyle(
-                                                            fontWeight:
-                                                                FontWeight.w300,
-                                                            fontSize: 11,
-                                                            color: Colors.grey,
-                                                          ),
-                                                        ),
-                                                      ),
-                                                      SizedBox(
-                                                        height: 1,
-                                                      ),
-                                                      Text(
-                                                        '7:45 AM',
-                                                        style: TextStyle(
-                                                          fontWeight:
-                                                              FontWeight.w500,
-                                                          fontSize: 12,
-                                                          color:
-                                                              Colors.grey[700],
-                                                        ),
-                                                      ),
-                                                    ],
-                                                  ),
-                                                ),
-                                                SizedBox(
-                                                  width: 10,
-                                                ),
-                                                Container(
-                                                  child: Column(
-                                                    mainAxisAlignment:
-                                                        MainAxisAlignment
-                                                            .spaceBetween,
+                                                    crossAxisAlignment: CrossAxisAlignment.start,
                                                     children: <Widget>[
                                                       Container(
                                                         margin:
@@ -581,7 +546,9 @@ class _RidesSliverListState extends State<RidesSliverList> {
                                                             ),
                                                             SizedBox(width: 3),
                                                             Container(
+                                                              width: 220,
                                                               child: Column(
+                                                                
                                                                 mainAxisAlignment:
                                                                     MainAxisAlignment
                                                                         .spaceBetween,
@@ -607,7 +574,7 @@ class _RidesSliverListState extends State<RidesSliverList> {
                                                                     ),
                                                                   ),
                                                                   Text(
-                                                                    'Desa Skudai Apartments',
+                                                                    "${dashboardList[index].from}",
                                                                     style:
                                                                         TextStyle(
                                                                       fontWeight:
@@ -651,6 +618,7 @@ class _RidesSliverListState extends State<RidesSliverList> {
                                                             ),
                                                             SizedBox(width: 3),
                                                             Container(
+                                                              width: 220,
                                                               child: Column(
                                                                 mainAxisAlignment:
                                                                     MainAxisAlignment
@@ -677,7 +645,7 @@ class _RidesSliverListState extends State<RidesSliverList> {
                                                                     ),
                                                                   ),
                                                                   Text(
-                                                                    'school of Electrical (P05)',
+                                                                    "${dashboardList[index].to}",
                                                                     style:
                                                                         TextStyle(
                                                                       fontWeight:
@@ -699,8 +667,119 @@ class _RidesSliverListState extends State<RidesSliverList> {
                                                     ],
                                                   ),
                                                 ),
+                                                
                                               ],
                                             ),
+                                            SizedBox(height: 5,),
+                                            Container(
+                                              margin: EdgeInsets.all(5),
+                                              padding: EdgeInsets.all(5),
+                                              height: 100,
+                                              width: 350,
+                                              child: Text('Note: ${dashboardList[index].note}'),
+                                              decoration: BoxDecoration(
+                                                  // color: Colors.grey[200],
+                                                  borderRadius:
+                                                      BorderRadius.circular(10),
+                                                  border: Border.all(
+                                                    width: 1,
+                                                    color: Colors.grey,
+                                                  )),
+                                            ),
+                                            SizedBox(height: 5,),
+                                            Container(
+                                              margin: EdgeInsets.symmetric(horizontal: 5),
+                                                  child: Row(
+                                                    mainAxisAlignment:
+                                                            MainAxisAlignment
+                                                                .spaceEvenly,
+                                                        crossAxisAlignment:
+                                                            CrossAxisAlignment
+                                                                .start,
+                                                    children: <Widget>[
+                                                      Column(
+                                                        mainAxisAlignment:
+                                                            MainAxisAlignment
+                                                                .start,
+                                                        crossAxisAlignment:
+                                                            CrossAxisAlignment
+                                                                .center,
+                                                        children: <Widget>[
+                                                          Title(
+                                                            color: Colors.black,
+                                                            child: Text(
+                                                              'Available Seats',
+                                                              style: TextStyle(
+                                                                fontWeight:
+                                                                    FontWeight.w300,
+                                                                fontSize: 11,
+                                                                color: Colors.grey,
+                                                              ),
+                                                            ),
+                                                          ),
+                                                          SizedBox(
+                                                            height: 2,
+                                                          ),
+                                                          Text(
+                                                            '${dashboardList[index].availableSeats}',
+                                                            style: TextStyle(
+                                                              fontWeight:
+                                                                  FontWeight.w500,
+                                                              fontSize: 25,
+                                                              color:
+                                                                  Colors.grey[700],
+                                                            ),
+                                                          ),
+                                                        ],
+                                                      ),
+                                                    
+                                                      Column(
+                                                        mainAxisAlignment:
+                                                            MainAxisAlignment
+                                                                .spaceBetween,
+                                                        crossAxisAlignment:
+                                                            CrossAxisAlignment
+                                                                .start,
+                                                        children: <Widget>[
+                                                          Title(
+                                                            color: Colors.black,
+                                                            child: Text(
+                                                              'Pickup time',
+                                                              style: TextStyle(
+                                                                fontWeight:
+                                                                    FontWeight.w300,
+                                                                fontSize: 11,
+                                                                color: Colors.grey,
+                                                              ),
+                                                            ),
+                                                          ),
+                                                          SizedBox(
+                                                            height: 2,
+                                                          ),
+                                                          Text(
+                                                            '$time',
+                                                            style: TextStyle(
+                                                              fontWeight:
+                                                                  FontWeight.w500,
+                                                              fontSize: 14,
+                                                              color:
+                                                                  Colors.grey[700],
+                                                            ),
+                                                          ),
+                                                          Text(
+                                                            '$date',
+                                                            style: TextStyle(
+                                                              fontWeight: FontWeight.w500,
+                                                              fontSize: 11,
+                                                              color: Colors.grey[700],
+                                                            ),
+                                                          ),
+                                                        ],
+                                                      ),
+                                                    ],
+                                                  ),
+                                                ),
+                                                
                                           ],
                                         ),
                                       ),
@@ -737,7 +816,7 @@ class _RidesSliverListState extends State<RidesSliverList> {
                                                     width: 3,
                                                   ),
                                                   Text(
-                                                    '1.50',
+                                                    '${dashboardList[index].price}',
                                                     style: TextStyle(
                                                       fontWeight:
                                                           FontWeight.w500,
@@ -758,6 +837,7 @@ class _RidesSliverListState extends State<RidesSliverList> {
                                                     content: Text(
                                                       'Sorry, You joined this ride!',
                                                     ),
+                                                    behavior: SnackBarBehavior.floating,
                                                   );
                                                 widget.scaffold.currentState.showSnackBar(registrationBar);
                                                 } else {
@@ -766,6 +846,13 @@ class _RidesSliverListState extends State<RidesSliverList> {
                                                   databaseService.joinRide(
                                                       dashboardList[index], user);
                                                   Navigator.pop(context);
+                                                  SnackBar registrationBar = SnackBar(
+                                                    behavior: SnackBarBehavior.floating,
+                                                    content: Text(
+                                                      'You have joined this ride! You can check it on the rides screen',
+                                                    ),
+                                                  );
+                                                widget.scaffold.currentState.showSnackBar(registrationBar);
                                                 }
                                               },
                                               color:

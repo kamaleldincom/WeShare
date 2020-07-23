@@ -58,50 +58,7 @@ class _NotificationsState extends State<Notifications> {
                   ),
                 ),
               ),
-            //   Container(
-            //   width: 50,
-            //   height: 50,
-            //   decoration: BoxDecoration(
-            //     shape: BoxShape.circle,
-            //     border: Border.all(
-            //       color: Colors.white,
-            //       width: 3,
-            //     ),
-            //     boxShadow: [
-            //       BoxShadow(
-            //           color: Colors.grey.withOpacity(.3),
-            //           offset: Offset(0, 5),
-            //           blurRadius: 25)
-            //     ],
-            //   ),
-            //   child: Stack(
-            //     children: [
-            //       Positioned.fill(
-            //         child: CircleAvatar(
-            //           backgroundImage:
-            //               AssetImage('assets/logo.png'),
-            //         ),
-            //       ),
-                   // friendsList[i]['isOnline']
-                   //     ? Align(
-                   //         alignment: Alignment.topRight,
-                   //         child: Container(
-                   //           height: 15,
-                   //           width: 15,
-                   //           decoration: BoxDecoration(
-                   //             border: Border.all(
-                   //               color: Colors.white,
-                   //               width: 3,
-                   //             ),
-                   //             shape: BoxShape.circle,
-                   //             color: Colors.green,
-                   //           ),
-                   //         ),
-                   //       ) :
-            //            Container(),
-            //     ],
-            //   ),
-            // ),
+           
             title: Container(
               padding: EdgeInsets.symmetric(vertical: 8,),
               child: Text(

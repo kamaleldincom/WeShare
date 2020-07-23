@@ -720,6 +720,7 @@ class _ProvideRideState extends State<ProvideRide> {
                                       gender != null &&
                                       dropDownValue != null &&
                                       tripFares != 0) {
+
                                     Ride ride = Ride(
                                       did: user.uid,
                                       availableSeats: dropDownValue,
@@ -727,6 +728,7 @@ class _ProvideRideState extends State<ProvideRide> {
                                       to: destination,
                                       riders: [],
                                       dateTime: "$tripDate $tripTime",
+                                      dateAdded: DateTime.now().toString(),
                                       price: tripFares,
                                       note: notes,
                                       status: 'posted',
