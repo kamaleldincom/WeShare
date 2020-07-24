@@ -236,7 +236,9 @@ class _AccountDetailsState extends State<AccountDetails> {
               
               
         Container(
-            margin: EdgeInsets.symmetric(horizontal: 10, vertical: 15),
+            width:MediaQuery.of(context).size.width,
+            margin: EdgeInsets.symmetric(vertical:10, horizontal: 30),
+            height: 50,
             child: FlatButton(
               child: Text(
                 'Save Changes',
@@ -263,7 +265,7 @@ class _AccountDetailsState extends State<AccountDetails> {
               color: Theme.of(context).accentColor,
               shape: RoundedRectangleBorder(
                   borderRadius: new BorderRadius.circular(12)),
-              padding: EdgeInsets.symmetric(horizontal: 123, vertical: 18),
+              // padding: EdgeInsets.symmetric(horizontal: 123, vertical: 18),
             ),
             ),
    
@@ -458,7 +460,7 @@ class _UploaderState extends State<Uploader> {
     } else {
       return FlatButton.icon(
           color: Colors.blue,
-          label: Text('Save!'),
+          label: Text('Upload!'),
           icon: Icon(Icons.cloud_upload),
           onPressed: _startUpload);
     }
