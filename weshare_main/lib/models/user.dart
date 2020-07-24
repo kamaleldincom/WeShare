@@ -9,7 +9,7 @@ class User{
   String password;
   String phoneNumber;
   String gender;
-  String photo;
+  bool photo;
   bool isDriver;
   Car car;
 

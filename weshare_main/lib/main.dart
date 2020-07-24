@@ -68,7 +68,7 @@ class MyApp extends StatelessWidget {
         home: Splash(),
         routes: {
           // '/': (context) => Loading(),
-          // '/home': (context) => Home(),
+          '/wrapper': (context) => Wrapper(),
           '/settings': (context) => Settings(),
           '/login': (context) => Login(),
           '/splash': (context) => Splash(),

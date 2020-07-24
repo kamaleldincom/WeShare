@@ -1,7 +1,7 @@
 import 'package:badges/badges.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:weshare_main/models/mock_data.dart';
+// import 'package:weshare_main/models/mock_data.dart';
 import 'package:weshare_main/models/ride.dart';
 import 'package:weshare_main/screens/postRide.dart';
 import 'package:weshare_main/services/database.dart';
@@ -76,7 +76,7 @@ class _BtmNavBarState extends State<BtmNavBar> {
   Widget build(BuildContext context) {
     final List<Widget> _pages = [
       Dashboard(),
-      Rides(rides, 'Rider'),
+      Rides('Rider'),
       Notifications(),
       Profile('Rider'),
     ];
@@ -163,7 +163,7 @@ class _BtnDriverState extends State<BtnDriver> {
   int _currentIndex = 3;
   final List<Widget> _pages = [
     PostRideInterface(),
-    Rides(rides, 'Driver'),
+    Rides('Driver'),
     Notifications(),
     Profile('Driver'),
   ];

@@ -9,9 +9,9 @@ import 'package:weshare_main/services/database.dart';
 import 'constants.dart';
 
 class Rides extends StatefulWidget {
-  final List<Ride> _rides;
+  // final List<Ride> _rides;
   final String usertype;
-  Rides(this._rides, this.usertype);
+  Rides(this.usertype);
   @override
   _RidesState createState() => _RidesState();
 }
@@ -104,7 +104,7 @@ class _RidesState extends State<Rides> {
                 // padding: EdgeInsets.only(bottom: 10),
                 child: CurrentListView(widget.usertype),
               ),
-              History(widget.usertype, widget._rides),
+              History(widget.usertype),
             ]),
           )),
     );

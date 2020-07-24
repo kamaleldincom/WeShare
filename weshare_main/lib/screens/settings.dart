@@ -106,14 +106,21 @@ class _SettingsState extends State<Settings> {
           ),
           onPressed: () async {
             if (userType == 'Rider') {
-              Navigator.pop(context);
+              Navigator.of(context).pushNamedAndRemoveUntil(
+                  '/wrapper',
+                  (Route<dynamic> route) => false);
             await _auth.signOut();
               
             } else if(userType == 'Driver'){
             // Navigator.popUntil(context,
             //                       ModalRoute.withName('/driverNav'));
-              Navigator.pop(context);
-              Navigator.pop(context);
+           
+              Navigator.of(context).pushNamedAndRemoveUntil(
+                  '/wrapper',
+                  (Route<dynamic> route) => false);
+
+              // Navigator.pop(context);
+              // Navigator.pop(context);
               await _auth.signOut();
             }
             // Navigator.pop(context);

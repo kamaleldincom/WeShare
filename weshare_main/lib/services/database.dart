@@ -27,6 +27,7 @@ class DatabaseService {
       'phoneNumber': user.phoneNumber,
       'gender': user.gender,
       'isDriver': false,
+      'photo': false,
     });
   }
   Future updateUserdetails(User user) async {
@@ -95,7 +96,7 @@ class DatabaseService {
   }
 
   Stream<List<CurrentRides>> userRides(var userType) {
-    print('Iam $userType');
+    // print('Iam $userType');
     if (userType == 'Rider') {
       //print('Im rider');
       return usersCollection
@@ -176,6 +177,7 @@ class DatabaseService {
         name: snapshot.data['name'],
         gender: snapshot.data['gender'],
         phoneNumber: snapshot.data['phoneNumber'],
+        photo: snapshot.data['photo'],
         isDriver: snapshot.data['isDriver'],
         car: snapshot.data['isDriver']
             ? _carFromSnapsoht(snapshot.data['car'])
@@ -309,8 +311,7 @@ class DatabaseService {
     }
   }
 
-
-  Future<Image> getImage(String image) async {
+ Future<Image> getImage(String image) async {
 Image m;
   // downloadUrl = 'downloadUrl'
   await FirebaseStorage.instance.ref().child('$image/profile.png').getDownloadURL().then((downloadUrl) {
@@ -323,13 +324,17 @@ Image m;
 
   return m;
   }
+
+
+  Future updateUserProfilePicture(String uid){
+    usersCollection.document(uid).updateData({
+      'photo': true
+    });
+  }
 }
-
-
 
 class FireStorageService extends ChangeNotifier {
   FireStorageService();
-
   static Future<dynamic> loadFromStorage(BuildContext context, String image) async {
     return await FirebaseStorage.instance.ref().child(image).getDownloadURL();
   }

@@ -437,6 +437,7 @@ class _UploaderState extends State<Uploader> {
                   
        if (_uploadTask.isComplete)
        Navigator.pop(context);
+      DatabaseService().updateUserProfilePicture(user.uid);
 
             return Column(
                 mainAxisAlignment: MainAxisAlignment.center,

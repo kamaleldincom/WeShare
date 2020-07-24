@@ -71,12 +71,10 @@ class _DashboardState extends State<Dashboard> {
               ///////////////
               // SliverList //
               ///////////////
-              RidesSliverList(scaffold:  _scaffold),
-              
+              RidesSliverList(scaffold: _scaffold),
             ],
-            
           ),
-          
+
           // bottomNavigationBar: BtmNavBar(),
         ),
       ),
@@ -138,47 +136,53 @@ class _RidesSliverListState extends State<RidesSliverList> {
                         backgroundColor: Colors.white,
                         radius: 21.5,
                         child: FutureBuilder(
-                  future: DatabaseService().getImage(dashboardList[index].did),
-                  builder: (context, snapshot) {
-                    if (snapshot.connectionState ==
-                          ConnectionState.done)
-                      return CircleAvatar(
-                          child: ClipOval(
-                            child:snapshot.data,
-                          ),
-                                // backgroundImage: NetworkImage(snapshot.data.preview),
-                                radius: 20,
-                              );
+                            future: DatabaseService()
+                                .getUserDetails(dashboardList[index].did),
+                            builder: (context, snapshot) {
+                              if (snapshot.hasData) {
+                                if (snapshot.data.photo) {
+                                  FutureBuilder(
+                                    future: DatabaseService()
+                                        .getImage(dashboardList[index].did),
+                                    builder: (context, snapshot) {
+                                      if (snapshot.connectionState ==
+                                              ConnectionState.done &&
+                                          snapshot.hasData)
+                                        return CircleAvatar(
+                                          child: ClipOval(
+                                            child: snapshot.data,
+                                          ),
+                                          // backgroundImage: NetworkImage(snapshot.data.preview),
+                                          radius: 20,
+                                        );
 
-                    if (snapshot.connectionState ==
-                          ConnectionState.waiting)
-                      return Container(
-                            // height: MediaQuery.of(context).size.height /
-                            //     1.25,
-                            // width: MediaQuery.of(context).size.width /
-                            //     1.25,
-                            // child: CircularProgressIndicator(
-                              // backgroundColor: Colors.transparent,
+                                      if (snapshot.connectionState ==
+                                          ConnectionState.waiting)
+                                        return Container(
+                                            child:
+                                                Icon(Icons.person, size: 35));
 
-                              //   strokeWidth: 4,
-                            // )
-                            child: Icon(Icons.person, size: 35)
-                            );
+                                      if (snapshot.connectionState ==
+                                          ConnectionState.none) {
+                                        return Container(
+                                          child: Icon(Icons.person),
+                                        );
+                                      }
+                                      return Container(
+                                        child: Icon(Icons.person, size: 35),
+                                      );
+                                    },
+                                  );
+                                } else {
+                                  Container(
+                                      child: Icon(Icons.person, size: 35));
+                                }
 
-
-                    if (snapshot.connectionState ==
-                          ConnectionState.none) {
-                      
-                    return Container(
-                      child: Icon(Icons.person),
-                    );
-                    }
-                    return Container(
-                      child: Icon(Icons.person, size: 35),
-                    );
-                  },
-              ),
-             
+                              }
+                              return Container(
+                                      child: Icon(Icons.person, size: 35));
+                            }
+                            ),
                       ),
                     ),
                     Padding(
@@ -220,159 +224,107 @@ class _RidesSliverListState extends State<RidesSliverList> {
               ///////////////
               Container(
                 padding: EdgeInsets.symmetric(horizontal: 10),
-                
-                      child: Row(
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: <Widget>[
+                    Container(
+                      child: Column(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: <Widget>[
                           Container(
-                            
-                            child: Column(
-                              
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            margin: EdgeInsets.all(0),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.start,
                               crossAxisAlignment: CrossAxisAlignment.start,
-                              
                               children: <Widget>[
+                                Icon(
+                                  Icons.trip_origin,
+                                  color: Theme.of(context).accentColor,
+                                  size: 15,
+                                ),
+                                SizedBox(width: 5),
                                 Container(
-                                  margin: EdgeInsets.all(0),
-                                  child: Row(
-                                    mainAxisAlignment: MainAxisAlignment.start,
+                                  width: 200,
+                                  child: Column(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
                                     crossAxisAlignment:
                                         CrossAxisAlignment.start,
                                     children: <Widget>[
-                                      Icon(
-                                        Icons.trip_origin,
-                                        color: Theme.of(context).accentColor,
-                                        size: 15,
-                                      ),
-                                      SizedBox(width: 5),
-                                      Container(
-                                        width: 200,
-                                        child: Column(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.spaceBetween,
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.start,
-                                          children: <Widget>[
-                                            Title(
-                                              color: Colors.black,
-                                              child: Text(
-                                                'From',
-                                                style: TextStyle(
-                                                  fontWeight: FontWeight.w300,
-                                                  fontSize: 11,
-                                                  color: Colors.grey,
-                                                ),
-                                              ),
-                                            ),
-                                            Text(
-                                              "${dashboardList[index].from}",
-                                              style: TextStyle(
-                                                fontWeight: FontWeight.w500,
-                                                fontSize: 15,
-                                                color: Colors.grey[800],
-                                              ),
-                                              overflow: TextOverflow.ellipsis, 
-                                              
-                                            ),
-                                          ],
-                                          // brightness_1
+                                      Title(
+                                        color: Colors.black,
+                                        child: Text(
+                                          'From',
+                                          style: TextStyle(
+                                            fontWeight: FontWeight.w300,
+                                            fontSize: 11,
+                                            color: Colors.grey,
+                                          ),
                                         ),
                                       ),
-                                    ],
-                                  ),
-                                ),
-                                SizedBox(
-                                  height: 10,
-                                ),
-                                Container(
-                                  margin: EdgeInsets.all(0),
-                                  child: Row(
-                                    mainAxisAlignment: MainAxisAlignment.start,
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: <Widget>[
-                                      Icon(
-                                        Icons.brightness_1,
-                                        color: Theme.of(context).accentColor,
-                                        size: 15,
-                                      ),
-                                      SizedBox(width: 5),
-                                      Container(
-                                        width: 200,
-                                        child: Column(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.spaceBetween,
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.start,
-                                          children: <Widget>[
-                                            Title(
-                                              color: Colors.black,
-                                              child: Text(
-                                                'To',
-                                                style: TextStyle(
-                                                  fontWeight: FontWeight.w300,
-                                                  fontSize: 11,
-                                                  color: Colors.grey,
-                                                ),
-                                              ),
-                                            ),
-                                            Text(
-                                              "${dashboardList[index].to}",
-                                              style: TextStyle(
-                                                fontWeight: FontWeight.w400,
-                                                fontSize: 15,
-                                                color: Colors.grey,
-                                              ),
-                                              overflow: TextOverflow.ellipsis, 
-                                            ),
-                                          ],
-                                          // brightness_1
+                                      Text(
+                                        "${dashboardList[index].from}",
+                                        style: TextStyle(
+                                          fontWeight: FontWeight.w500,
+                                          fontSize: 15,
+                                          color: Colors.grey[800],
                                         ),
+                                        overflow: TextOverflow.ellipsis,
                                       ),
                                     ],
+                                    // brightness_1
                                   ),
                                 ),
                               ],
                             ),
                           ),
                           SizedBox(
-                            width: 15,
+                            height: 10,
                           ),
                           Container(
-                            margin: EdgeInsets.only(right: 10),
-                            child: Column(
-                              // mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            margin: EdgeInsets.all(0),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.start,
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: <Widget>[
-                                Title(
-                                  color: Colors.black,
-                                  child: Text(
-                                    'Pickup time',
-                                    style: TextStyle(
-                                      fontWeight: FontWeight.w300,
-                                      fontSize: 11,
-                                      color: Colors.grey,
-                                    ),
-                                  ),
+                                Icon(
+                                  Icons.brightness_1,
+                                  color: Theme.of(context).accentColor,
+                                  size: 15,
                                 ),
-                                SizedBox(
-                                  height: 10,
-                                ),
-                                Text(
-                                  '$time',
-                                  style: TextStyle(
-                                    fontWeight: FontWeight.w500,
-                                    fontSize: 16,
-                                    color: Colors.grey[800],
-                                  ),
-                                ),
-                                Text(
-                                  '$date',
-                                  style: TextStyle(
-                                    fontWeight: FontWeight.w500,
-                                    fontSize: 12,
-                                    color: Colors.grey[700],
+                                SizedBox(width: 5),
+                                Container(
+                                  width: 200,
+                                  child: Column(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: <Widget>[
+                                      Title(
+                                        color: Colors.black,
+                                        child: Text(
+                                          'To',
+                                          style: TextStyle(
+                                            fontWeight: FontWeight.w300,
+                                            fontSize: 11,
+                                            color: Colors.grey,
+                                          ),
+                                        ),
+                                      ),
+                                      Text(
+                                        "${dashboardList[index].to}",
+                                        style: TextStyle(
+                                          fontWeight: FontWeight.w400,
+                                          fontSize: 15,
+                                          color: Colors.grey,
+                                        ),
+                                        overflow: TextOverflow.ellipsis,
+                                      ),
+                                    ],
+                                    // brightness_1
                                   ),
                                 ),
                               ],
@@ -380,7 +332,51 @@ class _RidesSliverListState extends State<RidesSliverList> {
                           ),
                         ],
                       ),
-                    
+                    ),
+                    SizedBox(
+                      width: 15,
+                    ),
+                    Container(
+                      margin: EdgeInsets.only(right: 10),
+                      child: Column(
+                        // mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: <Widget>[
+                          Title(
+                            color: Colors.black,
+                            child: Text(
+                              'Pickup time',
+                              style: TextStyle(
+                                fontWeight: FontWeight.w300,
+                                fontSize: 11,
+                                color: Colors.grey,
+                              ),
+                            ),
+                          ),
+                          SizedBox(
+                            height: 10,
+                          ),
+                          Text(
+                            '$time',
+                            style: TextStyle(
+                              fontWeight: FontWeight.w500,
+                              fontSize: 16,
+                              color: Colors.grey[800],
+                            ),
+                          ),
+                          Text(
+                            '$date',
+                            style: TextStyle(
+                              fontWeight: FontWeight.w500,
+                              fontSize: 12,
+                              color: Colors.grey[700],
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
               ),
               ///////////////
               // FocusData  + Join//
@@ -451,7 +447,7 @@ class _RidesSliverListState extends State<RidesSliverList> {
                         ],
                       ),
                     ),
-                  
+
                     ///////////////
                     // Join btn //
                     ///////////////
@@ -552,17 +548,19 @@ class _RidesSliverListState extends State<RidesSliverList> {
                                             ),
                                             Row(
                                               mainAxisAlignment:
-                                                  MainAxisAlignment.spaceBetween,
+                                                  MainAxisAlignment
+                                                      .spaceBetween,
                                               crossAxisAlignment:
                                                   CrossAxisAlignment.start,
                                               children: <Widget>[
-                                                
                                                 Container(
                                                   child: Column(
                                                     mainAxisAlignment:
                                                         MainAxisAlignment
                                                             .spaceBetween,
-                                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                                    crossAxisAlignment:
+                                                        CrossAxisAlignment
+                                                            .start,
                                                     children: <Widget>[
                                                       Container(
                                                         margin:
@@ -586,7 +584,6 @@ class _RidesSliverListState extends State<RidesSliverList> {
                                                             Container(
                                                               width: 220,
                                                               child: Column(
-                                                                
                                                                 mainAxisAlignment:
                                                                     MainAxisAlignment
                                                                         .spaceBetween,
@@ -705,16 +702,18 @@ class _RidesSliverListState extends State<RidesSliverList> {
                                                     ],
                                                   ),
                                                 ),
-                                                
                                               ],
                                             ),
-                                            SizedBox(height: 5,),
+                                            SizedBox(
+                                              height: 5,
+                                            ),
                                             Container(
                                               margin: EdgeInsets.all(5),
                                               padding: EdgeInsets.all(5),
                                               height: 100,
                                               width: 350,
-                                              child: Text('Note: ${dashboardList[index].note}'),
+                                              child: Text(
+                                                  'Note: ${dashboardList[index].note}'),
                                               decoration: BoxDecoration(
                                                   // color: Colors.grey[200],
                                                   borderRadius:
@@ -724,100 +723,101 @@ class _RidesSliverListState extends State<RidesSliverList> {
                                                     color: Colors.grey,
                                                   )),
                                             ),
-                                            SizedBox(height: 5,),
+                                            SizedBox(
+                                              height: 5,
+                                            ),
                                             Container(
-                                              margin: EdgeInsets.symmetric(horizontal: 5),
-                                                  child: Row(
+                                              margin: EdgeInsets.symmetric(
+                                                  horizontal: 5),
+                                              child: Row(
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment
+                                                        .spaceEvenly,
+                                                crossAxisAlignment:
+                                                    CrossAxisAlignment.start,
+                                                children: <Widget>[
+                                                  Column(
                                                     mainAxisAlignment:
-                                                            MainAxisAlignment
-                                                                .spaceEvenly,
-                                                        crossAxisAlignment:
-                                                            CrossAxisAlignment
-                                                                .start,
+                                                        MainAxisAlignment.start,
+                                                    crossAxisAlignment:
+                                                        CrossAxisAlignment
+                                                            .center,
                                                     children: <Widget>[
-                                                      Column(
-                                                        mainAxisAlignment:
-                                                            MainAxisAlignment
-                                                                .start,
-                                                        crossAxisAlignment:
-                                                            CrossAxisAlignment
-                                                                .center,
-                                                        children: <Widget>[
-                                                          Title(
-                                                            color: Colors.black,
-                                                            child: Text(
-                                                              'Available Seats',
-                                                              style: TextStyle(
-                                                                fontWeight:
-                                                                    FontWeight.w300,
-                                                                fontSize: 11,
-                                                                color: Colors.grey,
-                                                              ),
-                                                            ),
+                                                      Title(
+                                                        color: Colors.black,
+                                                        child: Text(
+                                                          'Available Seats',
+                                                          style: TextStyle(
+                                                            fontWeight:
+                                                                FontWeight.w300,
+                                                            fontSize: 11,
+                                                            color: Colors.grey,
                                                           ),
-                                                          SizedBox(
-                                                            height: 2,
-                                                          ),
-                                                          Text(
-                                                            '${dashboardList[index].availableSeats}',
-                                                            style: TextStyle(
-                                                              fontWeight:
-                                                                  FontWeight.w500,
-                                                              fontSize: 25,
-                                                              color:
-                                                                  Colors.grey[700],
-                                                            ),
-                                                          ),
-                                                        ],
+                                                        ),
                                                       ),
-                                                    
-                                                      Column(
-                                                        mainAxisAlignment:
-                                                            MainAxisAlignment
-                                                                .spaceBetween,
-                                                        crossAxisAlignment:
-                                                            CrossAxisAlignment
-                                                                .start,
-                                                        children: <Widget>[
-                                                          Title(
-                                                            color: Colors.black,
-                                                            child: Text(
-                                                              'Pickup time',
-                                                              style: TextStyle(
-                                                                fontWeight:
-                                                                    FontWeight.w300,
-                                                                fontSize: 11,
-                                                                color: Colors.grey,
-                                                              ),
-                                                            ),
-                                                          ),
-                                                          SizedBox(
-                                                            height: 2,
-                                                          ),
-                                                          Text(
-                                                            '$time',
-                                                            style: TextStyle(
-                                                              fontWeight:
-                                                                  FontWeight.w500,
-                                                              fontSize: 14,
-                                                              color:
-                                                                  Colors.grey[700],
-                                                            ),
-                                                          ),
-                                                          Text(
-                                                            '$date',
-                                                            style: TextStyle(
-                                                              fontWeight: FontWeight.w500,
-                                                              fontSize: 11,
-                                                              color: Colors.grey[700],
-                                                            ),
-                                                          ),
-                                                        ],
+                                                      SizedBox(
+                                                        height: 2,
+                                                      ),
+                                                      Text(
+                                                        '${dashboardList[index].availableSeats}',
+                                                        style: TextStyle(
+                                                          fontWeight:
+                                                              FontWeight.w500,
+                                                          fontSize: 25,
+                                                          color:
+                                                              Colors.grey[700],
+                                                        ),
                                                       ),
                                                     ],
                                                   ),
-                                                ),
-                                                
+                                                  Column(
+                                                    mainAxisAlignment:
+                                                        MainAxisAlignment
+                                                            .spaceBetween,
+                                                    crossAxisAlignment:
+                                                        CrossAxisAlignment
+                                                            .start,
+                                                    children: <Widget>[
+                                                      Title(
+                                                        color: Colors.black,
+                                                        child: Text(
+                                                          'Pickup time',
+                                                          style: TextStyle(
+                                                            fontWeight:
+                                                                FontWeight.w300,
+                                                            fontSize: 11,
+                                                            color: Colors.grey,
+                                                          ),
+                                                        ),
+                                                      ),
+                                                      SizedBox(
+                                                        height: 2,
+                                                      ),
+                                                      Text(
+                                                        '$time',
+                                                        style: TextStyle(
+                                                          fontWeight:
+                                                              FontWeight.w500,
+                                                          fontSize: 14,
+                                                          color:
+                                                              Colors.grey[700],
+                                                        ),
+                                                      ),
+                                                      Text(
+                                                        '$date',
+                                                        style: TextStyle(
+                                                          fontWeight:
+                                                              FontWeight.w500,
+                                                          fontSize: 11,
+                                                          color:
+                                                              Colors.grey[700],
+                                                        ),
+                                                      ),
+                                                    ],
+                                                  ),
+                                                ],
+                                              ),
+                                            ),
                                           ],
                                         ),
                                       ),
@@ -870,27 +870,36 @@ class _RidesSliverListState extends State<RidesSliverList> {
                                                 Ride ride = rides[index];
                                                 if (databaseService.hasJoined(
                                                     ride.riders, user.uid)) {
-                                                      Navigator.pop(context);
-                                                  SnackBar registrationBar = SnackBar(
+                                                  Navigator.pop(context);
+                                                  SnackBar registrationBar =
+                                                      SnackBar(
                                                     content: Text(
                                                       'Sorry, You joined this ride!',
                                                     ),
-                                                    behavior: SnackBarBehavior.floating,
+                                                    behavior: SnackBarBehavior
+                                                        .floating,
                                                   );
-                                                widget.scaffold.currentState.showSnackBar(registrationBar);
+                                                  widget.scaffold.currentState
+                                                      .showSnackBar(
+                                                          registrationBar);
                                                 } else {
                                                   print(
                                                       'ride id : ${dashboardList[index].rid}');
                                                   databaseService.joinRide(
-                                                      dashboardList[index], user);
+                                                      dashboardList[index],
+                                                      user);
                                                   Navigator.pop(context);
-                                                  SnackBar registrationBar = SnackBar(
-                                                    behavior: SnackBarBehavior.floating,
+                                                  SnackBar registrationBar =
+                                                      SnackBar(
+                                                    behavior: SnackBarBehavior
+                                                        .floating,
                                                     content: Text(
                                                       'You have joined this ride! You can check it on the rides screen',
                                                     ),
                                                   );
-                                                widget.scaffold.currentState.showSnackBar(registrationBar);
+                                                  widget.scaffold.currentState
+                                                      .showSnackBar(
+                                                          registrationBar);
                                                 }
                                               },
                                               color:

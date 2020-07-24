@@ -6,7 +6,6 @@ import 'constants.dart';
 class RideSummary extends StatefulWidget {
   
   @override
-
   _RideSummaryState createState() => _RideSummaryState();
 }
 
@@ -35,16 +34,16 @@ class _RideSummaryState extends State<RideSummary> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
-                Center(
-                  child: CircleAvatar(
-                    backgroundColor: Colors.white,
-                    radius: 47.0,
-                                      child: CircleAvatar(
-                      backgroundImage: AssetImage(ride.user.photo),
-                      radius: 45.0,
-                    ),
-                  ),
-                ),
+                // Center(
+                //   child: CircleAvatar(
+                //     backgroundColor: Colors.white,
+                //     radius: 47.0,
+                //                       child: CircleAvatar(
+                //       backgroundImage: AssetImage(ride.user.photo),
+                //       radius: 45.0,
+                //     ),
+                //   ),
+                // ),
                 Padding(
                   padding: const EdgeInsets.fromLTRB(0.0, 8.0, 0.0, 0.0),
                   child: Center(
