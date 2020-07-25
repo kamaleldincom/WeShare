@@ -74,7 +74,7 @@ class _RrDetailsState extends State<RrDetails> {
                     borderRadius: BorderRadius.circular(8.0),
                     // borderSide: BorderSide(color: Colors.grey, width: 0.5),
                   ),
-                  child: chatsLT(context),
+                  child: chatsLT(context,ride),
                 ),
                 Card(
                   margin: EdgeInsets.all(0),

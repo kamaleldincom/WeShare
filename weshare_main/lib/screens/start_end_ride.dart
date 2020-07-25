@@ -68,7 +68,7 @@ class _StartEndRideInterfaceState extends State<StartEndRideInterface> {
                     shape: RoundedRectangleBorder(
                         side: BorderSide(color: Colors.grey[400]),
                         borderRadius: BorderRadius.circular(10.0)),
-                    child: chatsLT(context),
+                    child: chatsLT(context,ride),
                   ),
                 ),
                 SizedBox(height: 0.7),

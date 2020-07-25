@@ -909,7 +909,7 @@ Container currentRideCard(
             GestureDetector(
               behavior: HitTestBehavior.opaque,
               onTap: () {
-                Navigator.pushNamed(context, '/chatScreen');
+                Navigator.pushNamed(context, '/chatScreen', arguments: _rides);
               },
               child: Container(
                 padding: EdgeInsets.only(top: 5, bottom: 8),
@@ -1076,10 +1076,10 @@ Container startLeaveButton(String text, var color) {
 //---------------------------------------------------------------------------------------------------------------
 
 //chats List tile
-ListTile chatsLT(BuildContext context) {
+ListTile chatsLT(BuildContext context, CurrentRides ride) {
   return ListTile(
     onTap: () {
-      Navigator.pushNamed(context, '/chatScreen');
+      Navigator.pushNamed(context, '/chatScreen', arguments: ride);
     },
     contentPadding: EdgeInsets.only(left: 12, right: 25),
     leading: Container(
