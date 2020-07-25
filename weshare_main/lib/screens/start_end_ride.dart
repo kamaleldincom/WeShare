@@ -231,6 +231,8 @@ class _StartEndRideInterfaceState extends State<StartEndRideInterface> {
                                     onPressed: () {
                                       DatabaseService()
                                           .endRide(ride, user.uid);
+                                          Navigator.pop(context);
+                                          // Navigator.pop(context);
                                     },
                                   )
                                 : FlatButton(

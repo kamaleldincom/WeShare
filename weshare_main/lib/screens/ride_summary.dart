@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:weshare_main/models/ride.dart';
+import 'package:weshare_main/services/database.dart';
 
 import 'constants.dart';
 
@@ -10,12 +11,16 @@ class RideSummary extends StatefulWidget {
 }
 
 class _RideSummaryState extends State<RideSummary> {
-  Ride ride;
+  CurrentRides ride;
   Map map = {};
   @override
   Widget build(BuildContext context) {
 
      ride = ModalRoute.of(context).settings.arguments;
+     String dateTime = ride.dateTime ?? "";
+        var characterIndex = dateTime.indexOf(" ");
+        var date = dateTime.substring(0, characterIndex);
+        var time = dateTime.substring(characterIndex);
     return Scaffold(
       backgroundColor: Color(0xFFF1F3F5),
       appBar: AppBar(
@@ -34,22 +39,71 @@ class _RideSummaryState extends State<RideSummary> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
-                // Center(
-                //   child: CircleAvatar(
-                //     backgroundColor: Colors.white,
-                //     radius: 47.0,
-                //                       child: CircleAvatar(
-                //       backgroundImage: AssetImage(ride.user.photo),
-                //       radius: 45.0,
-                //     ),
-                //   ),
-                // ),
+                Center(
+                  child: CircleAvatar(
+                    backgroundColor: Colors.white,
+                    radius: 47.0,
+                          child: CircleAvatar(
+
+                      child: FutureBuilder(
+                            future: DatabaseService()
+                                .getUserDetails(ride.did),
+                            builder: (context, snapshot) {
+                              if (snapshot.hasData) {
+                                if (snapshot.data.photo) {
+                                  FutureBuilder(
+                                    future: DatabaseService()
+                                        .getImage(ride.did),
+                                    builder: (context, snapshot) {
+                                      if (snapshot.connectionState ==
+                                              ConnectionState.done &&
+                                          snapshot.hasData)
+                                        return CircleAvatar(
+                                          child: ClipOval(
+                                            child: snapshot.data,
+                                          ),
+                                          // backgroundImage: NetworkImage(snapshot.data.preview),
+                                          radius: 20,
+                                        );
+
+                                      if (snapshot.connectionState ==
+                                          ConnectionState.waiting)
+                                        return Container(
+                                            child:
+                                                Icon(Icons.person, size: 35));
+
+                                      if (snapshot.connectionState ==
+                                          ConnectionState.none) {
+                                        return Container(
+                                          child: Icon(Icons.person),
+                                        );
+                                      }
+                                      return Container(
+                                        child: Icon(Icons.person, size: 35),
+                                      );
+                                    },
+                                  );
+                                } else {
+                                  Container(
+                                      child: Icon(Icons.person, size: 35));
+                                }
+
+                              }
+                              return Container(
+                                      child: Icon(Icons.person, size: 35));
+                            }
+                            ),
+                     
+                      radius: 45.0,
+                    ),
+                  ),
+                ),
                 Padding(
                   padding: const EdgeInsets.fromLTRB(0.0, 8.0, 0.0, 0.0),
                   child: Center(
                     child: Column(children: <Widget>[
                       Text(
-                        ride.user.name,
+                        ride.driver.name,
                         style: TextStyle(
                           color: Colors.white,
                           fontSize: 16.0,
@@ -60,7 +114,7 @@ class _RideSummaryState extends State<RideSummary> {
                         height: 5.0,
                       ),
                       Text(
-                        ride.user.phoneNumber,
+                        '',
                         style: TextStyle(
                           color: Colors.white,
                           fontSize: 16.0,
@@ -140,9 +194,9 @@ class _RideSummaryState extends State<RideSummary> {
                               mainAxisAlignment:
                                   MainAxisAlignment.spaceBetween,
                               children: <Widget>[
-                                Text(' 10:10 AM',
+                                Text('$time',
                                     style: TextStyle(color: Colors.grey)),
-                                Text(' 10:20 AM',
+                                Text('$date',
                                     style: TextStyle(color: Colors.grey)),
                               ],
                             ),
