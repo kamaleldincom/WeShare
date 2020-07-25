@@ -31,14 +31,43 @@ class DatabaseService {
     });
   }
   Future updateUserdetails(User user) async {
-    print('user name:${user.name}');
-    return await usersCollection.document(user.uid).updateData({
+    await usersCollection.document(user.uid).updateData({
       'name': user.name,
-      // 'email': user.email,
       'phoneNumber': user.phoneNumber,
-      // 'gender': user.gender,
-      // 'isDriver': false,
     });
+    
+    if (user.isDriver) {
+  //  await ridesCollection.where('did', isEqualTo: user.uid).snapshots().forEach((element) {
+  //     element.documents.forEach((element) {
+  //       element.reference.updateData(<String, dynamic>{
+  //           'driver': {
+  //             'name': user.name,
+  //             'car': user.car.toMap(user.car)
+  //           }
+  //       });
+  //     });
+  //   });
+    
+  //    await usersCollection.document(user.uid).collection('providedRides').snapshots().forEach((element) {
+  //     element.documents.forEach((element) {
+  //       element.reference.updateData(<String, dynamic>{
+  //           'driver': {
+  //             'name': user.name,
+  //             'car': user.car.toMap(user.car)
+  //           }
+  //       });
+  //     });
+  //   });
+    }
+    
+    // ridesCollection.where('did', isEqualTo: user.uid).snapshots().map((event) {
+    //   event.documents.forEach((element) {
+    //     element.reference.updateData(<String, dynamic>{
+    //         'from': 'melawis' 
+    //     });
+    //   });
+    // });
+    
   }
 
   Driver _driverFromSnapsoht(Map<String, dynamic> data) {
@@ -312,8 +341,7 @@ class DatabaseService {
   }
 
  Future<Image> getImage(String image) async {
-Image m;
-  // downloadUrl = 'downloadUrl'
+  Image m;
   await FirebaseStorage.instance.ref().child('$image/profile.png').getDownloadURL().then((downloadUrl) {
       print( downloadUrl.toString());
     m = Image.network(
@@ -321,7 +349,6 @@ Image m;
       fit: BoxFit.scaleDown,
     );
   });
-
   return m;
   }
 

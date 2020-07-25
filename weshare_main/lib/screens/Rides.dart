@@ -112,15 +112,7 @@ class _RidesState extends State<Rides> {
 }
 
 class CurrentListView extends StatefulWidget {
-  // const CurrentListView({
-  // Key key,
-  // @required this.rides,
-  // @required this.ride,
-  // @required this.widget,
-  // }) : super(key: key);
 
-  // final List<Rode> rides;
-  // final List<Ride> ride;
   CurrentListView(this.usertype);
   final usertype;
 

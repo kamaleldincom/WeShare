@@ -208,8 +208,8 @@ class _AccountDetailsState extends State<AccountDetails> {
                 ),
                 onPressed: () {
                    if (_formKey.currentState.validate() && name != '' || phoneNumber != '' ) {
-                     user.phoneNumber = phoneNumber;
-                     user.name = name;
+                     user.phoneNumber = phoneNumber == ''? user.phoneNumber : phoneNumber;
+                     user.name = name == ''? user.name : name;
                     //  print('name: $name');
                       DatabaseService().updateUserdetails(user);
                       SnackBar registrationBar = SnackBar(
@@ -218,7 +218,15 @@ class _AccountDetailsState extends State<AccountDetails> {
                                                       ),
                                                     );
                                                   _scaffold.currentState.showSnackBar(registrationBar);
+                   }else{
+                     SnackBar registrationBar = SnackBar(
+                                                      content: Text(
+                                                        'You did not make any changes',
+                                                      ),
+                                                    );
+                                                  _scaffold.currentState.showSnackBar(registrationBar);
                    }
+
                 },
                 color: Theme.of(context).accentColor,
                 shape: RoundedRectangleBorder(
