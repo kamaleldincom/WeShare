@@ -27,79 +27,80 @@ class _ProfileState extends State<Profile> {
     // databaseService.getUserDetails(user.uid);
     // print(user.email);
     // User user1;
-    if(user.uid != null)
-    return FutureBuilder<User>(
-        future: databaseService.getUserDetails(user.uid),
-        builder: (context, snapshot) {
-          if (snapshot.hasData) {
-            user = snapshot.data;
-            return WillPopScope(
-              onWillPop: () => Future.value(false),
-              child: Scaffold(
-                key: _scaffoldKey,
-                backgroundColor: Color(0xFFF1F3F5),
-                appBar: AppBar(
-                  automaticallyImplyLeading: false,
-                  title: Text(
-                    'Profile',
-                    style: TextStyle(
-                      fontWeight: FontWeight.w600,
+    if (user.uid != null)
+      return FutureBuilder<User>(
+          future: databaseService.getUserDetails(user.uid),
+          builder: (context, snapshot) {
+            if (snapshot.hasData) {
+              user = snapshot.data;
+              return WillPopScope(
+                onWillPop: () => Future.value(false),
+                child: Scaffold(
+                  key: _scaffoldKey,
+                  backgroundColor: Color(0xFFF1F3F5),
+                  appBar: AppBar(
+                    automaticallyImplyLeading: false,
+                    title: Text(
+                      'Profile',
+                      style: TextStyle(
+                        fontWeight: FontWeight.w600,
+                      ),
                     ),
+                    elevation: 0.0,
+                    centerTitle: true,
+                    backgroundColor: Color(0xFF76D3FF),
                   ),
-                  elevation: 0.0,
-                  centerTitle: true,
-                  backgroundColor: Color(0xFF76D3FF),
-                ),
-                body: SingleChildScrollView(
-                                  child: Column(
-                    children: <Widget>[
-                      Container(
-                        height: 270.0,
-                        decoration:
-                            BoxDecoration(gradient: linearGradientvertical),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: <Widget>[
-                            Center(
-                              child: CircleAvatar(
+                  body: SingleChildScrollView(
+                    child: Column(
+                      children: <Widget>[
+                        Container(
+                          height: 270.0,
+                          decoration:
+                              BoxDecoration(gradient: linearGradientvertical),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: <Widget>[
+                              Center(
+                                  child: CircleAvatar(
                                 backgroundColor: Colors.white,
                                 radius: 50,
-                                child: user.photo? FutureBuilder(
-                  future: DatabaseService().getImage(user.uid),
-                  builder: (context, snapshot) {
-                    if (snapshot.connectionState ==
-                          ConnectionState.done && snapshot.hasData)
-                      return CircleAvatar(
-                          child: ClipOval(
-                            child:snapshot.data,
-                          ),
-                                radius: 45,
-                              );
-
-                    else if (snapshot.connectionState ==
-                          ConnectionState.waiting)
-                      return Container(
-                            child: Icon(Icons.person, size: 70)
-                            );
-                    else if (snapshot.connectionState ==
-                          ConnectionState.none) {
-                      
-                    return Container(
-                      child: Icon(Icons.person),
-                    );
-                    }
-                    return Container(
-                      child: Icon(Icons.person, size: 70),
-                    );
-                  },
-              ):Container(
-                      child: Icon(Icons.person, size: 70),
-                    ),
-              )
-                              ),
+                                child: user.photo
+                                    ? FutureBuilder(
+                                        future: DatabaseService()
+                                            .getImage(user.uid),
+                                        builder: (context, snapshot) {
+                                          if (snapshot.connectionState ==
+                                                  ConnectionState.done &&
+                                              snapshot.hasData)
+                                            return CircleAvatar(
+                                              child: ClipOval(
+                                                child: snapshot.data,
+                                              ),
+                                              radius: 45,
+                                            );
+                                          else if (snapshot.connectionState ==
+                                              ConnectionState.waiting)
+                                            return Container(
+                                                child: Icon(Icons.person,
+                                                    size: 70));
+                                          else if (snapshot.connectionState ==
+                                              ConnectionState.none) {
+                                            return Container(
+                                              child: Icon(Icons.person),
+                                            );
+                                          }
+                                          return Container(
+                                            child: Icon(Icons.person, size: 70),
+                                          );
+                                        },
+                                      )
+                                    : Container(
+                                        child: Icon(Icons.person, size: 70),
+                                      ),
+                              )),
                               Padding(
-                                padding:
-                                    const EdgeInsets.fromLTRB(0.0, 8.0, 0.0, 0.0),
+                                padding: const EdgeInsets.fromLTRB(
+                                    0.0, 8.0, 0.0, 0.0),
                                 child: Center(
                                   child: Column(children: <Widget>[
                                     Text(
@@ -166,8 +167,8 @@ class _ProfileState extends State<Profile> {
 
                                             // });
                                           },
-                                          padding:
-                                              EdgeInsets.fromLTRB(30, 13, 15, 13),
+                                          padding: EdgeInsets.fromLTRB(
+                                              30, 13, 15, 13),
                                           child: Row(
                                             mainAxisAlignment:
                                                 MainAxisAlignment.center,
@@ -227,7 +228,6 @@ class _ProfileState extends State<Profile> {
                                       ? Colors.white
                                       : Colors.transparent,
                                   padding: EdgeInsets.fromLTRB(65, 10, 65, 10),
-                                  
                                   onPressed: () {
                                     Navigator.pushReplacement(
                                         context,
@@ -246,7 +246,8 @@ class _ProfileState extends State<Profile> {
                                     ),
                                   ),
                                   shape: new RoundedRectangleBorder(
-                                    borderRadius: new BorderRadius.circular(7.0),
+                                    borderRadius:
+                                        new BorderRadius.circular(7.0),
                                   ),
                                 ),
                                 FlatButton(
@@ -273,7 +274,7 @@ class _ProfileState extends State<Profile> {
                                             borderRadius:
                                                 BorderRadius.circular(10.0)),
                                         title: Image.asset(
-                                          'assets/confused.png',
+                                          'assets/delivery-man.png',
                                           height: 110,
                                         ),
                                         content: Container(
@@ -331,8 +332,8 @@ class _ProfileState extends State<Profile> {
                                               SizedBox(height: 50),
                                               FlatButton(
                                                 onPressed: () async {
-                                                  Navigator.pushNamed(
-                                                      context, '/editCarDetails');
+                                                  Navigator.pushNamed(context,
+                                                      '/editCarDetails');
 
                                                   // Navigator.pushNamed(
                                                   //         _scaffoldKey.currentContext ,
@@ -345,7 +346,8 @@ class _ProfileState extends State<Profile> {
                                                           .accentColor,
                                                       width: 2.5),
                                                   borderRadius:
-                                                      BorderRadius.circular(10.0),
+                                                      BorderRadius.circular(
+                                                          10.0),
                                                 ),
                                                 child: Container(
                                                   constraints: BoxConstraints(
@@ -359,7 +361,8 @@ class _ProfileState extends State<Profile> {
                                                       color: Theme.of(context)
                                                           .accentColor,
                                                       fontSize: 20,
-                                                      fontWeight: FontWeight.w600,
+                                                      fontWeight:
+                                                          FontWeight.w600,
                                                     ),
                                                   ),
                                                 ),
@@ -384,7 +387,8 @@ class _ProfileState extends State<Profile> {
                                     ),
                                   ),
                                   shape: new RoundedRectangleBorder(
-                                    borderRadius: new BorderRadius.circular(7.0),
+                                    borderRadius:
+                                        new BorderRadius.circular(7.0),
                                   ),
                                 )
                               ]),
@@ -398,14 +402,13 @@ class _ProfileState extends State<Profile> {
                         ),
                       ],
                     ),
-                ),
+                  ),
                 ),
               );
-   
-          } else {
-            return Center(child: CircularProgressIndicator());
-          }
-        });
+            } else {
+              return Center(child: CircularProgressIndicator());
+            }
+          });
     // bottomNavigationBar: BtmNavBar());
   }
 }

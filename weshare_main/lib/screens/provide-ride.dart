@@ -712,7 +712,6 @@ class _ProvideRideState extends State<ProvideRide> {
                                 onPressed: () async {
                                   // print();
                                   // print(tripTime);
-                                  //! enable this later
 
                                   if (_formKey.currentState.validate() &&
                                       tripDate != null &&
@@ -720,7 +719,6 @@ class _ProvideRideState extends State<ProvideRide> {
                                       gender != null &&
                                       dropDownValue != null &&
                                       tripFares != 0) {
-
                                     Ride ride = Ride(
                                       did: user.uid,
                                       availableSeats: dropDownValue,
@@ -741,9 +739,14 @@ class _ProvideRideState extends State<ProvideRide> {
                                       shape: RoundedRectangleBorder(
                                           borderRadius:
                                               BorderRadius.circular(10.0)),
-                                      title: Image.asset(
-                                        'assets/confused.png',
-                                        height: 110,
+                                      // title: Image.asset(
+                                      //   'assets/confused.png',
+                                      //   height: 110,
+                                      // ),
+                                      title: Icon(
+                                        Icons.check_circle,
+                                        color: Colors.green,
+                                        size: 90,
                                       ),
                                       content: Container(
                                         height: 170,
@@ -753,7 +756,7 @@ class _ProvideRideState extends State<ProvideRide> {
                                           children: <Widget>[
                                             Center(
                                               child: Text(
-                                                  '✅ Your ride has been added successfully!',
+                                                  'Your ride has been added successfully!',
                                                   textAlign: TextAlign.center,
                                                   style: TextStyle(
                                                     fontWeight: FontWeight.bold,

@@ -136,13 +136,42 @@ class _CurrentListViewState extends State<CurrentListView> {
         Provider.of<List<CurrentRides>>(context) ?? [], 'current');
     //  print('trying rides: ${rides}');
 
-    return ListView.builder(
-      scrollDirection: Axis.vertical,
-      // itemExtent: 100.0,
-      shrinkWrap: true,
-      itemCount: rides.length,
-      itemBuilder: (context, index) =>
-          currentRideCard(context, rides[index], widget.usertype),
-    );
+    return rides.isEmpty
+        ? Center(
+            child: Column(
+              children: [
+                SizedBox(height: MediaQuery.of(context).size.height / 6),
+                Icon(
+                  Icons.directions_car,
+                  size: 90,
+                  color: Colors.grey[400],
+                ),
+                SizedBox(height: 20),
+                widget.usertype == 'Driver'
+                    ? Text(
+                        'You don\'t have any upcoming rides for now!',
+                        style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            fontSize: 15,
+                            color: Colors.grey[500]),
+                      )
+                    : Text(
+                        'You don\'t have any current rides now!',
+                        style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            fontSize: 15,
+                            color: Colors.grey[500]),
+                      )
+              ],
+            ),
+          )
+        : ListView.builder(
+            scrollDirection: Axis.vertical,
+            // itemExtent: 100.0,
+            shrinkWrap: true,
+            itemCount: rides.length,
+            itemBuilder: (context, index) =>
+                currentRideCard(context, rides[index], widget.usertype),
+          );
   }
 }
