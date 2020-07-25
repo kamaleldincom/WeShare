@@ -329,8 +329,54 @@ Container currentRideCard(
                           Container(
                             height: 50,
                             child: CircleAvatar(
-                              backgroundImage:
-                                  AssetImage('assets/person1.jpeg'),
+                              child: FutureBuilder(
+                            future: DatabaseService()
+                                .getUserDetails(_rides.did),
+                            builder: (context, snapshot) {
+                              if (snapshot.hasData) {
+                                if (snapshot.data.photo) {
+                                  FutureBuilder(
+                                    future: DatabaseService()
+                                        .getImage(_rides.did),
+                                    builder: (context, snapshot) {
+                                      if (snapshot.connectionState ==
+                                              ConnectionState.done &&
+                                          snapshot.hasData)
+                                        return CircleAvatar(
+                                          child: ClipOval(
+                                            child: snapshot.data,
+                                          ),
+                                          // backgroundImage: NetworkImage(snapshot.data.preview),
+                                          radius: 20,
+                                        );
+
+                                      if (snapshot.connectionState ==
+                                          ConnectionState.waiting)
+                                        return Container(
+                                            child:
+                                                Icon(Icons.person, size: 35));
+
+                                      if (snapshot.connectionState ==
+                                          ConnectionState.none) {
+                                        return Container(
+                                          child: Icon(Icons.person),
+                                        );
+                                      }
+                                      return Container(
+                                        child: Icon(Icons.person, size: 35),
+                                      );
+                                    },
+                                  );
+                                } else {
+                                  Container(
+                                      child: Icon(Icons.person, size: 35));
+                                }
+
+                              }
+                              return Container(
+                                      child: Icon(Icons.person, size: 35));
+                            }
+                            ),
                               radius: 25,
                             ),
                           ),

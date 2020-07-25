@@ -108,7 +108,7 @@ class _HistoryState extends State<History> {
                         ),
                         widget.usertype == 'Rider'
                             ? Text(
-                                'By Ali Qasmi',
+                                'By ${rides[index].driver.name}',
                                 style: TextStyle(color: Colors.grey),
                               )
                             : Text(''),
