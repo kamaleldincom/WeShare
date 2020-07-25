@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_phone_direct_caller/flutter_phone_direct_caller.dart';
 import 'package:path/path.dart';
 import 'package:provider/provider.dart';
 import 'package:weshare_main/models/ride.dart';
@@ -18,6 +19,7 @@ class _StartEndRideInterfaceState extends State<StartEndRideInterface> {
   Widget build(BuildContext context) {
     ride = ModalRoute.of(context).settings.arguments;
     User user = Provider.of<User>(context);
+    bool loaded = false;
     // print('ride from start $ride');
     return Scaffold(
       backgroundColor: Colors.yellow,
@@ -204,10 +206,127 @@ class _StartEndRideInterfaceState extends State<StartEndRideInterface> {
                                           '${ride.dateTime}',
                                           style: TextStyle(
                                             fontWeight: FontWeight.w500,
-                                            fontSize: 14,
+                                            fontSize: 13,
                                             color: Colors.grey[800],
                                           ),
                                         ),
+                                        SizedBox(
+                                          height: 4,
+                                        ),
+                                        OutlineButton(
+                                            borderSide: BorderSide(
+                                                color: Color(0xFF5C79FF)),
+                                            child: Row(
+                                              children: [
+                                                Icon(
+                                                  Icons.people,
+                                                  color: Color(0xFF5C79FF),
+                                                ),
+                                                SizedBox(
+                                                  width: 1,
+                                                ),
+                                                Text(
+                                                  'View Riders',
+                                                  style:
+                                                      TextStyle(fontSize: 13),
+                                                ),
+                                              ],
+                                            ),
+                                            onPressed: () {
+                                              if (!loaded)
+                                                CircularProgressIndicator();
+
+                                              DatabaseService()
+                                                  .getMyRiders(ride)
+                                                  .then((users) {
+                                                loaded = true;
+                                                AlertDialog warning =
+                                                    AlertDialog(
+                                                  shape: RoundedRectangleBorder(
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              10.0)),
+                                                  title: Text(
+                                                      'My Riders (${users.length})'),
+                                                  content: Container(
+                                                    //   MediaQuery.of(context).size.height / 6)
+                                                    width:
+                                                        MediaQuery.of(context)
+                                                            .size
+                                                            .width,
+                                                    height:
+                                                        MediaQuery.of(context)
+                                                                .size
+                                                                .height /
+                                                            4,
+                                                    child: ListView.separated(
+                                                        separatorBuilder:
+                                                            (BuildContext context,
+                                                                    int
+                                                                        index) =>
+                                                                Divider(
+                                                                    height: 3,
+                                                                    color: Colors
+                                                                            .grey[
+                                                                        400]),
+                                                        scrollDirection:
+                                                            Axis.vertical,
+                                                        // itemExtent: 100.0,
+                                                        shrinkWrap: true,
+                                                        itemCount: users.length,
+                                                        itemBuilder:
+                                                            (context, index) {
+                                                          return SingleChildScrollView(
+                                                            child: ListTile(
+                                                              leading: Text(
+                                                                users[index]
+                                                                    .name,
+                                                                style: TextStyle(
+                                                                    fontSize:
+                                                                        14),
+                                                              ),
+                                                              trailing:
+                                                                  GestureDetector(
+                                                                      child:
+                                                                          Chip(
+                                                                        backgroundColor:
+                                                                            Colors.green[600],
+                                                                        label:
+                                                                            Text(
+                                                                          '📞${users[index].phoneNumber}',
+                                                                          style:
+                                                                              TextStyle(color: Colors.white),
+                                                                        ),
+                                                                      ),
+                                                                      onTap:
+                                                                          () {
+                                                                        print(
+                                                                            'pressed');
+                                                                        FlutterPhoneDirectCaller.callNumber(
+                                                                            users[index].phoneNumber);
+                                                                      }),
+                                                            ),
+                                                          );
+                                                        }),
+                                                  ),
+                                                  actions: [
+                                                    FlatButton(
+                                                      child: Text('DISMISS'),
+                                                      onPressed: () {
+                                                        Navigator.pop(context);
+                                                      },
+                                                    ),
+                                                  ],
+                                                );
+                                                showDialog(
+                                                    context: context,
+                                                    child: warning);
+                                              });
+                                            },
+                                            shape: RoundedRectangleBorder(
+                                                borderRadius:
+                                                    BorderRadius.circular(
+                                                        30.0))),
                                       ],
                                     ),
                                   ),

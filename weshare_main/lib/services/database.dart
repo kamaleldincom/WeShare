@@ -5,7 +5,6 @@ import 'package:weshare_main/models/user.dart';
 // import 'package:weshare_main/screens/edit_car_details.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 
-
 class DatabaseService {
   final String uid;
   DatabaseService({this.uid});
@@ -30,6 +29,7 @@ class DatabaseService {
       'photo': false,
     });
   }
+
   Future updateUserdetails(User user) async {
     print('user name:${user.name}');
     return await usersCollection.document(user.uid).updateData({
@@ -59,19 +59,19 @@ class DatabaseService {
     // List<Ride> rides;
     return snapshot.documents.map((doc) {
       Ride ride = Ride(
-          rid: doc.documentID,
-          did: doc.data['did'],
-          from: doc.data['from'],
-          to: doc.data['to'],
-          dateAdded: doc.data['dateAdded'],
-          dateTime: doc.data['dateTime'],
-          riders: doc.data['riders'],
-          price: doc.data['price'],
-          availableSeats: doc.data['availableSeats'],
-          status: doc.data['status'],
-          driver: _driverFromSnapsoht(doc.data['driver']),
-          note: doc.data['note'],
-          );
+        rid: doc.documentID,
+        did: doc.data['did'],
+        from: doc.data['from'],
+        to: doc.data['to'],
+        dateAdded: doc.data['dateAdded'],
+        dateTime: doc.data['dateTime'],
+        riders: doc.data['riders'],
+        price: doc.data['price'],
+        availableSeats: doc.data['availableSeats'],
+        status: doc.data['status'],
+        driver: _driverFromSnapsoht(doc.data['driver']),
+        note: doc.data['note'],
+      );
       // print("docdata: ${doc.documentID}");
       return ride;
     }).toList();
@@ -133,8 +133,12 @@ class DatabaseService {
       "availableSeats": FieldValue.increment(-1),
       "riders": FieldValue.arrayUnion([user.uid])
     });
-    
-    usersCollection.document(ride.did).collection('providedRides').document(ride.rid).updateData({
+
+    usersCollection
+        .document(ride.did)
+        .collection('providedRides')
+        .document(ride.rid)
+        .updateData({
       "availableSeats": FieldValue.increment(-1),
       "riders": FieldValue.arrayUnion([user.uid])
     });
@@ -231,11 +235,19 @@ class DatabaseService {
       "riders": FieldValue.arrayRemove([uid])
     });
 
-    usersCollection.document(ride.did).collection('providedRides').document(ride.rid).updateData({
+    usersCollection
+        .document(ride.did)
+        .collection('providedRides')
+        .document(ride.rid)
+        .updateData({
       "availableSeats": FieldValue.increment(1),
       "riders": FieldValue.arrayRemove([uid])
     });
-    usersCollection.document(uid).collection('rides').document(ride.rid).delete();
+    usersCollection
+        .document(uid)
+        .collection('rides')
+        .document(ride.rid)
+        .delete();
   }
 
   Future<void> startRide(CurrentRides ride, String uid) async {
@@ -311,24 +323,41 @@ class DatabaseService {
     }
   }
 
- Future<Image> getImage(String image) async {
-Image m;
-  // downloadUrl = 'downloadUrl'
-  await FirebaseStorage.instance.ref().child('$image/profile.png').getDownloadURL().then((downloadUrl) {
-      print( downloadUrl.toString());
-    m = Image.network(
-      downloadUrl.toString(),
-      fit: BoxFit.scaleDown,
-    );
-  });
+  Future<Image> getImage(String image) async {
+    Image m;
+    // downloadUrl = 'downloadUrl'
+    await FirebaseStorage.instance
+        .ref()
+        .child('$image/profile.png')
+        .getDownloadURL()
+        .then((downloadUrl) {
+      print(downloadUrl.toString());
+      m = Image.network(
+        downloadUrl.toString(),
+        fit: BoxFit.scaleDown,
+      );
+    });
 
-  return m;
+    return m;
   }
 
+  Future updateUserProfilePicture(String uid) {
+    usersCollection.document(uid).updateData({'photo': true});
+  }
 
-  Future updateUserProfilePicture(String uid){
-    usersCollection.document(uid).updateData({
-      'photo': true
-    });
+  Future<List<User>> getMyRiders(CurrentRides ride) async {
+    List<User> users = [];
+    List myRidersId = await ridesCollection
+        .document(ride.rid)
+        .get()
+        .then((doc) => doc.data['riders']);
+
+    for (var rider in myRidersId) {
+      users.add(await usersCollection.document(rider).get().then((doc) {
+        return userFromSnapshots(doc);
+      }));
+    }
+
+    return users;
   }
 }

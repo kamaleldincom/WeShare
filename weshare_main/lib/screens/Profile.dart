@@ -23,7 +23,7 @@ class _ProfileState extends State<Profile> {
   Widget build(BuildContext context) {
     User user = Provider.of<User>(context);
     databaseService.getUserDetails(user.uid);
-    print('email: ${user.email}');
+
     // databaseService.getUserDetails(user.uid);
     // print(user.email);
     // User user1;
