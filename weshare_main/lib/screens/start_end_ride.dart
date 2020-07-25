@@ -6,6 +6,8 @@ import 'package:weshare_main/models/ride.dart';
 import 'package:weshare_main/models/user.dart';
 import 'package:weshare_main/services/database.dart';
 import './constants.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:location/location.dart';
 
 class StartEndRideInterface extends StatefulWidget {
   @override
@@ -15,6 +17,17 @@ class StartEndRideInterface extends StatefulWidget {
 class _StartEndRideInterfaceState extends State<StartEndRideInterface> {
   bool rideStarted = false;
   CurrentRides ride;
+
+  GoogleMapController _controller;
+  Location _location = Location();
+
+  void _onMapCreated (GoogleMapController controller){
+    _controller = controller;
+    _location.onLocationChanged.listen((l){
+      _controller.animateCamera(CameraUpdate.newCameraPosition(CameraPosition(target: LatLng(l.latitude-0.008, l.longitude), zoom: 15,),),);
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     ride = ModalRoute.of(context).settings.arguments;
@@ -22,7 +35,7 @@ class _StartEndRideInterfaceState extends State<StartEndRideInterface> {
     bool loaded = false;
     // print('ride from start $ride');
     return Scaffold(
-      backgroundColor: Colors.yellow,
+      // backgroundColor: Colors.yellow,
       appBar: AppBar(
         brightness: Brightness.light,
         leading: BackButton(
@@ -35,7 +48,12 @@ class _StartEndRideInterfaceState extends State<StartEndRideInterface> {
       body: Stack(
         children: <Widget>[
           // MAP GOES HERE
-
+          GoogleMap(
+            initialCameraPosition: CameraPosition(target: LatLng(37.77483, -122.41942), zoom: 11,),
+            myLocationEnabled: true,  
+            onMapCreated: _onMapCreated,
+          ),
+          
           //! Chat Info.
           Positioned(
             // top: MediaQuery.of(context).size.height / 2,

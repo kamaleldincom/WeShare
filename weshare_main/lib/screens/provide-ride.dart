@@ -141,7 +141,7 @@ class _ProvideRideState extends State<ProvideRide> {
                                               width: 8,
                                             ),
                                             SizedBox(
-                                              width: 265,
+                                              width:MediaQuery.of(context).size.width/2+60,
                                               child: TextFormField(
                                                 controller:
                                                     originHolder, //controller
@@ -241,7 +241,7 @@ class _ProvideRideState extends State<ProvideRide> {
                                               width: 8,
                                             ),
                                             SizedBox(
-                                              width: 265,
+                                              width:MediaQuery.of(context).size.width/2+60,
                                               child: TextFormField(
                                                 controller:
                                                     destinationHolder, //controller
@@ -652,7 +652,7 @@ class _ProvideRideState extends State<ProvideRide> {
                                     Column(
                                       children: <Widget>[
                                         SizedBox(
-                                          width: 330,
+                                          width:MediaQuery.of(context).size.width-70,
                                           child: Container(
                                             decoration: BoxDecoration(
                                                 color: Color(0xFFF1F3F5),
@@ -699,16 +699,19 @@ class _ProvideRideState extends State<ProvideRide> {
                           Align(
                             alignment: Alignment.bottomCenter,
                             child: Container(
-                              margin: EdgeInsets.symmetric(
-                                  horizontal: 10, vertical: 15),
+                              width:MediaQuery.of(context).size.width,
+                              margin: EdgeInsets.symmetric(vertical:10, horizontal: 30),
+                              height: 50,
                               child: FlatButton(
                                 child: Text(
                                   'Post Ride',
                                   style: TextStyle(
                                       color: Colors.white,
                                       fontWeight: FontWeight.bold,
-                                      fontSize: 17),
+                                      fontSize: 17
+                                  ),
                                 ),
+                                
                                 onPressed: () async {
                                   // print();
                                   // print(tripTime);
@@ -818,8 +821,8 @@ class _ProvideRideState extends State<ProvideRide> {
                                 shape: RoundedRectangleBorder(
                                     borderRadius:
                                         new BorderRadius.circular(12)),
-                                padding: EdgeInsets.symmetric(
-                                    horizontal: 140, vertical: 18),
+                                // padding: EdgeInsets.symmetric(
+                                //     horizontal: 140, vertical: 18),
                               ),
                             ),
                           ),

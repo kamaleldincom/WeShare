@@ -89,49 +89,94 @@ class _SettingsState extends State<Settings> {
               ),
             ),
           ),
+
+          Container(
+            width:MediaQuery.of(context).size.width,
+            margin: EdgeInsets.all(30),
+            height: 50,
+            child: FlatButton(
+            
+            child: Text(
+              'Log Out',
+              style: TextStyle(
+                  // fontFamily: 'SegoeUI',
+                  color: Colors.white,
+                  fontWeight: FontWeight.bold,
+                  fontSize: 17),
+            ),
+            onPressed: () async {
+              if (userType == 'Rider') {
+                Navigator.of(context).pushNamedAndRemoveUntil(
+                    '/wrapper',
+                    (Route<dynamic> route) => false);
+              await _auth.signOut();
+                
+              } else if(userType == 'Driver'){
+              // Navigator.popUntil(context,
+              //                       ModalRoute.withName('/driverNav'));
+             
+                Navigator.of(context).pushNamedAndRemoveUntil(
+                    '/wrapper',
+                    (Route<dynamic> route) => false);
+
+                // Navigator.pop(context);
+                // Navigator.pop(context);
+                await _auth.signOut();
+              }
+              // Navigator.pop(context);
+              // Navigator.pop(context);
+            },
+            color: Colors.grey[500],
+            shape: RoundedRectangleBorder(
+                borderRadius: new BorderRadius.circular(12)),
+            // padding: EdgeInsets.symmetric(horizontal: 149, vertical: 18),
+        ),
+          ),
+      
+          
         ],
       ),
 
       //! Log out Button
-      floatingActionButton: Container(
-        margin: EdgeInsets.symmetric(horizontal: 10, vertical: 15),
-        child: FlatButton(
-          child: Text(
-            'Log Out',
-            style: TextStyle(
-                // fontFamily: 'SegoeUI',
-                color: Colors.white,
-                fontWeight: FontWeight.bold,
-                fontSize: 17),
-          ),
-          onPressed: () async {
-            if (userType == 'Rider') {
-              Navigator.of(context).pushNamedAndRemoveUntil(
-                  '/wrapper',
-                  (Route<dynamic> route) => false);
-            await _auth.signOut();
+      // floatingActionButton: Container(
+      //   margin: EdgeInsets.symmetric(horizontal: 10, vertical: 15),
+      //   child: FlatButton(
+      //     child: Text(
+      //       'Log Out',
+      //       style: TextStyle(
+      //           // fontFamily: 'SegoeUI',
+      //           color: Colors.white,
+      //           fontWeight: FontWeight.bold,
+      //           fontSize: 17),
+      //     ),
+      //     onPressed: () async {
+      //       if (userType == 'Rider') {
+      //         Navigator.of(context).pushNamedAndRemoveUntil(
+      //             '/wrapper',
+      //             (Route<dynamic> route) => false);
+      //       await _auth.signOut();
               
-            } else if(userType == 'Driver'){
-            // Navigator.popUntil(context,
-            //                       ModalRoute.withName('/driverNav'));
+      //       } else if(userType == 'Driver'){
+      //       // Navigator.popUntil(context,
+      //       //                       ModalRoute.withName('/driverNav'));
            
-              Navigator.of(context).pushNamedAndRemoveUntil(
-                  '/wrapper',
-                  (Route<dynamic> route) => false);
+      //         Navigator.of(context).pushNamedAndRemoveUntil(
+      //             '/wrapper',
+      //             (Route<dynamic> route) => false);
 
-              // Navigator.pop(context);
-              // Navigator.pop(context);
-              await _auth.signOut();
-            }
-            // Navigator.pop(context);
-            // Navigator.pop(context);
-          },
-          color: Colors.grey[500],
-          shape: RoundedRectangleBorder(
-              borderRadius: new BorderRadius.circular(12)),
-          padding: EdgeInsets.symmetric(horizontal: 149, vertical: 18),
-        ),
-      ),
+      //         // Navigator.pop(context);
+      //         // Navigator.pop(context);
+      //         await _auth.signOut();
+      //       }
+      //       // Navigator.pop(context);
+      //       // Navigator.pop(context);
+      //     },
+      //     color: Colors.grey[500],
+      //     shape: RoundedRectangleBorder(
+      //         borderRadius: new BorderRadius.circular(12)),
+      //     padding: EdgeInsets.symmetric(horizontal: 149, vertical: 18),
+      //   ),
+      // ),
     );
   }
 }

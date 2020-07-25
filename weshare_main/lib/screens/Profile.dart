@@ -209,6 +209,7 @@ class _ProfileState extends State<Profile> {
                         Container(
                           height: 60,
                           margin: EdgeInsets.all(15),
+                          padding: EdgeInsets.all(10),
                           decoration: BoxDecoration(
                               color: Colors.white,
                               borderRadius: BorderRadius.circular(10),
@@ -223,172 +224,181 @@ class _ProfileState extends State<Profile> {
                               mainAxisAlignment: MainAxisAlignment.spaceAround,
                               crossAxisAlignment: CrossAxisAlignment.center,
                               children: <Widget>[
-                                FlatButton(
-                                  color: widget.usertype == 'Rider'
-                                      ? Colors.white
-                                      : Colors.transparent,
-                                  padding: EdgeInsets.fromLTRB(65, 10, 65, 10),
-                                  onPressed: () {
-                                    Navigator.pushReplacement(
-                                        context,
-                                        MaterialPageRoute(
-                                            builder: (BuildContext context) =>
-                                                BtmNavBar()));
-                                  },
-                                  child: Text(
-                                    'Rider',
-                                    style: TextStyle(
-                                      fontSize: 20.0,
-                                      color: widget.usertype == 'Rider'
-                                          ? Color(0xFF5C79FF)
-                                          : Colors.white,
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                                  ),
-                                  shape: new RoundedRectangleBorder(
-                                    borderRadius:
-                                        new BorderRadius.circular(7.0),
-                                  ),
-                                ),
-                                FlatButton(
-                                  color: widget.usertype == 'Driver'
-                                      ? Colors.white
-                                      : Colors.transparent,
-                                  padding: EdgeInsets.fromLTRB(55, 10, 55, 10),
-                                  onPressed: () {
-                                    // Navigator.pushReplacementNamed(context, '/driverNav');
-                                    // Navigator.pushNamed(
-                                    //         _scaffoldKey.currentContext ,
-                                    //            '/driverRegistration');
-
-                                    if (user.isDriver) {
-                                      Navigator.push(
+                                SizedBox(
+                                  width:MediaQuery.of(context).size.width/2-25,
+                                  height:MediaQuery.of(context).size.height,
+                                  
+                                  child: FlatButton(
+                                    color: widget.usertype == 'Rider'
+                                        ? Colors.white
+                                        : Colors.transparent,
+                                    // padding: EdgeInsets.fromLTRB(65, 10, 65, 10),
+                                    
+                                    
+                                    
+                                    onPressed: () {
+                                      Navigator.pushReplacement(
                                           context,
                                           MaterialPageRoute(
                                               builder: (BuildContext context) =>
-                                                  BtnDriver()));
-                                    } else {
-                                      // pop-uo for driver registration
-                                      AlertDialog warning = AlertDialog(
-                                        shape: RoundedRectangleBorder(
-                                            borderRadius:
-                                                BorderRadius.circular(10.0)),
-                                        title: Image.asset(
-                                          'assets/delivery-man.png',
-                                          height: 110,
-                                        ),
-                                        content: Container(
-                                          height: 370,
-                                          child: Column(
-                                            crossAxisAlignment:
-                                                CrossAxisAlignment.start,
-                                            children: <Widget>[
-                                              Text(
-                                                  'Let\'s make our network even bigger...',
-                                                  style: TextStyle(
-                                                    fontWeight: FontWeight.bold,
-                                                    fontSize: 14,
-                                                  )),
-                                              SizedBox(height: 7),
-                                              Text('WELCOME ON BOARD! ⚡🚗',
-                                                  textAlign: TextAlign.right,
-                                                  style: TextStyle(
-                                                    fontSize: 17,
-                                                  )),
-                                              SizedBox(height: 25),
-                                              Text(
-                                                  ' You just need to enter your basic info to apply in FOUR easy steps:',
-                                                  style: TextStyle(
-                                                    fontSize: 14,
-                                                  )),
-                                              SizedBox(height: 20),
-                                              Text('* A Selfie.',
-                                                  textAlign: TextAlign.left,
-                                                  style: TextStyle(
-                                                    fontSize: 14,
-                                                  )),
-                                              Text('* Your IC/Passport Photo.',
-                                                  textAlign: TextAlign.left,
-                                                  style: TextStyle(
-                                                    fontSize: 14,
-                                                  )),
-                                              Text('* Your license Photo.',
-                                                  textAlign: TextAlign.left,
-                                                  style: TextStyle(
-                                                    fontSize: 14,
-                                                  )),
-                                              Text(
-                                                  '* Your car details (type, color, and plate number)',
-                                                  textAlign: TextAlign.left,
-                                                  style: TextStyle(
-                                                    fontSize: 14,
-                                                  )),
-                                              SizedBox(height: 20),
-                                              Text('That\'s it!!',
-                                                  textAlign: TextAlign.left,
-                                                  style: TextStyle(
-                                                    fontSize: 14,
-                                                  )),
-                                              SizedBox(height: 50),
-                                              FlatButton(
-                                                onPressed: () async {
-                                                  Navigator.pushNamed(context,
-                                                      '/editCarDetails');
-
-                                                  // Navigator.pushNamed(
-                                                  //         _scaffoldKey.currentContext ,
-                                                  //            '/driverRegistration');
-                                                },
-                                                color: Colors.white,
-                                                shape: RoundedRectangleBorder(
-                                                  side: BorderSide(
-                                                      color: Theme.of(context)
-                                                          .accentColor,
-                                                      width: 2.5),
-                                                  borderRadius:
-                                                      BorderRadius.circular(
-                                                          10.0),
-                                                ),
-                                                child: Container(
-                                                  constraints: BoxConstraints(
-                                                      maxWidth: 310.0,
-                                                      minHeight: 60.0),
-                                                  alignment: Alignment.center,
-                                                  child: Text(
-                                                    'Let\'s Get Started!',
-                                                    textAlign: TextAlign.center,
-                                                    style: TextStyle(
-                                                      color: Theme.of(context)
-                                                          .accentColor,
-                                                      fontSize: 20,
-                                                      fontWeight:
-                                                          FontWeight.w600,
-                                                    ),
-                                                  ),
-                                                ),
-                                              )
-                                            ],
-                                          ),
-                                        ),
-                                      );
-                                      showDialog(
-                                          context: _scaffoldKey.currentContext,
-                                          child: warning);
-                                    }
-                                  },
-                                  child: Text(
-                                    'Driver',
-                                    style: TextStyle(
-                                      fontSize: 20.0,
-                                      color: widget.usertype == 'Driver'
-                                          ? Color(0xFF5C79FF)
-                                          : Colors.white,
-                                      fontWeight: FontWeight.bold,
+                                                  BtmNavBar()));
+                                    },
+                                    child: Text(
+                                      'Rider',
+                                      style: TextStyle(
+                                        fontSize: 20.0,
+                                        color: widget.usertype == 'Rider'
+                                            ? Color(0xFF5C79FF)
+                                            : Colors.white,
+                                        fontWeight: FontWeight.bold,
+                                      ),
+                                    ),
+                                    shape: new RoundedRectangleBorder(
+                                      borderRadius: new BorderRadius.circular(7.0),
                                     ),
                                   ),
-                                  shape: new RoundedRectangleBorder(
-                                    borderRadius:
-                                        new BorderRadius.circular(7.0),
+                                ),
+                                SizedBox(
+                                  width:MediaQuery.of(context).size.width/2-25,
+                                  height:MediaQuery.of(context).size.height,
+                                  
+                                  child: FlatButton(
+                                    color: widget.usertype == 'Driver'
+                                        ? Colors.white
+                                        : Colors.transparent,
+                                    // padding: EdgeInsets.fromLTRB(55, 10, 55, 10),
+                                    onPressed: () {
+                                      // Navigator.pushReplacementNamed(context, '/driverNav');
+                                      // Navigator.pushNamed(
+                                      //         _scaffoldKey.currentContext ,
+                                      //            '/driverRegistration');
+
+                                      if (user.isDriver) {
+                                        Navigator.push(
+                                            context,
+                                            MaterialPageRoute(
+                                                builder: (BuildContext context) =>
+                                                    BtnDriver()));
+                                      } else {
+                                        // pop-uo for driver registration
+                                        AlertDialog warning = AlertDialog(
+                                          shape: RoundedRectangleBorder(
+                                              borderRadius:
+                                                  BorderRadius.circular(10.0)),
+                                          title: Image.asset(
+                                            'assets/confused.png',
+                                            height: 110,
+                                          ),
+                                          content: Container(
+                                            height: 370,
+                                            child: Column(
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.start,
+                                              children: <Widget>[
+                                                Text(
+                                                    'Let\'s make our network even bigger...',
+                                                    style: TextStyle(
+                                                      fontWeight: FontWeight.bold,
+                                                      fontSize: 14,
+                                                    )),
+                                                SizedBox(height: 7),
+                                                Text('WELCOME ON BOARD! ⚡🚗',
+                                                    textAlign: TextAlign.right,
+                                                    style: TextStyle(
+                                                      fontSize: 17,
+                                                    )),
+                                                SizedBox(height: 25),
+                                                Text(
+                                                    ' You just need to enter your basic info to apply in FOUR easy steps:',
+                                                    style: TextStyle(
+                                                      fontSize: 14,
+                                                    )),
+                                                SizedBox(height: 20),
+                                                Text('* A Selfie.',
+                                                    textAlign: TextAlign.left,
+                                                    style: TextStyle(
+                                                      fontSize: 14,
+                                                    )),
+                                                Text('* Your IC/Passport Photo.',
+                                                    textAlign: TextAlign.left,
+                                                    style: TextStyle(
+                                                      fontSize: 14,
+                                                    )),
+                                                Text('* Your license Photo.',
+                                                    textAlign: TextAlign.left,
+                                                    style: TextStyle(
+                                                      fontSize: 14,
+                                                    )),
+                                                Text(
+                                                    '* Your car details (type, color, and plate number)',
+                                                    textAlign: TextAlign.left,
+                                                    style: TextStyle(
+                                                      fontSize: 14,
+                                                    )),
+                                                SizedBox(height: 20),
+                                                Text('That\'s it!!',
+                                                    textAlign: TextAlign.left,
+                                                    style: TextStyle(
+                                                      fontSize: 14,
+                                                    )),
+                                                SizedBox(height: 50),
+                                                FlatButton(
+                                                  onPressed: () async {
+                                                    Navigator.pushNamed(
+                                                        context, '/editCarDetails');
+
+                                                    // Navigator.pushNamed(
+                                                    //         _scaffoldKey.currentContext ,
+                                                    //            '/driverRegistration');
+                                                  },
+                                                  color: Colors.white,
+                                                  shape: RoundedRectangleBorder(
+                                                    side: BorderSide(
+                                                        color: Theme.of(context)
+                                                            .accentColor,
+                                                        width: 2.5),
+                                                    borderRadius:
+                                                        BorderRadius.circular(10.0),
+                                                  ),
+                                                  child: Container(
+                                                    constraints: BoxConstraints(
+                                                        maxWidth: 310.0,
+                                                        minHeight: 60.0),
+                                                    alignment: Alignment.center,
+                                                    child: Text(
+                                                      'Let\'s Get Started!',
+                                                      textAlign: TextAlign.center,
+                                                      style: TextStyle(
+                                                        color: Theme.of(context)
+                                                            .accentColor,
+                                                        fontSize: 20,
+                                                        fontWeight: FontWeight.w600,
+                                                      ),
+                                                    ),
+                                                  ),
+                                                )
+                                              ],
+                                            ),
+                                          ),
+                                        );
+                                        showDialog(
+                                            context: _scaffoldKey.currentContext,
+                                            child: warning);
+                                      }
+                                    },
+                                    child: Text(
+                                      'Driver',
+                                      style: TextStyle(
+                                        fontSize: 20.0,
+                                        color: widget.usertype == 'Driver'
+                                            ? Color(0xFF5C79FF)
+                                            : Colors.white,
+                                        fontWeight: FontWeight.bold,
+                                      ),
+                                    ),
+                                    shape: new RoundedRectangleBorder(
+                                      borderRadius: new BorderRadius.circular(7.0),
+                                    ),
                                   ),
                                 )
                               ]),
