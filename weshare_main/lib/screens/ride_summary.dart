@@ -5,7 +5,6 @@ import 'package:weshare_main/services/database.dart';
 import 'constants.dart';
 
 class RideSummary extends StatefulWidget {
-  
   @override
   _RideSummaryState createState() => _RideSummaryState();
 }
@@ -15,12 +14,11 @@ class _RideSummaryState extends State<RideSummary> {
   Map map = {};
   @override
   Widget build(BuildContext context) {
-
-     ride = ModalRoute.of(context).settings.arguments;
-     String dateTime = ride.dateTime ?? "";
-        var characterIndex = dateTime.indexOf(" ");
-        var date = dateTime.substring(0, characterIndex);
-        var time = dateTime.substring(characterIndex);
+    ride = ModalRoute.of(context).settings.arguments;
+    String dateTime = ride.dateTime ?? "";
+    var characterIndex = dateTime.indexOf(" ");
+    var date = dateTime.substring(0, characterIndex);
+    var time = dateTime.substring(characterIndex);
     return Scaffold(
       backgroundColor: Color(0xFFF1F3F5),
       appBar: AppBar(
@@ -43,57 +41,49 @@ class _RideSummaryState extends State<RideSummary> {
                   child: CircleAvatar(
                     backgroundColor: Colors.white,
                     radius: 47.0,
-                          child: CircleAvatar(
-
+                    child: CircleAvatar(
                       child: FutureBuilder(
-                            future: DatabaseService()
-                                .getUserDetails(ride.did),
-                            builder: (context, snapshot) {
-                              if (snapshot.hasData) {
-                                if (snapshot.data.photo) {
-                                  FutureBuilder(
-                                    future: DatabaseService()
-                                        .getImage(ride.did),
-                                    builder: (context, snapshot) {
-                                      if (snapshot.connectionState ==
-                                              ConnectionState.done &&
-                                          snapshot.hasData)
-                                        return CircleAvatar(
-                                          child: ClipOval(
-                                            child: snapshot.data,
-                                          ),
-                                          // backgroundImage: NetworkImage(snapshot.data.preview),
-                                          radius: 20,
-                                        );
-
-                                      if (snapshot.connectionState ==
-                                          ConnectionState.waiting)
-                                        return Container(
-                                            child:
-                                                Icon(Icons.person, size: 35));
-
-                                      if (snapshot.connectionState ==
-                                          ConnectionState.none) {
-                                        return Container(
-                                          child: Icon(Icons.person),
-                                        );
-                                      }
-                                      return Container(
-                                        child: Icon(Icons.person, size: 35),
+                          future: DatabaseService().getUserDetails(ride.did),
+                          builder: (context, snapshot) {
+                            if (snapshot.hasData) {
+                              if (snapshot.data.photo) {
+                                FutureBuilder(
+                                  future: DatabaseService().getImage(ride.did),
+                                  builder: (context, snapshot) {
+                                    if (snapshot.connectionState ==
+                                            ConnectionState.done &&
+                                        snapshot.hasData)
+                                      return CircleAvatar(
+                                        child: ClipOval(
+                                          child: snapshot.data,
+                                        ),
+                                        // backgroundImage: NetworkImage(snapshot.data.preview),
+                                        radius: 20,
                                       );
-                                    },
-                                  );
-                                } else {
-                                  Container(
-                                      child: Icon(Icons.person, size: 35));
-                                }
 
+                                    if (snapshot.connectionState ==
+                                        ConnectionState.waiting)
+                                      return Container(
+                                          child: Icon(Icons.person, size: 35));
+
+                                    if (snapshot.connectionState ==
+                                        ConnectionState.none) {
+                                      return Container(
+                                        child: Icon(Icons.person),
+                                      );
+                                    }
+                                    return Container(
+                                      child: Icon(Icons.person, size: 35),
+                                    );
+                                  },
+                                );
+                              } else {
+                                Container(child: Icon(Icons.person, size: 35));
                               }
-                              return Container(
-                                      child: Icon(Icons.person, size: 35));
                             }
-                            ),
-                     
+                            return Container(
+                                child: Icon(Icons.person, size: 35));
+                          }),
                       radius: 45.0,
                     ),
                   ),
@@ -166,16 +156,16 @@ class _RideSummaryState extends State<RideSummary> {
                                       MainAxisAlignment.spaceEvenly,
                                   children: <Widget>[
                                     Icon(
-                                                Icons.trip_origin,
-                                                color: Color(0xFF686868),
-                                                size: 15,
-                                              ),
+                                      Icons.trip_origin,
+                                      color: Color(0xFF686868),
+                                      size: 15,
+                                    ),
                                     SizedBox(height: 20),
                                     Icon(
-                                                Icons.brightness_1,
-                                                color: Color(0xFF686868),
-                                                size: 15,
-                                              ),
+                                      Icons.brightness_1,
+                                      color: Color(0xFF686868),
+                                      size: 15,
+                                    ),
                                   ],
                                 ),
                                 Column(
@@ -189,10 +179,8 @@ class _RideSummaryState extends State<RideSummary> {
                                 ),
                               ],
                             ),
-                            
                             Column(
-                              mainAxisAlignment:
-                                  MainAxisAlignment.spaceBetween,
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: <Widget>[
                                 Text('$time',
                                     style: TextStyle(color: Colors.grey)),
@@ -222,54 +210,54 @@ class _RideSummaryState extends State<RideSummary> {
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: <Widget>[
                             Row(
-              children: <Widget>[
-                Container(
-                  width: 70,
-                  child: Stack(
-                    children: <Widget>[
-                      CircleAvatar(
-                        backgroundImage:
-                            AssetImage('assets/driver.png'),
-                        radius: 15,
-                      ),
-                      Positioned(
-                        left: 12,
-                        child: CircleAvatar(
-                          backgroundImage:
-                              AssetImage('assets/driver.png'),
-                          radius: 15,
-                        ),
-                      ),
-                      Positioned(
-                        left: 25,
-                        child: CircleAvatar(
-                          backgroundImage:
-                              AssetImage('assets/driver.png'),
-                          radius: 15,
-                        ),
-                      ),
-                      Positioned(
-                        left: 25,
-                        child: CircleAvatar(
-                          backgroundImage:
-                              AssetImage('assets/driver.png'),
-                          radius: 15,
-                        ),
-                      ),
-                      Positioned(
-                        left: 37,
-                        child: CircleAvatar(
-                          child: Text('+1'),
-                          radius: 15,
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-              ],
-            ),
+                              children: <Widget>[
+                                Container(
+                                  width: 70,
+                                  child: Stack(
+                                    children: <Widget>[
+                                      CircleAvatar(
+                                        backgroundImage:
+                                            AssetImage('assets/driver.png'),
+                                        radius: 15,
+                                      ),
+                                      Positioned(
+                                        left: 12,
+                                        child: CircleAvatar(
+                                          backgroundImage:
+                                              AssetImage('assets/driver.png'),
+                                          radius: 15,
+                                        ),
+                                      ),
+                                      Positioned(
+                                        left: 25,
+                                        child: CircleAvatar(
+                                          backgroundImage:
+                                              AssetImage('assets/driver.png'),
+                                          radius: 15,
+                                        ),
+                                      ),
+                                      Positioned(
+                                        left: 25,
+                                        child: CircleAvatar(
+                                          backgroundImage:
+                                              AssetImage('assets/driver.png'),
+                                          radius: 15,
+                                        ),
+                                      ),
+                                      Positioned(
+                                        left: 37,
+                                        child: CircleAvatar(
+                                          child: Text('+1'),
+                                          radius: 15,
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ],
+                            ),
                             Text(
-                              '4 km . 17mins',
+                              '4km . 17mins',
                               style: TextStyle(
                                 color: Colors.grey,
                                 fontSize: 12.0,
@@ -296,9 +284,8 @@ class _RideSummaryState extends State<RideSummary> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: <Widget>[
                       Container(
-                        height: 65,
-                        padding:
-                            EdgeInsetsDirectional.fromSTEB(20, 15, 20, 0),
+                        height: 80,
+                        padding: EdgeInsetsDirectional.fromSTEB(20, 15, 20, 0),
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           crossAxisAlignment: CrossAxisAlignment.center,
@@ -317,7 +304,7 @@ class _RideSummaryState extends State<RideSummary> {
                             Column(
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: <Widget>[
-                                Text(ride.price.toString(),
+                                Text('${ride.price}',
                                     style: TextStyle(
                                       color: Colors.black,
                                       fontSize: 20,
@@ -333,38 +320,6 @@ class _RideSummaryState extends State<RideSummary> {
                                     )
                                   ],
                                 ),
-                              ],
-                            ),
-                          ],
-                        ),
-                      ),
-                      Divider(),
-                      Container(
-                        height: 65,
-                        padding:
-                            EdgeInsetsDirectional.fromSTEB(20, 10, 20, 0),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          children: <Widget>[
-                            Column(
-                              children: <Widget>[
-                                Text('Carbon saved',
-                                    style: TextStyle(
-                                      color: Colors.black,
-                                      fontSize: 20,
-                                      fontWeight: FontWeight.w900,
-                                    )),
-                              ],
-                            ),
-                            Column(
-                              children: <Widget>[
-                                Text('0.05%',
-                                    style: TextStyle(
-                                      color: Colors.grey,
-                                      fontSize: 20,
-                                      fontWeight: FontWeight.w500,
-                                    )),
                               ],
                             ),
                           ],

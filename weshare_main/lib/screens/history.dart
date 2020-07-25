@@ -80,7 +80,7 @@ class _HistoryState extends State<History> {
                     style: TextStyle(color: Colors.grey),
                   ),
                   widget.usertype == 'Rider' ?Text(
-                    'By Ali Qasmi',
+                    'by ${rides[index].driver.name}',
                     style: TextStyle(color: Colors.grey),
                   ):Text(''),
                 ]),
