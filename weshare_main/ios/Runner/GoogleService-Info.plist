@@ -3,9 +3,9 @@
 <plist version="1.0">
 <dict>
 	<key>CLIENT_ID</key>
-	<string>814938032768-p808ep3lsbahao49glvkkue7celc97kg.apps.googleusercontent.com</string>
+	<string>814938032768-9t9lellhsp5e744eggg4bhftihg4d76m.apps.googleusercontent.com</string>
 	<key>REVERSED_CLIENT_ID</key>
-	<string>com.googleusercontent.apps.814938032768-p808ep3lsbahao49glvkkue7celc97kg</string>
+	<string>com.googleusercontent.apps.814938032768-9t9lellhsp5e744eggg4bhftihg4d76m</string>
 	<key>API_KEY</key>
 	<string>AIzaSyACt8l3BOlScc1SnI3Eo-dV-rvRH8XmDKo</string>
 	<key>GCM_SENDER_ID</key>
@@ -13,7 +13,7 @@
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
-	<string>com.example.weshare</string>
+	<string>com.example.weshareMain</string>
 	<key>PROJECT_ID</key>
 	<string>weshare-5df01</string>
 	<key>STORAGE_BUCKET</key>
@@ -29,7 +29,7 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:814938032768:ios:3a4ca7e33d290cf0787465</string>
+	<string>1:814938032768:ios:8ec2ea947241839a787465</string>
 	<key>DATABASE_URL</key>
 	<string>https://weshare-5df01.firebaseio.com</string>
 </dict>
