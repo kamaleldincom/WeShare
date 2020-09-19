@@ -1,16 +1,49 @@
-# weshare_main
+Mobile Application Programming, SCSJ3623
+School of Computing, UTM
+June 2020
 
-A new Flutter project.
+# Group Project Final Version
 
-## Getting Started
+## Project Title: WeShare
 
-This project is a starting point for a Flutter application.
+## Project Synopis:
 
-A few resources to get you started if this is your first Flutter project:
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
+This application is unique as it allows all the users to be riders (join rides of others) and drivers (post rides for others to join). The riders can view, join, and leave rides. The drivers can post rides and view the riders who joined his/her ride. Both users can communicate via the chat functionality.
 
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+
+
+_Note: Briefly describe what your app is all about_
+
+## Group Members
+
+- Name 1: LOAI ABDULRAHMAN MOHAMMED AL-SHAREE
+- Name 2: ABDULRAHMAN MOHAMMED ABULLAH AL-ABIDI
+- Name 3: AHMED KAMAL ELDIN
+
+## Video URL:  https://youtu.be/jKQvxnAfkIM
+
+_Note:_
+
+- Video must be uploaded to youtube.
+- Provide timestamps to your video.
+
+## Project URL on Firebase : 
+
+https://console.firebase.google.com/u/1/project/weshare-5df01/overview
+
+If you wish to view our firestore, please log in to this account:
+
+gmail acc:  wesharecommuter@gmail.com
+gmail pwd:  weshare#go
+
+## Git Repo URL on github (front-end): https://github.com/amoo12/weshare
+
+## Git Repo URL on github (back-end) : https://github.com/amoo12/weshare-Backend
+
+## User credential (username and passwords) to test out your app:
+
+As a user can be a rider and a driver from the same app, please use the following account:
+
+email =>  tester@weshare.com
+pwd   =>  qwerty
