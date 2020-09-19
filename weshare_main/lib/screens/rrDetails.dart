@@ -51,7 +51,7 @@ class _RrDetailsState extends State<RrDetails> {
       Stack(
         children: <Widget>[
           GoogleMap(
-            initialCameraPosition: CameraPosition(target: LatLng(37.77483, -122.41942), zoom: 11,),
+            initialCameraPosition: CameraPosition(target: LatLng(1.559701, 103.637786), zoom: 11,),
             myLocationEnabled: true,  
             onMapCreated: _onMapCreated,
           ),
