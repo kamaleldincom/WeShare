@@ -125,8 +125,8 @@ class _ChatScreenState extends State<ChatScreen> {
                 ChatListView(),
                 // _buildMessageTextField(getValue, context),
                 Container(
-                  padding: EdgeInsets.fromLTRB(10, 15, 10, 34),
-                  // height: 100.0,
+                  padding: EdgeInsets.all(5),
+                  // height: 50.0,
                   color: Colors.white,
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -150,10 +150,10 @@ class _ChatScreenState extends State<ChatScreen> {
                           },
                           decoration: InputDecoration(
                             suffixIcon: Container(
-                              width: 150,
+                              width: MediaQuery.of(context).size.width/6,
                               // margin: EdgeInsets.only(right:1),
                               child: Row(
-                                // mainAxisAlignment: MainAxisAlignment.start ,
+                                mainAxisAlignment: MainAxisAlignment.spaceBetween ,
                                 children: <Widget>[
                                   message != ''
                                       ? IconButton(
@@ -168,19 +168,20 @@ class _ChatScreenState extends State<ChatScreen> {
                                           },
                                         )
                                       : Container(),
-                                  IconButton(
-                                    icon: Icon(Icons.attachment),
-                                    iconSize: 25.0,
-                                    color: Colors.grey[600],
-                                    onPressed: () {},
-                                  ),
-                                  IconButton(
-                                    icon: Icon(
-                                      Icons.camera_alt,
-                                      color: Colors.grey[600],
-                                    ),
-                                    onPressed: () {},
-                                  ),
+                                  // IconButton(
+                                  //   icon: Icon(Icons.attachment),
+                                  //   iconSize: 25.0,
+                                  //   color: Colors.grey[600],
+                                  //   onPressed: () {},
+                                  // ),
+                                  // IconButton(
+                                  //   icon: Icon(
+                                  //     Icons.camera_alt,
+                                  //     color: Colors.grey[600],
+                                  //   ),
+                                  //   onPressed: () {},
+                                  // ),
+                                
                                 ],
                               ),
                             ),
@@ -211,7 +212,7 @@ class _ChatScreenState extends State<ChatScreen> {
                         ),
                         child: IconButton(
                           icon: Icon(Icons.send),
-                          iconSize: 25.0,
+                          iconSize: 20.0,
                           color: Colors.white,
                           onPressed: () {
                             if (message != '') {

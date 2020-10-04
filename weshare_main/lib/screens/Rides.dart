@@ -28,7 +28,7 @@ class _RidesState extends State<Rides> {
           child: Scaffold(
             backgroundColor: Theme.of(context).backgroundColor,
             appBar: PreferredSize(
-              preferredSize: Size.fromHeight(150.0),
+              preferredSize: Size.fromHeight(140.0),
               child: AppBar(
                 brightness: Brightness.light,
                 backgroundColor: Colors.grey[100],
@@ -42,7 +42,7 @@ class _RidesState extends State<Rides> {
                       'Rides',
                       style: TextStyle(
                           color: Colors.black,
-                          fontSize: 22,
+                          fontSize: 20,
                           fontWeight: FontWeight.w600),
                     )),
                     SizedBox(height: 10.0),
