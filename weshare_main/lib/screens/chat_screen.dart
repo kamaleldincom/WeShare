@@ -353,7 +353,7 @@ _buildMessage(Message message, context) {
         ),
         Container(
           constraints: BoxConstraints(
-            maxWidth: 290.0,
+            maxWidth: MediaQuery.of(context).size.width/1.45,
           ),
           // width: 300,
           margin: EdgeInsets.symmetric(vertical: 8),
@@ -380,8 +380,8 @@ _buildMessage(Message message, context) {
                   message.text,
                   style: TextStyle(
                     color: message.uid == user.uid ? Colors.white : Colors.grey[700],
-                    fontSize: 16.0,
-                    fontWeight: FontWeight.w600,
+                    fontSize: 14.0,
+                    fontWeight: FontWeight.w400,
                   ),
                 ),
               ),

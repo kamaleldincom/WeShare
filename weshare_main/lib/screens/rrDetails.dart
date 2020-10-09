@@ -65,13 +65,13 @@ class _RrDetailsState extends State<RrDetails> {
             child: DraggableScrollableSheet(
               initialChildSize: 0.35,
               minChildSize: 0.12,
-              maxChildSize: 0.59,
+              maxChildSize: 0.6,
               builder: ( context, controller){
                 return SingleChildScrollView(
                   controller: controller,
                   
                   child: Container(
-                    height: MediaQuery.of(context).size.height/1.9,
+                    height: MediaQuery.of(context).size.height/1.88,
                     decoration: BoxDecoration(
                     borderRadius: BorderRadius.only(
                       topLeft: Radius.circular(15.0),
@@ -82,8 +82,8 @@ class _RrDetailsState extends State<RrDetails> {
                     child: Column(
                       children: [
                         Card(
-                          margin: EdgeInsets.all(0),
-                          elevation: 0.0,
+                          // margin: EdgeInsets.all(0),
+                          // elevation: 0.0,
                           shape: RoundedRectangleBorder(
                             side: BorderSide(color: Colors.grey, width: 1),
                             borderRadius: BorderRadius.circular(8.0),

@@ -173,9 +173,11 @@ class EditCarDetails extends StatelessWidget {
                   ),
                 ),
               ),
-              SizedBox(height: MediaQuery.of(context).size.height / 5.5),
+              // SizedBox(height: MediaQuery.of(context).size.height / 5.5),
               Container(
-                //margin: EdgeInsets.symmetric(horizontal: 10, vertical: 15),
+                width: double.infinity,
+                height: 60,
+                margin: EdgeInsets.symmetric(horizontal: 0, vertical: 10),
                 child: FlatButton(
                   child: Text(
                     'Save Changes',
@@ -192,7 +194,7 @@ class EditCarDetails extends StatelessWidget {
                   color: Color(0xFF5C79FF),
                   shape: RoundedRectangleBorder(
                       borderRadius: new BorderRadius.circular(12)),
-                  padding: EdgeInsets.symmetric(horizontal: 110, vertical: 20),
+                  // padding: EdgeInsets.symmetric(horizontal: 110, vertical: 20),
                 ),
               ),
             ],

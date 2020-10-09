@@ -14,7 +14,7 @@ class MyFlexiableAppBar extends StatefulWidget {
 }
 
 class _MyFlexiableAppBarState extends State<MyFlexiableAppBar> {
-  final double appBarHeight = 280.0;
+  final double appBarHeight = 260.0;
   DateTime _dateTime = DateTime.now();
   @override
   Widget build(BuildContext context) {
@@ -70,7 +70,7 @@ class _MyFlexiableAppBarState extends State<MyFlexiableAppBar> {
               ////////////////
               
               Container(
-                height: 60,
+                height: 50,
                 width: double.infinity,
                 margin: EdgeInsets.symmetric(horizontal:15, vertical: 0),
                 decoration: BoxDecoration(
@@ -194,7 +194,7 @@ class _MyFlexiableAppBarState extends State<MyFlexiableAppBar> {
                       children: <Widget>[
                         IconButton(
                           icon: Icon(Icons.timer), 
-                          iconSize: 26,
+                          iconSize: 22,
                           color: Colors.white.withOpacity(0.6),
                           onPressed: (){
                             showDialog(
@@ -262,6 +262,8 @@ class _MyFlexiableAppBarState extends State<MyFlexiableAppBar> {
                           'Time',
                           style: TextStyle(
                             color: Colors.white.withOpacity(0.6),
+                            fontWeight: FontWeight.w800,
+                            fontSize: 12,
                           ),
                         ),
                       ],
@@ -273,7 +275,7 @@ class _MyFlexiableAppBarState extends State<MyFlexiableAppBar> {
                       children: <Widget>[
                         IconButton(
                           icon: Icon(Icons.event_seat), 
-                          iconSize: 26,
+                          iconSize: 22,
                           color: Colors.white.withOpacity(0.6),
                           onPressed: (){
                             showDialog(
@@ -351,6 +353,8 @@ class _MyFlexiableAppBarState extends State<MyFlexiableAppBar> {
                           'Available Seats',
                           style: TextStyle(
                             color: Colors.white.withOpacity(0.6),
+                            fontWeight: FontWeight.w800,
+                            fontSize: 12,
                           ),
                         ),
                       ],
@@ -362,7 +366,7 @@ class _MyFlexiableAppBarState extends State<MyFlexiableAppBar> {
                       children: <Widget>[
                         IconButton(
                           icon: Icon(Icons.filter_list), 
-                          iconSize: 26,
+                          iconSize: 22,
                           color: Colors.white.withOpacity(0.6),
                           onPressed: (){
                             showDialog(
@@ -440,6 +444,8 @@ class _MyFlexiableAppBarState extends State<MyFlexiableAppBar> {
                           'Filters',
                           style: TextStyle(
                             color: Colors.white.withOpacity(0.6),
+                            fontWeight: FontWeight.w800,
+                            fontSize: 12,
                           ),
                         ),
                       ],

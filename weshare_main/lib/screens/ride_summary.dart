@@ -30,7 +30,7 @@ class _RideSummaryState extends State<RideSummary> {
       body: Column(
         children: <Widget>[
           Container(
-            height: 150.0,
+            height: 140.0,
             decoration: BoxDecoration(
               gradient: linearGradientvertical,
             ),
@@ -40,7 +40,7 @@ class _RideSummaryState extends State<RideSummary> {
                 Center(
                   child: CircleAvatar(
                     backgroundColor: Colors.white,
-                    radius: 47.0,
+                    radius: 40.0,
                     child: CircleAvatar(
                       child: FutureBuilder(
                           future: DatabaseService().getUserDetails(ride.did),
@@ -84,7 +84,7 @@ class _RideSummaryState extends State<RideSummary> {
                             return Container(
                                 child: Icon(Icons.person, size: 35));
                           }),
-                      radius: 45.0,
+                      radius: 38.0,
                     ),
                   ),
                 ),
@@ -121,7 +121,7 @@ class _RideSummaryState extends State<RideSummary> {
             height: 10,
           ),
           Container(
-              margin: EdgeInsets.symmetric(horizontal: 10),
+              margin: EdgeInsets.symmetric(horizontal: 10,),
               child: Column(children: <Widget>[
                 Card(
                   elevation: 0.0,
@@ -132,18 +132,18 @@ class _RideSummaryState extends State<RideSummary> {
                     // mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: <Widget>[
-                      Container(
-                        margin: EdgeInsets.all(10),
-                        // padding: EdgeInsets.symmetric(vertical: ),
+                      // Container(
+                      //   margin: EdgeInsets.all(10),
+                      //   // padding: EdgeInsets.symmetric(vertical: ),
 
-                        height: 150,
-                        decoration: BoxDecoration(
-                          color: Colors.blue,
-                          borderRadius: BorderRadius.circular(8.0),
-                        ),
-                      ),
+                      //   height: 150,
+                      //   decoration: BoxDecoration(
+                      //     color: Colors.blue,
+                      //     borderRadius: BorderRadius.circular(8.0),
+                      //   ),
+                      // ),
                       Container(
-                        padding: EdgeInsets.symmetric(horizontal: 10),
+                        padding: EdgeInsets.symmetric(horizontal: 10,),
                         height: 52,
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -266,9 +266,9 @@ class _RideSummaryState extends State<RideSummary> {
                           ],
                         ),
                       ),
-                      SizedBox(
-                        height: 15,
-                      ),
+                      // SizedBox(
+                      //   height: 15,
+                      // ),
                     ],
                   ),
                 ),

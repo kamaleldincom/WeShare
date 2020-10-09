@@ -30,7 +30,7 @@ const textInputDecoration = InputDecoration(
 
 // The main button with gradient (like the login in)
 //just pass a text and your're ready to go
-Ink buttonWithGradient(String text, [double maxwidth = 310]) {
+Ink buttonWithGradient(String text, [double maxwidth = double.infinity]) {
   //assign to a child inside any button and pass the text you like
   return Ink(
     decoration: BoxDecoration(
@@ -678,7 +678,7 @@ Container currentRideCard(
                                                     SizedBox(
                                                       width: 5,
                                                     ),
-                                                    Text('12 minutes...',
+                                                    Text('12 minutes...',/// here/// change from static ///
                                                         style: TextStyle(
                                                             fontWeight:
                                                                 FontWeight.bold,
