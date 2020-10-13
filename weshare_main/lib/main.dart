@@ -39,8 +39,8 @@ class MyApp extends StatelessWidget {
     ]);
 
     return StreamProvider<User>.value(
-        value: AuthService().user,
-          child: MaterialApp(
+      value: AuthService().user,
+      child: MaterialApp(
         theme: ThemeData(
           // brightness: Brightness.dark,
           primaryColor: Color(0xFF5C79FF),
@@ -65,14 +65,14 @@ class MyApp extends StatelessWidget {
         ),
         debugShowCheckedModeBanner: false,
         // home: DriverRegistration(0),
-        home: Splash(),
+        home: Wrapper(),
         routes: {
           // '/': (context) => Loading(),
           '/wrapper': (context) => Wrapper(),
           '/settings': (context) => Settings(),
           '/login': (context) => Login(),
           '/splash': (context) => Splash(),
-       //   '/profile': (context) => Profile(),
+          //   '/profile': (context) => Profile(),
           '/notifications': (context) => Notifications(),
           // '/rides': (context) => Rides(),
           // '/history': (context) => History(),

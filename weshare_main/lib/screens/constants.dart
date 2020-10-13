@@ -314,9 +314,10 @@ Container currentRideCard(
               behavior: HitTestBehavior.opaque,
               onTap: () {
                 if (usertype == 'Rider')
-                  Navigator.pushNamed(context, "/RrDetails",arguments: _rides);
+                  Navigator.pushNamed(context, "/RrDetails", arguments: _rides);
                 else if (usertype == 'Driver') {
-                  Navigator.pushNamed(context, "/startEndRide",  arguments: _rides );
+                  Navigator.pushNamed(context, "/startEndRide",
+                      arguments: _rides);
                 }
               },
               child: Container(
@@ -330,53 +331,53 @@ Container currentRideCard(
                             height: 50,
                             child: CircleAvatar(
                               child: FutureBuilder(
-                            future: DatabaseService()
-                                .getUserDetails(_rides.did),
-                            builder: (context, snapshot) {
-                              if (snapshot.hasData) {
-                                if (snapshot.data.photo) {
-                                  FutureBuilder(
-                                    future: DatabaseService()
-                                        .getImage(_rides.did),
-                                    builder: (context, snapshot) {
-                                      if (snapshot.connectionState ==
-                                              ConnectionState.done &&
-                                          snapshot.hasData)
-                                        return CircleAvatar(
-                                          child: ClipOval(
-                                            child: snapshot.data,
-                                          ),
-                                          // backgroundImage: NetworkImage(snapshot.data.preview),
-                                          radius: 20,
-                                        );
+                                  future: DatabaseService()
+                                      .getUserDetails(_rides.did),
+                                  builder: (context, snapshot) {
+                                    if (snapshot.hasData) {
+                                      if (snapshot.data.photo) {
+                                        return FutureBuilder(
+                                          future: DatabaseService()
+                                              .getImage(_rides.did),
+                                          builder: (context, snapshot) {
+                                            if (snapshot.connectionState ==
+                                                    ConnectionState.done &&
+                                                snapshot.hasData)
+                                              return CircleAvatar(
+                                                child: ClipOval(
+                                                  child: snapshot.data,
+                                                ),
+                                                // backgroundImage: NetworkImage(snapshot.data.preview),
+                                                radius: 25,
+                                              );
 
-                                      if (snapshot.connectionState ==
-                                          ConnectionState.waiting)
-                                        return Container(
+                                            if (snapshot.connectionState ==
+                                                ConnectionState.waiting)
+                                              return Container(
+                                                  child: Icon(Icons.person,
+                                                      size: 35));
+
+                                            if (snapshot.connectionState ==
+                                                ConnectionState.none) {
+                                              return Container(
+                                                child: Icon(Icons.person),
+                                              );
+                                            }
+                                            return Container(
+                                              child:
+                                                  Icon(Icons.person, size: 35),
+                                            );
+                                          },
+                                        );
+                                      } else {
+                                        Container(
                                             child:
                                                 Icon(Icons.person, size: 35));
-
-                                      if (snapshot.connectionState ==
-                                          ConnectionState.none) {
-                                        return Container(
-                                          child: Icon(Icons.person),
-                                        );
                                       }
-                                      return Container(
-                                        child: Icon(Icons.person, size: 35),
-                                      );
-                                    },
-                                  );
-                                } else {
-                                  Container(
-                                      child: Icon(Icons.person, size: 35));
-                                }
-
-                              }
-                              return Container(
-                                      child: Icon(Icons.person, size: 35));
-                            }
-                            ),
+                                    }
+                                    return Container(
+                                        child: Icon(Icons.person, size: 35));
+                                  }),
                               radius: 25,
                             ),
                           ),
@@ -442,7 +443,7 @@ Container currentRideCard(
                                     //                   style: TextStyle(
                                     //                     fontSize: 13,
                                     //                   ),
-                                    //                   overflow: TextOverflow.ellipsis, 
+                                    //                   overflow: TextOverflow.ellipsis,
                                     //                 ),
                                     //               ],
                                     //             ),
@@ -451,7 +452,7 @@ Container currentRideCard(
                                     //       ),
                                     //       SizedBox(height: 5),
                                     //       Column(
-                                            
+
                                     //         crossAxisAlignment:
                                     //             CrossAxisAlignment.start,
                                     //         children: <Widget>[
@@ -490,23 +491,24 @@ Container currentRideCard(
                                     //   ),
                                     // ),
                                     Container(
-
                                       child: Column(
-
-                                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                        crossAxisAlignment: CrossAxisAlignment.start,
-
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceBetween,
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
                                         children: <Widget>[
                                           Container(
                                             margin: EdgeInsets.all(0),
                                             child: Row(
-                                              mainAxisAlignment: MainAxisAlignment.start,
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.start,
                                               crossAxisAlignment:
                                                   CrossAxisAlignment.start,
                                               children: <Widget>[
                                                 Icon(
                                                   Icons.trip_origin,
-                                                  color: Theme.of(context).accentColor,
+                                                  color: Theme.of(context)
+                                                      .accentColor,
                                                   size: 15,
                                                 ),
                                                 SizedBox(width: 5),
@@ -514,16 +516,19 @@ Container currentRideCard(
                                                   width: 200,
                                                   child: Column(
                                                     mainAxisAlignment:
-                                                        MainAxisAlignment.spaceBetween,
+                                                        MainAxisAlignment
+                                                            .spaceBetween,
                                                     crossAxisAlignment:
-                                                        CrossAxisAlignment.start,
+                                                        CrossAxisAlignment
+                                                            .start,
                                                     children: <Widget>[
                                                       Title(
                                                         color: Colors.black,
                                                         child: Text(
                                                           'From',
                                                           style: TextStyle(
-                                                            fontWeight: FontWeight.w300,
+                                                            fontWeight:
+                                                                FontWeight.w300,
                                                             fontSize: 11,
                                                             color: Colors.grey,
                                                           ),
@@ -532,12 +537,14 @@ Container currentRideCard(
                                                       Text(
                                                         _rides.from,
                                                         style: TextStyle(
-                                                          fontWeight: FontWeight.w500,
+                                                          fontWeight:
+                                                              FontWeight.w500,
                                                           fontSize: 15,
-                                                          color: Colors.grey[800],
+                                                          color:
+                                                              Colors.grey[800],
                                                         ),
-                                                        overflow: TextOverflow.ellipsis, 
-
+                                                        overflow: TextOverflow
+                                                            .ellipsis,
                                                       ),
                                                     ],
                                                     // brightness_1
@@ -552,13 +559,15 @@ Container currentRideCard(
                                           Container(
                                             margin: EdgeInsets.all(0),
                                             child: Row(
-                                              mainAxisAlignment: MainAxisAlignment.start,
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.start,
                                               crossAxisAlignment:
                                                   CrossAxisAlignment.start,
                                               children: <Widget>[
                                                 Icon(
                                                   Icons.brightness_1,
-                                                  color: Theme.of(context).accentColor,
+                                                  color: Theme.of(context)
+                                                      .accentColor,
                                                   size: 15,
                                                 ),
                                                 SizedBox(width: 5),
@@ -566,16 +575,19 @@ Container currentRideCard(
                                                   width: 200,
                                                   child: Column(
                                                     mainAxisAlignment:
-                                                        MainAxisAlignment.spaceBetween,
+                                                        MainAxisAlignment
+                                                            .spaceBetween,
                                                     crossAxisAlignment:
-                                                        CrossAxisAlignment.start,
+                                                        CrossAxisAlignment
+                                                            .start,
                                                     children: <Widget>[
                                                       Title(
                                                         color: Colors.black,
                                                         child: Text(
                                                           'To',
                                                           style: TextStyle(
-                                                            fontWeight: FontWeight.w300,
+                                                            fontWeight:
+                                                                FontWeight.w300,
                                                             fontSize: 11,
                                                             color: Colors.grey,
                                                           ),
@@ -584,11 +596,13 @@ Container currentRideCard(
                                                       Text(
                                                         _rides.to,
                                                         style: TextStyle(
-                                                          fontWeight: FontWeight.w400,
+                                                          fontWeight:
+                                                              FontWeight.w400,
                                                           fontSize: 15,
                                                           color: Colors.grey,
                                                         ),
-                                                        overflow: TextOverflow.ellipsis, 
+                                                        overflow: TextOverflow
+                                                            .ellipsis,
                                                       ),
                                                     ],
                                                     // brightness_1
@@ -600,7 +614,7 @@ Container currentRideCard(
                                         ],
                                       ),
                                     ),
-                          
+
                                     Container(
                                       child: Row(
                                         crossAxisAlignment:
@@ -719,179 +733,184 @@ Container currentRideCard(
                               crossAxisAlignment: CrossAxisAlignment.center,
                               children: <Widget>[
                                 Container(
-
-                                      child: Column(
-
-                                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                        crossAxisAlignment: CrossAxisAlignment.start,
-
-                                        children: <Widget>[
-                                          Container(
-                                            margin: EdgeInsets.all(0),
-                                            child: Row(
-                                              mainAxisAlignment: MainAxisAlignment.start,
-                                              crossAxisAlignment:
-                                                  CrossAxisAlignment.start,
-                                              children: <Widget>[
-                                                Icon(
-                                                  Icons.trip_origin,
-                                                  color: Theme.of(context).accentColor,
-                                                  size: 15,
-                                                ),
-                                                SizedBox(width: 5),
-                                                Container(
-                                                  width: 150,
-                                                  child: Column(
-                                                    mainAxisAlignment:
-                                                        MainAxisAlignment.spaceBetween,
-                                                    crossAxisAlignment:
-                                                        CrossAxisAlignment.start,
-                                                    children: <Widget>[
-                                                      Title(
-                                                        color: Colors.black,
-                                                        child: Text(
-                                                          'From',
-                                                          style: TextStyle(
-                                                            fontWeight: FontWeight.w300,
-                                                            fontSize: 11,
-                                                            color: Colors.grey,
-                                                          ),
-                                                        ),
+                                  child: Column(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: <Widget>[
+                                      Container(
+                                        margin: EdgeInsets.all(0),
+                                        child: Row(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.start,
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                          children: <Widget>[
+                                            Icon(
+                                              Icons.trip_origin,
+                                              color:
+                                                  Theme.of(context).accentColor,
+                                              size: 15,
+                                            ),
+                                            SizedBox(width: 5),
+                                            Container(
+                                              width: 150,
+                                              child: Column(
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment
+                                                        .spaceBetween,
+                                                crossAxisAlignment:
+                                                    CrossAxisAlignment.start,
+                                                children: <Widget>[
+                                                  Title(
+                                                    color: Colors.black,
+                                                    child: Text(
+                                                      'From',
+                                                      style: TextStyle(
+                                                        fontWeight:
+                                                            FontWeight.w300,
+                                                        fontSize: 11,
+                                                        color: Colors.grey,
                                                       ),
-                                                      Text(
-                                                        _rides.from,
-                                                        style: TextStyle(
-                                                          fontWeight: FontWeight.w500,
-                                                          fontSize: 15,
-                                                          color: Colors.grey[800],
-                                                        ),
-                                                        overflow: TextOverflow.ellipsis, 
-
-                                                      ),
-                                                    ],
-                                                    // brightness_1
+                                                    ),
                                                   ),
-                                                ),
-                                              ],
+                                                  Text(
+                                                    _rides.from,
+                                                    style: TextStyle(
+                                                      fontWeight:
+                                                          FontWeight.w500,
+                                                      fontSize: 15,
+                                                      color: Colors.grey[800],
+                                                    ),
+                                                    overflow:
+                                                        TextOverflow.ellipsis,
+                                                  ),
+                                                ],
+                                                // brightness_1
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                      SizedBox(
+                                        height: 10,
+                                      ),
+                                      Container(
+                                        margin: EdgeInsets.all(0),
+                                        child: Row(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.start,
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                          children: <Widget>[
+                                            Icon(
+                                              Icons.brightness_1,
+                                              color:
+                                                  Theme.of(context).accentColor,
+                                              size: 15,
+                                            ),
+                                            SizedBox(width: 5),
+                                            Container(
+                                              width: 150,
+                                              child: Column(
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment
+                                                        .spaceBetween,
+                                                crossAxisAlignment:
+                                                    CrossAxisAlignment.start,
+                                                children: <Widget>[
+                                                  Title(
+                                                    color: Colors.black,
+                                                    child: Text(
+                                                      'To',
+                                                      style: TextStyle(
+                                                        fontWeight:
+                                                            FontWeight.w300,
+                                                        fontSize: 11,
+                                                        color: Colors.grey,
+                                                      ),
+                                                    ),
+                                                  ),
+                                                  Text(
+                                                    _rides.to,
+                                                    style: TextStyle(
+                                                      fontWeight:
+                                                          FontWeight.w400,
+                                                      fontSize: 15,
+                                                      color: Colors.grey,
+                                                    ),
+                                                    overflow:
+                                                        TextOverflow.ellipsis,
+                                                  ),
+                                                ],
+                                                // brightness_1
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                                Container(
+                                  child: Column(
+                                    children: <Widget>[
+                                      Column(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.start,
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.center,
+                                        children: <Widget>[
+                                          Title(
+                                            color: Colors.black,
+                                            child: Text(
+                                              'Number of Riders',
+                                              style: TextStyle(
+                                                fontWeight: FontWeight.w300,
+                                                fontSize: 11,
+                                                color: Colors.grey,
+                                              ),
                                             ),
                                           ),
                                           SizedBox(
-                                            height: 10,
+                                            height: 2,
                                           ),
-                                          Container(
-                                            margin: EdgeInsets.all(0),
-                                            child: Row(
-                                              mainAxisAlignment: MainAxisAlignment.start,
-                                              crossAxisAlignment:
-                                                  CrossAxisAlignment.start,
-                                              children: <Widget>[
-                                                Icon(
-                                                  Icons.brightness_1,
-                                                  color: Theme.of(context).accentColor,
-                                                  size: 15,
-                                                ),
-                                                SizedBox(width: 5),
-                                                Container(
-                                                  width: 150,
-                                                  child: Column(
-                                                    mainAxisAlignment:
-                                                        MainAxisAlignment.spaceBetween,
-                                                    crossAxisAlignment:
-                                                        CrossAxisAlignment.start,
-                                                    children: <Widget>[
-                                                      Title(
-                                                        color: Colors.black,
-                                                        child: Text(
-                                                          'To',
-                                                          style: TextStyle(
-                                                            fontWeight: FontWeight.w300,
-                                                            fontSize: 11,
-                                                            color: Colors.grey,
-                                                          ),
-                                                        ),
-                                                      ),
-                                                      Text(
-                                                        _rides.to,
-                                                        style: TextStyle(
-                                                          fontWeight: FontWeight.w400,
-                                                          fontSize: 15,
-                                                          color: Colors.grey,
-                                                        ),
-                                                        overflow: TextOverflow.ellipsis, 
-                                                      ),
-                                                    ],
-                                                    // brightness_1
-                                                  ),
-                                                ),
-                                              ],
+                                          Text(
+                                            '${_rides.riders.length}',
+                                            style: TextStyle(
+                                              fontWeight: FontWeight.w500,
+                                              fontSize: 25,
+                                              color: Colors.grey[700],
                                             ),
                                           ),
                                         ],
                                       ),
-                                    ),
-                                  Container(
-                                  child: Column(
-
-                                    children: <Widget>[
-                                      Column(
-                                                        mainAxisAlignment:
-                                                            MainAxisAlignment
-                                                                .start,
-                                                        crossAxisAlignment:
-                                                            CrossAxisAlignment
-                                                                .center,
-                                                        children: <Widget>[
-                                                          Title(
-                                                            color: Colors.black,
-                                                            child: Text(
-                                                              'Number of Riders',
-                                                              style: TextStyle(
-                                                                fontWeight:
-                                                                    FontWeight.w300,
-                                                                fontSize: 11,
-                                                                color: Colors.grey,
-                                                              ),
-                                                            ),
-                                                          ),
-                                                          SizedBox(
-                                                            height: 2,
-                                                          ),
-                                                          Text(
-                                                             '${_rides.riders.length}',
-                                                            style: TextStyle(
-                                                              fontWeight:
-                                                                  FontWeight.w500,
-                                                              fontSize: 25,
-                                                              color:
-                                                                  Colors.grey[700],
-                                                            ),
-                                                          ),
-                                                        ],
-                                                      ),
-                                                    
                                       FlatButton(
                                         onPressed: () {
                                           // index == 0?
                                           if (usertype == 'Rider') {
                                           } else {
                                             Navigator.pushNamed(
-                                                context, "/startEndRide", arguments: _rides);
+                                                context, "/startEndRide",
+                                                arguments: _rides);
                                           }
                                         },
                                         shape: RoundedRectangleBorder(
-                                          borderRadius: BorderRadius.circular(50.0),
+                                          borderRadius:
+                                              BorderRadius.circular(50.0),
                                         ),
                                         color: Colors.greenAccent,
                                         child: Column(
                                           children: <Widget>[
-                                            
                                             Container(
                                               constraints: BoxConstraints(
-                                                  maxWidth: 90.0, maxHeight: 50),
+                                                  maxWidth: 90.0,
+                                                  maxHeight: 50),
                                               alignment: Alignment.center,
                                               child: Text('Start Ride',
-                                                  style:
-                                                      TextStyle(color: Colors.white)),
+                                                  style: TextStyle(
+                                                      color: Colors.white)),
                                             ),
                                           ],
                                         ),

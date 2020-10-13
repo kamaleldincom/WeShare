@@ -47,7 +47,7 @@ class _RideSummaryState extends State<RideSummary> {
                           builder: (context, snapshot) {
                             if (snapshot.hasData) {
                               if (snapshot.data.photo) {
-                                FutureBuilder(
+                                return FutureBuilder(
                                   future: DatabaseService().getImage(ride.did),
                                   builder: (context, snapshot) {
                                     if (snapshot.connectionState ==
@@ -58,7 +58,7 @@ class _RideSummaryState extends State<RideSummary> {
                                           child: snapshot.data,
                                         ),
                                         // backgroundImage: NetworkImage(snapshot.data.preview),
-                                        radius: 20,
+                                        radius: 45,
                                       );
 
                                     if (snapshot.connectionState ==

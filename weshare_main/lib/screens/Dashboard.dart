@@ -1,13 +1,13 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
+// import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:path/path.dart';
+// import 'package:path/path.dart';
 import 'package:provider/provider.dart';
 import 'package:weshare_main/models/ride.dart';
 import 'package:weshare_main/models/user.dart';
 import 'package:weshare_main/services/database.dart';
-import 'package:weshare_main/weshare_icons.dart';
+// import 'package:weshare_main/weshare_icons.dart';
 
-import 'constants.dart';
+// import 'constants.dart';
 import 'myappbar.dart';
 import 'myflexiableappbar.dart';
 
@@ -141,7 +141,7 @@ class _RidesSliverListState extends State<RidesSliverList> {
                             builder: (context, snapshot) {
                               if (snapshot.hasData) {
                                 if (snapshot.data.photo) {
-                                  FutureBuilder(
+                                  return FutureBuilder(
                                     future: DatabaseService()
                                         .getImage(dashboardList[index].did),
                                     builder: (context, snapshot) {
@@ -165,24 +165,27 @@ class _RidesSliverListState extends State<RidesSliverList> {
                                       if (snapshot.connectionState ==
                                           ConnectionState.none) {
                                         return Container(
-                                          child: Icon(Icons.person),
+                                          child: Icon(Icons.person,
+                                              color: Colors.black),
                                         );
                                       }
                                       return Container(
-                                        child: Icon(Icons.person, size: 35),
+                                        child: Icon(Icons.person,
+                                            size: 35, color: Colors.black),
                                       );
                                     },
                                   );
                                 } else {
                                   Container(
-                                      child: Icon(Icons.person, size: 35));
+                                      child: Icon(Icons.person,
+                                          size: 35, color: Colors.black));
                                 }
-
+                              } else {
+                                return Container(
+                                    child: Icon(Icons.person, size: 35));
                               }
-                              return Container(
-                                      child: Icon(Icons.person, size: 35));
-                            }
-                            ),
+                              // return Text('${dashboardList[index].did}');
+                            }),
                       ),
                     ),
                     Padding(

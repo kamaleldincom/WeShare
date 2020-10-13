@@ -22,13 +22,20 @@ class _RrDetailsState extends State<RrDetails> {
   GoogleMapController _controller;
   Location _location = Location();
 
-  void _onMapCreated (GoogleMapController controller){
+  void _onMapCreated(GoogleMapController controller) {
     _controller = controller;
-    _location.onLocationChanged.listen((l){
-      _controller.animateCamera(CameraUpdate.newCameraPosition(CameraPosition(target: LatLng(l.latitude-0.008, l.longitude), zoom: 15,),),);
+    _location.onLocationChanged.listen((l) {
+      _controller.animateCamera(
+        CameraUpdate.newCameraPosition(
+          CameraPosition(
+            target: LatLng(l.latitude - 0.008, l.longitude),
+            zoom: 15,
+          ),
+        ),
+      );
     });
   }
-  
+
   @override
   Widget build(BuildContext context) {
     ride = ModalRoute.of(context).settings.arguments;
@@ -47,12 +54,14 @@ class _RrDetailsState extends State<RrDetails> {
         centerTitle: true,
         //title: Text('Text'),
       ),
-      body: 
-      Stack(
+      body: Stack(
         children: <Widget>[
           GoogleMap(
-            initialCameraPosition: CameraPosition(target: LatLng(1.559701, 103.637786), zoom: 11,),
-            myLocationEnabled: true,  
+            initialCameraPosition: CameraPosition(
+              target: LatLng(1.559701, 103.637786),
+              zoom: 11,
+            ),
+            myLocationEnabled: true,
             onMapCreated: _onMapCreated,
           ),
           // Container(
@@ -74,7 +83,7 @@ class _RrDetailsState extends State<RrDetails> {
                     borderRadius: BorderRadius.circular(8.0),
                     // borderSide: BorderSide(color: Colors.grey, width: 0.5),
                   ),
-                  child: chatsLT(context,ride),
+                  child: chatsLT(context, ride),
                 ),
                 Card(
                   margin: EdgeInsets.all(0),
@@ -98,59 +107,68 @@ class _RrDetailsState extends State<RrDetails> {
                                 children: <Widget>[
                                   CircleAvatar(
                                     child: FutureBuilder(
-                            future: DatabaseService()
-                                .getUserDetails(ride.did),
-                            builder: (context, snapshot) {
-                              if (snapshot.hasData) {
-                                if (snapshot.data.photo) {
-                                  FutureBuilder(
-                                    future: DatabaseService()
-                                        .getImage(ride.did),
-                                    builder: (context, snapshot) {
-                                      if (snapshot.connectionState ==
-                                              ConnectionState.done &&
-                                          snapshot.hasData)
-                                        return CircleAvatar(
-                                          child: ClipOval(
-                                            child: snapshot.data,
-                                          ),
-                                          // backgroundImage: NetworkImage(snapshot.data.preview),
-                                          radius: 20,
-                                        );
-
-                                      if (snapshot.connectionState ==
-                                          ConnectionState.waiting)
-                                        return Container(
-                                            child:
-                                                Icon(Icons.person, size: 35));
-
-                                      if (snapshot.connectionState ==
-                                          ConnectionState.none) {
-                                        return Container(
-                                          child: Icon(Icons.person),
-                                        );
-                                      }
-                                      return Container(
-                                        child: Icon(Icons.person, size: 35),
-                                      );
-                                    },
-                                  );
-                                } else {
-                                  Container(
-                                      child: Icon(Icons.person, size: 35));
-                                }
-
-                              }
-                              return Container(
-                                      child: Icon(Icons.person, size: 35));
-                            }
-                            ),
-                                    
+                                        future: DatabaseService()
+                                            .getUserDetails(ride.did),
+                                        builder: (context, snapshot) {
+                                          if (snapshot.hasData) {
+                                            print('there is a photo');
+                                            if (snapshot.data.photo) {
+                                              return FutureBuilder(
+                                                future: DatabaseService().getImage(
+                                                    'mNZdit50khedqshHVHBDROaHoOI2'),
+                                                builder: (context, snapshot) {
+                                                  if (snapshot.connectionState ==
+                                                          ConnectionState
+                                                              .done &&
+                                                      snapshot.hasData)
+                                                    return CircleAvatar(
+                                                      child: ClipOval(
+                                                        child: snapshot.data,
+                                                      ),
+                                                      radius: 45,
+                                                    );
+                                                  else if (snapshot
+                                                          .connectionState ==
+                                                      ConnectionState.waiting)
+                                                    return Container(
+                                                        child: Icon(
+                                                            Icons.person,
+                                                            size: 45,
+                                                            color:
+                                                                Colors.black));
+                                                  else if (snapshot
+                                                          .connectionState ==
+                                                      ConnectionState.none) {
+                                                    return Container(
+                                                      child: Icon(Icons.person,
+                                                          color: Colors.black),
+                                                    );
+                                                  }
+                                                  return Container(
+                                                    child: Icon(Icons.person,
+                                                        size: 70,
+                                                        color: Colors.black),
+                                                  );
+                                                },
+                                              );
+                                            } else {
+                                              Container(
+                                                  child: Icon(
+                                                Icons.person,
+                                                size: 60,
+                                                color: Colors.black,
+                                              ));
+                                            }
+                                          }
+                                          return Container(
+                                              child:
+                                                  Icon(Icons.person, size: 35));
+                                        }),
                                     radius: 25,
                                   ),
                                   SizedBox(width: 10),
                                   Text(
-                                    '${ride.driver.name}',
+                                    '${ride.driver.name} ',
                                     style: TextStyle(
                                       fontWeight: FontWeight.bold,
                                     ),
@@ -190,121 +208,130 @@ class _RrDetailsState extends State<RrDetails> {
                           crossAxisAlignment: CrossAxisAlignment.center,
                           children: <Widget>[
                             Row(
-                              mainAxisAlignment:
-                                  MainAxisAlignment.spaceBetween,
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               crossAxisAlignment: CrossAxisAlignment.center,
                               children: <Widget>[
                                 Container(
-
-                                    child: Column(
-
-                                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                      crossAxisAlignment: CrossAxisAlignment.start,
-
-                                      children: <Widget>[
-                                        Container(
-                                          margin: EdgeInsets.all(0),
-                                          child: Row(
-                                            mainAxisAlignment: MainAxisAlignment.start,
-                                            crossAxisAlignment:
-                                                CrossAxisAlignment.start,
-                                            children: <Widget>[
-                                              Icon(
-                                                Icons.trip_origin,
-                                                color: Theme.of(context).accentColor,
-                                                size: 15,
-                                              ),
-                                              SizedBox(width: 5),
-                                              Container(
-                                                width: 200,
-                                                child: Column(
-                                                  mainAxisAlignment:
-                                                      MainAxisAlignment.spaceBetween,
-                                                  crossAxisAlignment:
-                                                      CrossAxisAlignment.start,
-                                                  children: <Widget>[
-                                                    Title(
-                                                      color: Colors.black,
-                                                      child: Text(
-                                                        'From',
-                                                        style: TextStyle(
-                                                          fontWeight: FontWeight.w300,
-                                                          fontSize: 11,
-                                                          color: Colors.grey,
-                                                        ),
-                                                      ),
-                                                    ),
-                                                    Text(
-                                                      ride.from,
+                                  child: Column(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: <Widget>[
+                                      Container(
+                                        margin: EdgeInsets.all(0),
+                                        child: Row(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.start,
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                          children: <Widget>[
+                                            Icon(
+                                              Icons.trip_origin,
+                                              color:
+                                                  Theme.of(context).accentColor,
+                                              size: 15,
+                                            ),
+                                            SizedBox(width: 5),
+                                            Container(
+                                              width: 200,
+                                              child: Column(
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment
+                                                        .spaceBetween,
+                                                crossAxisAlignment:
+                                                    CrossAxisAlignment.start,
+                                                children: <Widget>[
+                                                  Title(
+                                                    color: Colors.black,
+                                                    child: Text(
+                                                      'From',
                                                       style: TextStyle(
-                                                        fontWeight: FontWeight.w500,
-                                                        fontSize: 15,
-                                                        color: Colors.grey[800],
-                                                      ),
-                                                      overflow: TextOverflow.ellipsis, 
-
-                                                    ),
-                                                  ],
-                                                  // brightness_1
-                                                ),
-                                              ),
-                                            ],
-                                          ),
-                                        ),
-                                        SizedBox(
-                                          height: 10,
-                                        ),
-                                        Container(
-                                          margin: EdgeInsets.all(0),
-                                          child: Row(
-                                            mainAxisAlignment: MainAxisAlignment.start,
-                                            crossAxisAlignment:
-                                                CrossAxisAlignment.start,
-                                            children: <Widget>[
-                                              Icon(
-                                                Icons.brightness_1,
-                                                color: Theme.of(context).accentColor,
-                                                size: 15,
-                                              ),
-                                              SizedBox(width: 5),
-                                              Container(
-                                                width: 200,
-                                                child: Column(
-                                                  mainAxisAlignment:
-                                                      MainAxisAlignment.spaceBetween,
-                                                  crossAxisAlignment:
-                                                      CrossAxisAlignment.start,
-                                                  children: <Widget>[
-                                                    Title(
-                                                      color: Colors.black,
-                                                      child: Text(
-                                                        'To',
-                                                        style: TextStyle(
-                                                          fontWeight: FontWeight.w300,
-                                                          fontSize: 11,
-                                                          color: Colors.grey,
-                                                        ),
-                                                      ),
-                                                    ),
-                                                    Text(
-                                                      ride.to,
-                                                      style: TextStyle(
-                                                        fontWeight: FontWeight.w400,
-                                                        fontSize: 15,
+                                                        fontWeight:
+                                                            FontWeight.w300,
+                                                        fontSize: 11,
                                                         color: Colors.grey,
                                                       ),
-                                                      overflow: TextOverflow.ellipsis, 
                                                     ),
-                                                  ],
-                                                  // brightness_1
-                                                ),
+                                                  ),
+                                                  Text(
+                                                    ride.from,
+                                                    style: TextStyle(
+                                                      fontWeight:
+                                                          FontWeight.w500,
+                                                      fontSize: 15,
+                                                      color: Colors.grey[800],
+                                                    ),
+                                                    overflow:
+                                                        TextOverflow.ellipsis,
+                                                  ),
+                                                ],
+                                                // brightness_1
                                               ),
-                                            ],
-                                          ),
+                                            ),
+                                          ],
                                         ),
-                                      ],
-                                    ),
+                                      ),
+                                      SizedBox(
+                                        height: 10,
+                                      ),
+                                      Container(
+                                        margin: EdgeInsets.all(0),
+                                        child: Row(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.start,
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                          children: <Widget>[
+                                            Icon(
+                                              Icons.brightness_1,
+                                              color:
+                                                  Theme.of(context).accentColor,
+                                              size: 15,
+                                            ),
+                                            SizedBox(width: 5),
+                                            Container(
+                                              width: 200,
+                                              child: Column(
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment
+                                                        .spaceBetween,
+                                                crossAxisAlignment:
+                                                    CrossAxisAlignment.start,
+                                                children: <Widget>[
+                                                  Title(
+                                                    color: Colors.black,
+                                                    child: Text(
+                                                      'To',
+                                                      style: TextStyle(
+                                                        fontWeight:
+                                                            FontWeight.w300,
+                                                        fontSize: 11,
+                                                        color: Colors.grey,
+                                                      ),
+                                                    ),
+                                                  ),
+                                                  Text(
+                                                    ride.to,
+                                                    style: TextStyle(
+                                                      fontWeight:
+                                                          FontWeight.w400,
+                                                      fontSize: 15,
+                                                      color: Colors.grey,
+                                                    ),
+                                                    overflow:
+                                                        TextOverflow.ellipsis,
+                                                  ),
+                                                ],
+                                                // brightness_1
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                    ],
                                   ),
+                                ),
                                 Container(
                                   child: Row(
                                     crossAxisAlignment:
@@ -401,8 +428,7 @@ class _RrDetailsState extends State<RrDetails> {
                                             borderRadius:
                                                 BorderRadius.circular(6),
                                             border: Border.all(
-                                                color: Colors.black,
-                                                width: 1),
+                                                color: Colors.black, width: 1),
                                           ),
                                           child: Center(
                                               child: Text(
@@ -449,8 +475,7 @@ class _RrDetailsState extends State<RrDetails> {
                                 FlatButton(
                                   child: Text('Yes'),
                                   onPressed: () {
-                                    DatabaseService()
-                                        .leaveRide(ride, user.uid);
+                                    DatabaseService().leaveRide(ride, user.uid);
                                     Navigator.pop(context);
                                     Navigator.pop(context);
                                   },
@@ -461,9 +486,8 @@ class _RrDetailsState extends State<RrDetails> {
                           },
                           color: Colors.grey,
                           child: Container(
-                            
-                            constraints: BoxConstraints(
-                                maxWidth: 320.0, minHeight: 45),
+                            constraints:
+                                BoxConstraints(maxWidth: 320.0, minHeight: 45),
                             alignment: Alignment.center,
                             child: Text('Leave Ride',
                                 style: TextStyle(color: Colors.white)),
@@ -479,7 +503,6 @@ class _RrDetailsState extends State<RrDetails> {
               ],
             ),
           ),
-        
         ],
       ),
     );

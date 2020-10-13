@@ -14,12 +14,11 @@ class Message {
   // final bool me;
   Message(this.uid, this.time, this.text);
 
-  Map<String, dynamic> toMap(Message message){
+  Map<String, dynamic> toMap(Message message) {
     return {
       'uid': message.uid,
       'time': message.time,
       'text': message.text,
-
     };
   }
 }
@@ -58,184 +57,192 @@ class _ChatScreenState extends State<ChatScreen> {
     return '';
   }
 
-
-
   // bool
 
   @override
   Widget build(BuildContext context) {
-
     ride = ModalRoute.of(context).settings.arguments;
-  User user = Provider.of<User>(context);
+    User user = Provider.of<User>(context);
 
     return StreamProvider.value(
-      value: DatabaseService.withRid(rid: ride.rid).messages,
-      builder: (context, snapshot) {
-        // print();
-        return Scaffold(
-          body: GestureDetector(
-            child: Column(
-              children: <Widget>[
-                Container(
-                  height: 130.0,
-                  padding: EdgeInsets.only(top: 30),
-                  decoration: BoxDecoration(
-                    // boxShadow: [BoxShadow(blurRadius: 3, color: Colors.black, offset: ),],
-                    gradient: LinearGradient(
-                        begin: Alignment.centerRight,
-                        end: Alignment.centerLeft,
-                        colors: <Color>[Color(0xFF76D3FF), Color(0xFF5C79FF)]),
-                  ),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: <Widget>[
-                      Row(
-                        children: <Widget>[
-                          BackButton(
-                            color: Colors.white,
-                          ),
-                          SizedBox(
-                            width: 130.0,
-                          ),
-                          CircleAvatar(
-                            backgroundImage: AssetImage('assets/logo.png'),
-                            radius: 30.0,
-                          ),
-                        ],
-                      ),
-                      SizedBox(
-                        height: 10,
-                      ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: <Widget>[
-                          Text(
-                            'Ride to ${ride.to}',
-                            style: TextStyle(
+        value: DatabaseService.withRid(rid: ride.rid).messages,
+        builder: (context, snapshot) {
+          // print();
+          return Scaffold(
+            body: GestureDetector(
+              child: Column(
+                children: <Widget>[
+                  Container(
+                    height: 130.0,
+                    padding: EdgeInsets.only(top: 30),
+                    decoration: BoxDecoration(
+                      // boxShadow: [BoxShadow(blurRadius: 3, color: Colors.black, offset: ),],
+                      gradient: LinearGradient(
+                          begin: Alignment.centerRight,
+                          end: Alignment.centerLeft,
+                          colors: <Color>[
+                            Color(0xFF76D3FF),
+                            Color(0xFF5C79FF)
+                          ]),
+                    ),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: <Widget>[
+                        Row(
+                          children: <Widget>[
+                            BackButton(
                               color: Colors.white,
-                              fontSize: 16.0,
-                              fontWeight: FontWeight.bold,
                             ),
-                          )
-                        ],
-                      ),
-                    ],
-                  ),
-                ),
-                ChatListView(),
-                // _buildMessageTextField(getValue, context),
-                Container(
-                  padding: EdgeInsets.fromLTRB(10, 15, 10, 34),
-                  // height: 100.0,
-                  color: Colors.white,
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: <Widget>[
-                      Expanded(
-                        child: TextField(
-                          controller: widget.theMessage,
-                          maxLines: 2,
-                          minLines: 1,
-                          textCapitalization: TextCapitalization.sentences,
-                          onChanged: (value) {
-                            setState(() {
-                              if (sent == true) {
-                                value = '';
-
-                                sent = false;
-                              } else {
-                                message = value;
-                              }
-                            });
-                          },
-                          decoration: InputDecoration(
-                            suffixIcon: Container(
-                              width: 150,
-                              // margin: EdgeInsets.only(right:1),
-                              child: Row(
-                                // mainAxisAlignment: MainAxisAlignment.start ,
-                                children: <Widget>[
-                                  message != ''
-                                      ? IconButton(
-                                          icon: Icon(Icons.cancel),
-                                          iconSize: 20.0,
-                                          color: Colors.grey[600],
-                                          onPressed: () {
-                                            widget.theMessage.clear();
-
-                                            message = '';
-                                            setState(() {});
-                                          },
-                                        )
-                                      : Container(),
-                                  IconButton(
-                                    icon: Icon(Icons.attachment),
-                                    iconSize: 25.0,
-                                    color: Colors.grey[600],
-                                    onPressed: () {},
-                                  ),
-                                  IconButton(
-                                    icon: Icon(
-                                      Icons.camera_alt,
-                                      color: Colors.grey[600],
-                                    ),
-                                    onPressed: () {},
-                                  ),
-                                ],
+                            SizedBox(
+                              width: 130.0,
+                            ),
+                            CircleAvatar(
+                              backgroundImage: AssetImage('assets/logo.png'),
+                              radius: 30.0,
+                            ),
+                          ],
+                        ),
+                        SizedBox(
+                          height: 10,
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: <Widget>[
+                            Text(
+                              'Ride to ${ride.to}',
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 16.0,
+                                fontWeight: FontWeight.bold,
                               ),
+                            )
+                          ],
+                        ),
+                      ],
+                    ),
+                  ),
+                  ChatListView(),
+                  // _buildMessageTextField(getValue, context),
+                  Container(
+                    padding: EdgeInsets.fromLTRB(10, 15, 10, 34),
+                    // height: 100.0,
+                    color: Colors.white,
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: <Widget>[
+                        Expanded(
+                          child: TextField(
+                            controller: widget.theMessage,
+                            maxLines: 2,
+                            minLines: 1,
+                            textCapitalization: TextCapitalization.sentences,
+                            onChanged: (value) {
+                              setState(() {
+                                if (sent == true) {
+                                  value = '';
+
+                                  sent = false;
+                                } else {
+                                  message = value;
+                                }
+                              });
+                            },
+                            decoration: InputDecoration(
+                              suffixIcon: Container(
+                                width: 150,
+                                // margin: EdgeInsets.only(right:1),
+                                child: Row(
+                                  // mainAxisAlignment: MainAxisAlignment.start ,
+                                  children: <Widget>[
+                                    message != ''
+                                        ? IconButton(
+                                            icon: Icon(Icons.cancel),
+                                            iconSize: 20.0,
+                                            color: Colors.grey[600],
+                                            onPressed: () {
+                                              widget.theMessage.clear();
+
+                                              message = '';
+                                              setState(() {});
+                                            },
+                                          )
+                                        : Container(),
+                                    IconButton(
+                                      icon: Icon(Icons.attachment),
+                                      iconSize: 25.0,
+                                      color: Colors.grey[600],
+                                      onPressed: () {},
+                                    ),
+                                    IconButton(
+                                      icon: Icon(
+                                        Icons.camera_alt,
+                                        color: Colors.grey[600],
+                                      ),
+                                      onPressed: () {},
+                                    ),
+                                  ],
+                                ),
+                              ),
+                              filled: true,
+                              fillColor: Theme.of(context).backgroundColor,
+                              focusColor: Colors.grey,
+                              enabledBorder: OutlineInputBorder(
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(50.0)),
+                                borderSide:
+                                    BorderSide(color: Colors.white, width: 0.0),
+                              ),
+                              focusedBorder: OutlineInputBorder(
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(50.0)),
+                                borderSide:
+                                    BorderSide(color: Colors.white, width: 0.0),
+                              ),
+                              hintText: 'Types a message...',
                             ),
-                            filled: true,
-                            fillColor: Theme.of(context).backgroundColor,
-                            focusColor: Colors.grey,
-                            enabledBorder: OutlineInputBorder(
-                              borderRadius: BorderRadius.all(Radius.circular(50.0)),
-                              borderSide:
-                                  BorderSide(color: Colors.white, width: 0.0),
-                            ),
-                            focusedBorder: OutlineInputBorder(
-                              borderRadius: BorderRadius.all(Radius.circular(50.0)),
-                              borderSide:
-                                  BorderSide(color: Colors.white, width: 0.0),
-                            ),
-                            hintText: 'Types a message...',
                           ),
                         ),
-                      ),
-                      SizedBox(
-                        width: 5,
-                      ),
-                      Container(
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.all(Radius.circular(50.0)),
-                          gradient: linearGradientvertical,
+                        SizedBox(
+                          width: 5,
                         ),
-                        child: IconButton(
-                          icon: Icon(Icons.send),
-                          iconSize: 25.0,
-                          color: Colors.white,
-                          onPressed: () {
-                            if (message != '') {
-                              // message = getValue(message);
-                              addMessage(message);
-                             
-                              DatabaseService.withRid(rid: ride.rid).sendMessage(ride, Message(user.uid, DateTime.now().toString(), message));
-                              widget.theMessage.clear();
-                              message = '';
-                              sent = false;
-                              setState(() {});
-                            }
-                          },
+                        Container(
+                          decoration: BoxDecoration(
+                            borderRadius:
+                                BorderRadius.all(Radius.circular(50.0)),
+                            gradient: linearGradientvertical,
+                          ),
+                          child: IconButton(
+                            icon: Icon(Icons.send),
+                            iconSize: 25.0,
+                            color: Colors.white,
+                            onPressed: () {
+                              if (message != '') {
+                                // message = getValue(message);
+                                addMessage(message);
+
+                                DatabaseService.withRid(rid: ride.rid)
+                                    .sendMessage(
+                                        ride,
+                                        Message(
+                                            user.uid,
+                                            DateTime.now().toString(),
+                                            message));
+                                widget.theMessage.clear();
+                                message = '';
+                                sent = false;
+                                setState(() {});
+                              }
+                            },
+                          ),
                         ),
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
-          ),
-        );
-      }
-    );
+          );
+        });
   }
 }
 
@@ -245,10 +252,9 @@ class ChatListView extends StatelessWidget {
     // @required this.messages,
   }) : super(key: key);
 
-
   @override
   Widget build(BuildContext context) {
-   List<Message> messages = Provider.of<List<Message>>(context)??[];
+    List<Message> messages = Provider.of<List<Message>>(context) ?? [];
 
     return Expanded(
       child: Container(
@@ -270,65 +276,55 @@ class ChatListView extends StatelessWidget {
 
 _buildMessage(Message message, context) {
   String dateTime = message.time ?? " ";
-        var characterIndex = dateTime.indexOf(" ");
-        var date = dateTime.substring(0, characterIndex);
-       var time = dateTime.substring(characterIndex);
-       characterIndex = time.indexOf(".");
-      time = time.substring(0, characterIndex-3);
+  var characterIndex = dateTime.indexOf(" ");
+  var date = dateTime.substring(0, characterIndex);
+  var time = dateTime.substring(characterIndex);
+  characterIndex = time.indexOf(".");
+  time = time.substring(0, characterIndex - 3);
   User user = Provider.of<User>(context);
   Container addAvatar(String uid) {
-    if (uid != user.uid ) {
+    if (uid != user.uid) {
       return Container(
           child: CircleAvatar(
-              child:  FutureBuilder(
-                            future: DatabaseService()
-                                .getUserDetails(message.uid),
-                            builder: (context, snapshot) {
-                              if (snapshot.hasData) {
-                                if (snapshot.data.photo) {
-                                  FutureBuilder(
-                                    future: DatabaseService()
-                                        .getImage(message.uid),
-                                    builder: (context, snapshot) {
-                                      if (snapshot.connectionState ==
-                                              ConnectionState.done &&
-                                          snapshot.hasData)
-                                        return CircleAvatar(
-                                          child: ClipOval(
-                                            child: snapshot.data,
-                                          ),
-                                          // backgroundImage: NetworkImage(snapshot.data.preview),
-                                          radius: 20,
-                                        );
+        child: FutureBuilder(
+            future: DatabaseService().getUserDetails(message.uid),
+            builder: (context, snapshot) {
+              if (snapshot.hasData) {
+                if (snapshot.data.photo) {
+                  return FutureBuilder(
+                    future: DatabaseService().getImage(message.uid),
+                    builder: (context, snapshot) {
+                      if (snapshot.connectionState == ConnectionState.done &&
+                          snapshot.hasData)
+                        return CircleAvatar(
+                          child: ClipOval(
+                            child: snapshot.data,
+                          ),
+                          // backgroundImage: NetworkImage(snapshot.data.preview),
+                          radius: 25,
+                        );
 
-                                      if (snapshot.connectionState ==
-                                          ConnectionState.waiting)
-                                        return Container(
-                                            child:
-                                                Icon(Icons.person, size: 35));
+                      if (snapshot.connectionState == ConnectionState.waiting)
+                        return Container(child: Icon(Icons.person, size: 35));
 
-                                      if (snapshot.connectionState ==
-                                          ConnectionState.none) {
-                                        return Container(
-                                          child: Icon(Icons.person),
-                                        );
-                                      }
-                                      return Container(
-                                        child: Icon(Icons.person, size: 35),
-                                      );
-                                    },
-                                  );
-                                } else {
-                                  Container(
-                                      child: Icon(Icons.person, size: 35));
-                                }
+                      if (snapshot.connectionState == ConnectionState.none) {
+                        return Container(
+                          child: Icon(Icons.person, color: Colors.black),
+                        );
+                      }
+                      return Container(
+                        child:
+                            Icon(Icons.person, size: 35, color: Colors.black),
+                      );
+                    },
+                  );
+                } else {
+                  Container(child: Icon(Icons.person, size: 35));
+                }
+              }
+              return Container(child: Icon(Icons.person, size: 35));
+            }),
 
-                              }
-                              return Container(
-                                      child: Icon(Icons.person, size: 35));
-                            }
-                            ),
-                     
         // backgroundImage: AssetImage('assets/logo.png'),
         radius: 25.0,
       ));
@@ -343,8 +339,9 @@ _buildMessage(Message message, context) {
   final Container msg = Container(
     margin: EdgeInsets.symmetric(horizontal: 8),
     child: Row(
-      mainAxisAlignment:
-          message.uid == user.uid? MainAxisAlignment.end : MainAxisAlignment.start,
+      mainAxisAlignment: message.uid == user.uid
+          ? MainAxisAlignment.end
+          : MainAxisAlignment.start,
       children: <Widget>[
         addAvatar(message.uid),
         SizedBox(
@@ -378,7 +375,9 @@ _buildMessage(Message message, context) {
                 child: Text(
                   message.text,
                   style: TextStyle(
-                    color: message.uid == user.uid ? Colors.white : Colors.grey[700],
+                    color: message.uid == user.uid
+                        ? Colors.white
+                        : Colors.grey[700],
                     fontSize: 16.0,
                     fontWeight: FontWeight.w600,
                   ),
@@ -388,7 +387,8 @@ _buildMessage(Message message, context) {
               Text(
                 time,
                 style: TextStyle(
-                  color: message.uid == user.uid ? Colors.white : Colors.grey[700],
+                  color:
+                      message.uid == user.uid ? Colors.white : Colors.grey[700],
                   fontSize: 12.0,
                   fontWeight: FontWeight.w600,
                 ),
