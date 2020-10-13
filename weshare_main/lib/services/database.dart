@@ -1,9 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:intl/intl.dart';
 import 'package:weshare_main/models/ride.dart';
 import 'package:weshare_main/models/user.dart';
-// import 'package:weshare_main/screens/edit_car_details.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:weshare_main/screens/chat_screen.dart';
 
@@ -240,13 +238,6 @@ class DatabaseService {
     ridesCollection.add(ride.toMap(ride)).then((value) {
       print('doc id : ${value.documentID}');
       ride.rid = value.documentID;
-
-    ridesCollection.document(ride.rid).collection('chats').document(ride.rid).setData({
-      'messages': []
-          });
-
-
-
       usersCollection
           .document(user.uid)
           .collection('providedRides')
@@ -374,7 +365,7 @@ class DatabaseService {
         fit: BoxFit.scaleDown,
       );
     });
-  
+
     return m;
   }
 
@@ -398,71 +389,30 @@ class DatabaseService {
     return users;
   }
 
-
-    Future sendMessage(CurrentRides ride ,Message message) async{
-    await ridesCollection.document(ride.rid).collection('chats').document(ride.rid).updateData({ "messages": FieldValue.arrayUnion([message.toMap(message)])});
+  Future sendMessage(CurrentRides ride, Message message) async {
+    await Firestore.instance.runTransaction((transaction) async {
+      transaction.set(
+          ridesCollection
+              .document(ride.rid)
+              .collection('chats')
+              .document(DateTime.now().millisecondsSinceEpoch.toString()),
+          message.toMap(message));
+    });
   }
 
-
-  // Stream<List<Message>> getMessages(Ride ride) {
-  //   return ridesCollection.document(ride.rid).collection('chat').snapshots().map(_messageFromSnapshots);
-  //   //   return messageFromSnapshots(value);
-  //   // });
-  // }
-
-
-Stream<List<Message>> get messages {
-    return ridesCollection.document(rid).collection('chats')
+  Stream<List<Message>> get messages {
+    return ridesCollection
+        .document(rid)
+        .collection('chats')
         .snapshots()
         .map(_messageFromSnapshots);
-
   }
 
-
-   List<Message> _messageFromSnapshots(QuerySnapshot snapshot) {
-   List<Message> messages=[];
-    // Message
-   snapshot.documents.map((doc) {
-      // print('message: ${doc.data['messages'][0]}');
-    //  return doc.data['messages'];
-
-
-    //  print('messageeeee: ${messages}');
-     for (var i = doc.data['messages'].length-1; i >= 0 ; i--) {
-      //  print(i);
-      //  print( doc.data['messages'][i]['text']);
-           
-            // String dateTime = doc.data['messages'][i]['time'] ?? "";
-            // DateTime tmp =  DateFormat(" Hm").format.(dateTime);
-            // print(tmp.toString());
-
-  //           final DateTime now = DateTime.now();
-  // final DateFormat formatter = DateFormat('yyyy-MM-dd');
-  // final String formatted = formatter.format(now);
-
-           messages.add(Message(
-        doc.data['messages'][i]['uid'],
-          doc.data['messages'][i]['time'],
-        doc.data['messages'][i]['text']
-
-      )
-      
-      );
-     }
-    // for (var item in doc.data['messages'][0]) {
-    //   messages.add(Message(
-    //     item['uid'],
-    //     item['time'],
-    //     item['text']
-    //   ));
-    // }
-   
-        // messages.insert(0,doc.data['messages']);
-     
+  List<Message> _messageFromSnapshots(QuerySnapshot snapshot) {
+    return snapshot.documents.map((doc) {
+      Message message = Message(doc.data['uid'], doc.data['time'],
+          doc.data['text'], doc.data['type']);
+      return message;
     }).toList();
-    // print(' message :${m[0].uid}');
-   
-     return messages;
   }
-
 }

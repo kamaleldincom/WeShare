@@ -11,14 +11,16 @@ class Message {
   final String uid;
   final String time;
   final String text;
+  final String type;
   // final bool me;
-  Message(this.uid, this.time, this.text);
+  Message(this.uid, this.time, this.text, this.type);
 
   Map<String, dynamic> toMap(Message message) {
     return {
       'uid': message.uid,
       'time': message.time,
       'text': message.text,
+      'type': message.type,
     };
   }
 }
@@ -226,10 +228,12 @@ class _ChatScreenState extends State<ChatScreen> {
                                         Message(
                                             user.uid,
                                             DateTime.now().toString(),
-                                            message));
+                                            message,
+                                            'text'));
                                 widget.theMessage.clear();
                                 message = '';
                                 sent = false;
+
                                 setState(() {});
                               }
                             },
@@ -247,25 +251,27 @@ class _ChatScreenState extends State<ChatScreen> {
 }
 
 class ChatListView extends StatelessWidget {
-  const ChatListView({
+  ChatListView({
     Key key,
     // @required this.messages,
   }) : super(key: key);
 
+  final ScrollController listScrollController = ScrollController();
+
   @override
   Widget build(BuildContext context) {
     List<Message> messages = Provider.of<List<Message>>(context) ?? [];
-
+    List<Message> reversedMessages = messages.reversed.toList() ?? [];
     return Expanded(
       child: Container(
         color: Theme.of(context).backgroundColor,
         child: ListView.builder(
           reverse: true,
+          //  helps with scrollingcontroller: listScrollController,
           padding: EdgeInsets.only(top: 15.0),
-          itemCount: messages.length,
+          itemCount: reversedMessages.length,
           itemBuilder: (BuildContext context, int index) {
-            final Message message = messages[index];
-            // final bool isMe = message.sender.id == currentUser.id;
+            final Message message = reversedMessages[index];
             return _buildMessage(message, context);
           },
         ),
@@ -402,166 +408,3 @@ _buildMessage(Message message, context) {
 
   return msg;
 }
-
-// _buildMessageTextField(getValue, context) {
-//   String message;
-//   bool sent;
-//   return Container(
-//     padding: EdgeInsets.fromLTRB(10, 15, 10, 34),
-//     height: 100.0,
-//     color: Colors.white,
-//     child: Row(
-//       mainAxisAlignment: MainAxisAlignment.spaceBetween,
-//       children: <Widget>[
-//         Expanded(
-//           child: TextField(
-
-//             textCapitalization: TextCapitalization.sentences,
-//             onChanged: (value) {
-//               // sent?value='':message=value;
-
-//               // setState((){
-//               //   value ="";
-//               // });
-//               if (sent == true) {
-//                 value = '';
-//               }else{
-
-//                 message = value;
-//               }
-
-//               // value= "";
-//             },
-//             decoration: InputDecoration(
-//               suffixIcon: Container(
-//                 width: 100,
-//                 // margin: EdgeInsets.only(right:1),
-//                 child: Row(
-//                   // mainAxisAlignment: MainAxisAlignment.start ,
-//                   children: <Widget>[
-
-//                     IconButton(
-//                       icon: Icon(Icons.attachment),
-//                       iconSize: 25.0,
-//                       color: Colors.grey[600],
-//                       onPressed: () {},
-//                     ),
-//                     IconButton(
-//                       icon: Icon(
-//                         Icons.camera_alt,
-//                         color: Colors.grey[600],
-//                       ),
-//                       onPressed: () {},
-//                     ),
-//                   ],
-//                 ),
-//               ),
-//               filled: true,
-//               fillColor: Theme.of(context).backgroundColor,
-//               focusColor: Colors.grey,
-//               enabledBorder: OutlineInputBorder(
-//                 borderRadius: BorderRadius.all(Radius.circular(50.0)),
-//                 borderSide: BorderSide(color: Colors.white, width: 0.0),
-//               ),
-//               focusedBorder: OutlineInputBorder(
-//                 borderRadius: BorderRadius.all(Radius.circular(50.0)),
-//                 borderSide: BorderSide(color: Colors.white, width: 0.0),
-//               ),
-//               hintText: 'Types a message...',
-//             ),
-//           ),
-//         ),
-//         SizedBox(
-//           width: 5,
-//         ),
-//         Container(
-//           decoration: BoxDecoration(
-//             borderRadius: BorderRadius.all(Radius.circular(50.0)),
-//             gradient: linearGradientvertical,
-//           ),
-//           child: IconButton(
-//             icon: Icon(Icons.send),
-//             iconSize: 25.0,
-//             color: Colors.white,
-//             onPressed: () {
-//               message = getValue(message);
-//               sent = true;
-//             },
-//           ),
-//         ),
-//       ],
-//     ),
-//   );
-// }
-// }
-// }
-// }
-// }
-// }
-// }
-// }
-// }
-// }
-// }
-// }
-// }
-// }
-// }
-// }
-// }
-// }
-// }
-// }
-// }
-// }
-// }
-// }
-// }
-// }
-// }
-// }
-// }
-// }
-// }
-// }
-// }
-// }
-// }
-// }
-// }
-// }
-// }
-// }
-// }
-// }
-// }
-// }
-// }
-// }
-// }
-// }
-// }
-// }
-// }
-// }
-// }
-// }
-// }
-// }
-// }
-// }
-// }
-// }
-// }
-// }
-// }
-// }
-// }
-// }
-// }
-// }
-// }
-// }
-// }
-// }
-// }
