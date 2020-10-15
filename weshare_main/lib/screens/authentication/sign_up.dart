@@ -29,7 +29,7 @@ class _SignUpStep1State extends State<SignUpStep1> {
   Widget build(BuildContext context) {
     return SingleChildScrollView(
           child: Container(
-          padding: EdgeInsets.symmetric(vertical: 20, horizontal: 50.0),
+          padding: EdgeInsets.symmetric(vertical: 20, horizontal: 25.0),
           child: Form(
             key: _formKey,
             child: Column(
@@ -228,7 +228,7 @@ class _SignUpStep2State extends State<SignUpStep2> {
 
     return SingleChildScrollView(
           child: Container(
-          padding: EdgeInsets.symmetric(vertical: 20, horizontal: 50.0),
+          padding: EdgeInsets.symmetric(vertical: 20, horizontal: 25.0),
           child: Form(
             key: _formKey,
             child: Column(

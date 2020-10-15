@@ -14,7 +14,7 @@ class MyFlexiableAppBar extends StatefulWidget {
 }
 
 class _MyFlexiableAppBarState extends State<MyFlexiableAppBar> {
-  final double appBarHeight = 280.0;
+  final double appBarHeight = 260.0;
   DateTime _dateTime = DateTime.now();
   @override
   Widget build(BuildContext context) {
@@ -33,13 +33,45 @@ class _MyFlexiableAppBarState extends State<MyFlexiableAppBar> {
       child: new Center(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.end,
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
+
+              ////////////////
+              ///welcome//////
+              ////////////////
+              Container(
+                padding: EdgeInsets.fromLTRB(15, 0, 15, 20),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: <Widget>[
+                    Text(
+                      "Welcome",
+                      style: TextStyle(
+                        fontSize: 18,
+                        fontWeight: FontWeight.w600,
+                        color: Colors.white60,
+                      ),
+                    ),
+                    SizedBox(height: 15,),
+                    Text(
+                      "Where you headin'?",
+                      style: TextStyle(
+                        fontSize: 25,
+                        fontWeight: FontWeight.w800,
+                        color: Colors.white70,
+                      ),
+                    ),
+                  ]
+                ),
+              ),
               ////////////////
               // Location Search //
               ////////////////
+              
               Container(
-                height: 110,
-                width: 370,
+                height: 50,
+                width: double.infinity,
                 margin: EdgeInsets.symmetric(horizontal:15, vertical: 0),
                 decoration: BoxDecoration(
                   color: Colors.white.withOpacity(0.25),
@@ -48,118 +80,95 @@ class _MyFlexiableAppBarState extends State<MyFlexiableAppBar> {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
-                    FlatButton(
-                    
-                      // padding: EdgeInsets.fromLTRB(65, 10, 65, 10),
-                      onPressed: () {
-                        showSearch(
-                          context: context, 
-                          delegate: LocationSearch(),
-                        );
-                      },
-                      child: Container(
-                        margin: EdgeInsets.all(0),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: <Widget>[
-                            Icon(
-                              Icons.trip_origin,
-                              color: Colors.white,
-                              size: 15,
-                            ),
-                            SizedBox(width:10),
-                            Container(
-                              child: Column(
-                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: <Widget>[
-                                    Title(
-                                      color: Colors.black, 
-                                      child: Text(
-                                        'From',
-                                        style: TextStyle(
-                                          fontWeight: FontWeight.w400,
-                                          fontSize: 12,
-                                          color: Colors.white,
-                                        ),
-                                      ),
-                                    ),
-                                    SizedBox(
-                                      height: 3,
-                                    ),
-                                    Text(
-                                        'Desa Skudai Apartments',
-                                        style: TextStyle(
-                                          fontWeight: FontWeight.w500,
-                                          fontSize: 15,
-                                          color: Colors.white,
-                                        ),
-                                    ),
-                                  ],
-                                // brightness_1
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
-                    Divider(
-                        color: Colors.white,
-                        thickness: 1.5,
-                        indent: 10,
-                        endIndent: 10,
-                        height: 2,
-                      ),
+                    // FlatButton(
+                      
+                    //   // padding: EdgeInsets.fromLTRB(65, 10, 65, 10),
+                    //   onPressed: () {
+                    //     showSearch(
+                    //       context: context, 
+                    //       delegate: LocationSearch(),
+                    //     );
+                    //   },
+                    //   child: Container(
+                    //     margin: EdgeInsets.all(0),
+                    //     child: Row(
+                    //       mainAxisAlignment: MainAxisAlignment.start,
+                    //       crossAxisAlignment: CrossAxisAlignment.start,
+                    //       children: <Widget>[
+                    //         Icon(
+                    //           Icons.trip_origin,
+                    //           color: Colors.white,
+                    //           size: 15,
+                    //         ),
+                    //         SizedBox(width:10),
+                    //         Container(
+                    //           child: Column(
+                    //             mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    //               crossAxisAlignment: CrossAxisAlignment.start,
+                    //               children: <Widget>[
+                    //                 Title(
+                    //                   color: Colors.black, 
+                    //                   child: Text(
+                    //                     'From',
+                    //                     style: TextStyle(
+                    //                       fontWeight: FontWeight.w400,
+                    //                       fontSize: 12,
+                    //                       color: Colors.white,
+                    //                     ),
+                    //                   ),
+                    //                 ),
+                    //                 SizedBox(
+                    //                   height: 3,
+                    //                 ),
+                    //                 Text(
+                    //                     'Desa Skudai Apartments',
+                    //                     style: TextStyle(
+                    //                       fontWeight: FontWeight.w500,
+                    //                       fontSize: 15,
+                    //                       color: Colors.white,
+                    //                     ),
+                    //                 ),
+                    //               ],
+                    //             // brightness_1
+                    //           ),
+                    //         ),
+                    //       ],
+                    //     ),
+                    //   ),
+                    // ),
+                    // Divider(
+                    //     color: Colors.white,
+                    //     thickness: 1.5,
+                    //     indent: 10,
+                    //     endIndent: 10,
+                    //     height: 2,
+                    //   ),
                     FlatButton(
                       // padding: EdgeInsets.fromLTRB(55, 10, 55, 10),
                       onPressed: () {
-                        showSearch(
-                          context: context, 
-                          delegate: LocationSearch(),
-                        );
+                        Navigator.pushNamed(
+                            context, '/locationSearch',
+                            );
+                        
                       },
                       child: Container(
                         margin: EdgeInsets.all(0),
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.start,
-                          crossAxisAlignment: CrossAxisAlignment.start,
+                          crossAxisAlignment: CrossAxisAlignment.center,
                           children: <Widget>[
                             Icon(
-                              Icons.brightness_1,
+                              Icons.place,
                               color: Colors.white,
-                              size: 15,
+                              size: 25,
                             ),
                             SizedBox(width:10),
-                            Container(
-                              child: Column(
-                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: <Widget>[
-                                    Title(
-                                      color: Colors.black, 
-                                      child: Text(
-                                        'To',
-                                        style: TextStyle(
-                                          fontWeight: FontWeight.w400,
-                                          fontSize: 12,
-                                          color: Colors.white,
-                                        ),
-                                      ),
-                                    ),
-                                    SizedBox(
-                                      height: 3,
-                                    ),
-                                    Text(
-                                        'school of Electrical (P05)',
-                                        style: TextStyle(
-                                          fontWeight: FontWeight.w500,
-                                          fontSize: 15,
-                                          color: Colors.white,
-                                        ),
-                                    ),
-                                  ],
-                                // brightness_1
+                            Text(
+                              'Where To?',
+                              style: TextStyle(
+                                fontWeight: FontWeight.w800,
+                                fontSize: 20,
+                                color: Colors.white,
                               ),
                             ),
                           ],
@@ -185,7 +194,7 @@ class _MyFlexiableAppBarState extends State<MyFlexiableAppBar> {
                       children: <Widget>[
                         IconButton(
                           icon: Icon(Icons.timer), 
-                          iconSize: 26,
+                          iconSize: 22,
                           color: Colors.white.withOpacity(0.6),
                           onPressed: (){
                             showDialog(
@@ -253,6 +262,8 @@ class _MyFlexiableAppBarState extends State<MyFlexiableAppBar> {
                           'Time',
                           style: TextStyle(
                             color: Colors.white.withOpacity(0.6),
+                            fontWeight: FontWeight.w800,
+                            fontSize: 12,
                           ),
                         ),
                       ],
@@ -264,7 +275,7 @@ class _MyFlexiableAppBarState extends State<MyFlexiableAppBar> {
                       children: <Widget>[
                         IconButton(
                           icon: Icon(Icons.event_seat), 
-                          iconSize: 26,
+                          iconSize: 22,
                           color: Colors.white.withOpacity(0.6),
                           onPressed: (){
                             showDialog(
@@ -342,6 +353,8 @@ class _MyFlexiableAppBarState extends State<MyFlexiableAppBar> {
                           'Available Seats',
                           style: TextStyle(
                             color: Colors.white.withOpacity(0.6),
+                            fontWeight: FontWeight.w800,
+                            fontSize: 12,
                           ),
                         ),
                       ],
@@ -353,7 +366,7 @@ class _MyFlexiableAppBarState extends State<MyFlexiableAppBar> {
                       children: <Widget>[
                         IconButton(
                           icon: Icon(Icons.filter_list), 
-                          iconSize: 26,
+                          iconSize: 22,
                           color: Colors.white.withOpacity(0.6),
                           onPressed: (){
                             showDialog(
@@ -431,6 +444,8 @@ class _MyFlexiableAppBarState extends State<MyFlexiableAppBar> {
                           'Filters',
                           style: TextStyle(
                             color: Colors.white.withOpacity(0.6),
+                            fontWeight: FontWeight.w800,
+                            fontSize: 12,
                           ),
                         ),
                       ],
@@ -446,82 +461,3 @@ class _MyFlexiableAppBarState extends State<MyFlexiableAppBar> {
   }
 }
 
-class LocationSearch extends SearchDelegate<String>{
-  final stops = [
-    "arcade Meranti",
-    "arcade Meranti",
-    "arcade Meranti",
-    "arcade Meranti",
-    "arcade Meranti",
-    "desa Skudai Apartments",
-    "school of Computing (N28)",
-    "school of Electrical (P19a)",
-    "school of Computing (N28a)",
-    "school of Electrical (P05)",
-  ];
-  final recentStops = [
-    "school of Computing (N28)",
-    "school of Electrical (P19a)",
-    "school of Computing (N28a)",
-    "school of Electrical (P05)",
-  ];
-  final favoriteStops = [];
-  @override
-  List<Widget> buildActions(BuildContext context) {
-    // TODO: implement buildActions
-    return [IconButton(
-      icon: Icon(Icons.clear), 
-      onPressed: (){
-        query = "";
-      },
-    )];
-  }
-
-  @override
-  Widget buildLeading(BuildContext context) {
-    // TODO: implement buildLeading
-    // return IconButton(
-    //   icon: AnimatedIcon(
-    //     icon: AnimatedIcons.arrow_menu, 
-    //     progress: transitionAnimation,
-    //   ), 
-    //   onPressed: (){},
-    // );
-  }
-
-  @override
-  Widget buildResults(BuildContext context) {
-    // TODO: implement buildResults
-    return null;
-  }
-
-  @override
-  Widget buildSuggestions(BuildContext context) {
-    // TODO: implement buildSuggestions
-    final suggestionList = query.isEmpty? recentStops
-    :stops.where((p) => p.startsWith(query)).toList();
-
-    return ListView.builder(
-      itemBuilder: (context, index) => ListTile(
-        onTap:(){},
-        leading: Icon(Icons.location_city),
-        title: RichText(text: TextSpan(
-          
-          text: suggestionList[index].substring(0, query.length),
-          style: TextStyle(
-            color: Colors.black,
-            fontWeight: FontWeight.bold,
-          ),
-          children: [
-            TextSpan(
-              text:  suggestionList[index].substring(query.length),
-              style: TextStyle(color: Colors.grey,)
-            ),
-          ],
-        )),
-      ),
-      itemCount: suggestionList.length,
-    );
-  }
-
-}

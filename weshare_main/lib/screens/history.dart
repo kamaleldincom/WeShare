@@ -56,63 +56,83 @@ class _HistoryState extends State<History> {
         : Container(
             child: ListView.builder(
               scrollDirection: Axis.vertical,
-              itemExtent: 100.0,
+              itemExtent: 80.0,
               shrinkWrap: true,
               itemCount: rides.length,
               itemBuilder: (context, index) => Card(
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(10.0),
                 ),
-                margin: EdgeInsets.symmetric(horizontal: 15, vertical: 7),
+                margin: EdgeInsets.symmetric(horizontal: 15, vertical: 5),
                 elevation: 0.0,
                 child: ListTile(
                   onTap: () {
                     Navigator.pushNamed(context, '/rideSummary',
                         arguments: rides[index]);
                   },
-                  leading: Column(
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
-                    children: <Widget>[
-                      Container(
-                        padding: EdgeInsets.all(0),
-                        height: 16,
-                        child: CircleAvatar(
-                          backgroundColor: Colors.blue,
-                        ),
-                      ),
-                      SizedBox(height: 20),
-                      Container(
-                        height: 16,
-                        child: CircleAvatar(
-                          backgroundColor: Colors.grey,
-                        ),
-                      )
-                    ],
-                  ),
+                  // leading: Column(
+                  //   mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  //   children: <Widget>[
+                  //     Container(
+                  //       padding: EdgeInsets.all(0),
+                  //       height: 16,
+                  //       child: CircleAvatar(
+                  //         backgroundColor: Colors.blue,
+                  //       ),
+                  //     ),
+                  //     SizedBox(height: 20),
+                  //     Container(
+                  //       height: 16,
+                  //       child: CircleAvatar(
+                  //         backgroundColor: Colors.grey,
+                  //       ),
+                  //     )
+                  //   ],
+                  // ),
+                  
                   title: Column(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: <Widget>[
-                      Text(rides[index].from),
-                      // SizedBox(height: 1),
-                      Text(rides[index].to),
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      Row(
+                        children: [
+                          Text("Ride From ${rides[index].from} ", style: TextStyle(fontSize: 17),),
+                          // SizedBox(height: 1),
+                          Text("To ${rides[index].to}", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 17),),
+                        ],
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text(
+                            'at ${rides[index].dateTime}',
+                            style: TextStyle(color: Colors.grey, fontSize: 12, fontWeight: FontWeight.w800),
+                          ),
+                          widget.usertype == 'Rider'
+                              ? Text(
+                                  'By ${rides[index].driver.name}',
+                                  style: TextStyle(color: Colors.grey, fontSize: 12, fontWeight: FontWeight.w800),
+                                )
+                              : Text(''),
+                        ],
+                  ),    
+
                     ],
                   ),
-                  trailing: Column(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      crossAxisAlignment: CrossAxisAlignment.end,
-                      children: <Widget>[
-                        Text(
-                          'at ${rides[index].dateTime}',
-                          style: TextStyle(color: Colors.grey),
-                        ),
-                        widget.usertype == 'Rider'
-                            ? Text(
-                                'By ${rides[index].driver.name}',
-                                style: TextStyle(color: Colors.grey),
-                              )
-                            : Text(''),
-                      ]),
+                  // trailing: Row(
+                  //   children: [
+                  //     Text(
+                  //       'at ${rides[index].dateTime}',
+                  //       style: TextStyle(color: Colors.grey),
+                  //     ),
+                  //     widget.usertype == 'Rider'
+                  //         ? Text(
+                  //             'By ${rides[index].driver.name}',
+                  //             style: TextStyle(color: Colors.grey),
+                  //           )
+                  //         : Text(''),
+                  //   ],
+                  // ),
                 ),
               ),
             ),

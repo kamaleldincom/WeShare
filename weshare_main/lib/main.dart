@@ -3,6 +3,7 @@ import 'package:provider/provider.dart';
 import 'package:weshare_main/models/user.dart';
 import 'package:weshare_main/screens/AccountDetails.dart';
 import 'package:weshare_main/screens/Dashboard.dart';
+import 'package:weshare_main/screens/LocationSearch.dart';
 // import 'package:weshare_main/screens/Dashboard.dart';
 import 'package:weshare_main/screens/Notifications.dart';
 // import 'package:weshare_main/screens/newRides.dart';
@@ -23,6 +24,7 @@ import 'package:flutter/services.dart';
 import 'package:weshare_main/screens/settings.dart';
 import 'package:weshare_main/screens/start_end_ride.dart';
 import 'package:weshare_main/screens/driver_registeration.dart';
+
 
 import 'screens/Profile.dart';
 import 'screens/provide-ride.dart';
@@ -88,6 +90,7 @@ class MyApp extends StatelessWidget {
           '/chatScreen': (context) => ChatScreen(),
           '/editCarDetails': (context) => EditCarDetails(),
           '/driverRegistration': (context) => DriverRegistration(0),
+          '/locationSearch': (context) => LocationSearch(),
         },
       ),
     );

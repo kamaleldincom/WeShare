@@ -126,7 +126,7 @@ class _ChatScreenState extends State<ChatScreen> {
                   ChatListView(),
                   // _buildMessageTextField(getValue, context),
                   Container(
-                    padding: EdgeInsets.fromLTRB(10, 15, 10, 34),
+                    padding: EdgeInsets.all(5),
                     // height: 100.0,
                     color: Colors.white,
                     child: Row(
@@ -151,7 +151,7 @@ class _ChatScreenState extends State<ChatScreen> {
                             },
                             decoration: InputDecoration(
                               suffixIcon: Container(
-                                width: 150,
+                                width: MediaQuery.of(context).size.width/6,
                                 // margin: EdgeInsets.only(right:1),
                                 child: Row(
                                   // mainAxisAlignment: MainAxisAlignment.start ,
@@ -215,7 +215,7 @@ class _ChatScreenState extends State<ChatScreen> {
                           ),
                           child: IconButton(
                             icon: Icon(Icons.send),
-                            iconSize: 25.0,
+                            iconSize: 20.0,
                             color: Colors.white,
                             onPressed: () {
                               if (message != '') {
@@ -355,7 +355,7 @@ _buildMessage(Message message, context) {
         ),
         Container(
           constraints: BoxConstraints(
-            maxWidth: 290.0,
+            maxWidth: MediaQuery.of(context).size.width/1.45,
           ),
           // width: 300,
           margin: EdgeInsets.symmetric(vertical: 8),
@@ -384,8 +384,8 @@ _buildMessage(Message message, context) {
                     color: message.uid == user.uid
                         ? Colors.white
                         : Colors.grey[700],
-                    fontSize: 16.0,
-                    fontWeight: FontWeight.w600,
+                    fontSize: 14.0,
+                    fontWeight: FontWeight.w400,
                   ),
                 ),
               ),

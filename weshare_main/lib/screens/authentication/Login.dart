@@ -55,25 +55,37 @@ User user = User.form();
           appBar: PreferredSize(
             preferredSize: Size.fromHeight(202.0),
             child: AppBar(
-              brightness: Brightness.light,
+              brightness: Brightness.dark,
               automaticallyImplyLeading: false,
-              backgroundColor: Colors.white,
+              backgroundColor: Theme.of(context).accentColor,
+              
               flexibleSpace: Padding(
                 padding: const EdgeInsets.fromLTRB(0, 25, 0, 0),
+
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: <Widget>[
                     Image.asset(
-                      'assets/logo.png',
+                      'assets/logo-circle.png',
                       // fit: BoxFit.contain,
-                      height: 150,
+                      height: 70,
+                      
                     ),
-                    SizedBox(height: 1.0),
+                    SizedBox(height: 8.0),
+                    Text(
+                      'WeShare',
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 15,
+                        fontWeight: FontWeight.w800
+                      ),
+                      ),
+                    SizedBox(height: 17.0),
                     TabBar(
-                        unselectedLabelColor: Colors.grey,
-                        labelColor: Colors.black,
+                        unselectedLabelColor: Colors.white54,
+                        labelColor: Colors.white,
                         indicatorWeight: 4.0,
-                        indicatorColor: Theme.of(context).accentColor,
+                        indicatorColor: Colors.white,
                         tabs: [
                           Tab(
                             child: Text(
@@ -104,7 +116,7 @@ User user = User.form();
                       child: TabBarView(children: [
               SingleChildScrollView(
                   child: Container(
-                    padding: EdgeInsets.symmetric(vertical: 20, horizontal: 50.0),
+                    padding: EdgeInsets.symmetric(vertical: 20, horizontal: 25.0),
                     child: Form(
                       key: _formKey,
                       child: Column(
@@ -165,7 +177,9 @@ User user = User.form();
                           Builder(builder: (context) {
                             return Container(
                               height: 60.0,
+                              width: double.infinity,
                               child: RaisedButton(
+                                
                                   onPressed: () async {
                                     if (_formKey.currentState.validate()) {
 

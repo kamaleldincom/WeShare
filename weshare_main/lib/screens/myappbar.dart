@@ -12,12 +12,12 @@ class MyAppBar extends StatelessWidget {
     return Center(
       child: Container(
         padding: const EdgeInsets.all(16.0),
-        child: CircleAvatar(
-          backgroundImage: AssetImage('assets/logo-circle.png'),
-          radius: 25.0,
+        // child: CircleAvatar(
+        //   backgroundImage: AssetImage('assets/logo-circle.png'),
+        //   radius: 25.0,
           
-        ),
-        // Text(
+        // ),
+        // child: Text(
         //   'WeShare',
         //   style: TextStyle(
         //     color: Colors.white,

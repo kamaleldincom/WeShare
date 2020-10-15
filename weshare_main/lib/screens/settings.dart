@@ -58,20 +58,17 @@ class _SettingsState extends State<Settings> {
 
           //! Buttons
           Container(
-            margin: EdgeInsets.symmetric(horizontal: 20, vertical: 30),
+            margin: EdgeInsets.symmetric( vertical: 20),
             child: Card(
               elevation: 0,
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(20),
+              // shape: RoundedRectangleBorder(
+              //   borderRadius: BorderRadius.circular(20),
 
-                //topRight: Radius.circular(20.0)),
-              ),
+              //   //topRight: Radius.circular(20.0)),
+              // ),
               child: Column(
                 children: <Widget>[
-                  SettingsButtons(
-                    Icons.account_circle,
-                    'Account Details',
-                    true,
+                  SettingsButtons(Icons.account_circle, 'Account Details', true,
                     () {
                       Navigator.pushNamed(context, '/AccountDetails');
                     },
