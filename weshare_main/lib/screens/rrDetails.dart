@@ -65,13 +65,13 @@ class _RrDetailsState extends State<RrDetails> {
             child: DraggableScrollableSheet(
               initialChildSize: 0.35,
               minChildSize: 0.12,
-              maxChildSize: 0.6,
+              maxChildSize: 0.59,
               builder: ( context, controller){
                 return SingleChildScrollView(
                   controller: controller,
                   
                   child: Container(
-                    height: MediaQuery.of(context).size.height/1.88,
+                    // height: MediaQuery.of(context).size.height/1.9,
                     decoration: BoxDecoration(
                     borderRadius: BorderRadius.only(
                       topLeft: Radius.circular(15.0),

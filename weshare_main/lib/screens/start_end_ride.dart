@@ -66,7 +66,7 @@ class _StartEndRideInterfaceState extends State<StartEndRideInterface> {
                   controller: controller,
                   
                   child: Container(
-                    height: MediaQuery.of(context).size.height/2.25,
+                    // height: MediaQuery.of(context).size.height/2.25,
                     decoration: BoxDecoration(
                     borderRadius: BorderRadius.only(
                       topLeft: Radius.circular(15.0),
