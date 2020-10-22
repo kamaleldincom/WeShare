@@ -34,6 +34,8 @@ dependencies:
   flutter_phone_direct_caller: ^1.0.1
   google_maps_flutter: ^0.5.28+1
   location: ^3.0.0
+  geolocator: ^6.1.1
+  http: ^0.12.2
   # flutter_launcher_icons: ^0.7.3
   # path_provider: ^1.6.11
   intl: ^0.15.8 
