@@ -81,30 +81,50 @@ User user = User.form();
                       ),
                       ),
                     SizedBox(height: 17.0),
-                    TabBar(
-                        unselectedLabelColor: Colors.white54,
-                        labelColor: Colors.white,
-                        indicatorWeight: 4.0,
-                        indicatorColor: Colors.white,
-                        tabs: [
-                          Tab(
-                            child: Text(
-                              'Login',
-                              style: TextStyle(
-                                fontSize: 22.0,
-                                fontWeight: FontWeight.bold,
+                    Container(
+                      height: 60,
+                      padding: EdgeInsets.symmetric(horizontal: 15, vertical: 8),
+                      // margin: EdgeInsets.all(15),
+                      child: TabBar(
+                        labelColor: Theme.of(context).accentColor,
+                        unselectedLabelColor: Colors.white,
+                        indicatorSize: TabBarIndicatorSize.tab,
+                        indicator: BoxDecoration(
+                          // gradient: LinearGradient(
+                          //     colors: [Colors.redAccent, Colors.orangeAccent]),
+                          borderRadius: BorderRadius.circular(10),
+                          color: Colors.white,
+                        ),
+                          // unselectedLabelColor: Colors.white54,
+                          // labelColor: Colors.white,
+                          // indicatorWeight: 4.0,
+                          // indicatorColor: Colors.white,
+                          tabs: [
+                            Tab(
+                              child: Align(
+                                alignment: Alignment.center,
+                                child: Text(
+                                  'Login',
+                                  style: TextStyle(
+                                    fontSize: 20.0,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
                               ),
                             ),
-                          ),
-                          Tab(
-                              child: Text(
-                            'Sign-up',
-                            style: TextStyle(
-                              fontSize: 22.0,
-                              fontWeight: FontWeight.bold,
+                            Tab(
+                                child: Align(
+                                  alignment: Alignment.center,
+                                  child: Text(
+                              'Sign-up',
+                              style: TextStyle(
+                                  fontSize: 20.0,
+                                  fontWeight: FontWeight.bold,
+                              ),
                             ),
-                          )),
-                        ]),
+                                )),
+                          ]),
+                    ),
                   ],
                 ),
               ),

@@ -54,12 +54,14 @@ class _RidesState extends State<Rides> {
                           color: Colors.white,
                           borderRadius: BorderRadius.circular(10),
                           gradient: LinearGradient(
-                              begin: Alignment.bottomLeft,
-                              end: Alignment.topRight,
-                              colors: <Color>[
-                                Color(0xFF9ADAFC),
-                                Color(0xFF8496FD)
-                              ])),
+                            begin: Alignment.bottomLeft,
+                            end: Alignment.topRight,
+                            colors: <Color>[
+                              Color(0xFF9ADAFC),
+                              Color(0xFF8496FD)
+                            ]
+                          ),
+                      ),
                       child: TabBar(
                           labelColor: Theme.of(context).accentColor,
                           unselectedLabelColor: Colors.white,
