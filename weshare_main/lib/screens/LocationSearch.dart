@@ -55,15 +55,41 @@ class _LocationSearchState extends State<LocationSearch> {
     return Scaffold(
       body: Column(
         children: <Widget>[
-          Container(
-            height: MediaQuery.of(context).size.height*3/5,
-            width: MediaQuery.of(context).size.width,
-            child: GoogleMap(
-              initialCameraPosition: CameraPosition(target: LatLng(1.544376, 103.632673), zoom: 13,),
-              // myLocationEnabled: true,  
-              onMapCreated: _onMapCreated,
-              markers: Set.from(allMarkers),
+          Stack(
+            children: <Widget>[Container(
+              height: MediaQuery.of(context).size.height*3/5,
+              width: MediaQuery.of(context).size.width,
+              child: GoogleMap(
+                initialCameraPosition: CameraPosition(target: LatLng(1.544376, 103.632673), zoom: 13,),
+                // myLocationEnabled: true,  
+                onMapCreated: _onMapCreated,
+                markers: Set.from(allMarkers),
+              ),
             ),
+            Positioned(
+              child: AppBar(
+                backgroundColor: Colors.transparent,
+                elevation: 0,
+                leading: Container(
+                  // height: 20,
+                  // width: 20,
+                  margin: EdgeInsets.all(7),
+                  decoration: BoxDecoration(
+                    borderRadius:
+                        BorderRadius.all(Radius.circular(50.0)),
+                    // gradient: linearGradientvertical,
+                    color: Colors.white,
+                    
+                  ),
+                  
+                  child: BackButton(
+                    color: Theme.of(context).accentColor,
+                    
+                  ),
+                ),
+              ),
+            ),
+            ]
           ),
           // Positioned(
           //         top: 70.0,

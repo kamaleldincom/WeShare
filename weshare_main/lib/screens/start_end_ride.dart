@@ -36,15 +36,15 @@ class _StartEndRideInterfaceState extends State<StartEndRideInterface> {
     // print('ride from start $ride');
     return Scaffold(
       // backgroundColor: Colors.yellow,
-      appBar: AppBar(
-        brightness: Brightness.light,
-        leading: BackButton(
-          color: Color(0xFF5C79FF),
-        ),
-        backgroundColor: Colors.transparent,
-        elevation: 0,
-        centerTitle: true,
-      ),
+      // appBar: AppBar(
+      //   brightness: Brightness.light,
+      //   leading: BackButton(
+      //     color: Color(0xFF5C79FF),
+      //   ),
+      //   backgroundColor: Colors.transparent,
+      //   elevation: 0,
+      //   centerTitle: true,
+      // ),
       body: Stack(
         children: <Widget>[
           // MAP GOES HERE
@@ -53,7 +53,29 @@ class _StartEndRideInterfaceState extends State<StartEndRideInterface> {
             myLocationEnabled: true,  
             onMapCreated: _onMapCreated,
           ),
-          
+          Positioned(
+              child: AppBar(
+                backgroundColor: Colors.transparent,
+                elevation: 0,
+                leading: Container(
+                  // height: 20,
+                  // width: 20,
+                  margin: EdgeInsets.all(7),
+                  decoration: BoxDecoration(
+                    borderRadius:
+                        BorderRadius.all(Radius.circular(50.0)),
+                    // gradient: linearGradientvertical,
+                    color: Colors.white,
+                    
+                  ),
+                  
+                  child: BackButton(
+                    color: Theme.of(context).accentColor,
+                    
+                  ),
+                ),
+              ),
+            ),
           //! Chat Info.
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 5.0),

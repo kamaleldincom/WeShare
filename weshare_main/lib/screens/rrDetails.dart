@@ -42,16 +42,16 @@ class _RrDetailsState extends State<RrDetails> {
     //  print(ride.driver.name);
     return Scaffold(
       // backgroundColor: Colors.yellow,
-      appBar: AppBar(
-        brightness: Brightness.light,
-        backgroundColor: Colors.transparent,
-        leading: BackButton(
-          color: Color(0xFF5C79FF),
-        ),
-        elevation: 0,
-        centerTitle: true,
-        //title: Text('Text'),
-      ),
+      // appBar: AppBar(
+      //   brightness: Brightness.light,
+      //   backgroundColor: Colors.transparent,
+      //   leading: BackButton(
+      //     color: Color(0xFF5C79FF),
+      //   ),
+      //   elevation: 0,
+      //   centerTitle: true,
+      //   //title: Text('Text'),
+      // ),
       body: Stack(
         children: <Widget>[
           GoogleMap(
@@ -62,6 +62,29 @@ class _RrDetailsState extends State<RrDetails> {
             myLocationEnabled: true,
             onMapCreated: _onMapCreated,
           ),
+          Positioned(
+              child: AppBar(
+                backgroundColor: Colors.transparent,
+                elevation: 0,
+                leading: Container(
+                  // height: 20,
+                  // width: 20,
+                  margin: EdgeInsets.all(7),
+                  decoration: BoxDecoration(
+                    borderRadius:
+                        BorderRadius.all(Radius.circular(50.0)),
+                    // gradient: linearGradientvertical,
+                    color: Colors.white,
+                    
+                  ),
+                  
+                  child: BackButton(
+                    color: Theme.of(context).accentColor,
+                    
+                  ),
+                ),
+              ),
+            ),
           // Container(
           //   decoration: BoxDecoration(
           //       // color: Colors.blue,
