@@ -96,9 +96,24 @@ class _HistoryState extends State<History> {
                     children: [
                       Row(
                         children: [
-                          Text("Ride From ${rides[index].from} ", style: TextStyle(fontSize: 17),),
+                          SizedBox(
+                            width: MediaQuery.of(context).size.width/2.5,
+                            child: Text(
+                              "Ride From ${rides[index].from} ", 
+                              style: TextStyle(fontSize: 17),
+                              overflow: TextOverflow.ellipsis,
+                              
+                            ),
+                          ),
                           // SizedBox(height: 1),
-                          Text("To ${rides[index].to}", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 17),),
+                          SizedBox(
+                            width: MediaQuery.of(context).size.width/2.5,
+                            child: Text(
+                              "To ${rides[index].to}", 
+                              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 17),
+                              overflow: TextOverflow.ellipsis,
+                            ),
+                          ),
                         ],
                       ),
                       Row(

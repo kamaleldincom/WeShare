@@ -138,7 +138,9 @@ class _SignUpStep1State extends State<SignUpStep1> {
                       ),
                       child: Container(
                         constraints:
-                            BoxConstraints(maxWidth: 310.0, minHeight: 60.0),
+                            BoxConstraints(minHeight: 60.0),
+                        width: MediaQuery.of(context).size.width,
+                        
                         alignment: Alignment.center,
                         child: Text(
                           'Next',
@@ -247,14 +249,15 @@ class _SignUpStep2State extends State<SignUpStep2> {
                 // ),
                 Text('Phone Number',
                     textAlign: TextAlign.start,
-                    style: TextStyle(color: Colors.grey, fontSize: 14.0)),
+                    style: TextStyle(color: Colors.grey, fontSize: 14.0)
+                ),
                 Card(
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(10.0),
                   ),
                   child: Container(
-                    height: 60,
-                    
+                    // height: 60,
+                    constraints: BoxConstraints(minHeight: 60, maxHeight: 82),
                     padding: EdgeInsets.symmetric(horizontal: 7, vertical: 5),
                     child: InternationalPhoneNumberInput.withCustomDecoration(
                       // autoFocus: false,
@@ -350,6 +353,7 @@ class _SignUpStep2State extends State<SignUpStep2> {
                 //SnackBar
                 Builder(builder: (context) {
                   return Container(
+                    // constraints: BoxConstraints(minHeight: 60, maxHeight: 80),
                     height: 60.0,
                     child: RaisedButton(
                         onPressed: () async {
@@ -373,9 +377,11 @@ class _SignUpStep2State extends State<SignUpStep2> {
                           // Navigator.of(context).pushReplacementNamed('/nav');
                         },
                         shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(10.0)),
+                          borderRadius: BorderRadius.circular(10.0)
+                        ),
                         padding: EdgeInsets.all(0.0),
-                        child: buttonWithGradient('Sign Up')),
+                        child: buttonWithGradient('Sign Up')
+                    ),
                   );
                 }),
 

@@ -122,6 +122,7 @@ class _RideSummaryState extends State<RideSummary> {
           ),
           Container(
               margin: EdgeInsets.symmetric(horizontal: 10,),
+              // padding: EdgeInsets.symmetric(vertical: 10,),
               child: Column(children: <Widget>[
                 Card(
                   elevation: 0.0,
@@ -143,47 +144,94 @@ class _RideSummaryState extends State<RideSummary> {
                       //   ),
                       // ),
                       Container(
-                        padding: EdgeInsets.symmetric(horizontal: 10,),
-                        height: 52,
+                        padding: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+                        // height: 52,
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          crossAxisAlignment: CrossAxisAlignment.start,
+                          crossAxisAlignment: CrossAxisAlignment.center,
                           children: <Widget>[
-                            Row(
+                            Column(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              crossAxisAlignment: CrossAxisAlignment.start,
                               children: <Widget>[
-                                Column(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceEvenly,
-                                  children: <Widget>[
-                                    Icon(
-                                      Icons.trip_origin,
-                                      color: Color(0xFF686868),
-                                      size: 15,
-                                    ),
-                                    SizedBox(height: 20),
-                                    Icon(
-                                      Icons.brightness_1,
-                                      color: Color(0xFF686868),
-                                      size: 15,
-                                    ),
-                                  ],
-                                ),
-                                Column(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
+                                Row(
+                                  mainAxisAlignment: MainAxisAlignment.start,
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: <Widget>[
-                                    Text(ride.from),
-                                    Text(ride.to),
+                                    
+                                    Icon(
+                                      Icons.trip_origin,
+                                      color: Theme.of(context).accentColor,
+                                      size: 20,
+                                    ),
+                                    SizedBox(width: 10,),
+                                    Column(
+                                      crossAxisAlignment: CrossAxisAlignment.start,
+                                      children: [
+                                        Text(
+                                          'from',
+                                          style: TextStyle(
+                                            color: Colors.grey,
+                                            fontSize: 12,
+                                          ),
+                                        ),
+                                        Text(
+                                          ride.from,
+                                          style: TextStyle(
+                                            color: Colors.black,
+                                            fontSize: 18,
+                                            fontWeight: FontWeight.w600,
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                    
+                                  ],
+                                ),
+                                SizedBox(height: 10,),
+                                Row(
+                                  mainAxisAlignment: MainAxisAlignment.start,
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: <Widget>[
+                                    Icon(
+                                      Icons.brightness_1,
+                                      color: Theme.of(context).accentColor,
+                                      size: 20,
+                                    ),
+                                    SizedBox(width: 10,),
+                                    Column(
+                                      crossAxisAlignment: CrossAxisAlignment.start,
+                                      children: [
+                                        Text(
+                                          'To',
+                                          style: TextStyle(
+                                            color: Colors.grey,
+                                            fontSize: 12,
+                                          ),
+                                        ),
+                                        Text(
+                                          ride.to,
+                                          style: TextStyle(
+                                            color: Colors.black,
+                                            fontSize: 18,
+                                            fontWeight: FontWeight.w600,
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                    
                                   ],
                                 ),
                               ],
                             ),
+                            
                             Column(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              // crossAxisAlignment: CrossAxisAlignment.center,
                               children: <Widget>[
                                 Text('$time',
                                     style: TextStyle(color: Colors.grey)),
+                                SizedBox(height: 5,),
                                 Text('$date',
                                     style: TextStyle(color: Colors.grey)),
                               ],
@@ -191,77 +239,96 @@ class _RideSummaryState extends State<RideSummary> {
                           ],
                         ),
                       ),
-                      SizedBox(
-                        height: 20,
-                      ),
+                      // SizedBox(
+                      //   height: 10,
+                      // ),
+                      // Container(
+                      //   margin: EdgeInsetsDirectional.fromSTEB(10, 0, 0, 10),
+                      //   child: Text(
+                      //     'Riders',
+                      //     style: TextStyle(
+                      //       color: Colors.grey,
+                      //       fontSize: 14.0,
+                      //     ),
+                      //   ),
+                      // ),
+                      Divider(
+                              color: Colors.grey.shade400,
+                              indent: 10,
+                              endIndent: 10,
+                              height: 10,
+                            ),
                       Container(
-                        margin: EdgeInsetsDirectional.fromSTEB(10, 0, 0, 10),
-                        child: Text(
-                          'Riders',
-                          style: TextStyle(
-                            color: Colors.grey,
-                            fontSize: 14.0,
-                          ),
-                        ),
-                      ),
-                      Container(
-                        padding: EdgeInsets.symmetric(horizontal: 10),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: <Widget>[
+                        padding: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+                        child: Column(
+                          children: [
+                            Text(
+                              'Riders',
+                              style: TextStyle(
+                                color: Colors.grey,
+                                fontSize: 15.0,
+                                fontWeight: FontWeight.w500,
+                              ),
+                            ),
+                            SizedBox(height: 10,),
                             Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: <Widget>[
-                                Container(
-                                  width: 70,
-                                  child: Stack(
-                                    children: <Widget>[
-                                      CircleAvatar(
-                                        backgroundImage:
-                                            AssetImage('assets/driver.png'),
-                                        radius: 15,
+                                Row(
+                                  children: <Widget>[
+                                    Container(
+                                      width: 70,
+                                      child: Stack(
+                                        children: <Widget>[
+                                          CircleAvatar(
+                                            backgroundImage:
+                                                AssetImage('assets/driver.png'),
+                                            radius: 15,
+                                          ),
+                                          Positioned(
+                                            left: 12,
+                                            child: CircleAvatar(
+                                              backgroundImage:
+                                                  AssetImage('assets/driver.png'),
+                                              radius: 15,
+                                            ),
+                                          ),
+                                          Positioned(
+                                            left: 25,
+                                            child: CircleAvatar(
+                                              backgroundImage:
+                                                  AssetImage('assets/driver.png'),
+                                              radius: 15,
+                                            ),
+                                          ),
+                                          Positioned(
+                                            left: 25,
+                                            child: CircleAvatar(
+                                              backgroundImage:
+                                                  AssetImage('assets/driver.png'),
+                                              radius: 15,
+                                            ),
+                                          ),
+                                          Positioned(
+                                            left: 37,
+                                            child: CircleAvatar(
+                                              child: Text('+1'),
+                                              radius: 15,
+                                            ),
+                                          ),
+                                        ],
                                       ),
-                                      Positioned(
-                                        left: 12,
-                                        child: CircleAvatar(
-                                          backgroundImage:
-                                              AssetImage('assets/driver.png'),
-                                          radius: 15,
-                                        ),
-                                      ),
-                                      Positioned(
-                                        left: 25,
-                                        child: CircleAvatar(
-                                          backgroundImage:
-                                              AssetImage('assets/driver.png'),
-                                          radius: 15,
-                                        ),
-                                      ),
-                                      Positioned(
-                                        left: 25,
-                                        child: CircleAvatar(
-                                          backgroundImage:
-                                              AssetImage('assets/driver.png'),
-                                          radius: 15,
-                                        ),
-                                      ),
-                                      Positioned(
-                                        left: 37,
-                                        child: CircleAvatar(
-                                          child: Text('+1'),
-                                          radius: 15,
-                                        ),
-                                      ),
-                                    ],
+                                    ),
+                                  ],
+                                ),
+                                Text(
+                                  '4km . 17mins',
+                                  style: TextStyle(
+                                    color: Colors.grey,
+                                    // fontSize: 12.0,
                                   ),
                                 ),
                               ],
-                            ),
-                            Text(
-                              '4km . 17mins',
-                              style: TextStyle(
-                                color: Colors.grey,
-                                fontSize: 12.0,
-                              ),
                             ),
                           ],
                         ),
@@ -284,25 +351,23 @@ class _RideSummaryState extends State<RideSummary> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: <Widget>[
                       Container(
-                        height: 80,
-                        padding: EdgeInsetsDirectional.fromSTEB(20, 15, 20, 0),
-                        child: Row(
+                        // height: 80,
+                        width: MediaQuery.of(context).size.width,
+                        padding: EdgeInsets.all(10),
+                        child: Column(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           crossAxisAlignment: CrossAxisAlignment.center,
                           children: <Widget>[
-                            Column(
+                            Text('Total',
+                                style: TextStyle(
+                                  color: Colors.grey,
+                                  fontSize: 15,
+                                  fontWeight: FontWeight.w500,
+                                )),
+                            SizedBox(height: 10,),
+                            Row(
                               mainAxisAlignment: MainAxisAlignment.center,
-                              children: <Widget>[
-                                Text('Total',
-                                    style: TextStyle(
-                                      color: Colors.black,
-                                      fontSize: 20,
-                                      fontWeight: FontWeight.w900,
-                                    )),
-                              ],
-                            ),
-                            Column(
-                              mainAxisAlignment: MainAxisAlignment.center,
+                              crossAxisAlignment: CrossAxisAlignment.end,
                               children: <Widget>[
                                 Text('${ride.price}',
                                     style: TextStyle(
@@ -310,16 +375,20 @@ class _RideSummaryState extends State<RideSummary> {
                                       fontSize: 20,
                                       fontWeight: FontWeight.w900,
                                     )),
-                                Row(
-                                  children: <Widget>[
-                                    Text('cash',
-                                        style: TextStyle(color: Colors.grey)),
-                                    Icon(
-                                      Icons.monetization_on,
-                                      color: Colors.grey,
-                                    )
-                                  ],
+                                
+                                SizedBox(width: 5,),
+                                Text('MYR',
+                                  style: TextStyle(
+                                    color: Colors.grey,
+                                    fontSize: 15,
+                                  ),
+                                    
                                 ),
+                                // Icon(
+                                //   Icons.monetization_on,
+                                //   color: Colors.grey,
+                                //   size: 20,
+                                // ),
                               ],
                             ),
                           ],

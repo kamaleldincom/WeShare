@@ -21,6 +21,7 @@ Column bottomSection(String text) {
           Image.asset('assets/icon-facebook.png'),
         ],
       ),
+      SizedBox(height: 150,),
     ],
   );
 }

@@ -71,63 +71,82 @@ class _ChatScreenState extends State<ChatScreen> {
         builder: (context, snapshot) {
           // print();
           return Scaffold(
+            appBar: AppBar(
+              leading: BackButton(
+                color: Colors.white,
+              ),
+              title: Text(
+                'Ride to ${ride.to}',
+                style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 18.0,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+              actions: <Widget>[
+                IconButton(
+                  icon: Icon(
+                    Icons.info_outline_rounded,
+                    
+                    color: Colors.white,
+                  ),
+                  iconSize: 25.0,
+                  onPressed: () {},
+                ),
+              ],
+              centerTitle: true,
+            ),
             body: GestureDetector(
               child: Column(
                 children: <Widget>[
-                  Container(
-                    height: 130.0,
-                    padding: EdgeInsets.only(top: 30),
-                    decoration: BoxDecoration(
-                      // boxShadow: [BoxShadow(blurRadius: 3, color: Colors.black, offset: ),],
-                      gradient: LinearGradient(
-                          begin: Alignment.centerRight,
-                          end: Alignment.centerLeft,
-                          colors: <Color>[
-                            Color(0xFF76D3FF),
-                            Color(0xFF5C79FF)
-                          ]),
-                    ),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: <Widget>[
-                        Row(
-                          children: <Widget>[
-                            BackButton(
-                              color: Colors.white,
-                            ),
-                            SizedBox(
-                              width: 130.0,
-                            ),
-                            CircleAvatar(
-                              backgroundImage: AssetImage('assets/logo.png'),
-                              radius: 30.0,
-                            ),
-                          ],
-                        ),
-                        SizedBox(
-                          height: 10,
-                        ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: <Widget>[
-                            Text(
-                              'Ride to ${ride.to}',
-                              style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 16.0,
-                                fontWeight: FontWeight.bold,
-                              ),
-                            )
-                          ],
-                        ),
-                      ],
-                    ),
-                  ),
+                  // Container(
+                  //   height: MediaQuery.of(context).size.height/12,
+                  //   padding: EdgeInsets.only(top: 30),
+                  //   decoration: BoxDecoration(
+                  //     // boxShadow: [BoxShadow(blurRadius: 3, color: Colors.black, offset: ),],
+                  //     gradient: LinearGradient(
+                  //         begin: Alignment.centerRight,
+                  //         end: Alignment.centerLeft,
+                  //         colors: <Color>[
+                  //           Color(0xFF76D3FF),
+                  //           Color(0xFF5C79FF)
+                  //         ]),
+                  //   ),
+                  //   child: Row(
+                  //     // crossAxisAlignment: CrossAxisAlignment.start,
+                  //     mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  //     children: <Widget>[
+                  //       BackButton(
+                  //         color: Colors.white,
+                  //       ),
+                  //       // SizedBox(
+                  //       //   height: 10,
+                  //       // ),
+                  //       Text(
+                  //         'Ride to ${ride.to}',
+                  //         style: TextStyle(
+                  //           color: Colors.white,
+                  //           fontSize: 16.0,
+                  //           fontWeight: FontWeight.bold,
+                  //         ),
+                  //       ),
+                  //       IconButton(
+                  //         icon: Icon(
+                  //           Icons.info_outline_rounded,
+                            
+                  //           color: Colors.white,
+                  //         ),
+                  //         iconSize: 25.0,
+                  //         onPressed: () {},
+                  //       ),
+                  //     ],
+                  //   ),
+                  // ),
                   ChatListView(),
                   // _buildMessageTextField(getValue, context),
                   Container(
-                    padding: EdgeInsets.all(5),
-                    // height: 100.0,
+                    padding: EdgeInsets.all(10),
+                    // height: MediaQuery.of(context).size.height/11,
                     color: Colors.white,
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -137,6 +156,7 @@ class _ChatScreenState extends State<ChatScreen> {
                             controller: widget.theMessage,
                             maxLines: 2,
                             minLines: 1,
+                            
                             textCapitalization: TextCapitalization.sentences,
                             onChanged: (value) {
                               setState(() {
@@ -151,37 +171,46 @@ class _ChatScreenState extends State<ChatScreen> {
                             },
                             decoration: InputDecoration(
                               suffixIcon: Container(
-                                width: MediaQuery.of(context).size.width/6,
+                                width: MediaQuery.of(context).size.width/4,
                                 // margin: EdgeInsets.only(right:1),
                                 child: Row(
-                                  // mainAxisAlignment: MainAxisAlignment.start ,
+                                  mainAxisAlignment: MainAxisAlignment.spaceBetween ,
                                   children: <Widget>[
                                     message != ''
-                                        ? IconButton(
-                                            icon: Icon(Icons.cancel),
+                                    ? IconButton(
+                                        icon: Icon(Icons.cancel),
+                                        iconSize: 20.0,
+                                        color: Colors.grey[600],
+                                        onPressed: () {
+                                          widget.theMessage.clear();
+                                          message = '';
+                                          setState(() {});
+                                        },
+                                      )
+                                    : 
+                                    Container(
+                                      child: Row(
+                                        children: [
+                                          IconButton(
+                                            icon: Icon(Icons.attachment),
                                             iconSize: 20.0,
                                             color: Colors.grey[600],
-                                            onPressed: () {
-                                              widget.theMessage.clear();
-
-                                              message = '';
-                                              setState(() {});
-                                            },
-                                          )
-                                        : Container(),
-                                    IconButton(
-                                      icon: Icon(Icons.attachment),
-                                      iconSize: 25.0,
-                                      color: Colors.grey[600],
-                                      onPressed: () {},
-                                    ),
-                                    IconButton(
-                                      icon: Icon(
-                                        Icons.camera_alt,
-                                        color: Colors.grey[600],
+                                            onPressed: () {},
+                                          ),
+                                          IconButton(
+                                            icon: Icon(
+                                              Icons.camera_alt,
+                                              
+                                              color: Colors.grey[600],
+                                            ),
+                                            iconSize: 20.0,
+                                            onPressed: () {},
+                                          ),
+                                        ],
                                       ),
-                                      onPressed: () {},
                                     ),
+                                    
+                                    
                                   ],
                                 ),
                               ),
@@ -198,9 +227,9 @@ class _ChatScreenState extends State<ChatScreen> {
                                 borderRadius:
                                     BorderRadius.all(Radius.circular(50.0)),
                                 borderSide:
-                                    BorderSide(color: Colors.white, width: 0.0),
+                                    BorderSide(color: Colors.grey, width: 0.5),
                               ),
-                              hintText: 'Types a message...',
+                              hintText: 'Type a Message',
                             ),
                           ),
                         ),
@@ -291,8 +320,8 @@ _buildMessage(Message message, context) {
   Container addAvatar(String uid) {
     if (uid != user.uid) {
       return Container(
-          child: CircleAvatar(
-        child: FutureBuilder(
+        child: CircleAvatar(
+          child: FutureBuilder(
             future: DatabaseService().getUserDetails(message.uid),
             builder: (context, snapshot) {
               if (snapshot.hasData) {
@@ -307,11 +336,11 @@ _buildMessage(Message message, context) {
                             child: snapshot.data,
                           ),
                           // backgroundImage: NetworkImage(snapshot.data.preview),
-                          radius: 25,
+                          radius: 20,
                         );
 
                       if (snapshot.connectionState == ConnectionState.waiting)
-                        return Container(child: Icon(Icons.person, size: 35));
+                        return Container(child: Icon(Icons.person, size: 25));
 
                       if (snapshot.connectionState == ConnectionState.none) {
                         return Container(
@@ -320,19 +349,20 @@ _buildMessage(Message message, context) {
                       }
                       return Container(
                         child:
-                            Icon(Icons.person, size: 35, color: Colors.black),
+                            Icon(Icons.person, size: 25, color: Colors.black),
                       );
                     },
                   );
                 } else {
-                  Container(child: Icon(Icons.person, size: 35));
+                  Container(child: Icon(Icons.person, size: 25));
                 }
               }
-              return Container(child: Icon(Icons.person, size: 35));
-            }),
+              return Container(child: Icon(Icons.person, size: 25));
+            }
+          ),
 
         // backgroundImage: AssetImage('assets/logo.png'),
-        radius: 25.0,
+        radius: 20.0,
       ));
     } else {
       return Container(
