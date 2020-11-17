@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:provider/provider.dart';
+import 'package:weshare_main/models/user.dart';
+import 'package:weshare_main/services/database.dart';
 import 'constants.dart';
 // import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
@@ -18,6 +21,7 @@ class _MyFlexiableAppBarState extends State<MyFlexiableAppBar> {
   DateTime _dateTime = DateTime.now();
   @override
   Widget build(BuildContext context) {
+    User user = Provider.of<User>(context) ?? null;
     final double statusBarHeight = MediaQuery
         .of(context)
         .padding
@@ -45,13 +49,29 @@ class _MyFlexiableAppBarState extends State<MyFlexiableAppBar> {
                   mainAxisAlignment: MainAxisAlignment.end,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
-                    Text(
-                      "Welcome",
-                      style: TextStyle(
-                        fontSize: 18,
-                        fontWeight: FontWeight.w600,
-                        color: Colors.white60,
-                      ),
+                    FutureBuilder(
+                      future: DatabaseService()
+                      .getUserDetails(user.uid),
+                      builder: (context, snapshot) {
+                      if (snapshot.hasData) {
+                      return Text(
+                        "Welcome ${snapshot.data.name}",
+                        style: TextStyle(
+                          fontSize: 18,
+                          fontWeight: FontWeight.w600,
+                          color: Colors.white60,
+                          
+                        ),
+                      );
+                      } else return Text(
+                        "Welcome",
+                        style: TextStyle(
+                          fontSize: 18,
+                          fontWeight: FontWeight.w600,
+                          color: Colors.white60,
+                        ),
+                      );
+                      }
                     ),
                     SizedBox(height: 15,),
                     Text(
