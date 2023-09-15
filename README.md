@@ -1,8 +1,4 @@
-Mobile Application Programming, SCSJ3623
-School of Computing, UTM
-June 2020
-
-# Group Project Final Version
+# WeShare StartUp MVP final Version
 
 ## Project Title: WeShare
 
@@ -31,15 +27,6 @@ _Note:_
 ## Project URL on Firebase : 
 
 https://console.firebase.google.com/u/1/project/weshare-5df01/overview
-
-If you wish to view our firestore, please log in to this account:
-
-gmail acc:  wesharecommuter@gmail.com
-gmail pwd:  weshare#go
-
-## Git Repo URL on github (front-end): https://github.com/amoo12/weshare
-
-## Git Repo URL on github (back-end) : https://github.com/amoo12/weshare-Backend
 
 ## User credential (username and passwords) to test out your app:
 
