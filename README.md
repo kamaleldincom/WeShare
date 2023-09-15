@@ -17,12 +17,6 @@ _Note: Briefly describe what your app is all about_
 - Name 2: ABDULRAHMAN MOHAMMED ABULLAH AL-ABIDI
 - Name 3: AHMED KAMAL ELDIN
 
-## Video URL:  https://youtu.be/jKQvxnAfkIM
-
-_Note:_
-
-- Video must be uploaded to youtube.
-- Provide timestamps to your video.
 
 ## Project URL on Firebase : 
 
