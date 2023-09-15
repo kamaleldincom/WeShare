@@ -1,5 +1,3 @@
-Mobile Application Programming, SCSJ3623
-School of Computing, UTM
 June 2020
 
 # Group Project Final Version
@@ -13,20 +11,19 @@ This application is unique as it allows all the users to be riders (join rides o
 
 
 
-_Note: Briefly describe what your app is all about_
+_Note: Briefly describe what our app is all about_
 
-## Group Members
+## Team Members
 
-- Name 1: LOAI ABDULRAHMAN MOHAMMED AL-SHAREE
+- Name 1: AHMED KAMAL ELDIN
 - Name 2: ABDULRAHMAN MOHAMMED ABULLAH AL-ABIDI
-- Name 3: AHMED KAMAL ELDIN
+- Name 3: LOAI ABDULRAHMAN MOHAMMED AL-SHAREE
 
 ## Video URL:  https://youtu.be/jKQvxnAfkIM
 
 _Note:_
 
-- Video must be uploaded to youtube.
-- Provide timestamps to your video.
+
 
 ## Project URL on Firebase : 
 
@@ -37,9 +34,6 @@ If you wish to view our firestore, please log in to this account:
 gmail acc:  wesharecommuter@gmail.com
 gmail pwd:  weshare#go
 
-## Git Repo URL on github (front-end): https://github.com/amoo12/weshare
-
-## Git Repo URL on github (back-end) : https://github.com/amoo12/weshare-Backend
 
 ## User credential (username and passwords) to test out your app:
 

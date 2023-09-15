@@ -231,7 +231,8 @@ User user = User.form();
                           bottomSection('Forgot Password?'),
                         ],
                       ),
-                    )),
+                    )
+                  ),
               ),
               
               signUp(_next, _previous)[index],
