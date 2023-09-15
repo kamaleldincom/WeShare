@@ -11,7 +11,7 @@ This application is unique as it allows all the users to be riders (join rides o
 
 _Note: Briefly describe what your app is all about_
 
-## Group Members
+## Team Members
 
 - Name 1: LOAI ABDULRAHMAN MOHAMMED AL-SHAREE
 - Name 2: ABDULRAHMAN MOHAMMED ABULLAH AL-ABIDI
